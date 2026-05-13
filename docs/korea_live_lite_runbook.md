@@ -107,6 +107,11 @@ live_requests_executed
 live_requests_failed
 cache_hits
 cache_writes
+rate_limit_waits
+rate_limit_skips
+actual_http_requests_by_source
+logical_queries_by_source
+max_concurrency_used_by_source
 fallback_reasons
 request_only_sources
 ```
@@ -123,6 +128,120 @@ max_naver_search_calls_per_day = 2000
 max_symbols_for_event_search = 200
 max_symbols_for_deep_research = 30
 ```
+
+## Rate Limits And Serial Live Execution
+
+Live-lite starts with serial source calls.
+
+Defaults:
+
+```text
+allow_parallel_live_requests = False
+max_global_live_workers = 1
+```
+
+This is intentional. Early pilots should be easy to audit:
+
+```text
+request 1
+-> rate-limit check
+-> HTTP/cache result
+-> run_log update
+-> request 2
+```
+
+Source-level defaults are conservative:
+
+```text
+OpenDART:
+  max_concurrency = 1
+  min_interval_seconds = 0.2
+
+Naver Search:
+  max_concurrency = 1
+  min_interval_seconds = 0.3
+
+data.go.kr / KRX:
+  max_concurrency = 1
+  min_interval_seconds = 0.2
+```
+
+Daily request caps still come from `KoreaLiveLiteBudget`.
+
+If the limiter has to wait, the run log shows:
+
+```text
+rate_limit_waits > 0
+```
+
+If the limiter blocks a request before network execution:
+
+```text
+rate_limit_skips > 0
+```
+
+Check source-level activity:
+
+```text
+actual_http_requests_by_source
+logical_queries_by_source
+max_concurrency_used_by_source
+```
+
+Example:
+
+```text
+logical_queries_by_source.naver_search = 25
+actual_http_requests_by_source.naver_search = 75
+```
+
+This can happen because one logical search query may call multiple Naver search domains.
+
+## Live Smoke Presets
+
+Use smoke presets before broader live pilots.
+
+```python
+from datetime import date
+from e2r.pipeline.korea_live_lite import KoreaLiveLiteConfig
+
+config = KoreaLiveLiteConfig.smoke_preset("tiny", as_of_date=date.today())
+```
+
+Preset sizes:
+
+```text
+tiny:
+  universe_limit = 50
+  naver queries = 50
+  event_search symbols = 5
+  deep_research symbols = 1
+
+small:
+  universe_limit = 300
+  naver queries = 300
+  event_search symbols = 30
+  deep_research symbols = 5
+
+standard_shadow:
+  universe_limit = all fixture/live universe
+  naver queries = 2000
+  event_search symbols = 200
+  deep_research symbols = 30
+```
+
+Presets do not turn on live mode by themselves. To run live-lite explicitly:
+
+```python
+config = KoreaLiveLiteConfig.smoke_preset(
+    "tiny",
+    as_of_date=date.today(),
+    fixture_mode=False,
+    live_enabled=True,
+)
+```
+
+Start with `tiny`, inspect `run_log.json`, then move to `small`.
 
 Example with a smaller pilot:
 
@@ -239,6 +358,8 @@ built request metadata
 skipped candidates
 skipped queries and reasons
 dropped search results and reasons
+parser audit findings
+planned OpenDART detail fetches
 run notes
 ```
 
@@ -250,6 +371,151 @@ source_modes.opendart = fixture
 
 source_modes.opendart = live_executed
 -> OpenDART date-range collection actually ran through the HTTP executor or cache.
+```
+
+## Reviewing A Run
+
+After every fixture or live-lite run, review the output bundle before reading the brief as a decision artifact.
+
+Run:
+
+```bash
+PYTHONPATH=src python -m e2r.cli.review_korea_run 2024-05-21 --output-directory output
+```
+
+The review command reads:
+
+```text
+output/korea_live_lite/2024-05-21_candidates.json
+output/korea_live_lite/2024-05-21_evidence.json
+output/korea_live_lite/2024-05-21_brief.md
+output/korea_live_lite/2024-05-21_run_log.json
+```
+
+It summarizes:
+
+```text
+total candidates
+event_search and deep_research counts
+Stage distribution if the brief contains stages
+source_modes
+live_requests_executed / failed
+cache_hits / writes
+missing credentials
+top skipped and dropped reasons
+low-confidence evidence
+manual-review items
+```
+
+Simple example:
+
+```text
+source_modes.data_go_kr = live_executed
+source_modes.opendart = fallback
+manual review required = parser-audit:333333:...
+```
+
+This means the price/universe data came through the live executor, but disclosure evidence came from fallback data and at least one parsed item needs manual review.
+
+## Parser Audit Findings
+
+The runner audits parsed evidence before writing the final run log.
+
+Audit findings are written to:
+
+```text
+run_log.audit_findings
+```
+
+Important checks include:
+
+```text
+contract_amount_to_prior_sales > 5.0
+contract_duration_months > 120
+opm > 80
+est_per < 1 or est_per > 300
+est_pbr < 0.1 or est_pbr > 50
+target_revision_pct > 300
+fifty_two_week_low > current_price
+parser_confidence < 0.5
+contract_quality score exists but contract amount/duration is missing
+Stage 3-Green supported only by low-confidence evidence
+```
+
+Severity:
+
+```text
+info
+warning
+hard
+```
+
+Suggested action:
+
+```text
+allow
+downgrade_to_yellow
+manual_review
+block_green
+```
+
+Trust Stage 3-Green only when all of these are true:
+
+```text
+source modes are understood
+no hard audit finding exists for the symbol
+evidence is available as of the run date
+at least two independent evidence types support Green in live-lite mode
+parser confidence is not low
+```
+
+Manual review is required when:
+
+```text
+run_log.notes contains manual_review_required
+run_log.audit_findings has warning or hard findings
+source_modes show fallback for a critical source
+planned OpenDART detail fetches include a key disclosure that has not been parsed in detail yet
+```
+
+Example:
+
+```text
+계약 매출액 대비 600%
+-> audit finding: contract_ratio_too_high
+-> affected Stage 3-Green is blocked to Stage 3-Yellow
+-> manually open the OpenDART detail document before trusting the case
+```
+
+## OpenDART Detail Fetch Planning
+
+The runner plans detail fetches for high-value disclosure list rows, but does not execute them yet.
+
+Watch disclosure types:
+
+```text
+단일판매·공급계약체결
+신규시설투자
+잠정실적
+영업실적 전망
+유상증자
+전환사채
+감사의견
+거래정지
+```
+
+Planned metadata appears in:
+
+```text
+run_log.planned_opendart_detail_requests
+```
+
+Example:
+
+```text
+list.json row: 단일판매·공급계약체결 / rcept_no=202405210001
+-> planned document.xml request is recorded
+-> no network call is made in this checkpoint
 ```
 
 ## OpenDART Date-Based Collection

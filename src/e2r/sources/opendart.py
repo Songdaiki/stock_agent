@@ -105,6 +105,21 @@ class OpenDARTConnector:
             credential_name="OPENDART_API_KEY",
         )
 
+    def build_disclosure_detail_request(self, rcept_no: str, as_of_date: date) -> SourceRequest:
+        params: dict[str, Any] = {
+            "rcept_no": rcept_no,
+            "as_of_date": as_of_date.isoformat(),
+        }
+        if self.api_key:
+            params["crtfc_key"] = self.api_key
+        return SourceRequest(
+            method="GET",
+            url=f"{self.base_url}/document.xml",
+            params=params,
+            fixture_mode=self.fixture_mode,
+            credential_name="OPENDART_API_KEY",
+        )
+
     def require_live_credentials(self) -> str:
         return require_credential(self.api_key, "OPENDART_API_KEY")
 

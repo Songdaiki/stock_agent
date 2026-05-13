@@ -11,6 +11,7 @@ from enum import Enum
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
+from e2r.audit import AuditFinding, audit_parser_outputs
 from e2r.briefing import MorningBrief, generate_morning_briefing
 from e2r.cheap_scan import KoreaCheapScanConfig, KoreaCheapScanResult, KoreaCheapScanSources, KoreaCheapScanner
 from e2r.cheap_scan.korea_sources import DataGoKrFSCConnector
@@ -23,6 +24,7 @@ from e2r.research.search_budget import SearchBudget
 from e2r.research.search_provider import EmptySearchProvider, SearchProvider, SearchResult
 from e2r.sources import KINDConnector, KRXConnector, OpenDARTConnector
 from e2r.sources.http_client import HttpClient, HttpClientStats
+from e2r.sources.rate_limit import RateLimiter, SourceRateLimit
 from e2r.sources.source_errors import SourceRequest, load_fixture_records
 
 
@@ -75,6 +77,9 @@ class KoreaLiveLiteConfig:
     require_cross_evidence_for_stage3_green: bool = True
     http_client: HttpClient | None = None
     cache_directory: str | Path = "data/cache"
+    allow_parallel_live_requests: bool = False
+    max_global_live_workers: int = 1
+    live_smoke_preset_used: str | None = None
 
     def __post_init__(self) -> None:
         if type(self.as_of_date) is not date:
@@ -91,6 +96,58 @@ class KoreaLiveLiteConfig:
             raise ValueError("max_results_per_query must be positive")
         if self.top_results <= 0:
             raise ValueError("top_results must be positive")
+        if self.max_global_live_workers <= 0:
+            raise ValueError("max_global_live_workers must be positive")
+        if not self.allow_parallel_live_requests and self.max_global_live_workers != 1:
+            raise ValueError("max_global_live_workers must be 1 unless allow_parallel_live_requests is true")
+
+    @classmethod
+    def smoke_preset(
+        cls,
+        preset: str,
+        *,
+        as_of_date: date,
+        **overrides,
+    ) -> "KoreaLiveLiteConfig":
+        """Build a safe live-lite preset for smoke or shadow runs."""
+
+        if preset == "tiny":
+            values = {
+                "as_of_date": as_of_date,
+                "universe_limit": 50,
+                "budget": KoreaLiveLiteBudget(
+                    max_naver_search_calls_per_day=50,
+                    max_symbols_for_event_search=5,
+                    max_symbols_for_deep_research=1,
+                ),
+                "live_smoke_preset_used": "tiny",
+            }
+        elif preset == "small":
+            values = {
+                "as_of_date": as_of_date,
+                "universe_limit": 300,
+                "budget": KoreaLiveLiteBudget(
+                    max_naver_search_calls_per_day=300,
+                    max_symbols_for_event_search=30,
+                    max_symbols_for_deep_research=5,
+                ),
+                "live_smoke_preset_used": "small",
+            }
+        elif preset == "standard_shadow":
+            values = {
+                "as_of_date": as_of_date,
+                "universe_limit": None,
+                "budget": KoreaLiveLiteBudget(
+                    max_naver_search_calls_per_day=2_000,
+                    max_symbols_for_event_search=200,
+                    max_symbols_for_deep_research=30,
+                ),
+                "live_smoke_preset_used": "standard_shadow",
+            }
+        else:
+            raise ValueError("preset must be tiny, small, or standard_shadow")
+        values.update(overrides)
+        return cls(**values)
 
 
 @dataclass(frozen=True)
@@ -124,6 +181,14 @@ class KoreaLiveLiteRunLog:
     cache_writes: int = 0
     fallback_reasons: Mapping[str, str] = field(default_factory=dict)
     request_only_sources: tuple[str, ...] = field(default_factory=tuple)
+    audit_findings: tuple[AuditFinding, ...] = field(default_factory=tuple)
+    planned_opendart_detail_requests: tuple[SourceRequest, ...] = field(default_factory=tuple)
+    rate_limit_waits: int = 0
+    rate_limit_skips: int = 0
+    actual_http_requests_by_source: Mapping[str, int] = field(default_factory=dict)
+    logical_queries_by_source: Mapping[str, int] = field(default_factory=dict)
+    max_concurrency_used_by_source: Mapping[str, int] = field(default_factory=dict)
+    live_smoke_preset_used: str | None = None
     notes: tuple[str, ...] = field(default_factory=tuple)
 
 
@@ -157,7 +222,7 @@ class KoreaLiveLiteRunner:
         missing_credentials = _missing_credentials(config)
         effective_fixture_mode = config.fixture_mode or (config.live_enabled and bool(missing_credentials))
         sources = config.sources or self._sources
-        http_client = config.http_client or HttpClient()
+        http_client = config.http_client or HttpClient(rate_limiter=_rate_limiter_for_config(config))
         source_modes, fallback_reasons, _request_only_sources = _initial_source_status(config, missing_credentials)
         start = config.as_of_date - timedelta(days=config.disclosure_lookback_days)
         built_requests: list[SourceRequest] = []
@@ -190,6 +255,7 @@ class KoreaLiveLiteRunner:
             source_modes=source_modes,
             fallback_reasons=fallback_reasons,
         )
+        planned_opendart_detail_requests = plan_opendart_detail_fetches(date_disclosures, config.as_of_date)
         scan_sources = _sources_with_date_disclosures(sources, date_disclosures)
         cheap_scan = KoreaCheapScanner(scan_sources).run(
             KoreaCheapScanConfig(
@@ -245,6 +311,12 @@ class KoreaLiveLiteRunner:
         evidence = _dedupe_evidence(
             tuple(cheap_evidence.values()) + tuple(item for result in web_results for item in result.web_result.evidence)
         )
+        audit_findings = audit_parser_outputs(
+            evidence=evidence,
+            scores=tuple(result.score for result in web_results),
+            stages=tuple(result.stage for result in web_results),
+        )
+        web_results = [_enforce_parser_audit_stage3_green(result, audit_findings) for result in web_results]
         scores = tuple(result.score for result in web_results)
         stages = tuple(result.stage for result in web_results)
         findings = tuple(finding for result in web_results for finding in result.red_team_findings)
@@ -275,7 +347,15 @@ class KoreaLiveLiteRunner:
             cache_writes=http_client.stats.cache_writes,
             fallback_reasons=dict(fallback_reasons),
             request_only_sources=tuple(source for source, mode in source_modes.items() if mode == "request_only"),
-            notes=_run_notes(config, effective_fixture_mode),
+            audit_findings=tuple(audit_findings),
+            planned_opendart_detail_requests=tuple(planned_opendart_detail_requests),
+            rate_limit_waits=http_client.stats.rate_limit_waits,
+            rate_limit_skips=http_client.stats.rate_limit_skips,
+            actual_http_requests_by_source=dict(http_client.stats.actual_http_requests_by_source),
+            logical_queries_by_source=_logical_queries_by_source(source_call_counts, http_client.stats),
+            max_concurrency_used_by_source=dict(http_client.stats.max_concurrency_used_by_source),
+            live_smoke_preset_used=config.live_smoke_preset_used,
+            notes=_run_notes(config, effective_fixture_mode) + _audit_notes(audit_findings),
         )
         candidates_path, evidence_path, brief_path, run_log_path = _write_outputs(
             config=config,
@@ -311,6 +391,41 @@ def fixture_sources(root: str | Path = DEFAULT_FIXTURE_ROOT) -> KoreaCheapScanSo
         opendart=OpenDARTConnector(fixture_root=root_path / "opendart"),
         kind=KINDConnector(fixture_root=root_path / "kind"),
         fsc=DataGoKrFSCConnector(fixture_root=root_path / "data_go_kr_fsc"),
+    )
+
+
+def _rate_limiter_for_config(config: KoreaLiveLiteConfig) -> RateLimiter:
+    return RateLimiter(
+        (
+            SourceRateLimit(
+                source_name="opendart",
+                max_requests_per_day=config.budget.max_opendart_calls_per_day,
+                max_requests_per_second=5.0,
+                min_interval_seconds=0.2,
+                max_concurrency=1,
+            ),
+            SourceRateLimit(
+                source_name="naver_search",
+                max_requests_per_day=config.budget.max_naver_search_calls_per_day,
+                max_requests_per_second=3.0,
+                min_interval_seconds=0.3,
+                max_concurrency=1,
+            ),
+            SourceRateLimit(
+                source_name="data_go_kr",
+                max_requests_per_day=config.budget.max_data_go_kr_calls_per_day,
+                max_requests_per_second=5.0,
+                min_interval_seconds=0.2,
+                max_concurrency=1,
+            ),
+            SourceRateLimit(
+                source_name="krx",
+                max_requests_per_day=config.budget.max_krx_calls_per_day,
+                max_requests_per_second=5.0,
+                min_interval_seconds=0.2,
+                max_concurrency=1,
+            ),
+        )
     )
 
 
@@ -628,6 +743,59 @@ def build_opendart_date_range_requests(
     return tuple(_opendart_date_range_request(start, end, as_of_date, page_no=page_no, page_count=page_count) for page_no in pages)
 
 
+OPENDART_DETAIL_WATCH_TYPES: tuple[str, ...] = (
+    "단일판매·공급계약체결",
+    "단일판매ㆍ공급계약체결",
+    "신규시설투자",
+    "잠정실적",
+    "영업실적 전망",
+    "유상증자",
+    "전환사채",
+    "감사의견",
+    "거래정지",
+)
+
+
+def plan_opendart_detail_fetches(
+    disclosures: Sequence[DisclosureEvent],
+    as_of_date: date,
+) -> tuple[SourceRequest, ...]:
+    """Plan detail fetch metadata for high-value OpenDART disclosures.
+
+    The runner does not execute these requests yet. They are stored in
+    ``run_log.json`` so a later detail-fetch checkpoint can review exactly
+    which receipt numbers need full-document parsing.
+    """
+
+    requests: dict[str, SourceRequest] = {}
+    connector = OpenDARTConnector(api_key=None, fixture_mode=False)
+    for disclosure in disclosures:
+        if not disclosure.rcept_no or not _is_opendart_detail_watch(disclosure):
+            continue
+        request = connector.build_disclosure_detail_request(disclosure.rcept_no, as_of_date)
+        params = dict(request.params)
+        params["symbol"] = disclosure.symbol
+        params["report_type"] = disclosure.report_type
+        requests.setdefault(
+            disclosure.rcept_no,
+            SourceRequest(
+                method=request.method,
+                url=request.url,
+                params=params,
+                headers=dict(request.headers),
+                fixture_mode=False,
+                credential_name=request.credential_name,
+            ),
+        )
+    return tuple(requests.values())
+
+
+def _is_opendart_detail_watch(disclosure: DisclosureEvent) -> bool:
+    watch_type = str(disclosure.parsed_fields.get("watch_type") or "")
+    haystack = f"{disclosure.title} {disclosure.report_type} {watch_type}"
+    return any(item in haystack for item in OPENDART_DETAIL_WATCH_TYPES)
+
+
 def _opendart_date_range_request(
     start: date,
     end: date,
@@ -760,6 +928,22 @@ def _record_estimated_source_calls(
         source_call_counts["krx_calls"] = 1 + instruments_scanned
     if sources.fsc is not None and source_modes.get("data_go_kr") == "fixture" and source_call_counts.get("data_go_kr_calls", 0) == 0:
         source_call_counts["data_go_kr_calls"] = 1 + instruments_scanned
+
+
+def _logical_queries_by_source(
+    source_call_counts: Mapping[str, int],
+    http_stats: HttpClientStats,
+) -> dict[str, int]:
+    logical = {
+        "opendart": int(source_call_counts.get("opendart_disclosure_date_range", 0))
+        + int(source_call_counts.get("opendart_symbol_disclosure_calls", 0)),
+        "krx": int(source_call_counts.get("krx_calls", 0)),
+        "data_go_kr": int(source_call_counts.get("data_go_kr_calls", 0)),
+        "naver_search": int(source_call_counts.get("naver_search_queries", 0)),
+    }
+    for source, count in http_stats.logical_queries_by_source.items():
+        logical.setdefault(source, count)
+    return {source: count for source, count in logical.items() if count}
 
 
 def _select_candidates_for_research(
@@ -904,6 +1088,32 @@ def _enforce_cross_evidence_stage3_green(
     return replace(result, stage=new_stage)
 
 
+def _enforce_parser_audit_stage3_green(
+    result: WebResearchPipelineResult,
+    audit_findings: Sequence[AuditFinding],
+) -> WebResearchPipelineResult:
+    if result.stage.stage != Stage.STAGE_3_GREEN:
+        return result
+    blockers = tuple(
+        finding
+        for finding in audit_findings
+        if finding.symbol == result.stage.symbol
+        and (finding.severity == "hard" or finding.suggested_action == "block_green")
+    )
+    if not blockers:
+        return result
+    codes = ", ".join(finding.code for finding in blockers[:3])
+    evidence_ids = tuple(finding.evidence_id for finding in blockers if finding.evidence_id)
+    new_stage = replace(
+        result.stage,
+        stage=Stage.STAGE_3_YELLOW,
+        grade="parser-audit-blocked",
+        stage_reason=tuple(result.stage.stage_reason) + (f"parser audit blocked Stage 3-Green: {codes}",),
+        evidence_ids=tuple(dict.fromkeys(result.stage.evidence_ids + evidence_ids)),
+    )
+    return replace(result, stage=new_stage)
+
+
 def _independent_evidence_types(evidence: Sequence[Evidence]) -> tuple[str, ...]:
     accepted = {"disclosure", "research_report", "news", "financial_actual", "consensus", "consensus_revision"}
     return tuple(sorted({item.source_type for item in evidence if item.source_type in accepted}))
@@ -998,11 +1208,24 @@ def _initial_source_status(config: KoreaLiveLiteConfig, missing_credentials: Seq
 
 def _run_notes(config: KoreaLiveLiteConfig, effective_fixture_mode: bool) -> tuple[str, ...]:
     notes = ["live calls are optional and fixture mode is the default"]
+    if not config.allow_parallel_live_requests:
+        notes.append("live HTTP execution defaults to serial source calls")
     if effective_fixture_mode:
         notes.append("running in fixture/fallback mode")
     if config.require_cross_evidence_for_stage3_green:
         notes.append("Stage 3-Green requires at least two independent evidence types")
     return tuple(notes)
+
+
+def _audit_notes(audit_findings: Sequence[AuditFinding]) -> tuple[str, ...]:
+    if not audit_findings:
+        return ()
+    notes = []
+    if any(finding.severity == "hard" or finding.suggested_action == "block_green" for finding in audit_findings):
+        notes.append("parser audit hard finding present; Stage 3-Green is blocked for affected symbols")
+    if any(finding.suggested_action in {"manual_review", "downgrade_to_yellow", "block_green"} for finding in audit_findings):
+        notes.append("manual_review_required: parser audit findings need review")
+    return tuple(dict.fromkeys(notes))
 
 
 def _safe_filename(value: str) -> str:
@@ -1089,4 +1312,5 @@ __all__ = [
     "SkippedCandidate",
     "build_opendart_date_range_requests",
     "fixture_sources",
+    "plan_opendart_detail_fetches",
 ]

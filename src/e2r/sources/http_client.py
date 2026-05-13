@@ -6,10 +6,11 @@ import json
 import time
 import urllib.parse
 import urllib.request
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
 
+from e2r.sources.rate_limit import RateLimiter, source_name_for_request
 from e2r.sources.source_errors import SourceRequest
 
 
@@ -21,6 +22,11 @@ class HttpClientStats:
     live_requests_failed: int = 0
     cache_hits: int = 0
     cache_writes: int = 0
+    rate_limit_waits: int = 0
+    rate_limit_skips: int = 0
+    actual_http_requests_by_source: dict[str, int] = field(default_factory=dict)
+    logical_queries_by_source: dict[str, int] = field(default_factory=dict)
+    max_concurrency_used_by_source: dict[str, int] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -46,6 +52,7 @@ class HttpClient:
         sleep_seconds: float = 0.0,
         sleep_hook: Callable[[float], None] = time.sleep,
         stats: HttpClientStats | None = None,
+        rate_limiter: RateLimiter | None = None,
     ) -> None:
         if timeout_seconds <= 0:
             raise ValueError("timeout_seconds must be positive")
@@ -58,6 +65,7 @@ class HttpClient:
         self.sleep_seconds = sleep_seconds
         self.sleep_hook = sleep_hook
         self.stats = stats or HttpClientStats()
+        self.rate_limiter = rate_limiter
 
     def get_json(self, request: SourceRequest, *, cache_path: str | Path | None = None) -> HttpResult:
         cached = self._read_cache(cache_path)
@@ -78,22 +86,39 @@ class HttpClient:
         cached = self._read_cache(cache_path)
         if cached is not None:
             return cached
+        source_name = source_name_for_request(request)
+        _increment(self.stats.logical_queries_by_source, source_name)
+        if self.rate_limiter is not None:
+            decision = self.rate_limiter.acquire(source_name)
+            self.stats.max_concurrency_used_by_source.update(self.rate_limiter.max_concurrency_used_by_source())
+            if not decision.allowed:
+                self.stats.rate_limit_skips += 1
+                return HttpResult(ok=False, error=decision.reason or "rate_limit_exceeded")
+            if decision.sleep_seconds > 0:
+                self.stats.rate_limit_waits += 1
+                self.sleep_hook(decision.sleep_seconds)
         last_error: str | None = None
-        for attempt in range(self.retries + 1):
-            if self.sleep_seconds and attempt:
-                self.sleep_hook(self.sleep_seconds)
-            try:
-                http_request = urllib.request.Request(_url_with_params(request), headers=dict(request.headers), method=request.method)
-                with urllib.request.urlopen(http_request, timeout=self.timeout_seconds) as response:  # nosec - live mode is explicit
-                    status_code = int(getattr(response, "status", 200))
-                    text = response.read().decode("utf-8")
-                self.stats.live_requests_executed += 1
-                self._write_cache(cache_path, text)
-                return HttpResult(ok=True, status_code=status_code, text=text, cache_path=str(cache_path) if cache_path else None)
-            except Exception as exc:  # pragma: no cover - real network path is mocked in tests
-                last_error = f"{type(exc).__name__}:{exc}"
-        self.stats.live_requests_failed += 1
-        return HttpResult(ok=False, error=last_error or "http_request_failed")
+        try:
+            for attempt in range(self.retries + 1):
+                if self.sleep_seconds and attempt:
+                    self.sleep_hook(self.sleep_seconds)
+                try:
+                    _increment(self.stats.actual_http_requests_by_source, source_name)
+                    http_request = urllib.request.Request(_url_with_params(request), headers=dict(request.headers), method=request.method)
+                    with urllib.request.urlopen(http_request, timeout=self.timeout_seconds) as response:  # nosec - live mode is explicit
+                        status_code = int(getattr(response, "status", 200))
+                        text = response.read().decode("utf-8")
+                    self.stats.live_requests_executed += 1
+                    self._write_cache(cache_path, text)
+                    return HttpResult(ok=True, status_code=status_code, text=text, cache_path=str(cache_path) if cache_path else None)
+                except Exception as exc:  # pragma: no cover - real network path is mocked in tests
+                    last_error = f"{type(exc).__name__}:{exc}"
+            self.stats.live_requests_failed += 1
+            return HttpResult(ok=False, error=last_error or "http_request_failed")
+        finally:
+            if self.rate_limiter is not None:
+                self.rate_limiter.release(source_name)
+                self.stats.max_concurrency_used_by_source.update(self.rate_limiter.max_concurrency_used_by_source())
 
     def _read_cache(self, cache_path: str | Path | None) -> HttpResult | None:
         if cache_path is None:
@@ -123,6 +148,10 @@ def _url_with_params(request: SourceRequest) -> str:
         return request.url
     separator = "&" if "?" in request.url else "?"
     return f"{request.url}{separator}{urllib.parse.urlencode(params)}"
+
+
+def _increment(mapping: dict[str, int], key: str, amount: int = 1) -> None:
+    mapping[key] = mapping.get(key, 0) + amount
 
 
 __all__ = ["HttpClient", "HttpClientStats", "HttpResult"]

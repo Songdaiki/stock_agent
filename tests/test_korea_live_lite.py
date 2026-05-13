@@ -4,12 +4,14 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from e2r.models import Stage
+from e2r.cli.review_korea_run import build_review_summary, render_review_summary
+from e2r.models import DisclosureEvent, Stage
 from e2r.pipeline.korea_live_lite import (
     KoreaLiveLiteBudget,
     KoreaLiveLiteConfig,
     KoreaLiveLiteRunner,
     build_opendart_date_range_requests,
+    plan_opendart_detail_fetches,
 )
 from e2r.research.search_provider import EmptySearchProvider, FixtureSearchProvider, SearchResult
 from e2r.sources.http_client import HttpClientStats, HttpResult
@@ -24,6 +26,19 @@ class KoreaLiveLiteTests(unittest.TestCase):
             KoreaLiveLiteBudget(max_opendart_calls_per_day=-1)
         with self.assertRaises(ValueError):
             KoreaLiveLiteConfig(as_of_date=AS_OF, top_candidates=0)
+        with self.assertRaises(ValueError):
+            KoreaLiveLiteConfig(as_of_date=AS_OF, allow_parallel_live_requests=False, max_global_live_workers=2)
+
+    def test_live_lite_tiny_smoke_preset_uses_safe_budget_values(self):
+        config = KoreaLiveLiteConfig.smoke_preset("tiny", as_of_date=AS_OF)
+
+        self.assertEqual(config.universe_limit, 50)
+        self.assertEqual(config.budget.max_naver_search_calls_per_day, 50)
+        self.assertEqual(config.budget.max_symbols_for_event_search, 5)
+        self.assertEqual(config.budget.max_symbols_for_deep_research, 1)
+        self.assertFalse(config.allow_parallel_live_requests)
+        self.assertEqual(config.max_global_live_workers, 1)
+        self.assertEqual(config.live_smoke_preset_used, "tiny")
 
     def test_missing_credentials_do_not_crash_and_mark_fixture_fallback(self):
         with tempfile.TemporaryDirectory() as output_dir, patch.dict("os.environ", {}, clear=True):
@@ -59,7 +74,34 @@ class KoreaLiveLiteTests(unittest.TestCase):
             self.assertTrue(result.run_log_path.exists())
             self.assertIn("E2R Morning Brief", result.brief_path.read_text(encoding="utf-8"))
             candidates_json = json.loads(result.candidates_path.read_text(encoding="utf-8"))
+            run_log_json = json.loads(result.run_log_path.read_text(encoding="utf-8"))
             self.assertGreaterEqual(len(candidates_json["candidates"]), 1)
+            self.assertGreaterEqual(len(run_log_json["planned_opendart_detail_requests"]), 1)
+            self.assertIn("audit_findings", run_log_json)
+            self.assertIn("rate_limit_waits", run_log_json)
+            self.assertIn("rate_limit_skips", run_log_json)
+            self.assertIn("actual_http_requests_by_source", run_log_json)
+            self.assertIn("logical_queries_by_source", run_log_json)
+            self.assertIn("max_concurrency_used_by_source", run_log_json)
+
+    def test_review_cli_summarizes_fixture_run(self):
+        with tempfile.TemporaryDirectory() as output_dir:
+            KoreaLiveLiteRunner().run(
+                KoreaLiveLiteConfig(
+                    as_of_date=AS_OF,
+                    output_directory=output_dir,
+                    browser_provider=EmptySearchProvider(),
+                    free_search_provider=EmptySearchProvider(),
+                )
+            )
+
+            summary = build_review_summary(output_dir, AS_OF.isoformat())
+            rendered = render_review_summary(summary)
+
+        self.assertGreater(summary.total_candidates, 0)
+        self.assertIn("opendart", summary.source_modes)
+        self.assertIn("total candidates", rendered)
+        self.assertIn("manual review required", rendered)
 
     def test_opendart_disclosure_collection_is_date_based_not_per_symbol(self):
         with tempfile.TemporaryDirectory() as output_dir:
@@ -140,6 +182,18 @@ class KoreaLiveLiteTests(unittest.TestCase):
         self.assertTrue(all(item.params["bgn_de"] == "20240520" for item in requests))
         self.assertTrue(all(item.params["end_de"] == "20240521" for item in requests))
 
+    def test_opendart_detail_fetch_requests_are_planned_only_for_watch_disclosures(self):
+        watch = _disclosure("111111", "단일판매·공급계약체결", "202405210001")
+        ignored = _disclosure("222222", "투자설명서", "202405210002")
+
+        requests = plan_opendart_detail_fetches((watch, ignored), AS_OF)
+
+        self.assertEqual(len(requests), 1)
+        self.assertEqual(requests[0].url, "https://opendart.fss.or.kr/api/document.xml")
+        self.assertEqual(requests[0].params["rcept_no"], "202405210001")
+        self.assertEqual(requests[0].params["symbol"], "111111")
+        self.assertNotIn("crtfc_key", requests[0].params)
+
     def test_event_and_deep_research_symbol_budgets_are_respected(self):
         with tempfile.TemporaryDirectory() as output_dir:
             result = KoreaLiveLiteRunner().run(
@@ -201,6 +255,47 @@ class KoreaLiveLiteTests(unittest.TestCase):
         stage_by_symbol = {item.stage.symbol: item.stage for item in result.web_results}
         self.assertEqual(stage_by_symbol["444444"].stage, Stage.STAGE_3_YELLOW)
         self.assertIn("at least two independent evidence types", " ".join(stage_by_symbol["444444"].stage_reason))
+
+    def test_stage_3_green_is_blocked_by_hard_parser_audit_finding(self):
+        url = "https://ssl.pstatic.net/imgstock/upload/research/company/kepower_report.pdf"
+        provider = FixtureSearchProvider(
+            results_by_query={
+                "케이전력 장기공급계약 매출액 대비": (
+                    SearchResult(
+                        title="케이전력 Review PDF",
+                        url=url,
+                        source="FixtureBroker",
+                        published_at=datetime(2024, 5, 21, 8),
+                        query="케이전력 장기공급계약 매출액 대비",
+                        rank=1,
+                        is_pdf=True,
+                        is_report_domain=True,
+                        confidence=0.9,
+                    ),
+                )
+            }
+        )
+        with tempfile.TemporaryDirectory() as output_dir:
+            result = KoreaLiveLiteRunner().run(
+                KoreaLiveLiteConfig(
+                    as_of_date=AS_OF,
+                    output_directory=output_dir,
+                    budget=KoreaLiveLiteBudget(
+                        max_symbols_for_event_search=10,
+                        max_symbols_for_deep_research=10,
+                        max_naver_search_calls_per_day=100,
+                    ),
+                    browser_provider=provider,
+                    free_search_provider=EmptySearchProvider(),
+                    fixture_text_by_url={url: IMPOSSIBLE_CONTRACT_REPORT_TEXT},
+                )
+            )
+
+        stage_by_symbol = {item.stage.symbol: item.stage for item in result.web_results}
+        self.assertEqual(stage_by_symbol["222222"].stage, Stage.STAGE_3_YELLOW)
+        self.assertEqual(stage_by_symbol["222222"].grade, "parser-audit-blocked")
+        self.assertTrue(any(item.code == "contract_ratio_too_high" for item in result.run_log.audit_findings))
+        self.assertIn("manual_review_required", " ".join(result.run_log.notes))
 
     def test_hard_risk_candidate_is_not_escalated_to_green(self):
         with tempfile.TemporaryDirectory() as output_dir:
@@ -520,6 +615,8 @@ CAPEX/매출 20%
 리스크: 증설 지연|원가 변동
 """
 
+IMPOSSIBLE_CONTRACT_REPORT_TEXT = STRONG_SINGLE_REPORT_TEXT.replace("가격만강세", "케이전력").replace("계약 매출액 대비 80%", "계약 매출액 대비 600%")
+
 DATA_GO_LISTED_ITEMS_PAYLOAD = {
     "response": {
         "body": {
@@ -585,6 +682,23 @@ def _candidate(result, symbol):
         if candidate.symbol == symbol:
             return candidate
     raise AssertionError(f"candidate {symbol} not found")
+
+
+def _disclosure(symbol, title, rcept_no):
+    timestamp = datetime(2024, 5, 21, 9)
+    return DisclosureEvent(
+        symbol=symbol,
+        source="OpenDART",
+        report_type=title,
+        title=title,
+        published_at=timestamp,
+        observed_at=timestamp,
+        available_at=timestamp,
+        as_of_date=AS_OF,
+        rcept_no=rcept_no,
+        raw_text=title,
+        parsed_fields={},
+    )
 
 
 class MockHttpClient:
