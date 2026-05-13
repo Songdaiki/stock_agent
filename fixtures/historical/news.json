@@ -1,0 +1,42 @@
+[
+  {
+    "symbol": "267260",
+    "sector": "power_equipment",
+    "published_at": "2023-07-27T08:30:00",
+    "source": "reference_fixture_news",
+    "title": "Transformer backlog and North America demand remained strong",
+    "as_of_date": "2023-07-27",
+    "source_tier": 2,
+    "theme_tags": ["power_grid", "structural_shortage"],
+    "sentiment": 0.7,
+    "shortage_type": "structural",
+    "pricing_power_confirmed": true
+  },
+  {
+    "symbol": "ZM",
+    "sector": "software",
+    "published_at": "2020-09-01T16:30:00",
+    "source": "reference_fixture_news",
+    "title": "Remote work demand surged during pandemic quarter",
+    "as_of_date": "2020-09-01",
+    "source_tier": 2,
+    "theme_tags": ["pandemic", "one_off_demand"],
+    "sentiment": 0.8,
+    "shortage_type": "one_off",
+    "pandemic_demand_spike": true,
+    "single_product_risk": true
+  },
+  {
+    "symbol": "SMCI",
+    "sector": "ai_server",
+    "published_at": "2024-01-19T16:30:00",
+    "source": "reference_fixture_news",
+    "title": "AI server guide rose while price momentum accelerated",
+    "as_of_date": "2024-01-19",
+    "source_tier": 2,
+    "theme_tags": ["ai_server", "overheat_watch"],
+    "sentiment": 0.6,
+    "shortage_type": "cyclical",
+    "extreme_forward_valuation": true
+  }
+]

@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import Mapping, Protocol
 
-from .models import ScoreSnapshot
+from .models import IndustrialSubScores, ScoreSnapshot
 
 
 @dataclass(frozen=True)
@@ -44,6 +44,7 @@ class ScoringPayload:
     components: Mapping[str, float]
     risk_penalty: float = 0.0
     diagnostic_scores: Mapping[str, float] = field(default_factory=dict)
+    industrial_sub_scores: IndustrialSubScores | None = None
     evidence_ids: tuple[str, ...] = field(default_factory=tuple)
     scoring_version: str = "e2r-2.0-cp1"
 
@@ -73,6 +74,8 @@ class ScoringPayload:
                 raise ValueError("diagnostic score keys must be non-empty strings")
             if value < 0 or value > 100:
                 raise ValueError(f"diagnostic score {key} must be between 0 and 100")
+        if self.industrial_sub_scores is not None and not isinstance(self.industrial_sub_scores, IndustrialSubScores):
+            raise ValueError("industrial_sub_scores must be an IndustrialSubScores instance")
         if not isinstance(self.scoring_version, str) or not self.scoring_version.strip():
             raise ValueError("scoring_version must be a non-empty string")
         object.__setattr__(self, "components", component_copy)
@@ -93,6 +96,12 @@ class DeterministicScorer:
     def score(self, payload: ScoringPayload) -> ScoreSnapshot:
         raw_total = sum(payload.components.values()) - payload.risk_penalty
         total_score = round(max(0.0, min(100.0, raw_total)), 4)
+        diagnostic_scores = dict(payload.diagnostic_scores)
+        if payload.industrial_sub_scores is not None:
+            diagnostic_scores.update(payload.industrial_sub_scores.as_diagnostic_scores())
+        evidence_ids = payload.evidence_ids + (
+            payload.industrial_sub_scores.evidence_ids if payload.industrial_sub_scores else ()
+        )
         return ScoreSnapshot(
             symbol=payload.symbol,
             as_of_date=payload.as_of_date,
@@ -105,8 +114,7 @@ class DeterministicScorer:
             information_confidence_score=payload.components["information_confidence"],
             risk_penalty=payload.risk_penalty,
             total_score=total_score,
-            diagnostic_scores=payload.diagnostic_scores,
-            evidence_ids=payload.evidence_ids,
+            diagnostic_scores=diagnostic_scores,
+            evidence_ids=tuple(dict.fromkeys(evidence_ids)),
             scoring_version=payload.scoring_version,
         )
-

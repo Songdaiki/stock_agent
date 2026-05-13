@@ -105,6 +105,22 @@ class StageClassifierTests(unittest.TestCase):
 
         self.assertEqual(snapshot.stage, Stage.STAGE_3_YELLOW)
 
+    def test_stage_3_green_requires_meaningful_revision_score(self):
+        score = make_score(
+            diagnostic_scores={"revision_score": 1.0},
+            eps_fcf_explosion=20,
+            earnings_visibility=18,
+            bottleneck_pricing=18,
+            market_mispricing=13,
+            valuation_rerating=12,
+            capital_allocation=4,
+            information_confidence=4,
+        )
+
+        snapshot = StageClassifier().classify(StageClassificationInput(score=score))
+
+        self.assertEqual(snapshot.stage, Stage.STAGE_3_YELLOW)
+
     def test_stage_3_red_when_valuation_runway_is_too_weak(self):
         score = make_score(
             diagnostic_scores={"revision_score": 80.0},
@@ -170,7 +186,7 @@ class StageClassifierTests(unittest.TestCase):
         )
 
         self.assertEqual(snapshot.stage, Stage.STAGE_4B)
-        self.assertEqual(snapshot.grade, "Graduation Watch")
+        self.assertEqual(snapshot.grade, "4B-watch")
 
     def test_stage_4c_hard_break_overrides_high_score(self):
         score = make_score(

@@ -1,13 +1,15 @@
 from datetime import date, datetime
+from pathlib import Path
 import unittest
 
-from e2r.connectors import EmptyDataConnector, FallbackDataConnector, MockDataConnector
+from e2r.connectors import CSVJSONDataConnector, EmptyDataConnector, FallbackDataConnector, MockDataConnector
 from e2r.fixtures import FIXTURE_CASES
 from e2r.models import (
     DisclosureEvent,
     FinancialActual,
     Instrument,
     Market,
+    NewsItem,
     PriceBar,
     ResearchReport,
 )
@@ -132,11 +134,83 @@ class MockDataConnectorTests(unittest.TestCase):
         self.assertEqual(len(actuals), 1)
         self.assertEqual(actuals[0].sales, 100)
 
+    def test_financials_are_filtered_by_row_as_of_date(self):
+        connector = MockDataConnector(
+            financial_actuals=(
+                FinancialActual(
+                    symbol="CASE",
+                    fiscal_year=2024,
+                    fiscal_quarter=1,
+                    period_end=date(2024, 3, 31),
+                    reported_at=datetime(2024, 4, 30, 8, 0),
+                    as_of_date=date(2024, 4, 30),
+                    source="mock",
+                    sales=100,
+                ),
+                FinancialActual(
+                    symbol="CASE",
+                    fiscal_year=2024,
+                    fiscal_quarter=1,
+                    period_end=date(2024, 3, 31),
+                    reported_at=datetime(2024, 4, 30, 8, 0),
+                    as_of_date=date(2024, 5, 30),
+                    source="restated-later",
+                    sales=999,
+                ),
+            )
+        )
+
+        actuals = connector.get_financial_actuals("CASE", date(2024, 5, 1))
+
+        self.assertEqual([item.sales for item in actuals], [100])
+
+    def test_news_are_filtered_by_row_as_of_date(self):
+        connector = MockDataConnector(
+            news_items=(
+                NewsItem(
+                    symbol="CASE",
+                    sector="test",
+                    published_at=datetime(2024, 1, 2, 8, 0),
+                    source="mock",
+                    title="available parsed news",
+                    as_of_date=date(2024, 1, 2),
+                ),
+                NewsItem(
+                    symbol="CASE",
+                    sector="test",
+                    published_at=datetime(2024, 1, 2, 8, 0),
+                    source="mock",
+                    title="future parsed news",
+                    as_of_date=date(2024, 1, 5),
+                    parsed_fields={"future_parse": True},
+                ),
+            )
+        )
+
+        news = connector.get_news("CASE", date(2024, 1, 1), date(2024, 1, 5), date(2024, 1, 3))
+
+        self.assertEqual([item.title for item in news], ["available parsed news"])
+
     def test_date_range_validation(self):
         connector = MockDataConnector()
 
         with self.assertRaisesRegex(ValueError, "start cannot be after end"):
             connector.get_price_bars("CASE", date(2024, 1, 5), date(2024, 1, 1), date(2024, 1, 5))
+
+
+class CSVJSONDataConnectorTests(unittest.TestCase):
+    def test_historical_fixture_files_are_loaded(self):
+        root = Path(__file__).resolve().parents[1] / "fixtures" / "historical"
+        connector = CSVJSONDataConnector.from_directory(root)
+
+        instruments = connector.list_instruments(Market.KR, date(2025, 2, 6))
+        hd_reports = connector.get_research_reports("267260", date(2023, 1, 1), date(2023, 12, 31), date(2023, 7, 27))
+        zoom_news = connector.get_news("ZM", date(2020, 1, 1), date(2020, 12, 31), date(2020, 9, 1))
+
+        self.assertTrue(any(instrument.name == "HD현대일렉트릭" for instrument in instruments))
+        self.assertEqual(hd_reports[0].parsed_fields["shortage_type"], "structural")
+        self.assertTrue(zoom_news)
+        self.assertTrue(zoom_news[0].parsed_fields["pandemic_demand_spike"])
 
 
 class FallbackDataConnectorTests(unittest.TestCase):
@@ -170,4 +244,3 @@ class FallbackDataConnectorTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

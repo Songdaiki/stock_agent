@@ -45,6 +45,16 @@ class Stage(str, Enum):
     STAGE_5 = "5"
 
 
+class ShortageType(str, Enum):
+    """Supply-demand shortage type used by feature engineering."""
+
+    NONE = "none"
+    ONE_OFF = "one_off"
+    CYCLICAL = "cyclical"
+    STRUCTURAL = "structural"
+    UNKNOWN = "unknown"
+
+
 def _require_text(value: str, field_name: str) -> None:
     if not isinstance(value, str) or not value.strip():
         raise ValueError(f"{field_name} must be a non-empty string")
@@ -439,6 +449,43 @@ class SectorRegime:
 
 
 @dataclass(frozen=True)
+class IndustrialSubScores:
+    """Durability sub-scores behind visibility and bottleneck components."""
+
+    contract_quality: float = 0.0
+    backlog_rpo_visibility: float = 0.0
+    capa_constraint: float = 0.0
+    asp_pricing_power: float = 0.0
+    structural_shortage: float = 0.0
+    one_off_shortage_risk: float = 0.0
+    shortage_type: ShortageType = ShortageType.UNKNOWN
+    evidence_ids: tuple[str, ...] = field(default_factory=tuple)
+
+    def __post_init__(self) -> None:
+        _require_score(self.contract_quality, "contract_quality")
+        _require_score(self.backlog_rpo_visibility, "backlog_rpo_visibility")
+        _require_score(self.capa_constraint, "capa_constraint")
+        _require_score(self.asp_pricing_power, "asp_pricing_power")
+        _require_score(self.structural_shortage, "structural_shortage")
+        _require_score(self.one_off_shortage_risk, "one_off_shortage_risk")
+        if not isinstance(self.shortage_type, ShortageType):
+            object.__setattr__(self, "shortage_type", ShortageType(self.shortage_type))
+        object.__setattr__(self, "evidence_ids", _copy_tuple(self.evidence_ids))
+
+    def as_diagnostic_scores(self) -> dict[str, float]:
+        """Expose sub-scores through the existing numeric diagnostic channel."""
+
+        return {
+            "contract_quality": self.contract_quality,
+            "backlog_rpo_visibility": self.backlog_rpo_visibility,
+            "capa_constraint": self.capa_constraint,
+            "asp_pricing_power": self.asp_pricing_power,
+            "structural_shortage": self.structural_shortage,
+            "one_off_shortage_risk": self.one_off_shortage_risk,
+        }
+
+
+@dataclass(frozen=True)
 class ScoreSnapshot:
     """Deterministic score result for one instrument and date."""
 
@@ -569,4 +616,3 @@ class BacktestResult:
             _require_positive(getattr(self, field_name), field_name)
         for field_name in ("time_to_50pct", "time_to_100pct", "time_to_200pct", "time_to_4b", "time_to_4c"):
             _require_non_negative(getattr(self, field_name), field_name)
-

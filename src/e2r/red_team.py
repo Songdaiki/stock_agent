@@ -19,6 +19,15 @@ class RedTeamRiskLevel(str, Enum):
     HARD_BREAK = "hard_break"
 
 
+class Soft4BStatus(str, Enum):
+    """Diagnostic split inside canonical Stage 4B."""
+
+    NONE = "none"
+    WATCH = "4B-watch"
+    ELEVATED = "4B-elevated"
+    GRADUATED = "4B-graduated"
+
+
 SOFT_4B_WEIGHTS: dict[str, float] = {
     "return_since_stage3": 15.0,
     "return_12_24m": 15.0,
@@ -142,6 +151,7 @@ class RedTeamAssessment:
     thesis_break_score: float
     risk_level: RedTeamRiskLevel
     has_hard_break: bool
+    soft_4b_status: Soft4BStatus = Soft4BStatus.NONE
     findings: tuple[RedTeamFinding, ...] = field(default_factory=tuple)
     evidence_ids: tuple[str, ...] = field(default_factory=tuple)
     version: str = "e2r-2.0-cp2"
@@ -151,6 +161,8 @@ class RedTeamAssessment:
         _require_date(self.as_of_date, "as_of_date")
         if self.soft_4b_score < 0 or self.soft_4b_score > 100:
             raise ValueError("soft_4b_score must be between 0 and 100")
+        if not isinstance(self.soft_4b_status, Soft4BStatus):
+            object.__setattr__(self, "soft_4b_status", Soft4BStatus(self.soft_4b_status))
         if self.thesis_break_score < 0 or self.thesis_break_score > 100:
             raise ValueError("thesis_break_score must be between 0 and 100")
         for finding in self.findings:
@@ -167,6 +179,7 @@ class RedTeamAssessment:
             symbol=symbol,
             as_of_date=as_of_date,
             soft_4b_score=0.0,
+            soft_4b_status=Soft4BStatus.NONE,
             thesis_break_score=0.0,
             risk_level=RedTeamRiskLevel.LOW,
             has_hard_break=False,
@@ -178,6 +191,7 @@ class RedTeamEngine:
 
     def assess(self, signals: RedTeamSignals) -> RedTeamAssessment:
         soft_4b_score = _weighted_score(signals.soft_4b_factors, SOFT_4B_WEIGHTS)
+        soft_4b_status = self._soft_4b_status(soft_4b_score)
         thesis_break_score = _weighted_score(signals.thesis_break_factors, THESIS_BREAK_WEIGHTS)
         findings: list[RedTeamFinding] = []
 
@@ -209,6 +223,7 @@ class RedTeamEngine:
             symbol=signals.symbol,
             as_of_date=signals.as_of_date,
             soft_4b_score=soft_4b_score,
+            soft_4b_status=soft_4b_status,
             thesis_break_score=thesis_break_score,
             risk_level=risk_level,
             has_hard_break=has_hard_break,
@@ -226,3 +241,12 @@ class RedTeamEngine:
             return RedTeamRiskLevel.MODERATE
         return RedTeamRiskLevel.LOW
 
+    @staticmethod
+    def _soft_4b_status(soft_4b_score: float) -> Soft4BStatus:
+        if soft_4b_score >= 80.0:
+            return Soft4BStatus.GRADUATED
+        if soft_4b_score >= 70.0:
+            return Soft4BStatus.ELEVATED
+        if soft_4b_score >= 60.0:
+            return Soft4BStatus.WATCH
+        return Soft4BStatus.NONE

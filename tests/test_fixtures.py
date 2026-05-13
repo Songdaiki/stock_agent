@@ -61,6 +61,7 @@ class FixtureSuiteTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         logic_files = (
             root / "src/e2r/scoring.py",
+            root / "src/e2r/features.py",
             root / "src/e2r/staging.py",
             root / "src/e2r/red_team.py",
             root / "src/e2r/backtesting.py",
@@ -71,7 +72,14 @@ class FixtureSuiteTests(unittest.TestCase):
             with self.subTest(case=case.case_id):
                 self.assertNotIn(case.scoring_payload.symbol, logic_text)
 
+    def test_historical_fixture_files_include_required_cases(self):
+        root = Path(__file__).resolve().parents[1]
+        instruments = (root / "fixtures/historical/instruments.csv").read_text(encoding="utf-8")
+
+        for name in ("HD현대일렉트릭", "효성중공업", "일진전기", "산일전기", "삼양식품", "NVIDIA", "Zoom", "씨젠", "SMCI"):
+            with self.subTest(name=name):
+                self.assertIn(name, instruments)
+
 
 if __name__ == "__main__":
     unittest.main()
-

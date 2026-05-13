@@ -1,7 +1,7 @@
 from datetime import date
 import unittest
 
-from e2r.red_team import RedTeamEngine, RedTeamRiskLevel, RedTeamSignals
+from e2r.red_team import RedTeamEngine, RedTeamRiskLevel, RedTeamSignals, Soft4BStatus
 
 
 class RedTeamEngineTests(unittest.TestCase):
@@ -21,9 +21,39 @@ class RedTeamEngineTests(unittest.TestCase):
         assessment = RedTeamEngine().assess(signals)
 
         self.assertEqual(assessment.soft_4b_score, 60.0)
+        self.assertEqual(assessment.soft_4b_status, Soft4BStatus.WATCH)
         self.assertEqual(assessment.thesis_break_score, 0.0)
         self.assertEqual(assessment.risk_level, RedTeamRiskLevel.LOW)
         self.assertFalse(assessment.has_hard_break)
+
+    def test_soft_4b_status_splits_watch_elevated_and_graduated(self):
+        engine = RedTeamEngine()
+
+        watch = engine.assess(
+            RedTeamSignals(
+                symbol="CASE",
+                as_of_date=date(2026, 5, 13),
+                soft_4b_factors={"return_since_stage3": 1.0, "return_12_24m": 1.0, "extreme_forward_valuation": 1.0, "revision_slowdown": 0.75},
+            )
+        )
+        elevated = engine.assess(
+            RedTeamSignals(
+                symbol="CASE",
+                as_of_date=date(2026, 5, 13),
+                soft_4b_factors={"return_since_stage3": 1.0, "return_12_24m": 1.0, "extreme_forward_valuation": 1.0, "revision_slowdown": 1.0, "market_crowding": 0.5},
+            )
+        )
+        graduated = engine.assess(
+            RedTeamSignals(
+                symbol="CASE",
+                as_of_date=date(2026, 5, 13),
+                soft_4b_factors={"return_since_stage3": 1.0, "return_12_24m": 1.0, "extreme_forward_valuation": 1.0, "revision_slowdown": 1.0, "backlog_contract_slowdown": 1.0},
+            )
+        )
+
+        self.assertEqual(watch.soft_4b_status, Soft4BStatus.WATCH)
+        self.assertEqual(elevated.soft_4b_status, Soft4BStatus.ELEVATED)
+        self.assertEqual(graduated.soft_4b_status, Soft4BStatus.GRADUATED)
 
     def test_thesis_break_factors_create_findings(self):
         signals = RedTeamSignals(
@@ -77,4 +107,3 @@ class RedTeamEngineTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

@@ -1,0 +1,10 @@
+symbol,name,market,exchange,sector_custom,listed_date,currency
+267260,HD현대일렉트릭,KR,KRX,power_equipment,2017-05-10,KRW
+298040,효성중공업,KR,KRX,power_equipment,2018-07-13,KRW
+103590,일진전기,KR,KRX,power_equipment,2008-08-01,KRW
+062040,산일전기,KR,KRX,power_equipment,2024-07-29,KRW
+003230,삼양식품,KR,KRX,consumer_food,1975-06-30,KRW
+NVDA,NVIDIA,US,NASDAQ,ai_semiconductor,1999-01-22,USD
+ZM,Zoom,US,NASDAQ,software,2019-04-18,USD
+096530,씨젠,KR,KOSDAQ,diagnostics,2010-09-10,KRW
+SMCI,SMCI,US,NASDAQ,ai_server,2007-03-29,USD

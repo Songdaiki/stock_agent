@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 from datetime import date
 
 from .models import ScoreSnapshot, Stage, StageSnapshot
-from .red_team import RedTeamAssessment, RedTeamRiskLevel
+from .red_team import RedTeamAssessment, RedTeamRiskLevel, Soft4BStatus
 
 
 ACTIVE_RERATING_STAGES = frozenset(
@@ -18,6 +18,7 @@ ACTIVE_RERATING_STAGES = frozenset(
         Stage.STAGE_4B,
     }
 )
+STAGE_3_GREEN_MIN_REVISION_SCORE = 50.0
 
 
 def _require_date(value: date, field_name: str) -> None:
@@ -34,11 +35,11 @@ def _score_diagnostic(score: ScoreSnapshot, key: str, default: float = 0.0) -> f
     return float(score.diagnostic_scores.get(key, default))
 
 
-def _grade_from_score(total_score: float, stage: Stage) -> str:
+def _grade_from_score(total_score: float, stage: Stage, soft_4b_status: Soft4BStatus = Soft4BStatus.NONE) -> str:
     if stage == Stage.STAGE_4C:
         return "Thesis Break"
     if stage == Stage.STAGE_4B:
-        return "Graduation Watch"
+        return soft_4b_status.value if soft_4b_status != Soft4BStatus.NONE else Soft4BStatus.WATCH.value
     if total_score >= 90:
         return "S"
     if total_score >= 80:
@@ -96,7 +97,7 @@ class StageClassifier:
             stage=stage,
             previous_stage=previous_stage,
             stage_changed=previous_stage is not None and previous_stage != stage,
-            grade=_grade_from_score(score.total_score, stage),
+            grade=_grade_from_score(score.total_score, stage, red_team.soft_4b_status),
             stage_reason=tuple(reasons),
             red_team_status=red_team.risk_level.value,
             evidence_ids=evidence_ids,
@@ -120,7 +121,7 @@ class StageClassifier:
             return Stage.STAGE_4C, reasons
 
         if inputs.previous_stage in ACTIVE_RERATING_STAGES and red_team.soft_4b_score >= 60.0:
-            reasons.append(f"Soft 4B score reached {red_team.soft_4b_score:.1f}")
+            reasons.append(f"Soft 4B {red_team.soft_4b_status.value} score reached {red_team.soft_4b_score:.1f}")
             return Stage.STAGE_4B, reasons
 
         if (
@@ -173,6 +174,8 @@ class StageClassifier:
     @staticmethod
     def _is_stage_3_green(score: ScoreSnapshot, red_team: RedTeamAssessment) -> bool:
         revision_score = _score_diagnostic(score, "revision_score")
+        contract_quality = _score_diagnostic(score, "contract_quality", 100.0)
+        one_off_shortage_risk = _score_diagnostic(score, "one_off_shortage_risk")
         return (
             score.total_score >= 85.0
             and score.eps_fcf_explosion_score >= 17.0
@@ -180,7 +183,9 @@ class StageClassifier:
             and score.bottleneck_pricing_score >= 15.0
             and score.market_mispricing_score >= 10.0
             and score.valuation_rerating_score >= 10.0
-            and revision_score > 0.0
+            and revision_score >= STAGE_3_GREEN_MIN_REVISION_SCORE
+            and contract_quality >= 45.0
+            and one_off_shortage_risk < 70.0
             and red_team.risk_level == RedTeamRiskLevel.LOW
         )
 
@@ -193,6 +198,7 @@ class StageClassifier:
             or score.valuation_rerating_score < 7.0
             or score.earnings_visibility_score < 12.0
             or score.bottleneck_pricing_score < 12.0
+            or _score_diagnostic(score, "contract_quality", 100.0) < 25.0
+            or _score_diagnostic(score, "one_off_shortage_risk") >= 80.0
             or _score_diagnostic(score, "theme_overheat_score") >= 70.0
         )
-

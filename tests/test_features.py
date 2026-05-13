@@ -1,0 +1,216 @@
+from datetime import date, datetime
+from pathlib import Path
+import unittest
+
+from e2r.connectors import CSVJSONDataConnector
+from e2r.features import DeterministicFeatureEngineer, FeatureEngineeringInput, engineer_score_from_connector
+from e2r.models import ConsensusRevision, ConsensusSnapshot, FinancialActual, PriceBar, ResearchReport, ShortageType, Stage
+from e2r.red_team import RedTeamEngine
+from e2r.staging import StageClassificationInput, StageClassifier
+
+
+def make_bar(day, low, high, close):
+    bar_date = date(2024, 1, day)
+    return PriceBar(
+        symbol="CASE",
+        date=bar_date,
+        open=close,
+        high=high,
+        low=low,
+        close=close,
+        adj_close=close,
+        volume=1000,
+        trading_value=close * 1000,
+        market_cap=1000000000.0,
+        source="feature-test",
+        as_of_date=bar_date,
+    )
+
+
+def base_input(parsed_fields):
+    as_of_date = date(2024, 1, 6)
+    return FeatureEngineeringInput(
+        symbol="CASE",
+        as_of_date=as_of_date,
+        price_bars=(
+            make_bar(1, 50, 60, 55),
+            make_bar(6, 95, 120, 110),
+        ),
+        financial_actuals=(
+            FinancialActual(
+                symbol="CASE",
+                fiscal_year=2023,
+                fiscal_quarter=None,
+                period_end=date(2023, 12, 31),
+                reported_at=datetime(2024, 1, 3, 8, 0),
+                as_of_date=as_of_date,
+                source="test",
+                sales=1000,
+                operating_profit=100,
+                net_income=80,
+                eps=100,
+                cashflow_from_operations=90,
+                fcf=80,
+            ),
+        ),
+        consensus=(
+            ConsensusSnapshot(
+                symbol="CASE",
+                date=as_of_date,
+                fiscal_year=2024,
+                as_of_date=as_of_date,
+                source="test",
+                sales_e=1800,
+                op_e=500,
+                net_income_e=400,
+                eps_e=500,
+                per_e=12,
+                pbr_e=1.5,
+                analyst_count=4,
+            ),
+        ),
+        consensus_revisions=(
+            ConsensusRevision(
+                symbol="CASE",
+                date=as_of_date,
+                fiscal_year=2024,
+                as_of_date=as_of_date,
+                eps_revision_1m=35,
+                op_revision_1m=40,
+                fcf_revision_1m=25,
+                target_price_revision_1m=30,
+            ),
+        ),
+        research_reports=(
+            ResearchReport(
+                symbol="CASE",
+                publish_date=as_of_date,
+                broker="TestBroker",
+                title="feature test report",
+                as_of_date=as_of_date,
+                target_revision_pct=30,
+                target_multiple_before=10,
+                target_multiple_after=14,
+                est_per=12,
+                parsed_fields=parsed_fields,
+            ),
+        ),
+    )
+
+
+class FeatureEngineeringTests(unittest.TestCase):
+    def test_structural_shortage_beats_one_off_shortage(self):
+        common = {
+            "contract_duration_months": 48,
+            "contract_amount_to_prior_sales": 0.35,
+            "prepayment_exists": True,
+            "non_cancellable": True,
+            "order_backlog_to_sales": 1.4,
+            "capa_utilization_pct": 96,
+            "lead_time_months": 14,
+            "asp_yoy_pct": 18,
+            "pricing_power_confirmed": True,
+        }
+
+        structural = DeterministicFeatureEngineer().engineer(
+            base_input({**common, "shortage_type": "structural", "one_off_shortage_risk": 10})
+        )
+        one_off = DeterministicFeatureEngineer().engineer(
+            base_input({**common, "shortage_type": "one_off", "one_off_shortage_risk": 90})
+        )
+
+        self.assertEqual(structural.shortage_type, ShortageType.STRUCTURAL)
+        self.assertEqual(one_off.shortage_type, ShortageType.ONE_OFF)
+        self.assertGreater(
+            structural.industrial_sub_scores.structural_shortage,
+            one_off.industrial_sub_scores.structural_shortage,
+        )
+        self.assertLess(
+            structural.industrial_sub_scores.one_off_shortage_risk,
+            one_off.industrial_sub_scores.one_off_shortage_risk,
+        )
+
+    def test_strong_eps_with_weak_contract_quality_is_not_stage_3_green(self):
+        result = DeterministicFeatureEngineer().engineer(
+            base_input(
+                {
+                    "contract_duration_months": 24,
+                    "contract_amount_to_prior_sales": 0.20,
+                    "order_backlog_to_sales": 2.0,
+                    "rpo_to_sales": 1.7,
+                    "backlog_yoy_pct": 80,
+                    "record_backlog": True,
+                    "capa_utilization_pct": 100,
+                    "capa_expansion_pct": 80,
+                    "capa_locked_years": 3,
+                    "lead_time_months": 18,
+                    "asp_yoy_pct": 30,
+                    "high_margin_mix_pct": 80,
+                    "pricing_power_confirmed": True,
+                    "market_frame_shift": True,
+                    "capacity_precommitted": True,
+                    "shortage_type": "unknown",
+                    "one_off_shortage_risk": 20,
+                }
+            )
+        )
+        score = result.score()
+        stage = StageClassifier().classify(
+            StageClassificationInput(
+                score=score,
+                red_team=RedTeamEngine().assess(result.red_team_signals),
+            )
+        )
+
+        self.assertGreaterEqual(score.eps_fcf_explosion_score, 17)
+        self.assertLess(score.diagnostic_scores["contract_quality"], 25)
+        self.assertIn(stage.stage, {Stage.STAGE_3_YELLOW, Stage.STAGE_3_RED})
+
+    def test_historical_csv_json_fixture_data_can_produce_score(self):
+        root = Path(__file__).resolve().parents[1] / "fixtures" / "historical"
+        connector = CSVJSONDataConnector.from_directory(root)
+
+        result = engineer_score_from_connector(
+            connector,
+            symbol="267260",
+            as_of_date=date(2023, 7, 27),
+        )
+        score = result.score()
+        stage = StageClassifier().classify(
+            StageClassificationInput(
+                score=score,
+                red_team=RedTeamEngine().assess(result.red_team_signals),
+                theme_regime_score=80,
+                company_event_score=80,
+            )
+        )
+        zoom_news = connector.get_news("ZM", date(2020, 1, 1), date(2020, 12, 31), date(2020, 9, 1))
+
+        self.assertGreater(score.total_score, 75)
+        self.assertGreater(score.diagnostic_scores["contract_quality"], 0)
+        self.assertEqual(result.shortage_type, ShortageType.STRUCTURAL)
+        self.assertIn(stage.stage, {Stage.STAGE_3_GREEN, Stage.STAGE_3_YELLOW})
+        self.assertTrue(zoom_news)
+
+    def test_feature_input_rejects_future_as_of_financial_actual(self):
+        with self.assertRaisesRegex(ValueError, "financial actual cannot be after feature as_of_date"):
+            FeatureEngineeringInput(
+                symbol="CASE",
+                as_of_date=date(2024, 5, 1),
+                financial_actuals=(
+                    FinancialActual(
+                        symbol="CASE",
+                        fiscal_year=2024,
+                        fiscal_quarter=1,
+                        period_end=date(2024, 3, 31),
+                        reported_at=datetime(2024, 4, 30, 8, 0),
+                        as_of_date=date(2024, 5, 30),
+                        source="future-restatement",
+                        sales=999,
+                    ),
+                ),
+            )
+
+
+if __name__ == "__main__":
+    unittest.main()
