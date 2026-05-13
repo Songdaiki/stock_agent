@@ -16,7 +16,7 @@ from e2r.cheap_scan import KoreaCheapScanConfig, KoreaCheapScanResult, KoreaChea
 from e2r.cheap_scan.korea_sources import DataGoKrFSCConnector
 from e2r.cheap_scan.models import CheapScanCandidate, RecommendedNextLayer
 from e2r.cheap_scan.query_escalation import EscalationQueryPlanner, queries_for_candidate
-from e2r.models import DisclosureEvent, Evidence, Instrument, Market, RedTeamFinding, ScoreSnapshot, Stage, StageSnapshot
+from e2r.models import DisclosureEvent, Evidence, FinancialActual, Instrument, Market, PriceBar, RedTeamFinding, ScoreSnapshot, Stage, StageSnapshot
 from e2r.research.free_web_research_runner import FreeWebResearchInput, FreeWebResearchRunner, WebResearchPipelineResult
 from e2r.research.naver_search_provider import NaverFreeSearchProvider
 from e2r.research.search_budget import SearchBudget
@@ -158,7 +158,7 @@ class KoreaLiveLiteRunner:
         effective_fixture_mode = config.fixture_mode or (config.live_enabled and bool(missing_credentials))
         sources = config.sources or self._sources
         http_client = config.http_client or HttpClient()
-        source_modes, fallback_reasons, request_only_sources = _initial_source_status(config, missing_credentials)
+        source_modes, fallback_reasons, _request_only_sources = _initial_source_status(config, missing_credentials)
         start = config.as_of_date - timedelta(days=config.disclosure_lookback_days)
         built_requests: list[SourceRequest] = []
         source_call_counts: dict[str, int] = {
@@ -169,6 +169,15 @@ class KoreaLiveLiteRunner:
             "naver_search_queries": 0,
         }
 
+        sources = _sources_with_live_data_go_kr(
+            sources=sources,
+            config=config,
+            http_client=http_client,
+            built_requests=built_requests,
+            source_call_counts=source_call_counts,
+            source_modes=source_modes,
+            fallback_reasons=fallback_reasons,
+        )
         date_disclosures = _collect_opendart_disclosures_by_date(
             sources=sources,
             start=start,
@@ -193,7 +202,7 @@ class KoreaLiveLiteRunner:
                 top_n=config.top_candidates,
             )
         )
-        _record_estimated_source_calls(source_call_counts, sources, cheap_scan.instruments_scanned)
+        _record_estimated_source_calls(source_call_counts, sources, cheap_scan.instruments_scanned, source_modes)
         cheap_evidence = _cheap_scan_evidence_by_id(sources, date_disclosures, config.as_of_date)
         selected_candidates, skipped_candidate_items = _select_candidates_for_research(cheap_scan.candidates, config.budget)
 
@@ -265,7 +274,7 @@ class KoreaLiveLiteRunner:
             cache_hits=http_client.stats.cache_hits,
             cache_writes=http_client.stats.cache_writes,
             fallback_reasons=dict(fallback_reasons),
-            request_only_sources=tuple(dict.fromkeys(request_only_sources)),
+            request_only_sources=tuple(source for source, mode in source_modes.items() if mode == "request_only"),
             notes=_run_notes(config, effective_fixture_mode),
         )
         candidates_path, evidence_path, brief_path, run_log_path = _write_outputs(
@@ -303,6 +312,199 @@ def fixture_sources(root: str | Path = DEFAULT_FIXTURE_ROOT) -> KoreaCheapScanSo
         kind=KINDConnector(fixture_root=root_path / "kind"),
         fsc=DataGoKrFSCConnector(fixture_root=root_path / "data_go_kr_fsc"),
     )
+
+
+def _sources_with_live_data_go_kr(
+    *,
+    sources: KoreaCheapScanSources,
+    config: KoreaLiveLiteConfig,
+    http_client: HttpClient,
+    built_requests: list[SourceRequest],
+    source_call_counts: dict[str, int],
+    source_modes: dict[str, str],
+    fallback_reasons: dict[str, str],
+) -> KoreaCheapScanSources:
+    if not _can_execute_live_data_go_kr(config) or sources.fsc is None:
+        return sources
+    if config.budget.max_data_go_kr_calls_per_day < 2:
+        source_modes["data_go_kr"] = "fallback"
+        fallback_reasons["data_go_kr"] = "data_go_kr_budget_too_low_for_universe_and_price"
+        return sources
+
+    remaining_calls = config.budget.max_data_go_kr_calls_per_day
+    instruments, remaining_calls, instruments_ok = _execute_data_go_kr_pages(
+        request_factory=lambda page_no, num_rows: sources.fsc.build_listed_items_page_request(Market.KR, config.as_of_date, page_no, num_rows),
+        parser=lambda rows: tuple(sources.fsc.normalize_instrument(row) for row in rows),
+        cache_stem="listed_items",
+        as_of_date=config.as_of_date,
+        config=config,
+        http_client=http_client,
+        built_requests=built_requests,
+        source_call_counts=source_call_counts,
+        remaining_calls=remaining_calls,
+    )
+    if not instruments_ok:
+        source_modes["data_go_kr"] = "fallback"
+        fallback_reasons["data_go_kr"] = "data_go_kr_listed_items_failed"
+        return sources
+
+    price_start = config.as_of_date - timedelta(days=config.lookback_days)
+    price_bars, remaining_calls, prices_ok = _execute_data_go_kr_pages(
+        request_factory=lambda page_no, num_rows: sources.fsc.build_stock_price_page_request(price_start, config.as_of_date, config.as_of_date, page_no, num_rows),
+        parser=lambda rows: tuple(sources.fsc.normalize_price_bar(row) for row in rows),
+        cache_stem="stock_prices",
+        as_of_date=config.as_of_date,
+        config=config,
+        http_client=http_client,
+        built_requests=built_requests,
+        source_call_counts=source_call_counts,
+        remaining_calls=remaining_calls,
+    )
+    if not prices_ok:
+        source_modes["data_go_kr"] = "fallback"
+        fallback_reasons["data_go_kr"] = "data_go_kr_stock_prices_failed"
+        return sources
+
+    source_modes["data_go_kr"] = "live_executed"
+    return KoreaCheapScanSources(
+        # Once data.go.kr supplies both live universe and price rows, avoid
+        # mixing KRX fixture prices into the same scan.
+        krx=None,
+        opendart=sources.opendart,
+        kind=sources.kind,
+        fsc=_LiveDataGoKrFSCConnector(
+            base=sources.fsc,
+            instruments=tuple(instruments),
+            price_bars=tuple(price_bars),
+        ),
+    )
+
+
+def _can_execute_live_data_go_kr(config: KoreaLiveLiteConfig) -> bool:
+    return bool(config.live_enabled and not config.fixture_mode and os.environ.get("DATA_GO_KR_SERVICE_KEY"))
+
+
+def _execute_data_go_kr_pages(
+    *,
+    request_factory,
+    parser,
+    cache_stem: str,
+    as_of_date: date,
+    config: KoreaLiveLiteConfig,
+    http_client: HttpClient,
+    built_requests: list[SourceRequest],
+    source_call_counts: dict[str, int],
+    remaining_calls: int,
+):
+    if remaining_calls <= 0:
+        return (), 0, False
+    parsed_items: list[Any] = []
+    page_no = 1
+    num_rows = 1000
+    while remaining_calls > 0:
+        public_request = _data_go_public_request(request_factory(page_no, num_rows))
+        built_requests.append(public_request)
+        live_request = _with_secret_param(public_request, "serviceKey", os.environ["DATA_GO_KR_SERVICE_KEY"])
+        cache_path = Path(config.cache_directory) / "data_go_kr" / as_of_date.isoformat() / f"{cache_stem}_page_{page_no:04d}.json"
+        result = http_client.get_json(live_request, cache_path=cache_path)
+        source_call_counts["data_go_kr_calls"] += 1
+        remaining_calls -= 1
+        if not result.ok or not isinstance(result.json_data, Mapping):
+            return (), remaining_calls, False
+        payload = result.json_data
+        rows = _data_go_kr_payload_items(payload)
+        try:
+            parsed_items.extend(parser(rows))
+        except (KeyError, TypeError, ValueError):
+            return (), remaining_calls, False
+        total_pages = _data_go_kr_total_pages(payload, num_rows, page_no)
+        if page_no >= total_pages:
+            return tuple(parsed_items), remaining_calls, True
+        page_no += 1
+    return tuple(parsed_items), remaining_calls, True
+
+
+def _data_go_public_request(request: SourceRequest) -> SourceRequest:
+    params = {key: value for key, value in request.params.items() if key != "serviceKey"}
+    return SourceRequest(
+        method=request.method,
+        url=request.url,
+        params=params,
+        headers=dict(request.headers),
+        fixture_mode=False,
+        credential_name="DATA_GO_KR_SERVICE_KEY",
+    )
+
+
+def _data_go_kr_payload_items(payload: Mapping[str, Any]) -> tuple[Mapping[str, Any], ...]:
+    response = payload.get("response", payload)
+    body = response.get("body", response) if isinstance(response, Mapping) else {}
+    items = body.get("items", ()) if isinstance(body, Mapping) else ()
+    if isinstance(items, Mapping):
+        rows = items.get("item", ())
+    else:
+        rows = items
+    if isinstance(rows, Mapping):
+        rows = (rows,)
+    if not isinstance(rows, Sequence) or isinstance(rows, (str, bytes)):
+        return ()
+    return tuple(row for row in rows if isinstance(row, Mapping))
+
+
+def _data_go_kr_total_pages(payload: Mapping[str, Any], num_rows: int, default: int) -> int:
+    response = payload.get("response", payload)
+    body = response.get("body", response) if isinstance(response, Mapping) else {}
+    if not isinstance(body, Mapping):
+        return default
+    total_count = _int_or_default(body.get("totalCount") or body.get("total_count"), 0)
+    rows = _int_or_default(body.get("numOfRows") or body.get("num_of_rows"), num_rows)
+    if total_count <= 0 or rows <= 0:
+        return default
+    return max(1, (total_count + rows - 1) // rows)
+
+
+@dataclass(frozen=True)
+class _LiveDataGoKrFSCConnector:
+    base: DataGoKrFSCConnector
+    instruments: tuple[Instrument, ...]
+    price_bars: tuple[PriceBar, ...]
+
+    def list_instruments(self, market: Market, as_of_date: date) -> tuple[Instrument, ...]:
+        return tuple(
+            sorted(
+                (
+                    item
+                    for item in self.instruments
+                    if item.market == market
+                    and (item.listed_date is None or item.listed_date <= as_of_date)
+                ),
+                key=lambda item: item.symbol,
+            )
+        )
+
+    def get_price_bars(self, symbol: str, start: date, end: date, as_of_date: date) -> tuple[PriceBar, ...]:
+        return tuple(
+            sorted(
+                (
+                    item
+                    for item in self.price_bars
+                    if item.symbol == symbol
+                    and start <= item.date <= end
+                    and item.date <= as_of_date
+                    and item.as_of_date <= as_of_date
+                ),
+                key=lambda item: item.date,
+            )
+        )
+
+    def get_financial_actuals(self, symbol: str, as_of_date: date) -> tuple[FinancialActual, ...]:
+        return self.base.get_financial_actuals(symbol, as_of_date)
+
+    def get_disclosures(self, symbol: str, start: date, end: date, as_of_date: date) -> tuple[DisclosureEvent, ...]:
+        return self.base.get_disclosures(symbol, start, end, as_of_date)
+
+    def get_stock_issuance_records(self, symbol: str, as_of_date: date) -> tuple[dict[str, Any], ...]:
+        return self.base.get_stock_issuance_records(symbol, as_of_date)
 
 
 def _collect_opendart_disclosures_by_date(
@@ -552,10 +754,11 @@ def _record_estimated_source_calls(
     source_call_counts: dict[str, int],
     sources: KoreaCheapScanSources,
     instruments_scanned: int,
+    source_modes: Mapping[str, str],
 ) -> None:
-    if sources.krx is not None:
+    if sources.krx is not None and source_modes.get("krx") == "fixture":
         source_call_counts["krx_calls"] = 1 + instruments_scanned
-    if sources.fsc is not None:
+    if sources.fsc is not None and source_modes.get("data_go_kr") == "fixture" and source_call_counts.get("data_go_kr_calls", 0) == 0:
         source_call_counts["data_go_kr_calls"] = 1 + instruments_scanned
 
 

@@ -92,13 +92,13 @@ Simple example:
   "source_modes": {
     "opendart": "live_executed",
     "krx": "request_only",
-    "data_go_kr": "request_only",
+    "data_go_kr": "live_executed",
     "naver_search": "live_executed"
   }
 }
 ```
 
-For now, OpenDART date-range disclosure search and Naver Search have live execution paths. KRX/data.go.kr remain request-only unless a complete live endpoint executor is wired in.
+OpenDART date-range disclosure search, Naver Search, and data.go.kr FSC listed-item/stock-price collection have live execution paths. KRX remains request-only until its endpoint executor is wired in.
 
 `run_log.json` also records:
 
@@ -144,7 +144,7 @@ config = KoreaLiveLiteConfig(
 
 ## Pipeline Steps
 
-1. Load the Korea universe from KRX/data.go.kr fixture or request-backed connectors.
+1. Load the Korea universe from KRX/data.go.kr fixture or live-backed connectors.
 2. Pull price bars under the KRX/data.go.kr call budget.
 3. Pull same-day/prior-day OpenDART disclosures by date range, not symbol-by-symbol.
 4. Run `KoreaCheapScanner`.
@@ -152,6 +152,62 @@ config = KoreaLiveLiteConfig(
 6. Run `FreeWebResearchRunner` under Naver/search query budgets.
 7. Generate a Korean morning brief.
 8. Write JSON and Markdown outputs.
+
+## data.go.kr Price And Universe Live Execution
+
+When `fixture_mode=False`, `live_enabled=True`, and `DATA_GO_KR_SERVICE_KEY` is present, the runner can execute the free Financial Services Commission data.go.kr path for:
+
+```text
+listed items -> Instrument
+stock prices -> PriceBar
+```
+
+It uses bulk/date/page requests instead of one request per symbol.
+
+Good:
+
+```text
+call listed item page 1
+call stock price page 1 for the date window
+normalize rows locally by symbol
+```
+
+Bad:
+
+```text
+for each listed company:
+    call daily stock price API
+```
+
+The first safe live path currently uses:
+
+```text
+GetKrxListedInfoService/getItemInfo
+GetStockSecuritiesInfoService/getStockPriceInfo
+```
+
+Raw JSON is cached under:
+
+```text
+data/cache/data_go_kr/YYYY-MM-DD/
+```
+
+If the data.go.kr call fails, the run log records:
+
+```text
+source_modes.data_go_kr = fallback
+fallback_reasons.data_go_kr = data_go_kr_listed_items_failed
+```
+
+If the daily data.go.kr budget is too small to fetch both universe and price data, the runner falls back before making the calls. For example, `max_data_go_kr_calls_per_day=1` is too small because the pilot needs at least one listed-item page and one stock-price page.
+
+KRX remains explicit request-only for now:
+
+```text
+source_modes.krx = request_only
+```
+
+This means KRX is not silently pretending to be live data. Use `source_modes` in `run_log.json` before interpreting the brief.
 
 ## Output Files
 

@@ -346,6 +346,109 @@ class KoreaLiveLiteTests(unittest.TestCase):
         self.assertIn("krx", result.run_log.request_only_sources)
         self.assertIn("data_go_kr", result.run_log.request_only_sources)
 
+    def test_mocked_data_go_live_listed_items_and_prices_feed_cheap_scan(self):
+        http_client = MockHttpClient(
+            json_by_url_token={
+                "GetKrxListedInfoService": DATA_GO_LISTED_ITEMS_PAYLOAD,
+                "GetStockSecuritiesInfoService": DATA_GO_STOCK_PRICE_PAYLOAD,
+                "opendart": {"total_page": 1, "list": []},
+            }
+        )
+        env = {
+            "OPENDART_API_KEY": "OPENDART_SECRET",
+            "DATA_GO_KR_SERVICE_KEY": "DATA_SECRET",
+            "NAVER_CLIENT_ID": "NAVER_ID",
+            "NAVER_CLIENT_SECRET": "NAVER_SECRET",
+        }
+
+        with tempfile.TemporaryDirectory() as output_dir, patch.dict("os.environ", env, clear=True):
+            result = KoreaLiveLiteRunner().run(
+                KoreaLiveLiteConfig(
+                    as_of_date=AS_OF,
+                    output_directory=output_dir,
+                    fixture_mode=False,
+                    live_enabled=True,
+                    http_client=http_client,
+                    budget=KoreaLiveLiteBudget(
+                        max_data_go_kr_calls_per_day=10,
+                        max_symbols_for_event_search=10,
+                        max_symbols_for_deep_research=10,
+                    ),
+                    browser_provider=EmptySearchProvider(),
+                    free_search_provider=EmptySearchProvider(),
+                )
+            )
+
+        candidate = _candidate(result, "999999")
+        self.assertEqual(candidate.company_name, "라이브전력")
+        self.assertEqual(candidate.recommended_next_layer.value, "event_search")
+        self.assertIn("PRICE_VOLUME_SPIKE", candidate.reason_codes)
+        self.assertEqual(result.run_log.source_modes["data_go_kr"], "live_executed")
+        self.assertEqual(result.run_log.source_call_counts["data_go_kr_calls"], 2)
+        self.assertNotIn("data_go_kr", result.run_log.request_only_sources)
+
+    def test_data_go_live_budget_is_respected_and_falls_back_before_calls(self):
+        http_client = MockHttpClient(
+            json_by_url_token={
+                "GetKrxListedInfoService": DATA_GO_LISTED_ITEMS_PAYLOAD,
+                "GetStockSecuritiesInfoService": DATA_GO_STOCK_PRICE_PAYLOAD,
+                "opendart": {"total_page": 1, "list": []},
+            }
+        )
+        env = {
+            "OPENDART_API_KEY": "OPENDART_SECRET",
+            "DATA_GO_KR_SERVICE_KEY": "DATA_SECRET",
+            "NAVER_CLIENT_ID": "NAVER_ID",
+            "NAVER_CLIENT_SECRET": "NAVER_SECRET",
+        }
+
+        with tempfile.TemporaryDirectory() as output_dir, patch.dict("os.environ", env, clear=True):
+            result = KoreaLiveLiteRunner().run(
+                KoreaLiveLiteConfig(
+                    as_of_date=AS_OF,
+                    output_directory=output_dir,
+                    fixture_mode=False,
+                    live_enabled=True,
+                    http_client=http_client,
+                    budget=KoreaLiveLiteBudget(max_data_go_kr_calls_per_day=1),
+                    browser_provider=EmptySearchProvider(),
+                    free_search_provider=EmptySearchProvider(),
+                )
+            )
+
+        self.assertEqual(result.run_log.source_modes["data_go_kr"], "fallback")
+        self.assertEqual(result.run_log.fallback_reasons["data_go_kr"], "data_go_kr_budget_too_low_for_universe_and_price")
+        self.assertLessEqual(result.run_log.source_call_counts["data_go_kr_calls"], 1)
+        self.assertFalse(any("GetKrxListedInfoService" in item.url for item in http_client.requests))
+
+    def test_data_go_live_failure_falls_back_without_logging_key(self):
+        http_client = MockHttpClient(json_by_url_token={"opendart": {"total_page": 1, "list": []}})
+        env = {
+            "OPENDART_API_KEY": "OPENDART_SECRET",
+            "DATA_GO_KR_SERVICE_KEY": "DATA_SECRET",
+            "NAVER_CLIENT_ID": "NAVER_ID",
+            "NAVER_CLIENT_SECRET": "NAVER_SECRET",
+        }
+
+        with tempfile.TemporaryDirectory() as output_dir, patch.dict("os.environ", env, clear=True):
+            result = KoreaLiveLiteRunner().run(
+                KoreaLiveLiteConfig(
+                    as_of_date=AS_OF,
+                    output_directory=output_dir,
+                    fixture_mode=False,
+                    live_enabled=True,
+                    http_client=http_client,
+                    browser_provider=EmptySearchProvider(),
+                    free_search_provider=EmptySearchProvider(),
+                )
+            )
+            run_log_text = result.run_log_path.read_text(encoding="utf-8")
+
+        self.assertEqual(result.run_log.source_modes["data_go_kr"], "fallback")
+        self.assertEqual(result.run_log.fallback_reasons["data_go_kr"], "data_go_kr_listed_items_failed")
+        self.assertGreaterEqual(result.run_log.live_requests_failed, 1)
+        self.assertNotIn("DATA_SECRET", run_log_text)
+
     def test_api_keys_are_not_written_to_run_log(self):
         http_client = MockHttpClient(json_by_url_token={"opendart": {"total_page": 1, "list": []}})
         env = {
@@ -416,6 +519,66 @@ CAPEX/매출 20%
 투자포인트: 수주잔고 확대|마진 개선|북미 전력망 병목
 리스크: 증설 지연|원가 변동
 """
+
+DATA_GO_LISTED_ITEMS_PAYLOAD = {
+    "response": {
+        "body": {
+            "items": {
+                "item": [
+                    {
+                        "basDt": "20240521",
+                        "srtnCd": "999999",
+                        "isinCd": "KR7999990000",
+                        "itmsNm": "라이브전력",
+                        "corpNm": "라이브전력",
+                        "mrktCtg": "KOSDAQ",
+                    }
+                ]
+            },
+            "totalCount": 1,
+            "numOfRows": 1000,
+            "pageNo": 1,
+        }
+    }
+}
+
+DATA_GO_STOCK_PRICE_PAYLOAD = {
+    "response": {
+        "body": {
+            "items": {
+                "item": [
+                    {
+                        "basDt": "20240301",
+                        "srtnCd": "999999",
+                        "itmsNm": "라이브전력",
+                        "mkp": "10000",
+                        "hipr": "11000",
+                        "lopr": "9000",
+                        "clpr": "10000",
+                        "trqu": "10000",
+                        "trPrc": "100000000",
+                        "mrktTotAmt": "100000000000",
+                    },
+                    {
+                        "basDt": "20240521",
+                        "srtnCd": "999999",
+                        "itmsNm": "라이브전력",
+                        "mkp": "15000",
+                        "hipr": "16200",
+                        "lopr": "14900",
+                        "clpr": "16000",
+                        "trqu": "60000",
+                        "trPrc": "900000000",
+                        "mrktTotAmt": "160000000000",
+                    },
+                ]
+            },
+            "totalCount": 2,
+            "numOfRows": 1000,
+            "pageNo": 1,
+        }
+    }
+}
 
 def _candidate(result, symbol):
     for candidate in result.candidates:

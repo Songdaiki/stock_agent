@@ -10,7 +10,7 @@ from typing import Any, Mapping
 from e2r.models import DisclosureEvent, FinancialActual, Instrument, Market, PriceBar
 from e2r.sources import KINDConnector, KRXConnector, OpenDARTConnector
 from e2r.sources.kind import KINDRiskRecord
-from e2r.sources.source_errors import SourceRequest, date_value, load_fixture_records, require_credential
+from e2r.sources.source_errors import SourceRequest, date_value, float_or_none, int_or_none, load_fixture_records, require_credential
 
 
 FSC_BASE_URL = "https://apis.data.go.kr/1160100/service"
@@ -41,6 +41,17 @@ class DataGoKrFSCConnector:
             },
         )
 
+    def build_listed_items_page_request(self, market: Market, as_of_date: date, page_no: int = 1, num_rows: int = 1000) -> SourceRequest:
+        return self._request(
+            "GetKrxListedInfoService/getItemInfo",
+            {
+                "market": market.value,
+                "basDt": as_of_date.strftime("%Y%m%d"),
+                "pageNo": page_no,
+                "numOfRows": num_rows,
+            },
+        )
+
     def build_stock_price_request(self, symbol: str, start: date, end: date, as_of_date: date) -> SourceRequest:
         return self._request(
             "GetStockSecuritiesInfoService/getStockPriceInfo",
@@ -48,6 +59,17 @@ class DataGoKrFSCConnector:
                 "likeSrtnCd": symbol,
                 "beginBasDt": start.strftime("%Y%m%d"),
                 "endBasDt": min(end, as_of_date).strftime("%Y%m%d"),
+            },
+        )
+
+    def build_stock_price_page_request(self, start: date, end: date, as_of_date: date, page_no: int = 1, num_rows: int = 1000) -> SourceRequest:
+        return self._request(
+            "GetStockSecuritiesInfoService/getStockPriceInfo",
+            {
+                "beginBasDt": start.strftime("%Y%m%d"),
+                "endBasDt": min(end, as_of_date).strftime("%Y%m%d"),
+                "pageNo": page_no,
+                "numOfRows": num_rows,
             },
         )
 
@@ -81,7 +103,7 @@ class DataGoKrFSCConnector:
 
     def list_instruments(self, market: Market, as_of_date: date) -> tuple[Instrument, ...]:
         rows = load_fixture_records(self.fixture_root, "instruments")
-        instruments = tuple(_instrument_from_fsc(row) for row in rows)
+        instruments = tuple(self.normalize_instrument(row) for row in rows)
         return tuple(
             sorted(
                 (
@@ -95,7 +117,7 @@ class DataGoKrFSCConnector:
         )
 
     def get_price_bars(self, symbol: str, start: date, end: date, as_of_date: date) -> tuple[PriceBar, ...]:
-        bars = tuple(KRXConnector.normalize_price_bar(row) for row in load_fixture_records(self.fixture_root, "prices"))
+        bars = tuple(self.normalize_price_bar(row) for row in load_fixture_records(self.fixture_root, "prices"))
         return tuple(
             sorted(
                 (
@@ -162,6 +184,41 @@ class DataGoKrFSCConnector:
             params=payload,
             fixture_mode=self.fixture_mode,
             credential_name="DATA_GO_KR_SERVICE_KEY",
+        )
+
+    @staticmethod
+    def normalize_instrument(row: Mapping[str, Any]) -> Instrument:
+        return _instrument_from_fsc(row)
+
+    @staticmethod
+    def normalize_price_bar(row: Mapping[str, Any]) -> PriceBar:
+        mapped = {
+            "symbol": row.get("symbol") or row.get("srtnCd") or row.get("isinCd"),
+            "date": row.get("date") or row.get("basDt"),
+            "open": row.get("open") or row.get("mkp") or row.get("clpr"),
+            "high": row.get("high") or row.get("hipr") or row.get("clpr"),
+            "low": row.get("low") or row.get("lopr") or row.get("clpr"),
+            "close": row.get("close") or row.get("clpr"),
+            "adj_close": row.get("adj_close") or row.get("clpr") or row.get("close"),
+            "volume": row.get("volume") or row.get("trqu") or 0,
+            "trading_value": row.get("trading_value") or row.get("trPrc") or 0,
+            "market_cap": row.get("market_cap") or row.get("mrktTotAmt"),
+            "source": row.get("source") or "data.go.kr FSC",
+            "as_of_date": row.get("as_of_date") or row.get("basDt") or row.get("date"),
+        }
+        return PriceBar(
+            symbol=str(mapped["symbol"]),
+            date=date_value(mapped["date"]),
+            open=float_or_none(mapped["open"]) or 0.0,
+            high=float_or_none(mapped["high"]) or 0.0,
+            low=float_or_none(mapped["low"]) or 0.0,
+            close=float_or_none(mapped["close"]) or 0.0,
+            adj_close=float_or_none(mapped["adj_close"]) or 0.0,
+            volume=int_or_none(mapped["volume"]) or 0,
+            trading_value=float_or_none(mapped["trading_value"]) or 0.0,
+            market_cap=float_or_none(mapped["market_cap"]),
+            source=str(mapped["source"]),
+            as_of_date=date_value(mapped["as_of_date"]),
         )
 
 
