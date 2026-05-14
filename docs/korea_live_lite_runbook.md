@@ -67,6 +67,14 @@ If credentials are missing, the runner falls back to fixture mode and records th
 output/korea_live_lite/YYYY-MM-DD_run_log.json
 ```
 
+Before the first live-lite smoke run, run the API raw probe:
+
+```bash
+PYTHONPATH=src python -m e2r.cli.probe_korea_apis --date YYYY-MM-DD --live --sample-symbol 005930
+```
+
+Inspect `docs/api_probe_runbook.md` for the expected review order. The probe checks raw response schemas and normalizer compatibility without running cheap scan, web research, or Stage classification.
+
 ## Source Modes
 
 `run_log.json` separates source state explicitly:
