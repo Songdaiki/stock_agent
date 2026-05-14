@@ -14,6 +14,12 @@ from e2r.sources.source_errors import SourceRequest, date_value, float_or_none, 
 
 
 FSC_BASE_URL = "https://apis.data.go.kr/1160100/service"
+FSC_LISTED_ITEMS_SERVICE_PATH = "GetKrxListedInfoService/getItemInfo"
+FSC_STOCK_PRICE_SERVICE_PATH = "GetStockSecuritiesInfoService/getStockPriceInfo"
+FSC_FINANCIAL_INFO_SERVICE_PATH = "GetFinaStatInfoService_V2/getFinaStatInfo"
+FSC_DISCLOSURE_INFO_SERVICE_PATH = "GetDiscInfoService_V2/getDiscInfo"
+FSC_CORP_BASIC_INFO_SERVICE_PATH = "GetCorpBasicInfoService_V2/getCorpBasicInfo"
+FSC_STOCK_ISSUANCE_SERVICE_PATH = "GetStockIssuanceInfoService/getStockIssueInfo"
 
 
 @dataclass(frozen=True)
@@ -28,6 +34,9 @@ class DataGoKrFSCConnector:
     fixture_root: str | Path | None = "data/raw/data_go_kr_fsc"
     fixture_mode: bool = True
     base_url: str = FSC_BASE_URL
+    financial_info_service_path: str = FSC_FINANCIAL_INFO_SERVICE_PATH
+    disclosure_info_service_path: str = FSC_DISCLOSURE_INFO_SERVICE_PATH
+    corp_basic_info_service_path: str = FSC_CORP_BASIC_INFO_SERVICE_PATH
     enable_stock_issuance_source: bool = False
 
     def require_live_credentials(self) -> str:
@@ -35,7 +44,7 @@ class DataGoKrFSCConnector:
 
     def build_listed_items_request(self, market: Market, as_of_date: date) -> SourceRequest:
         return self._request(
-            "GetKrxListedInfoService/getItemInfo",
+            FSC_LISTED_ITEMS_SERVICE_PATH,
             {
                 "market": market.value,
                 "basDt": as_of_date.strftime("%Y%m%d"),
@@ -44,7 +53,7 @@ class DataGoKrFSCConnector:
 
     def build_listed_items_page_request(self, market: Market, as_of_date: date, page_no: int = 1, num_rows: int = 1000) -> SourceRequest:
         return self._request(
-            "GetKrxListedInfoService/getItemInfo",
+            FSC_LISTED_ITEMS_SERVICE_PATH,
             {
                 "market": market.value,
                 "basDt": as_of_date.strftime("%Y%m%d"),
@@ -55,7 +64,7 @@ class DataGoKrFSCConnector:
 
     def build_stock_price_request(self, symbol: str, start: date, end: date, as_of_date: date) -> SourceRequest:
         return self._request(
-            "GetStockSecuritiesInfoService/getStockPriceInfo",
+            FSC_STOCK_PRICE_SERVICE_PATH,
             {
                 "likeSrtnCd": symbol,
                 "beginBasDt": start.strftime("%Y%m%d"),
@@ -65,7 +74,7 @@ class DataGoKrFSCConnector:
 
     def build_stock_price_page_request(self, start: date, end: date, as_of_date: date, page_no: int = 1, num_rows: int = 1000) -> SourceRequest:
         return self._request(
-            "GetStockSecuritiesInfoService/getStockPriceInfo",
+            FSC_STOCK_PRICE_SERVICE_PATH,
             {
                 "beginBasDt": start.strftime("%Y%m%d"),
                 "endBasDt": min(end, as_of_date).strftime("%Y%m%d"),
@@ -76,7 +85,7 @@ class DataGoKrFSCConnector:
 
     def build_financial_info_request(self, symbol: str, as_of_date: date) -> SourceRequest:
         return self._request(
-            "GetCorpFinanceInfoService/getCorpFinanceInfo",
+            self.financial_info_service_path,
             {
                 "likeSrtnCd": symbol,
                 "basDt": as_of_date.strftime("%Y%m%d"),
@@ -85,7 +94,7 @@ class DataGoKrFSCConnector:
 
     def build_disclosure_info_request(self, symbol: str, start: date, end: date, as_of_date: date) -> SourceRequest:
         return self._request(
-            "GetCorpDisclosureInfoService/getDisclosureInfo",
+            self.disclosure_info_service_path,
             {
                 "likeSrtnCd": symbol,
                 "beginBasDt": start.strftime("%Y%m%d"),
@@ -93,9 +102,18 @@ class DataGoKrFSCConnector:
             },
         )
 
+    def build_corp_basic_info_request(self, symbol: str, as_of_date: date) -> SourceRequest:
+        return self._request(
+            self.corp_basic_info_service_path,
+            {
+                "likeSrtnCd": symbol,
+                "basDt": as_of_date.strftime("%Y%m%d"),
+            },
+        )
+
     def build_stock_issuance_request(self, symbol: str, as_of_date: date) -> SourceRequest:
         return self._request(
-            "GetStockIssuanceInfoService/getStockIssueInfo",
+            FSC_STOCK_ISSUANCE_SERVICE_PATH,
             {
                 "likeSrtnCd": symbol,
                 "basDt": as_of_date.strftime("%Y%m%d"),

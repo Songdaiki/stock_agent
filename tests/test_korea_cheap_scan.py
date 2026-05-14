@@ -115,6 +115,52 @@ class KoreaCheapScanTests(unittest.TestCase):
         self.assertEqual(bars[0].close, 1050)
         self.assertEqual(issuance[0]["issuance_type"], "rights_offering")
 
+    def test_fsc_approved_v2_request_builders_use_configured_endpoints(self):
+        connector = DataGoKrFSCConnector()
+
+        financial = connector.build_financial_info_request("111111", AS_OF)
+        disclosure = connector.build_disclosure_info_request("111111", AS_OF, AS_OF, AS_OF)
+        corp_basic = connector.build_corp_basic_info_request("111111", AS_OF)
+
+        self.assertIn("GetFinaStatInfoService_V2/getFinaStatInfo", financial.url)
+        self.assertIn("GetDiscInfoService_V2/getDiscInfo", disclosure.url)
+        self.assertIn("GetCorpBasicInfoService_V2/getCorpBasicInfo", corp_basic.url)
+        self.assertEqual(financial.params["basDt"], "20240521")
+        self.assertEqual(disclosure.params["beginBasDt"], "20240521")
+
+    def test_fsc_legacy_endpoint_aliases_still_work_when_configured(self):
+        connector = DataGoKrFSCConnector(
+            financial_info_service_path="GetCorpFinanceInfoService/getCorpFinanceInfo",
+            disclosure_info_service_path="GetCorpDisclosureInfoService/getDisclosureInfo",
+            corp_basic_info_service_path="GetCorpBasicInfoService/getCorpBasicInfo",
+        )
+
+        self.assertIn("GetCorpFinanceInfoService/getCorpFinanceInfo", connector.build_financial_info_request("111111", AS_OF).url)
+        self.assertIn("GetCorpDisclosureInfoService/getDisclosureInfo", connector.build_disclosure_info_request("111111", AS_OF, AS_OF, AS_OF).url)
+        self.assertIn("GetCorpBasicInfoService/getCorpBasicInfo", connector.build_corp_basic_info_request("111111", AS_OF).url)
+
+    def test_krx_approved_openapi_request_builders_use_data_dbg_urls(self):
+        connector = KRXConnector(openapi_key="KRX_SECRET")
+        requests = (
+            connector.build_openapi_kospi_daily_trading_request(AS_OF),
+            connector.build_openapi_kosdaq_daily_trading_request(AS_OF),
+            connector.build_openapi_kospi_issue_base_info_request(AS_OF),
+            connector.build_openapi_kosdaq_issue_base_info_request(AS_OF),
+            connector.build_openapi_kospi_index_daily_trading_request(AS_OF),
+            connector.build_openapi_kosdaq_index_daily_trading_request(AS_OF),
+        )
+
+        urls = [request.url for request in requests]
+        self.assertIn("https://data-dbg.krx.co.kr/svc/apis/sto/stk_bydd_trd", urls)
+        self.assertIn("https://data-dbg.krx.co.kr/svc/apis/sto/ksq_bydd_trd", urls)
+        self.assertIn("https://data-dbg.krx.co.kr/svc/apis/sto/stk_isu_base_info", urls)
+        self.assertIn("https://data-dbg.krx.co.kr/svc/apis/sto/ksq_isu_base_info", urls)
+        self.assertIn("https://data-dbg.krx.co.kr/svc/apis/idx/kospi_dd_trd", urls)
+        self.assertIn("https://data-dbg.krx.co.kr/svc/apis/idx/kosdaq_dd_trd", urls)
+        self.assertTrue(all(request.params["basDd"] == "20240521" for request in requests))
+        self.assertTrue(all(request.headers["AUTH_KEY"] == "KRX_SECRET" for request in requests))
+        self.assertTrue(all(request.credential_name == "KRX_OPENAPI_KEY" for request in requests))
+
     def test_stock_issuance_records_are_optional_by_default(self):
         connector = DataGoKrFSCConnector(fixture_root=FIXTURE_ROOT / "data_go_kr_fsc")
 

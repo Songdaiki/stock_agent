@@ -35,7 +35,15 @@ DEFAULT_SOURCE_LICENSE_METADATA: tuple[SourceLicenseMetadata, ...] = (
         commercial_allowed="unknown",
         attribution_required="unknown",
         non_commercial_only="unknown",
-        notes="Used for listed-item and stock-price live-lite pilots; check the API-specific license notice before production use.",
+        notes="Used for approved listed-item, stock-price, financial V2, disclosure V2, and optional company-basic V2 request builders; check each API-specific license notice before production use.",
+    ),
+    SourceLicenseMetadata(
+        source_name="krx_openapi",
+        license_label="KRX Open API terms, verify per API",
+        commercial_allowed="unknown",
+        attribution_required="unknown",
+        non_commercial_only="unknown",
+        notes="Optional backup/enrichment source for approved KRX data-dbg endpoints; data.go.kr remains the primary live price/universe path.",
     ),
     SourceLicenseMetadata(
         source_name="data_go_kr_fsc_stock_issuance",

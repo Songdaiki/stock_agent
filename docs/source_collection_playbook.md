@@ -28,6 +28,8 @@ That evidence maps to contract_quality, backlog_rpo_visibility, and structural_s
 | KRX | KR instruments, daily prices, trading value, market cap, 52-week range, halt/listing flags from fallback files | `Instrument`, `PriceBar` |
 | OpenDART | KR disclosures, contracts, facility investment, event filings, periodic reports | `DisclosureEvent`, `Evidence` |
 | data.go.kr FSC listed/price | KR listed-item and stock-price live-lite fallback where license permits | `Instrument`, `PriceBar` |
+| data.go.kr FSC financial/disclosure V2 | Approved V2 request builders for financial statements and disclosure info | `FinancialActual`, `DisclosureEvent` |
+| data.go.kr FSC company basic V2 | Optional company metadata fallback only | `Instrument` metadata fallback |
 | data.go.kr FSC stock issuance | Optional only. Use only if the API-specific license permits intended use | raw issuance rows |
 | KIND | managed issue, caution, halt, unfaithful disclosure, delisting-risk status | `Instrument` flags, `Evidence`, Red Team candidates |
 | Naver News | company and sector event search | `NewsItem`, `Evidence`, optional Red Team candidate |
@@ -35,6 +37,44 @@ That evidence maps to contract_quality, backlog_rpo_visibility, and structural_s
 | Report Search | broker PDF/report metadata from fixture or future provider search | `ReportSearchResult` |
 | SEC EDGAR | US submissions, companyfacts, 10-K, 10-Q, 8-K evidence | `FinancialActual`, `DisclosureEvent`, `NewsItem`, `Evidence` |
 | Consensus CSV | licensed-provider exports in CSV/JSON form | `ConsensusSnapshot`, `ConsensusRevision` |
+
+## Approved Korea Live API Request Builders
+
+The Korea live-lite layer aligns request metadata with the user-approved APIs.
+
+data.go.kr FSC:
+
+```text
+GetStockSecuritiesInfoService/getStockPriceInfo
+GetKrxListedInfoService/getItemInfo
+GetCorpBasicInfoService_V2/getCorpBasicInfo
+GetFinaStatInfoService_V2/getFinaStatInfo
+GetDiscInfoService_V2/getDiscInfo
+```
+
+`GetCorpBasicInfoService_V2` is optional. It is used only as a metadata fallback, not as a required live-lite dependency.
+
+Legacy paths can still be configured explicitly when needed:
+
+```python
+DataGoKrFSCConnector(
+    financial_info_service_path="GetCorpFinanceInfoService/getCorpFinanceInfo",
+    disclosure_info_service_path="GetCorpDisclosureInfoService/getDisclosureInfo",
+)
+```
+
+KRX Open API request builders are present for the approved `data-dbg.krx.co.kr` paths:
+
+```text
+/svc/apis/sto/stk_bydd_trd
+/svc/apis/sto/ksq_bydd_trd
+/svc/apis/sto/stk_isu_base_info
+/svc/apis/sto/ksq_isu_base_info
+/svc/apis/idx/kospi_dd_trd
+/svc/apis/idx/kosdaq_dd_trd
+```
+
+KRX Open API is not mandatory yet. data.go.kr remains the primary live price/universe source. KRX Open API stays disabled unless explicitly enabled for backup or enrichment.
 
 ## Query Templates
 

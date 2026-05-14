@@ -30,6 +30,15 @@ from e2r.sources.source_errors import (
 
 
 KRX_BASE_URL = "https://data.krx.co.kr"
+KRX_OPENAPI_BASE_URL = "https://data-dbg.krx.co.kr"
+KRX_OPENAPI_ENDPOINTS = {
+    "kospi_daily_trading": "/svc/apis/sto/stk_bydd_trd",
+    "kosdaq_daily_trading": "/svc/apis/sto/ksq_bydd_trd",
+    "kospi_issue_base_info": "/svc/apis/sto/stk_isu_base_info",
+    "kosdaq_issue_base_info": "/svc/apis/sto/ksq_isu_base_info",
+    "kospi_index_daily_trading": "/svc/apis/idx/kospi_dd_trd",
+    "kosdaq_index_daily_trading": "/svc/apis/idx/kosdaq_dd_trd",
+}
 
 
 @dataclass(frozen=True)
@@ -43,6 +52,8 @@ class KRXConnector:
     fixture_root: str | Path | None = "data/raw/krx"
     fixture_mode: bool = True
     base_url: str = KRX_BASE_URL
+    openapi_base_url: str = KRX_OPENAPI_BASE_URL
+    openapi_key: str | None = None
 
     def build_instruments_request(self, market: Market, as_of_date: date) -> SourceRequest:
         return SourceRequest(
@@ -67,6 +78,61 @@ class KRXConnector:
                 "endDd": min(end, as_of_date).strftime("%Y%m%d"),
             },
             fixture_mode=self.fixture_mode,
+        )
+
+    def build_openapi_daily_trading_request(self, market: Market, as_of_date: date) -> SourceRequest:
+        """Build approved KRX Open API daily stock trading request metadata."""
+
+        endpoint = "kospi_daily_trading" if market == Market.KR else "kosdaq_daily_trading"
+        return self._build_openapi_endpoint_request(endpoint, as_of_date)
+
+    def build_openapi_issue_base_info_request(self, market: Market, as_of_date: date) -> SourceRequest:
+        """Build approved KRX Open API issue base-info request metadata."""
+
+        endpoint = "kospi_issue_base_info" if market == Market.KR else "kosdaq_issue_base_info"
+        return self._build_openapi_endpoint_request(endpoint, as_of_date)
+
+    def build_openapi_index_daily_trading_request(self, market: Market, as_of_date: date) -> SourceRequest:
+        """Build approved KRX Open API daily index trading request metadata."""
+
+        endpoint = "kospi_index_daily_trading" if market == Market.KR else "kosdaq_index_daily_trading"
+        return self._build_openapi_endpoint_request(endpoint, as_of_date)
+
+    def build_openapi_kospi_daily_trading_request(self, as_of_date: date) -> SourceRequest:
+        return self._build_openapi_endpoint_request("kospi_daily_trading", as_of_date)
+
+    def build_openapi_kosdaq_daily_trading_request(self, as_of_date: date) -> SourceRequest:
+        return self._build_openapi_endpoint_request("kosdaq_daily_trading", as_of_date)
+
+    def build_openapi_kospi_issue_base_info_request(self, as_of_date: date) -> SourceRequest:
+        return self._build_openapi_endpoint_request("kospi_issue_base_info", as_of_date)
+
+    def build_openapi_kosdaq_issue_base_info_request(self, as_of_date: date) -> SourceRequest:
+        return self._build_openapi_endpoint_request("kosdaq_issue_base_info", as_of_date)
+
+    def build_openapi_kospi_index_daily_trading_request(self, as_of_date: date) -> SourceRequest:
+        return self._build_openapi_endpoint_request("kospi_index_daily_trading", as_of_date)
+
+    def build_openapi_kosdaq_index_daily_trading_request(self, as_of_date: date) -> SourceRequest:
+        return self._build_openapi_endpoint_request("kosdaq_index_daily_trading", as_of_date)
+
+    def _build_openapi_endpoint_request(self, endpoint: str, as_of_date: date) -> SourceRequest:
+        return self._openapi_request(
+            KRX_OPENAPI_ENDPOINTS[endpoint],
+            {"basDd": as_of_date.strftime("%Y%m%d")},
+        )
+
+    def _openapi_request(self, path: str, params: Mapping[str, Any]) -> SourceRequest:
+        headers = {}
+        if self.openapi_key:
+            headers["AUTH_KEY"] = self.openapi_key
+        return SourceRequest(
+            method="GET",
+            url=f"{self.openapi_base_url}{path}",
+            params=dict(params),
+            headers=headers,
+            fixture_mode=self.fixture_mode,
+            credential_name="KRX_OPENAPI_KEY",
         )
 
     def list_instruments(self, market: Market, as_of_date: date) -> tuple[Instrument, ...]:

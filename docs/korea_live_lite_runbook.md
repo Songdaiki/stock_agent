@@ -96,6 +96,7 @@ Simple example:
   "source_modes": {
     "opendart": "live_executed",
     "krx": "request_only",
+    "krx_openapi": "disabled_optional",
     "data_go_kr": "live_executed",
     "naver_search": "live_executed",
     "stock_issuance": "disabled_optional"
@@ -103,7 +104,7 @@ Simple example:
 }
 ```
 
-OpenDART date-range disclosure search, Naver Search, and data.go.kr FSC listed-item/stock-price collection have live execution paths. KRX remains request-only until its endpoint executor is wired in.
+OpenDART date-range disclosure search, Naver Search, and data.go.kr FSC listed-item/stock-price collection have live execution paths. data.go.kr is the primary live price/universe source. KRX Open API is optional backup/enrichment and stays disabled unless explicitly enabled.
 
 `run_log.json` also records:
 
@@ -327,13 +328,48 @@ fallback_reasons.data_go_kr = data_go_kr_listed_items_failed
 
 If the daily data.go.kr budget is too small to fetch both universe and price data, the runner falls back before making the calls. For example, `max_data_go_kr_calls_per_day=1` is too small because the pilot needs at least one listed-item page and one stock-price page.
 
-KRX remains explicit request-only for now:
+KRX MDC-style metadata remains explicit request-only for now:
 
 ```text
 source_modes.krx = request_only
 ```
 
-This means KRX is not silently pretending to be live data. Use `source_modes` in `run_log.json` before interpreting the brief.
+KRX Open API is tracked separately:
+
+```text
+source_modes.krx_openapi = disabled_optional
+```
+
+If `enable_krx_openapi_source=True` and `KRX_OPENAPI_KEY` is present, the current pilot records:
+
+```text
+source_modes.krx_openapi = request_only
+```
+
+This means approved `data-dbg.krx.co.kr` request builders exist, but KRX Open API is not yet the default live executor. Use `source_modes` in `run_log.json` before interpreting the brief.
+
+Approved KRX Open API request paths:
+
+```text
+/svc/apis/sto/stk_bydd_trd
+/svc/apis/sto/ksq_bydd_trd
+/svc/apis/sto/stk_isu_base_info
+/svc/apis/sto/ksq_isu_base_info
+/svc/apis/idx/kospi_dd_trd
+/svc/apis/idx/kosdaq_dd_trd
+```
+
+Approved data.go.kr FSC request paths:
+
+```text
+GetStockSecuritiesInfoService/getStockPriceInfo
+GetKrxListedInfoService/getItemInfo
+GetFinaStatInfoService_V2/getFinaStatInfo
+GetDiscInfoService_V2/getDiscInfo
+GetCorpBasicInfoService_V2/getCorpBasicInfo
+```
+
+`GetCorpBasicInfoService_V2` is optional and used only as a company metadata fallback.
 
 ## Optional Stock Issuance Source
 

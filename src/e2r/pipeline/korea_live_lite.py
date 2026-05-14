@@ -81,6 +81,7 @@ class KoreaLiveLiteConfig:
     max_global_live_workers: int = 1
     live_smoke_preset_used: str | None = None
     enable_stock_issuance_source: bool = False
+    enable_krx_openapi_source: bool = False
 
     def __post_init__(self) -> None:
         if type(self.as_of_date) is not date:
@@ -228,6 +229,11 @@ class KoreaLiveLiteRunner:
         http_client = config.http_client or HttpClient(rate_limiter=_rate_limiter_for_config(config))
         source_modes, fallback_reasons, _request_only_sources = _initial_source_status(config, missing_credentials)
         source_modes["stock_issuance"] = _stock_issuance_source_mode(config)
+        source_modes["krx_openapi"] = _krx_openapi_source_mode(config)
+        if source_modes["krx_openapi"] == "fallback":
+            fallback_reasons["krx_openapi"] = "missing_KRX_OPENAPI_KEY"
+        if source_modes["krx_openapi"] == "request_only":
+            _request_only_sources = tuple(dict.fromkeys((*_request_only_sources, "krx_openapi")))
         start = config.as_of_date - timedelta(days=config.disclosure_lookback_days)
         built_requests: list[SourceRequest] = []
         source_call_counts: dict[str, int] = {
@@ -415,6 +421,16 @@ def _sources_with_stock_issuance_setting(
 
 def _stock_issuance_source_mode(config: KoreaLiveLiteConfig) -> str:
     return "not_configured" if config.enable_stock_issuance_source else "disabled_optional"
+
+
+def _krx_openapi_source_mode(config: KoreaLiveLiteConfig) -> str:
+    if not config.enable_krx_openapi_source:
+        return "disabled_optional"
+    if config.fixture_mode or not config.live_enabled:
+        return "fixture"
+    if not os.environ.get("KRX_OPENAPI_KEY"):
+        return "fallback"
+    return "request_only"
 
 
 def _rate_limiter_for_config(config: KoreaLiveLiteConfig) -> RateLimiter:

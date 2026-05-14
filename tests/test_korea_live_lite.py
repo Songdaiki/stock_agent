@@ -4,6 +4,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
+from e2r.cheap_scan import DataGoKrFSCConnector, KoreaCheapScanSources
 from e2r.cli.review_korea_run import build_review_summary, render_review_summary
 from e2r.models import DisclosureEvent, Stage
 from e2r.pipeline.korea_live_lite import (
@@ -14,6 +15,7 @@ from e2r.pipeline.korea_live_lite import (
     plan_opendart_detail_fetches,
 )
 from e2r.research.search_provider import EmptySearchProvider, FixtureSearchProvider, SearchResult
+from e2r.sources import KINDConnector, KRXConnector, OpenDARTConnector
 from e2r.sources.http_client import HttpClientStats, HttpResult
 
 
@@ -84,9 +86,11 @@ class KoreaLiveLiteTests(unittest.TestCase):
             self.assertIn("logical_queries_by_source", run_log_json)
             self.assertIn("max_concurrency_used_by_source", run_log_json)
             self.assertEqual(run_log_json["source_modes"]["stock_issuance"], "disabled_optional")
+            self.assertEqual(run_log_json["source_modes"]["krx_openapi"], "disabled_optional")
             self.assertTrue(
                 any(item["source_name"] == "data_go_kr_fsc_stock_issuance" for item in run_log_json["source_license_metadata"])
             )
+            self.assertTrue(any(item["source_name"] == "krx_openapi" for item in run_log_json["source_license_metadata"]))
 
     def test_live_lite_works_without_stock_issuance_api_and_detects_dilution_from_opendart(self):
         with tempfile.TemporaryDirectory() as output_dir:
@@ -459,9 +463,37 @@ class KoreaLiveLiteTests(unittest.TestCase):
             )
 
         self.assertEqual(result.run_log.source_modes["krx"], "request_only")
+        self.assertEqual(result.run_log.source_modes["krx_openapi"], "disabled_optional")
         self.assertEqual(result.run_log.source_modes["data_go_kr"], "request_only")
         self.assertIn("krx", result.run_log.request_only_sources)
         self.assertIn("data_go_kr", result.run_log.request_only_sources)
+        self.assertNotIn("krx_openapi", result.run_log.request_only_sources)
+
+    def test_krx_openapi_request_only_when_explicitly_enabled(self):
+        http_client = MockHttpClient(json_by_url_token={"opendart": {"total_page": 1, "list": []}})
+        env = {
+            "OPENDART_API_KEY": "OPENDART_SECRET",
+            "KRX_OPENAPI_KEY": "KRX_SECRET",
+            "NAVER_CLIENT_ID": "NAVER_ID",
+            "NAVER_CLIENT_SECRET": "NAVER_SECRET",
+        }
+
+        with tempfile.TemporaryDirectory() as output_dir, patch.dict("os.environ", env, clear=True):
+            result = KoreaLiveLiteRunner().run(
+                KoreaLiveLiteConfig(
+                    as_of_date=AS_OF,
+                    output_directory=output_dir,
+                    fixture_mode=False,
+                    live_enabled=True,
+                    enable_krx_openapi_source=True,
+                    http_client=http_client,
+                    browser_provider=EmptySearchProvider(),
+                    free_search_provider=EmptySearchProvider(),
+                )
+            )
+
+        self.assertEqual(result.run_log.source_modes["krx_openapi"], "request_only")
+        self.assertIn("krx_openapi", result.run_log.request_only_sources)
 
     def test_mocked_data_go_live_listed_items_and_prices_feed_cheap_scan(self):
         http_client = MockHttpClient(
@@ -503,6 +535,49 @@ class KoreaLiveLiteTests(unittest.TestCase):
         self.assertEqual(result.run_log.source_modes["data_go_kr"], "live_executed")
         self.assertEqual(result.run_log.source_call_counts["data_go_kr_calls"], 2)
         self.assertNotIn("data_go_kr", result.run_log.request_only_sources)
+
+    def test_live_lite_can_run_with_data_go_v2_endpoint_config(self):
+        http_client = MockHttpClient(
+            json_by_url_token={
+                "GetKrxListedInfoService": DATA_GO_LISTED_ITEMS_PAYLOAD,
+                "GetStockSecuritiesInfoService": DATA_GO_STOCK_PRICE_PAYLOAD,
+                "opendart": {"total_page": 1, "list": []},
+            }
+        )
+        env = {
+            "OPENDART_API_KEY": "OPENDART_SECRET",
+            "DATA_GO_KR_SERVICE_KEY": "DATA_SECRET",
+            "NAVER_CLIENT_ID": "NAVER_ID",
+            "NAVER_CLIENT_SECRET": "NAVER_SECRET",
+        }
+        sources = KoreaCheapScanSources(
+            krx=KRXConnector(),
+            opendart=OpenDARTConnector(),
+            kind=KINDConnector(),
+            fsc=DataGoKrFSCConnector(
+                financial_info_service_path="GetFinaStatInfoService_V2/getFinaStatInfo",
+                disclosure_info_service_path="GetDiscInfoService_V2/getDiscInfo",
+                corp_basic_info_service_path="GetCorpBasicInfoService_V2/getCorpBasicInfo",
+            ),
+        )
+
+        with tempfile.TemporaryDirectory() as output_dir, patch.dict("os.environ", env, clear=True):
+            result = KoreaLiveLiteRunner().run(
+                KoreaLiveLiteConfig(
+                    as_of_date=AS_OF,
+                    output_directory=output_dir,
+                    fixture_mode=False,
+                    live_enabled=True,
+                    sources=sources,
+                    http_client=http_client,
+                    budget=KoreaLiveLiteBudget(max_data_go_kr_calls_per_day=10),
+                    browser_provider=EmptySearchProvider(),
+                    free_search_provider=EmptySearchProvider(),
+                )
+            )
+
+        self.assertEqual(result.run_log.source_modes["data_go_kr"], "live_executed")
+        self.assertEqual(result.run_log.source_modes["stock_issuance"], "disabled_optional")
 
     def test_data_go_live_budget_is_respected_and_falls_back_before_calls(self):
         http_client = MockHttpClient(
