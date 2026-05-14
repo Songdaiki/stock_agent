@@ -1,0 +1,19 @@
+group_name,posture,examples,eps_fcf,structural_visibility,bottleneck_pricing,market_mispricing,valuation,capital_allocation,interpretation,production_scoring_changed
+CONTRACT_BACKLOG_GREEN,GREEN_POSSIBLE,전력설비|전선-케이블|방산|조선,20,24,22,12,12,0,"Contract/backlog evidence can support Green only with quality, margin, and EPS/FCF revision.",false
+AI_DATA_CENTER_INFRA_GREEN,GREEN_POSSIBLE,AI 데이터센터|전력망|PCB|냉각시스템,22,23,20,14,12,0,"AI infrastructure needs orders, bottleneck evidence, and revision support.",false
+K_FOOD_BEAUTY_GREEN,GREEN_POSSIBLE,라면|K-푸드|K뷰티|화장품 OEM,22,23,12,16,13,0,"Export consumer/beauty evidence comes from channel, repeat demand, OPM, and revisions.",false
+MEMORY_HBM_GREEN,GREEN_POSSIBLE,HBM|반도체-HBM|종합반도체,24,21,19,15,12,0,"HBM needs multi-year demand, price/capacity discipline, and medium-term revision.",false
+CDMO_MEDICAL_DEVICE_GREEN,GREEN_POSSIBLE,CMO|바이오시밀러|미용기기|임플란트,20,24,13,14,12,0,CDMO/medical device Green requires contract/utilization or repeat consumable revenue.,false
+FINANCIAL_INSURANCE_GREEN,GREEN_POSSIBLE,은행|손해보험|생명보험|밸류업,15,20,5,15,25,10,"Financial rerating depends on ROE/PBR, capital strength, and executed return.",false
+PLATFORM_SOFTWARE_WATCH,WATCH_YELLOW_FIRST,클라우드 컴퓨팅|AI 소프트웨어|IT보안,20,22,8,16,14,0,"Platform/SW is Watch until monetization, recurring revenue, and margin leverage are visible.",false
+ROBOTICS_WATCH,WATCH_YELLOW_FIRST,피지컬AI|휴머노이드|제조용 로봇,18,15,10,12,10,0,Robotics requires revenue conversion before high-conviction treatment.,false
+NUCLEAR_POLICY_WATCH,WATCH_YELLOW_FIRST,원자력|SMR|스마트그리드,18,22,8,14,12,0,Nuclear/policy themes need binding contracts and low legal risk.,false
+AUTO_COMPONENTS_WATCH,WATCH_YELLOW_FIRST,현대차|기아|타이어|자율주행,20,18,10,15,17,0,"Auto needs mix, customer diversification, cost control, and sometimes shareholder return.",false
+RETAIL_ECOMMERCE_WATCH,WATCH_YELLOW_FIRST,편의점|홈쇼핑|마켓컬리|콜드체인,18,16,5,14,14,0,"Retail/e-commerce needs OPM and FCF, not traffic or listing events alone.",false
+DIGITAL_ASSET_WATCH,WATCH_YELLOW_FIRST,STO|스테이블코인|결제서비스,16,18,8,16,12,0,"Digital finance is Watch until regulation, volume, and fee economics are real.",false
+SHIPPING_FREIGHT_REDTEAM,REDTEAM_FIRST,해운|운임|종합물류,20,10,18,8,8,0,"Shipping can explode cyclically, so Green is highly restricted.",false
+COMMODITY_CHEMICAL_REDTEAM,REDTEAM_FIRST,화학|철강|비철금속|대두,20,10,18,10,10,0,Commodity/spread cases need reversal and oversupply guards.,false
+BATTERY_OVERHEAT_REDTEAM,REDTEAM_FIRST,2차전지 소재|전고체 배터리|리튬,20,16,14,10,10,0,Battery themes require strong overheat and CAPA risk defense.,false
+CONSTRUCTION_PF_REDTEAM,REDTEAM_FIRST,건설사|PF|건자재,18,10,8,12,10,0,Construction is credit-risk first; relief rallies are not structural E2R.,false
+ONE_OFF_DISEASE_REDTEAM,REDTEAM_FIRST,엠폭스|코로나19|빈대퇴치|황사마스크,20,5,5,5,5,0,One-off disease/event EPS spikes are usually Red/4B defense material.,false
+SPECULATIVE_SCIENCE_REDTEAM,REDTEAM_FIRST,초전도체|맥신|그래핀|양자 기술,5,5,5,5,5,0,Speculative science is Green-blocked until commercialization and revenue exist.,false
