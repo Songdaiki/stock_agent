@@ -36,6 +36,7 @@ class APIProbeTests(unittest.TestCase):
         self.assertIn("basDt", field_names)
         self.assertIn("clpr", field_names)
         self.assertEqual(profile.expected_field_comparison["missing_expected_fields"], [])
+        self.assertIn("unexpected_fields", profile.expected_field_comparison)
 
     def test_expected_field_comparison_detects_missing_fields(self):
         comparison = compare_expected_fields("data_go_kr_stock_prices", {"basDt", "srtnCd"})
@@ -113,6 +114,42 @@ class APIProbeTests(unittest.TestCase):
         self.assertNotIn("KRX_SECRET", run_log_text)
         self.assertEqual(result.run_log.requests_failed, 0)
 
+    def test_missing_credentials_skip_source_instead_of_crashing(self):
+        with tempfile.TemporaryDirectory() as output_dir, patch.dict("os.environ", {}, clear=True):
+            result = APIProbeRunner().run(
+                APIProbeConfig(
+                    as_of_date=AS_OF,
+                    output_directory=output_dir,
+                    fixture_mode=False,
+                    live_enabled=True,
+                )
+            )
+
+        self.assertEqual(result.run_log.requests_attempted, 0)
+        self.assertIn("opendart_list", result.run_log.skipped_sources)
+        self.assertIn("naver_news", result.run_log.skipped_sources)
+        self.assertIn("data_go_kr_stock_prices", result.run_log.skipped_sources)
+        self.assertIn("krx_stk_bydd_trd", result.run_log.skipped_sources)
+        self.assertEqual(result.run_log.source_modes["opendart_list"], "fallback")
+        self.assertEqual(result.run_log.fallback_reasons["opendart_list"], "missing_OPENDART_API_KEY")
+
+    def test_probe_config_can_skip_raw_storage(self):
+        with tempfile.TemporaryDirectory() as output_dir:
+            result = APIProbeRunner().run(
+                APIProbeConfig(
+                    as_of_date=AS_OF,
+                    output_directory=output_dir,
+                    save_raw=False,
+                    probe_opendart=False,
+                    probe_naver=False,
+                    probe_krx=False,
+                )
+            )
+
+            self.assertFalse((result.output_directory / "raw" / "data_go_kr_stock_prices.json").exists())
+            self.assertTrue(result.schema_summary_json_path.exists())
+            self.assertTrue(result.normalizer_report_json_path.exists())
+
     def test_cli_argument_parsing_works(self):
         parser = build_arg_parser()
         args = parser.parse_args(
@@ -122,9 +159,14 @@ class APIProbeTests(unittest.TestCase):
                 "--live",
                 "--sample-symbol",
                 "005930",
+                "--sample-company",
+                "삼성전자",
+                "--sample-query",
+                "삼성전자 수주잔고",
                 "--skip-krx",
                 "--max-requests-per-source",
                 "2",
+                "--no-save-raw",
             ]
         )
         config = config_from_args(args)
@@ -132,8 +174,11 @@ class APIProbeTests(unittest.TestCase):
         self.assertEqual(config.as_of_date, AS_OF)
         self.assertTrue(config.live_enabled)
         self.assertFalse(config.fixture_mode)
+        self.assertEqual(config.sample_company, "삼성전자")
+        self.assertEqual(config.sample_query, "삼성전자 수주잔고")
         self.assertFalse(config.probe_krx)
         self.assertEqual(config.max_requests_per_source, 2)
+        self.assertFalse(config.save_raw)
 
 
 STOCK_PRICE_PAYLOAD = {

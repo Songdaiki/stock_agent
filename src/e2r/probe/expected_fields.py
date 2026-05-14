@@ -141,18 +141,25 @@ def compare_expected_fields(source_name: str, observed_fields: set[str]) -> dict
     missing: list[str] = []
     present: list[str] = []
     optional_missing: list[str] = []
+    expected_raw_names: set[str] = set()
     for expectation in expected_fields_for(source_name):
+        for alternative in expectation.alternatives:
+            expected_raw_names.add(alternative)
+            if "[]." in alternative:
+                expected_raw_names.add(alternative.split("[].", 1)[1])
         if any(_field_observed(name, observed_fields) for name in expectation.alternatives):
             present.append(expectation.label)
         elif expectation.required:
             missing.append(expectation.label)
         else:
             optional_missing.append(expectation.label)
+    unexpected = sorted(field for field in observed_fields if not _is_expected_or_container_field(field, expected_raw_names))
     return {
         "source_name": source_name,
         "present_expected_fields": present,
         "missing_expected_fields": missing,
         "optional_missing_expected_fields": optional_missing,
+        "unexpected_fields": unexpected,
     }
 
 
@@ -165,6 +172,17 @@ def _field_observed(name: str, observed_fields: set[str]) -> bool:
     if "." in name:
         return name in observed_fields
     return any(item == name or item.endswith(f".{name}") or item.endswith(f"[].{name}") for item in observed_fields)
+
+
+def _is_expected_or_container_field(field: str, expected_raw_names: set[str]) -> bool:
+    if field in expected_raw_names:
+        return True
+    tail = field.split(".")[-1]
+    if tail in expected_raw_names:
+        return True
+    if field in {"response", "body", "items", "item", "list", "OutBlock_1"}:
+        return True
+    return False
 
 
 __all__ = ["ExpectedField", "EXPECTED_FIELD_GROUPS", "compare_expected_fields", "expected_fields_for"]

@@ -70,6 +70,8 @@ PYTHONPATH=src python -m e2r.cli.probe_korea_apis \
   --date 2026-05-14 \
   --live \
   --sample-symbol 005930 \
+  --sample-company 삼성전자 \
+  --sample-query "삼성전자 수주잔고" \
   --output-directory output/api_probe
 ```
 
@@ -82,6 +84,17 @@ PYTHONPATH=src python -m e2r.cli.probe_korea_apis \
   --skip-krx \
   --sample-symbol 005930
 ```
+
+Optional raw storage control:
+
+```bash
+PYTHONPATH=src python -m e2r.cli.probe_korea_apis \
+  --date 2026-05-14 \
+  --fixture \
+  --no-save-raw
+```
+
+Use `--no-save-raw` only when you want schema and normalizer reports without keeping response bodies. For live schema discovery, keeping raw files is usually better because you can inspect the exact response that failed.
 
 ## Output Files
 
@@ -125,6 +138,7 @@ top_level_keys
 selected_item_path
 item_count
 missing_expected_fields
+unexpected_fields
 field / types / samples table
 ```
 
@@ -142,6 +156,19 @@ but the raw response did not expose them under the expected names.
 ```
 
 Fix the normalizer or expected-field aliases before running live-lite.
+
+Example:
+
+```text
+unexpected_fields: FLUC_RT, CMPPREVDD_PRC
+```
+
+Meaning:
+
+```text
+The API returned extra fields. This is not automatically a failure.
+Review them and decide whether the normalizer should use them.
+```
 
 ## How To Read `normalizer_report.md`
 
@@ -200,6 +227,13 @@ The credential values themselves are never written. The log only says whether ea
     "DATA_GO_KR_SERVICE_KEY": true
   }
 }
+```
+
+If a credential is missing, the relevant probes are skipped instead of crashing:
+
+```text
+source_modes.naver_news = fallback
+fallback_reasons.naver_news = missing_NAVER_CLIENT_ID/NAVER_CLIENT_SECRET
 ```
 
 ## What To Fix Before Tiny Smoke

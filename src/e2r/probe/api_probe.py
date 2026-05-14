@@ -23,6 +23,7 @@ from e2r.sources.source_errors import SourceRequest, date_value, float_or_none, 
 
 
 PROBE_QUERY = "삼성전자 수주잔고"
+PROBE_COMPANY = "삼성전자"
 
 
 @dataclass(frozen=True)
@@ -37,11 +38,14 @@ class APIProbeConfig:
     timeout_seconds: int = 10
     use_cache: bool = True
     sample_symbol: str = "005930"
+    sample_company: str = PROBE_COMPANY
+    sample_query: str = PROBE_QUERY
     sample_market: str = "KR"
     probe_data_go_kr: bool = True
     probe_krx: bool = True
     probe_opendart: bool = True
     probe_naver: bool = True
+    save_raw: bool = True
 
     def __post_init__(self) -> None:
         if type(self.as_of_date) is not date:
@@ -52,6 +56,10 @@ class APIProbeConfig:
             raise ValueError("timeout_seconds must be positive")
         if not self.sample_symbol.strip():
             raise ValueError("sample_symbol must be non-empty")
+        if not self.sample_company.strip():
+            raise ValueError("sample_company must be non-empty")
+        if not self.sample_query.strip():
+            raise ValueError("sample_query must be non-empty")
 
 
 @dataclass(frozen=True)
@@ -155,13 +163,13 @@ class APIProbeRunner:
         failed_sources: list[str] = []
 
         for target in targets:
-            response = self._collect_target(target, config=config, raw_dir=raw_dir, http_client=http_client)
+            response, payload = self._collect_target(target, config=config, raw_dir=raw_dir, http_client=http_client)
             raw_responses.append(response)
             if not response.ok:
                 failed_sources.append(target.source_name)
                 continue
             try:
-                payloads[target.source_name] = _load_payload_from_raw(response.path)
+                payloads[target.source_name] = payload if payload is not None else _load_payload_from_raw(response.path)
             except ValueError as exc:
                 failed_sources.append(target.source_name)
                 raw_responses[-1] = ProbeRawResponse(
@@ -173,7 +181,7 @@ class APIProbeRunner:
                 )
 
         schema_profiles = tuple(profile_payload(source_name, payload) for source_name, payload in payloads.items())
-        normalizer_reports = tuple(_normalizer_dry_run(source_name, payload, config.as_of_date) for source_name, payload in payloads.items())
+        normalizer_reports = tuple(_normalizer_dry_run(source_name, payload, config.as_of_date, config.sample_query) for source_name, payload in payloads.items())
 
         schema_json_path = output_dir / "schema_summary.json"
         schema_md_path = output_dir / "schema_summary.md"
@@ -256,7 +264,7 @@ class APIProbeRunner:
             skipped_sources.append("opendart_list")
 
         if config.probe_naver:
-            for target in _naver_targets(as_of):
+            for target in _naver_targets(as_of, config.sample_query):
                 add(target, "NAVER_CLIENT_ID/NAVER_CLIENT_SECRET")
         else:
             for name in ("naver_news", "naver_web", "naver_doc"):
@@ -300,21 +308,28 @@ class APIProbeRunner:
         config: APIProbeConfig,
         raw_dir: Path,
         http_client: HttpClient,
-    ) -> ProbeRawResponse:
+    ) -> tuple[ProbeRawResponse, Any | None]:
         raw_path = raw_dir / target.raw_filename
         if config.fixture_mode:
             payload = self.fixture_payloads.get(target.source_name, {})
-            _write_raw_payload(raw_path, payload)
-            return ProbeRawResponse(source_name=target.source_name, path=raw_path, ok=True, status_code=200)
+            if config.save_raw:
+                _write_raw_payload(raw_path, payload)
+                return ProbeRawResponse(source_name=target.source_name, path=raw_path, ok=True, status_code=200), None
+            return ProbeRawResponse(source_name=target.source_name, path=raw_path, ok=True, status_code=200), payload
         if config.use_cache and raw_path.exists():
             http_client.stats.cache_hits += 1
-            return ProbeRawResponse(source_name=target.source_name, path=raw_path, ok=True, status_code=200)
+            return ProbeRawResponse(source_name=target.source_name, path=raw_path, ok=True, status_code=200), None
         result = http_client.get_text(target.request)
         if not result.ok or result.text is None:
-            return ProbeRawResponse(source_name=target.source_name, path=raw_path, ok=False, status_code=result.status_code, error=result.error)
-        stored_path = _write_raw_text(raw_path, result.text)
-        http_client.stats.cache_writes += 1
-        return ProbeRawResponse(source_name=target.source_name, path=stored_path, ok=True, status_code=result.status_code)
+            return ProbeRawResponse(source_name=target.source_name, path=raw_path, ok=False, status_code=result.status_code, error=result.error), None
+        if config.save_raw:
+            stored_path = _write_raw_text(raw_path, result.text)
+            http_client.stats.cache_writes += 1
+            return ProbeRawResponse(source_name=target.source_name, path=stored_path, ok=True, status_code=result.status_code), None
+        try:
+            return ProbeRawResponse(source_name=target.source_name, path=raw_path, ok=True, status_code=result.status_code), _payload_from_text(result.text)
+        except ValueError as exc:
+            return ProbeRawResponse(source_name=target.source_name, path=raw_path, ok=False, status_code=result.status_code, error=str(exc)), None
 
 
 def _opendart_target(as_of_date: date) -> ProbeTarget:
@@ -337,7 +352,7 @@ def _opendart_target(as_of_date: date) -> ProbeTarget:
     return ProbeTarget("opendart_list", "opendart", "opendart_list.json", request)
 
 
-def _naver_targets(as_of_date: date) -> tuple[ProbeTarget, ...]:
+def _naver_targets(as_of_date: date, sample_query: str = PROBE_QUERY) -> tuple[ProbeTarget, ...]:
     client_id = os.environ.get("NAVER_CLIENT_ID")
     client_secret = os.environ.get("NAVER_CLIENT_SECRET")
     headers: dict[str, str] = {}
@@ -351,7 +366,7 @@ def _naver_targets(as_of_date: date) -> tuple[ProbeTarget, ...]:
             method="GET",
             url=url,
             params={
-                "query": PROBE_QUERY,
+                "query": sample_query,
                 "display": 3,
                 "sort": "date",
                 "as_of_date": as_of_date.isoformat(),
@@ -417,7 +432,7 @@ def _krx_targets(as_of_date: date) -> tuple[ProbeTarget, ...]:
     )
 
 
-def _normalizer_dry_run(source_name: str, payload: Any, as_of_date: date) -> NormalizerDryRun:
+def _normalizer_dry_run(source_name: str, payload: Any, as_of_date: date, sample_query: str = PROBE_QUERY) -> NormalizerDryRun:
     rows = _rows_for_payload(payload)
     failures: list[str] = []
     normalized = 0
@@ -425,7 +440,7 @@ def _normalizer_dry_run(source_name: str, payload: Any, as_of_date: date) -> Nor
     missing = tuple(profile_payload(source_name, payload).expected_field_comparison.get("missing_expected_fields", ()))
     try:
         if source_name.startswith("naver_"):
-            results = NaverFreeSearchProvider.normalize_response(payload if isinstance(payload, Mapping) else {}, query=PROBE_QUERY, as_of_date=as_of_date, source=source_name)
+            results = NaverFreeSearchProvider.normalize_response(payload if isinstance(payload, Mapping) else {}, query=sample_query, as_of_date=as_of_date, source=source_name)
             return NormalizerDryRun(source_name, "NaverFreeSearchProvider.normalize_response", len(payload.get("items", ())) if isinstance(payload, Mapping) else 0, len(results), 0, (), missing)
         for row in rows:
             try:
@@ -533,10 +548,15 @@ def _krx_instrument(row: Mapping[str, Any]) -> Instrument:
 
 def _load_payload_from_raw(path: Path) -> Any:
     text = path.read_text(encoding="utf-8")
-    if path.suffix == ".xml" or text.lstrip().startswith("<"):
+    return _payload_from_text(text, path=path)
+
+
+def _payload_from_text(text: str, *, path: Path | None = None) -> Any:
+    if (path is not None and path.suffix == ".xml") or text.lstrip().startswith("<"):
         parsed = _xml_to_dict(text)
-        parsed_path = path.with_suffix(".parsed.json")
-        parsed_path.write_text(json.dumps(parsed, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
+        if path is not None:
+            parsed_path = path.with_suffix(".parsed.json")
+            parsed_path.write_text(json.dumps(parsed, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
         return parsed
     try:
         return json.loads(text)

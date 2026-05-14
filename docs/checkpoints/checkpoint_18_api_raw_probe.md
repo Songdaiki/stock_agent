@@ -41,6 +41,7 @@ If the response instead uses different field names, the probe does not run E2R s
   - item/list path detection
   - field type inference
   - sample values
+  - missing and unexpected field reporting
   - schema markdown rendering
 
 - `src/e2r/probe/expected_fields.py`
@@ -122,8 +123,10 @@ Tests prove:
 - raw response files are stored
 - schema profiler extracts top-level keys and item fields
 - expected-field comparison detects missing fields
+- unexpected fields are recorded for operator review
 - stock-price normalizer dry-run succeeds for mocked response
 - normalizer failures are reported without crashing
 - probe run log does not contain API keys
 - CLI argument parsing works
+- missing credentials skip source probes instead of crashing
 - existing tests pass

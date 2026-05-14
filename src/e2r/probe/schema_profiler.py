@@ -152,6 +152,7 @@ def render_schema_markdown(profiles: Sequence[SchemaProfile]) -> str:
                 f"- selected_item_path: {profile.selected_item_path or '(none)'}",
                 f"- item_count: {profile.item_count}",
                 f"- missing_expected_fields: {', '.join(comparison.get('missing_expected_fields', ())) or '(none)'}",
+                f"- unexpected_fields: {', '.join(comparison.get('unexpected_fields', ())) or '(none)'}",
                 "",
                 "| field | types | samples |",
                 "| --- | --- | --- |",
@@ -179,25 +180,25 @@ def _infer_type(value: Any) -> str:
     if value is None:
         return "null"
     if isinstance(value, bool):
-        return "bool-like"
+        return "bool_like"
     if isinstance(value, int) and not isinstance(value, bool):
-        return "int-like"
+        return "int_like"
     if isinstance(value, float):
-        return "float-like"
+        return "float_like"
     if isinstance(value, (date, datetime)):
-        return "date-like"
+        return "date_like"
     if isinstance(value, str):
         text = value.strip().replace(",", "")
         if not text:
             return "null"
         if _looks_date_like(text):
-            return "date-like"
+            return "date_like"
         if text.lower() in {"true", "false", "y", "n", "yes", "no", "있음", "없음"}:
-            return "bool-like"
+            return "bool_like"
         if re.fullmatch(r"[-+]?\d+", text):
-            return "int-like"
+            return "int_like"
         if re.fullmatch(r"[-+]?\d+\.\d+", text):
-            return "float-like"
+            return "float_like"
         return "str"
     if isinstance(value, list):
         return "list"

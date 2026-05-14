@@ -17,6 +17,8 @@ def build_arg_parser() -> argparse.ArgumentParser:
     mode.add_argument("--fixture", action="store_true", help="Use built-in fixture payloads without live HTTP")
     mode.add_argument("--live", action="store_true", help="Execute tiny live HTTP probes with credentials")
     parser.add_argument("--sample-symbol", default="005930", help="Sample stock code for symbol-specific APIs")
+    parser.add_argument("--sample-company", default="삼성전자", help="Sample company name for operator context")
+    parser.add_argument("--sample-query", default="삼성전자 수주잔고", help="Sample search query for Naver probes")
     parser.add_argument("--sample-market", default="KR", help="Sample market enum value")
     parser.add_argument("--skip-krx", action="store_true", help="Skip KRX Open API probes")
     parser.add_argument("--skip-data-go-kr", action="store_true", help="Skip data.go.kr probes")
@@ -25,6 +27,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max-requests-per-source", type=int, default=3, help="Probe request safety cap")
     parser.add_argument("--timeout-seconds", type=int, default=10, help="HTTP timeout for live probe requests")
     parser.add_argument("--no-cache", action="store_true", help="Do not reuse existing raw response files")
+    parser.add_argument("--no-save-raw", action="store_true", help="Skip raw response file storage and only write reports")
     return parser
 
 
@@ -40,11 +43,14 @@ def config_from_args(args: argparse.Namespace) -> APIProbeConfig:
         timeout_seconds=args.timeout_seconds,
         use_cache=not args.no_cache,
         sample_symbol=args.sample_symbol,
+        sample_company=args.sample_company,
+        sample_query=args.sample_query,
         sample_market=args.sample_market,
         probe_data_go_kr=not args.skip_data_go_kr,
         probe_krx=not args.skip_krx,
         probe_opendart=not args.skip_opendart,
         probe_naver=not args.skip_naver,
+        save_raw=not args.no_save_raw,
     )
 
 
