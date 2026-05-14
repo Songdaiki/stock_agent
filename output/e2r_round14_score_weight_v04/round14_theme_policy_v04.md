@@ -1,0 +1,30 @@
+# Round-14 Theme Policy v0.4
+
+## GREEN_POSSIBLE
+- `INSURANCE_UNDERWRITING_CYCLE`
+- `BEAUTY_OEM_ODM_SUPPLYCHAIN`
+- `CDMO_HEALTHCARE_CONTRACT`
+
+## WATCH_YELLOW_FIRST
+- `RETAIL_CONVENIENCE_OFFLINE`
+- `PAYMENT_FINTECH_INFRA`
+- `BATTERY_RECYCLING_ESS_SHIFT`
+- `RENEWABLE_ENERGY_POLICY`
+- `TIRE_AUTO_COMPONENT_SPREAD`
+- `PLATFORM_SOFTWARE_INTERNET`
+- `SECURITY_IDENTITY_DEEPFAKE`
+- `ROBOTICS_FACTORY_AUTOMATION`
+
+## REDTEAM_FIRST
+- `DIGITAL_ASSET_TOKENIZATION`
+- `HYDROGEN_FUEL_CELL_INFRA`
+- `CONSTRUCTION_REAL_ESTATE_CREDIT`
+- `BUILDING_MATERIALS_CYCLE`
+- `EVENT_DISEASE_PEST_DEMAND`
+- `SPECULATIVE_SCIENCE_THEME`
+- `AGRI_LIVESTOCK_FOOD_COMMODITY`
+
+## Easy Examples
+- Convenience retail can improve, but traffic alone is not enough; OPM and FCF must improve.
+- Insurance can be Green-possible when loss ratio, CSM/capital, ROE, and shareholder return align.
+- Speculative science can jump in price, but without commercialization it is RedTeam-first.
