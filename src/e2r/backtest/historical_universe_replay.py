@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass, fields, is_dataclass, replace
+from dataclasses import dataclass, field, fields, is_dataclass, replace
 from datetime import date, datetime, timedelta
 from enum import Enum
 from pathlib import Path
@@ -98,6 +98,9 @@ class HistoricalReplayCandidate:
     candidate_source_path: str
     reason_codes: tuple[str, ...]
     evidence_types_seen: tuple[str, ...]
+    score_components: Mapping[str, float] = field(default_factory=dict)
+    diagnostic_scores: Mapping[str, float] = field(default_factory=dict)
+    red_team_risk: str | None = None
     missing_evidence_warnings: tuple[str, ...] = ()
 
 
@@ -127,6 +130,8 @@ class HistoricalReplayStageRecord:
     total_score: float
     red_team_status: str
     evidence_ids: tuple[str, ...]
+    score_components: Mapping[str, float] = field(default_factory=dict)
+    diagnostic_scores: Mapping[str, float] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -231,6 +236,8 @@ class HistoricalUniverseReplay:
                     total_score=replayed.total_score,
                     red_team_status=replayed.red_team_status,
                     evidence_ids=replayed.evidence_ids,
+                    score_components=replayed.score_components,
+                    diagnostic_scores=replayed.diagnostic_scores,
                 )
             )
 
@@ -248,6 +255,9 @@ class HistoricalUniverseReplay:
                         candidate_source_path=_candidate_source_path(config.mode, layer1),
                         reason_codes=reason_codes,
                         evidence_types_seen=layer1.evidence_types_seen,
+                        score_components=replayed.score_components,
+                        diagnostic_scores=replayed.diagnostic_scores,
+                        red_team_risk=replayed.red_team_status,
                         missing_evidence_warnings=missing,
                     )
                 )
@@ -328,6 +338,8 @@ class _ScoredView:
     total_score: float
     red_team_status: str
     evidence_ids: tuple[str, ...]
+    score_components: Mapping[str, float]
+    diagnostic_scores: Mapping[str, float]
 
 
 _LIFECYCLE_STAGES = {
@@ -518,6 +530,17 @@ def _score_view(case: HistoricalCase, replay_date: date) -> _ScoredView:
         total_score=score.total_score,
         red_team_status=red_team.risk_level.value,
         evidence_ids=stage.evidence_ids,
+        score_components={
+            "eps_fcf_explosion": score.eps_fcf_explosion_score,
+            "earnings_visibility": score.earnings_visibility_score,
+            "bottleneck_pricing": score.bottleneck_pricing_score,
+            "market_mispricing": score.market_mispricing_score,
+            "valuation_rerating": score.valuation_rerating_score,
+            "capital_allocation": score.capital_allocation_score,
+            "information_confidence": score.information_confidence_score,
+            "risk_penalty": score.risk_penalty,
+        },
+        diagnostic_scores=dict(score.diagnostic_scores),
     )
 
 

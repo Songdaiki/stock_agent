@@ -8,6 +8,11 @@ from e2r.backtest.layer1_recall import (
     evaluate_layer1_recall_case,
     failure_reason_for_layer1_miss,
 )
+from e2r.backtest.monthly_replay_suite import (
+    MonthlyReplaySuiteConfig,
+    MonthlyReplaySuiteResult,
+    MonthlyReplaySuiteRunner,
+)
 from e2r.backtest.historical_case_replay import (
     HistoricalCaseReplayResult,
     HistoricalCaseReplayRunner,
@@ -45,6 +50,9 @@ __all__ = [
     "Layer1RecallCase",
     "Layer1RecallResult",
     "Layer1RecallSummary",
+    "MonthlyReplaySuiteConfig",
+    "MonthlyReplaySuiteResult",
+    "MonthlyReplaySuiteRunner",
     "evaluate_layer1_recall",
     "evaluate_layer1_recall_case",
     "failure_reason_for_layer1_miss",
