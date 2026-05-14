@@ -29,6 +29,32 @@ Added:
 - `output/e2r_archetype_matrix/round2_case_mining_priorities.md`
 - `output/e2r_archetype_matrix/round2_peer_normalization_metrics.md`
 - `output/e2r_archetype_matrix/round2_case_gap_matrix.csv`
+- `output/e2r_archetype_matrix/round2_shadow_scoring_plan.md`
+
+## Round 01 Patch
+
+`docs/round/round_01.md` added three clarifications:
+
+1. Deep-dive priority and first shadow-scoring candidates are different lists.
+2. `Stage 2-High` and `Stage 3-Watch` should be used as report-facing bands
+   before loosening Green.
+3. 4B/4C must be interpreted by archetype-specific thesis-break signals, not
+   price alone.
+
+Example:
+
+```text
+HD/Iljin-style candidate
+-> deterministic_stage = Stage 2
+-> promotion_band = Stage 3-Watch
+-> not forced into Stage 3-Green
+```
+
+The generated priority report now shows:
+
+- deep-dive priority tier
+- first shadow-scoring candidate flag
+- promotion band reminder
 
 ## Important
 
@@ -62,4 +88,11 @@ Use the generated reports to decide:
 - which Green gates should remain restricted
 
 Do not use it to force Stage 3-Green.
+
+## Still Not Changed
+
+- StageClassifier thresholds
+- production feature scoring
+- live candidate generation
+- Red Team decisions
 

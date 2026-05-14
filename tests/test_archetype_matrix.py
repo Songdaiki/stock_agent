@@ -4,8 +4,13 @@ import unittest
 
 from e2r.sector.archetype_matrix import (
     ROUND2_ARCHETYPE_MATRIX,
+    ROUND2_DEEP_DIVE_PRIORITY_GROUPS,
+    ROUND2_FIRST_SHADOW_SCORING_ARCHETYPES,
     ROUND2_PEER_NORMALIZATION_METRICS,
+    ROUND2_PROMOTION_BANDS,
     all_matrix_entries,
+    deep_dive_priority_tier,
+    first_shadow_scoring_candidate,
     matrix_entry,
     round2_case_gap_summary,
     write_round2_matrix_reports,
@@ -52,6 +57,20 @@ class ArchetypeMatrixTests(unittest.TestCase):
         self.assertIn("sector_eps_growth_percentile", ROUND2_PEER_NORMALIZATION_METRICS)
         self.assertIn("sector_trading_value_spike_percentile", ROUND2_PEER_NORMALIZATION_METRICS)
 
+    def test_round_01_priority_layers_are_separate(self):
+        self.assertIn(E2RArchetype.SHIPBUILDING_OFFSHORE_BACKLOG, ROUND2_DEEP_DIVE_PRIORITY_GROUPS[1])
+        self.assertIn(E2RArchetype.MEDICAL_DEVICE_HEALTHCARE_EXPORT, ROUND2_DEEP_DIVE_PRIORITY_GROUPS[1])
+        self.assertEqual(len(ROUND2_FIRST_SHADOW_SCORING_ARCHETYPES), 10)
+        self.assertTrue(first_shadow_scoring_candidate(E2RArchetype.FINANCIAL_SPREAD_BALANCE_SHEET))
+        self.assertTrue(first_shadow_scoring_candidate(E2RArchetype.ONE_OFF_EVENT_DEMAND))
+        self.assertTrue(first_shadow_scoring_candidate(E2RArchetype.THEME_VALUATION_OVERHEAT))
+        self.assertEqual(deep_dive_priority_tier(E2RArchetype.SHIPBUILDING_OFFSHORE_BACKLOG), 1)
+        self.assertEqual(deep_dive_priority_tier(E2RArchetype.PLATFORM_SOFTWARE_INTERNET), 2)
+
+    def test_promotion_bands_include_stage_watch_without_changing_stage(self):
+        self.assertIn("Stage 2-High", ROUND2_PROMOTION_BANDS)
+        self.assertIn("Stage 3-Watch", ROUND2_PROMOTION_BANDS)
+
     def test_case_gap_summary_uses_round1_rollup(self):
         records = load_case_library("data/e2r_case_library/cases_v02.jsonl")
         rows = round2_case_gap_summary(records)
@@ -59,6 +78,8 @@ class ArchetypeMatrixTests(unittest.TestCase):
 
         self.assertEqual(by_archetype["K_BEAUTY_EXPORT_DISTRIBUTION"]["status"], "covered_2x2")
         self.assertGreaterEqual(by_archetype["SEMI_EQUIPMENT_CAPEX"]["positive_count"], 2)
+        self.assertTrue(by_archetype["SEMI_EQUIPMENT_CAPEX"]["first_shadow_scoring_candidate"])
+        self.assertEqual(by_archetype["SHIPBUILDING_OFFSHORE_BACKLOG"]["deep_dive_priority_tier"], 1)
         self.assertIn(by_archetype["ONE_OFF_EVENT_DEMAND"]["status"], {"needs_more_counterexamples", "green_guardrail_only"})
 
     def test_report_writer_outputs_matrix_files(self):
@@ -70,7 +91,9 @@ class ArchetypeMatrixTests(unittest.TestCase):
             self.assertTrue(paths["priority"].exists())
             self.assertTrue(paths["peer_metrics"].exists())
             self.assertTrue(paths["case_gap_matrix"].exists())
+            self.assertTrue(paths["shadow_scoring_plan"].exists())
             self.assertIn("Round-2 E2R Archetype Matrix", paths["matrix"].read_text(encoding="utf-8"))
+            self.assertIn("Stage 3-Watch", paths["priority"].read_text(encoding="utf-8"))
 
     def test_production_scoring_modules_do_not_import_round2_matrix(self):
         paths = [

@@ -29,6 +29,67 @@ ROUND2_PEER_NORMALIZATION_METRICS = (
 )
 
 
+ROUND2_DEEP_DIVE_PRIORITY_GROUPS: Mapping[int, tuple[E2RArchetype, ...]] = {
+    1: (
+        E2RArchetype.CONTRACT_BACKLOG_INDUSTRIAL,
+        E2RArchetype.DEFENSE_GOVERNMENT_BACKLOG,
+        E2RArchetype.SHIPBUILDING_OFFSHORE_BACKLOG,
+        E2RArchetype.EXPORT_RECURRING_CONSUMER,
+        E2RArchetype.K_BEAUTY_EXPORT_DISTRIBUTION,
+        E2RArchetype.MEMORY_HBM_CAPACITY,
+        E2RArchetype.SEMI_EQUIPMENT_CAPEX,
+        E2RArchetype.BATTERY_MATERIALS_CAPEX_OVERHEAT,
+        E2RArchetype.SHIPPING_FREIGHT_CYCLE,
+        E2RArchetype.MEDICAL_DEVICE_HEALTHCARE_EXPORT,
+    ),
+    2: (
+        E2RArchetype.AUTO_MOBILITY_COMPONENTS,
+        E2RArchetype.FINANCIAL_SPREAD_BALANCE_SHEET,
+        E2RArchetype.HOLDING_RESTRUCTURING_GOVERNANCE,
+        E2RArchetype.TURNAROUND_COST_RESTRUCTURING,
+        E2RArchetype.GAME_CONTENT_IP,
+        E2RArchetype.PLATFORM_SOFTWARE_INTERNET,
+        E2RArchetype.BIOTECH_REGULATORY,
+    ),
+    3: (
+        E2RArchetype.CONSTRUCTION_REAL_ESTATE_CREDIT,
+        E2RArchetype.UTILITIES_REGULATED_TARIFF,
+        E2RArchetype.RETAIL_DOMESTIC_CONSUMER,
+        E2RArchetype.ROBOTICS_FACTORY_AUTOMATION,
+        E2RArchetype.COMMODITY_SPREAD,
+        E2RArchetype.ONE_OFF_EVENT_DEMAND,
+        E2RArchetype.THEME_VALUATION_OVERHEAT,
+        E2RArchetype.GENERIC_UNCLASSIFIED,
+    ),
+}
+
+
+ROUND2_FIRST_SHADOW_SCORING_ARCHETYPES = (
+    E2RArchetype.CONTRACT_BACKLOG_INDUSTRIAL,
+    E2RArchetype.DEFENSE_GOVERNMENT_BACKLOG,
+    E2RArchetype.EXPORT_RECURRING_CONSUMER,
+    E2RArchetype.K_BEAUTY_EXPORT_DISTRIBUTION,
+    E2RArchetype.MEMORY_HBM_CAPACITY,
+    E2RArchetype.SEMI_EQUIPMENT_CAPEX,
+    E2RArchetype.SHIPPING_FREIGHT_CYCLE,
+    E2RArchetype.ONE_OFF_EVENT_DEMAND,
+    E2RArchetype.THEME_VALUATION_OVERHEAT,
+    E2RArchetype.FINANCIAL_SPREAD_BALANCE_SHEET,
+)
+
+
+ROUND2_PROMOTION_BANDS = (
+    "Stage 2",
+    "Stage 2-High",
+    "Stage 3-Watch",
+    "Stage 3-Yellow",
+    "Stage 3-Green",
+)
+
+
+ROUND2_SOURCE_ROUND_PATH = "docs/round/round_01.md"
+
+
 @dataclass(frozen=True)
 class ArchetypeMatrixEntry:
     """Research playbook for one Round-2 archetype."""
@@ -469,6 +530,18 @@ def all_matrix_entries() -> tuple[ArchetypeMatrixEntry, ...]:
     return tuple(ROUND2_ARCHETYPE_MATRIX[item] for item in ROUND1_CORE_ARCHETYPES)
 
 
+def deep_dive_priority_tier(archetype: E2RArchetype | str) -> int:
+    item = round1_core_for(archetype)
+    for tier, archetypes in ROUND2_DEEP_DIVE_PRIORITY_GROUPS.items():
+        if item in archetypes:
+            return tier
+    return 3
+
+
+def first_shadow_scoring_candidate(archetype: E2RArchetype | str) -> bool:
+    return round1_core_for(archetype) in ROUND2_FIRST_SHADOW_SCORING_ARCHETYPES
+
+
 def round2_case_gap_summary(records: Iterable[E2RCaseRecord]) -> tuple[dict[str, object], ...]:
     rows = tuple(records)
     output: list[dict[str, object]] = []
@@ -488,6 +561,8 @@ def round2_case_gap_summary(records: Iterable[E2RCaseRecord]) -> tuple[dict[str,
             {
                 "archetype": entry.archetype.value,
                 "priority_tier": entry.priority_tier,
+                "deep_dive_priority_tier": deep_dive_priority_tier(entry.archetype),
+                "first_shadow_scoring_candidate": first_shadow_scoring_candidate(entry.archetype),
                 "positive_count": len(positive),
                 "counterexample_count": len(counter),
                 "status": status,
@@ -511,17 +586,20 @@ def write_round2_matrix_reports(
     priority_md = output / "round2_case_mining_priorities.md"
     peer_md = output / "round2_peer_normalization_metrics.md"
     gap_csv = output / "round2_case_gap_matrix.csv"
+    shadow_md = output / "round2_shadow_scoring_plan.md"
     matrix_md.write_text(render_round2_matrix_markdown(), encoding="utf-8")
     _write_weights_csv(weights_csv)
     priority_md.write_text(render_round2_priority_markdown(records), encoding="utf-8")
     peer_md.write_text(render_peer_normalization_markdown(), encoding="utf-8")
     _write_gap_csv(gap_csv, records)
+    shadow_md.write_text(render_shadow_scoring_plan_markdown(records), encoding="utf-8")
     return {
         "matrix": matrix_md,
         "weights": weights_csv,
         "priority": priority_md,
         "peer_metrics": peer_md,
         "case_gap_matrix": gap_csv,
+        "shadow_scoring_plan": shadow_md,
     }
 
 
@@ -567,16 +645,43 @@ def render_round2_priority_markdown(records: Iterable[E2RCaseRecord]) -> str:
     lines = [
         "# Round-2 Case Mining Priorities",
         "",
-        "Priority 1 is where current engine weaknesses are most visible.",
+        f"Source round: `{ROUND2_SOURCE_ROUND_PATH}`",
         "",
-        "| priority | archetype | positive | counterexamples | status |",
-        "|---:|---|---:|---:|---|",
+        "There are two priority concepts:",
+        "",
+        "- deep-dive priority: where the case matrix should be expanded first",
+        "- first shadow-scoring candidate: where shadow weights can be compared first after coverage improves",
+        "",
+        "| current priority | deep-dive priority | first shadow? | archetype | positive | counterexamples | status |",
+        "|---:|---:|---|---|---:|---:|---|",
     ]
-    for row in sorted(gaps, key=lambda item: (int(item["priority_tier"]), str(item["archetype"]))):
+    for row in sorted(gaps, key=lambda item: (int(item["deep_dive_priority_tier"]), int(item["priority_tier"]), str(item["archetype"]))):
         lines.append(
-            f"| {row['priority_tier']} | {row['archetype']} | {row['positive_count']} | "
+            f"| {row['priority_tier']} | {row['deep_dive_priority_tier']} | "
+            f"{'yes' if row['first_shadow_scoring_candidate'] else 'no'} | {row['archetype']} | {row['positive_count']} | "
             f"{row['counterexample_count']} | {row['status']} |"
         )
+    lines.extend(
+        [
+            "",
+            "## Deep-Dive Priority Groups",
+        ]
+    )
+    for tier, archetypes in sorted(ROUND2_DEEP_DIVE_PRIORITY_GROUPS.items()):
+        lines.append(f"- Priority {tier}: " + ", ".join(item.value for item in archetypes))
+    lines.extend(
+        [
+            "",
+            "## First Shadow-Scoring Candidate Set",
+            ", ".join(item.value for item in ROUND2_FIRST_SHADOW_SCORING_ARCHETYPES),
+            "",
+            "## Promotion Band Reminder",
+            ", ".join(ROUND2_PROMOTION_BANDS),
+            "",
+            "A strong candidate can remain deterministic Stage 2 while being reported as Stage 3-Watch.",
+            "Example: HD/Iljin-style cases can show `deterministic_stage=Stage 2` and `promotion_band=Stage 3-Watch` until Green evidence is complete.",
+        ]
+    )
     lines.extend(
         [
             "",
@@ -585,6 +690,36 @@ def render_round2_priority_markdown(records: Iterable[E2RCaseRecord]) -> str:
             "- Do not lower Stage 3-Green to improve recall.",
             "- Do not use this matrix as candidate-generation input.",
             "- Use it to decide what evidence snapshots, price paths, and counterexamples to add next.",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def render_shadow_scoring_plan_markdown(records: Iterable[E2RCaseRecord]) -> str:
+    gaps = {row["archetype"]: row for row in round2_case_gap_summary(records)}
+    lines = [
+        "# Round-2 First Shadow-Scoring Plan",
+        "",
+        "This is not production scoring. It identifies which archetypes should be compared first in a future shadow-score run.",
+        "",
+        "| archetype | positive | counterexamples | coverage status | Green posture |",
+        "|---|---:|---:|---|---|",
+    ]
+    for archetype in ROUND2_FIRST_SHADOW_SCORING_ARCHETYPES:
+        entry = matrix_entry(archetype)
+        row = gaps[archetype.value]
+        lines.append(
+            f"| {archetype.value} | {row['positive_count']} | {row['counterexample_count']} | "
+            f"{row['status']} | {entry.green_gate_policy} |"
+        )
+    lines.extend(
+        [
+            "",
+            "## Rules",
+            "- Run old deterministic score and future archetype-aware score side by side.",
+            "- Do not replace StageClassifier in the first shadow run.",
+            "- Use promotion bands for visibility before changing Green gates.",
+            "- Keep one-off and overheat archetypes as guardrails, not Green factories.",
         ]
     )
     return "\n".join(lines) + "\n"
@@ -621,6 +756,8 @@ def _write_weights_csv(path: Path) -> Path:
             fieldnames=(
                 "archetype",
                 "priority_tier",
+                "deep_dive_priority_tier",
+                "first_shadow_scoring_candidate",
                 "eps_fcf",
                 "structural_visibility",
                 "bottleneck_pricing",
@@ -635,6 +772,8 @@ def _write_weights_csv(path: Path) -> Path:
                 {
                     "archetype": entry.archetype.value,
                     "priority_tier": entry.priority_tier,
+                    "deep_dive_priority_tier": deep_dive_priority_tier(entry.archetype),
+                    "first_shadow_scoring_candidate": str(first_shadow_scoring_candidate(entry.archetype)).lower(),
                     **entry.score_weight_hint,
                     "green_gate_policy": entry.green_gate_policy,
                 }
@@ -649,6 +788,8 @@ def _write_gap_csv(path: Path, records: Iterable[E2RCaseRecord]) -> Path:
             fieldnames=(
                 "archetype",
                 "priority_tier",
+                "deep_dive_priority_tier",
+                "first_shadow_scoring_candidate",
                 "positive_count",
                 "counterexample_count",
                 "status",
@@ -671,12 +812,19 @@ def _write_gap_csv(path: Path, records: Iterable[E2RCaseRecord]) -> Path:
 __all__ = [
     "ArchetypeMatrixEntry",
     "ROUND2_ARCHETYPE_MATRIX",
+    "ROUND2_DEEP_DIVE_PRIORITY_GROUPS",
+    "ROUND2_FIRST_SHADOW_SCORING_ARCHETYPES",
     "ROUND2_PEER_NORMALIZATION_METRICS",
+    "ROUND2_PROMOTION_BANDS",
+    "ROUND2_SOURCE_ROUND_PATH",
     "all_matrix_entries",
+    "deep_dive_priority_tier",
+    "first_shadow_scoring_candidate",
     "matrix_entry",
     "render_peer_normalization_markdown",
     "render_round2_matrix_markdown",
     "render_round2_priority_markdown",
+    "render_shadow_scoring_plan_markdown",
     "round2_case_gap_summary",
     "write_round2_matrix_reports",
 ]
