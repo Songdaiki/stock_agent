@@ -311,9 +311,33 @@ def parse_disclosure_text(raw_text: str, *, title: str = "") -> dict[str, Any]:
     dilution = _dilution_type(title + "\n" + text)
     if dilution:
         parsed["dilution_type"] = dilution
-    op_yoy = _percent_after(text, ("영업이익 전년동기대비", "영업이익 전년 동기 대비", "OP YoY", "operating profit yoy"))
+    op_yoy = _percent_after(
+        text,
+        (
+            "영업이익 전년동기대비",
+            "영업이익 전년 동기 대비",
+            "영업이익 YoY",
+            "영업이익 증가율",
+            "OP YoY",
+            "operating profit yoy",
+        ),
+    )
     if op_yoy is not None:
         parsed["op_yoy_pct"] = op_yoy
+
+    if "사상 최대 수주잔고" in text or ("수주잔고" in text and "사상 최대" in text):
+        parsed["record_backlog"] = True
+    if any(token in text for token in ("ASP 상승", "판가 상승", "가격 상승", "ASP 개선", "판가 개선")):
+        parsed["pricing_power_confirmed"] = True
+    if "리드타임" in text:
+        parsed["lead_time_mentioned"] = True
+    if "리드타임 장기화" in text and ("공급부족" in text or "공급 부족" in text):
+        parsed["capacity_constraint"] = True
+        parsed["capa_shortage"] = True
+    if "공급부족" in text or "공급 부족" in text:
+        parsed["shortage_mentioned"] = True
+    if "구조적 공급부족" in text:
+        parsed["shortage_type"] = "structural"
 
     if any(token in title for token in ("거래정지", "상장폐지", "관리종목")):
         parsed["listing_risk"] = True

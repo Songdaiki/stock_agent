@@ -181,9 +181,14 @@ def _extract_fields(text: str) -> dict[str, Any]:
         "backlog": ("수주잔고", "Backlog"),
         "new_orders": ("신규수주", "New orders"),
         "order_backlog_to_sales": ("수주잔고/매출", "order backlog to sales"),
+        "contract_amount_to_prior_sales": ("계약금액/매출", "계약 매출액 대비", "장기계약 매출액 대비", "매출액 대비"),
+        "contract_duration_months": ("계약기간", "계약 기간", "duration months"),
         "capa_increase_pct": ("CAPA 증가율", "CAPA 증설", "생산능력 증가"),
         "export_ratio": ("수출 비중", "Export ratio"),
         "us_revenue_ratio": ("미국향 매출 비중", "북미 매출 비중", "US revenue ratio"),
+        "asp_yoy_pct": ("ASP 상승률", "판가 상승률", "가격 상승률"),
+        "lead_time_months": ("리드타임", "lead time"),
+        "opm_expansion_pctp": ("OPM 개선폭", "마진 개선폭"),
         "target_multiple_before": ("기존 멀티플", "target multiple before"),
         "target_multiple_after": ("상향 멀티플", "target multiple after"),
     }
@@ -196,13 +201,18 @@ def _extract_fields(text: str) -> dict[str, Any]:
         "roe",
         "opm",
         "order_backlog_to_sales",
+        "contract_amount_to_prior_sales",
         "capa_increase_pct",
         "export_ratio",
         "us_revenue_ratio",
+        "asp_yoy_pct",
+        "opm_expansion_pctp",
     }
     for key, labels in aliases.items():
         value = _number_after(text, labels, percent=key in percent_fields)
         if value is not None:
+            if key == "contract_amount_to_prior_sales" and value > 2:
+                value /= 100.0
             fields[key] = value
 
     for index, year_key in enumerate(("fy1", "fy2", "fy3"), start=1):
@@ -224,10 +234,27 @@ def _extract_fields(text: str) -> dict[str, Any]:
 
     if "ASP" in text or "판가" in text:
         fields["asp_increase_mentioned"] = any(token in text for token in ("ASP 상승", "판가 상승", "가격 상승", "ASP 개선"))
+    if any(token in text for token in ("ASP 상승", "판가 상승", "가격 상승", "ASP 개선", "판가 개선")):
+        fields["pricing_power_confirmed"] = True
     if "리드타임" in text or "lead time" in text.lower():
         fields["lead_time_mentioned"] = True
+    if any(token in text for token in ("리드타임 장기화", "CAPA 부족", "생산능력 부족", "공급부족")):
+        fields["capacity_constraint"] = True
     if "공급부족" in text or "공급 부족" in text or "shortage" in text.lower():
         fields["shortage_mentioned"] = True
+    if "구조적 공급부족" in text or "structural shortage" in text.lower():
+        fields["shortage_type"] = "structural"
+    lowered = text.lower()
+    if any(token in lowered for token in ("pandemic", "temporary", "one-off", "one off")) or any(
+        token in text for token in ("팬데믹", "코로나", "일회성", "진단키트")
+    ):
+        fields["shortage_type"] = "one_off"
+        fields["one_off_shortage"] = True
+        fields["pandemic_demand_spike"] = True
+        fields["temporary_shortage"] = True
+        fields["one_off_shortage_risk"] = 90.0
+    if "사상 최대 수주잔고" in text or ("수주잔고" in text and "사상 최대" in text):
+        fields["record_backlog"] = True
     return fields
 
 

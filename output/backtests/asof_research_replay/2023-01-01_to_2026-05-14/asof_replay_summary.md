@@ -14,9 +14,11 @@
 - documents_date_verified: 646
 - documents_date_unverified: 0
 - discovered_candidates: 120
+- Stage 2 count: 22
 - Stage 3-Green count: 0
 - Stage 3-Yellow count: 0
 - Stage 3-Red count: 0
+- merged scoring used: yes
 
 This replay starts from official historical universe data. Web research is executed only after Layer-1 candidate generation.
 It uses reconstructed public-document research and rejects documents published after the replay date.

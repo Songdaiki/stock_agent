@@ -17,6 +17,11 @@ from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 from e2r.backtest.benchmark_labels import BenchmarkLabel, labels_for_market, load_benchmark_labels
+from e2r.backtest.asof_evidence_bundle import (
+    AsOfEvidenceBundleScore,
+    build_asof_evidence_bundle,
+    score_asof_evidence_bundle,
+)
 from e2r.backtest.historical_official_store import (
     DEFAULT_HISTORICAL_OFFICIAL_ROOT,
     HistoricalOfficialSources,
@@ -122,6 +127,11 @@ class AsOfReplayCandidate:
     date_verified_documents: int = 0
     date_unverified_documents: int = 0
     rejected_future_documents: int = 0
+    web_only_stage: Stage | None = None
+    merged_stage: Stage | None = None
+    web_only_score: float | None = None
+    merged_score: float | None = None
+    promotion_delta: str = "none"
 
 
 @dataclass(frozen=True)
@@ -264,7 +274,9 @@ class AsOfResearchReplay:
                     ),
                 )
                 web_results.append(web_result)
-            row = _candidate_row(candidate, rank, web_result)
+            bundle = build_asof_evidence_bundle(candidate=candidate, store=store, web_result=web_result)
+            merged_scoring = score_asof_evidence_bundle(bundle, candidate=candidate, web_result=web_result)
+            row = _candidate_row(candidate, rank, web_result, merged_scoring)
             candidate_rows.append(row)
             traces.append(_trace_for_candidate(candidate, row, web_result, should_research))
         return AsOfResearchReplaySnapshot(
@@ -303,37 +315,42 @@ def _candidate_row(
     candidate: CheapScanCandidate,
     rank: int,
     web_result: AsOfWebResearchResult | None,
+    merged_scoring: AsOfEvidenceBundleScore,
 ) -> AsOfReplayCandidate:
-    if web_result is None or web_result.pipeline_result is None:
-        return AsOfReplayCandidate(
-            symbol=candidate.symbol,
-            company_name=candidate.company_name,
-            as_of_date=candidate.as_of_date,
-            layer=candidate.recommended_next_layer.value,
-            stage=Stage.STAGE_1,
-            rank=rank,
-            score=candidate.cheap_scan_total_score,
-            evidence_types_seen=("official_cheap_scan",),
-            reason_codes=candidate.reason_codes,
-            candidate_source_path=candidate.candidate_source_path,
-        )
-    pipeline = web_result.pipeline_result
-    evidence_types = tuple(sorted({item.source_type for item in pipeline.web_result.evidence})) or ("official_cheap_scan",)
+    pipeline = web_result.pipeline_result if web_result is not None else None
+    web_only_stage = pipeline.stage.stage if pipeline is not None else None
+    web_only_score = pipeline.score.total_score if pipeline is not None else None
+    evidence_types = merged_scoring.bundle.source_types or ("official_cheap_scan",)
+    merged_stage = merged_scoring.stage.stage
+    merged_score = merged_scoring.score.total_score
     return AsOfReplayCandidate(
         symbol=candidate.symbol,
         company_name=candidate.company_name,
         as_of_date=candidate.as_of_date,
         layer=candidate.recommended_next_layer.value,
-        stage=pipeline.stage.stage,
+        stage=merged_stage,
         rank=rank,
-        score=pipeline.score.total_score,
+        score=merged_score,
         evidence_types_seen=evidence_types,
         reason_codes=candidate.reason_codes,
         candidate_source_path=candidate.candidate_source_path,
-        date_verified_documents=web_result.date_verified_count,
-        date_unverified_documents=web_result.date_unverified_count,
-        rejected_future_documents=web_result.rejected_future_count,
+        date_verified_documents=web_result.date_verified_count if web_result is not None else 0,
+        date_unverified_documents=web_result.date_unverified_count if web_result is not None else 0,
+        rejected_future_documents=web_result.rejected_future_count if web_result is not None else 0,
+        web_only_stage=web_only_stage,
+        merged_stage=merged_stage,
+        web_only_score=web_only_score,
+        merged_score=merged_score,
+        promotion_delta=_promotion_delta(web_only_stage, merged_stage),
     )
+
+
+def _promotion_delta(web_only_stage: Stage | None, merged_stage: Stage) -> str:
+    if web_only_stage is None:
+        return f"official_only_to_{merged_stage.value}"
+    if web_only_stage == merged_stage:
+        return "unchanged"
+    return f"{web_only_stage.value}_to_{merged_stage.value}"
 
 
 def _trace_for_candidate(
@@ -475,9 +492,11 @@ def render_asof_replay_summary(result: AsOfResearchReplayResult) -> str:
         f"- documents_date_verified: {sum(item.documents_date_verified for item in result.snapshots)}",
         f"- documents_date_unverified: {sum(item.documents_date_unverified for item in result.snapshots)}",
         f"- discovered_candidates: {len(result.discovered_candidates)}",
+        f"- Stage 2 count: {stage_counts.get(Stage.STAGE_2.value, 0)}",
         f"- Stage 3-Green count: {stage_counts.get(Stage.STAGE_3_GREEN.value, 0)}",
         f"- Stage 3-Yellow count: {stage_counts.get(Stage.STAGE_3_YELLOW.value, 0)}",
         f"- Stage 3-Red count: {stage_counts.get(Stage.STAGE_3_RED.value, 0)}",
+        f"- merged scoring used: yes",
         "",
         "This replay starts from official historical universe data. Web research is executed only after Layer-1 candidate generation.",
         "It uses reconstructed public-document research and rejects documents published after the replay date.",
@@ -665,6 +684,11 @@ def _write_candidates(csv_path: Path, json_path: Path, rows: Sequence[AsOfReplay
                 "date_verified_documents",
                 "date_unverified_documents",
                 "rejected_future_documents",
+                "web_only_stage",
+                "merged_stage",
+                "web_only_score",
+                "merged_score",
+                "promotion_delta",
             ),
         )
         writer.writeheader()
@@ -682,6 +706,11 @@ def _write_candidates(csv_path: Path, json_path: Path, rows: Sequence[AsOfReplay
                     "date_verified_documents": item.date_verified_documents,
                     "date_unverified_documents": item.date_unverified_documents,
                     "rejected_future_documents": item.rejected_future_documents,
+                    "web_only_stage": item.web_only_stage.value if item.web_only_stage else "",
+                    "merged_stage": item.merged_stage.value if item.merged_stage else "",
+                    "web_only_score": item.web_only_score if item.web_only_score is not None else "",
+                    "merged_score": item.merged_score if item.merged_score is not None else "",
+                    "promotion_delta": item.promotion_delta,
                 }
             )
 

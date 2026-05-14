@@ -1,0 +1,468 @@
+"""Autopsy why as-of replay candidates did or did not promote stages."""
+
+from __future__ import annotations
+
+import csv
+import json
+from collections import Counter
+from dataclasses import dataclass, fields, is_dataclass
+from datetime import date, datetime
+from enum import Enum
+from pathlib import Path
+from typing import Any, Mapping, Sequence
+
+from e2r.backtest.asof_evidence_bundle import (
+    AsOfEvidenceBundleScore,
+    build_asof_evidence_bundle,
+    score_asof_evidence_bundle,
+)
+from e2r.backtest.historical_official_store import DEFAULT_HISTORICAL_OFFICIAL_ROOT, HistoricalOfficialStore
+from e2r.cheap_scan.models import CheapScanCandidate, RecommendedNextLayer
+from e2r.models import Market, Stage
+from e2r.research.asof_web_research import (
+    AsOfWebResearchConfig,
+    AsOfWebResearchRunner,
+    RetrospectiveSnapshotSearchProvider,
+    fixture_text_by_url_for_candidate,
+)
+from e2r.research.report_snapshot_store import ReportSnapshotStore
+from e2r.research.search_snapshot_store import SearchSnapshotStore
+from e2r.stage_gate_diagnostics import StageGateDiagnostics, diagnose_stage_gates
+
+
+DEFAULT_STAGE_PROMOTION_OUTPUT_DIR = Path("output/backtests/asof_stage_promotion_autopsy")
+
+
+@dataclass(frozen=True)
+class AsOfStagePromotionAutopsyConfig:
+    """Configuration for stage promotion autopsy."""
+
+    asof_output: str | Path
+    output_directory: str | Path = DEFAULT_STAGE_PROMOTION_OUTPUT_DIR
+    official_root: str | Path = DEFAULT_HISTORICAL_OFFICIAL_ROOT
+    search_snapshot_root: str | Path = "data/search_snapshots"
+    report_snapshot_root: str | Path = "data/report_snapshots"
+    top_candidates: int = 50
+    max_queries_per_candidate: int = 8
+    max_results_per_query: int = 5
+    report_date: date | None = None
+
+
+@dataclass(frozen=True)
+class StagePromotionAutopsyRow:
+    """One candidate stage-promotion diagnostic row."""
+
+    symbol: str
+    company_name: str
+    as_of_date: date
+    layer: str
+    current_stage: Stage
+    current_score: float
+    eps_fcf_explosion: float
+    earnings_visibility: float
+    bottleneck_pricing: float
+    market_mispricing: float
+    valuation_rerating: float
+    capital_allocation: float
+    information_confidence: float
+    risk_penalty: float
+    revision_score: float
+    price_stage_score: float
+    contract_quality: float
+    backlog_rpo_visibility: float
+    capa_constraint: float
+    asp_pricing_power: float
+    structural_shortage: float
+    one_off_shortage_risk: float
+    price_bars_count: int
+    financial_actuals_count: int
+    disclosures_count: int
+    research_reports_count: int
+    news_items_count: int
+    consensus_count: int
+    consensus_revisions_count: int
+    failed_stage2_total_score: bool
+    failed_stage2_eps_fcf: bool
+    failed_stage2_valuation: bool
+    failed_stage2_information_confidence: bool
+    failed_stage3_total_score: bool
+    failed_stage3_eps_fcf: bool
+    failed_stage3_visibility: bool
+    failed_stage3_bottleneck: bool
+    failed_stage3_market_mispricing: bool
+    failed_stage3_valuation: bool
+    failed_stage3_revision: bool
+    failed_stage3_contract_quality: bool
+    failed_stage3_red_team: bool
+    red_team_risk: str
+    hard_audit_count: int
+    explanation: str
+
+
+@dataclass(frozen=True)
+class AsOfStagePromotionAutopsyResult:
+    """Complete stage-promotion autopsy result."""
+
+    config: AsOfStagePromotionAutopsyConfig
+    rows: tuple[StagePromotionAutopsyRow, ...]
+    benchmark_rows: tuple[Mapping[str, Any], ...]
+    output_paths: Mapping[str, Path]
+
+
+class AsOfStagePromotionAutopsy:
+    """Re-score as-of candidates with merged evidence and explain stage gates."""
+
+    def run(self, config: AsOfStagePromotionAutopsyConfig, *, write_outputs: bool = True) -> AsOfStagePromotionAutopsyResult:
+        asof_output = Path(config.asof_output)
+        candidate_rows = _load_json(asof_output / "discovered_candidates.json")
+        benchmark_rows = tuple(_load_json(asof_output / "benchmark_recall_report.json"))
+        selected = _select_candidate_rows(candidate_rows, benchmark_rows, config.top_candidates)
+        store = HistoricalOfficialStore(config.official_root)
+        search_store = SearchSnapshotStore(config.search_snapshot_root)
+        report_store = ReportSnapshotStore(config.report_snapshot_root)
+        rows: list[StagePromotionAutopsyRow] = []
+        for item in selected:
+            candidate = _candidate_from_row(item)
+            provider = RetrospectiveSnapshotSearchProvider(
+                store=search_store,
+                symbol=candidate.symbol,
+                company_name=candidate.company_name,
+            )
+            fixture_text = fixture_text_by_url_for_candidate(
+                store=report_store,
+                symbol=candidate.symbol,
+                company_name=candidate.company_name,
+            )
+            web_result = AsOfWebResearchRunner().run(
+                candidate=candidate,
+                search_provider=provider,
+                fixture_text_by_url=fixture_text,
+                config=AsOfWebResearchConfig(
+                    as_of_date=candidate.as_of_date,
+                    max_queries_per_candidate=config.max_queries_per_candidate,
+                    max_results_per_query=config.max_results_per_query,
+                    require_date_verified_for_green=True,
+                    allow_undated_docs_for_yellow_only=True,
+                ),
+            )
+            bundle = build_asof_evidence_bundle(candidate=candidate, store=store, web_result=web_result)
+            scored = score_asof_evidence_bundle(bundle, candidate=candidate, web_result=web_result)
+            diagnostics = diagnose_stage_gates(scored.score, scored.red_team)
+            rows.append(_autopsy_row(candidate, scored, diagnostics))
+        output_paths: Mapping[str, Path] = {}
+        result = AsOfStagePromotionAutopsyResult(
+            config=config,
+            rows=tuple(rows),
+            benchmark_rows=benchmark_rows,
+            output_paths=output_paths,
+        )
+        if write_outputs:
+            output_paths = _write_outputs(result)
+            result = AsOfStagePromotionAutopsyResult(
+                config=config,
+                rows=result.rows,
+                benchmark_rows=result.benchmark_rows,
+                output_paths=output_paths,
+            )
+        return result
+
+
+def _autopsy_row(
+    candidate: CheapScanCandidate,
+    scored: AsOfEvidenceBundleScore,
+    diagnostics: StageGateDiagnostics,
+) -> StagePromotionAutopsyRow:
+    score = scored.score
+    coverage = scored.bundle.coverage()
+    failed = set(diagnostics.failed_gate_names)
+    hard_audit_count = sum(1 for item in scored.audit_findings if item.severity == "hard" or item.suggested_action == "block_green")
+    return StagePromotionAutopsyRow(
+        symbol=candidate.symbol,
+        company_name=candidate.company_name,
+        as_of_date=candidate.as_of_date,
+        layer=candidate.recommended_next_layer.value,
+        current_stage=scored.stage.stage,
+        current_score=score.total_score,
+        eps_fcf_explosion=score.eps_fcf_explosion_score,
+        earnings_visibility=score.earnings_visibility_score,
+        bottleneck_pricing=score.bottleneck_pricing_score,
+        market_mispricing=score.market_mispricing_score,
+        valuation_rerating=score.valuation_rerating_score,
+        capital_allocation=score.capital_allocation_score,
+        information_confidence=score.information_confidence_score,
+        risk_penalty=score.risk_penalty,
+        revision_score=_diag(score.diagnostic_scores, "revision_score"),
+        price_stage_score=_diag(score.diagnostic_scores, "price_stage_score"),
+        contract_quality=_diag(score.diagnostic_scores, "contract_quality"),
+        backlog_rpo_visibility=_diag(score.diagnostic_scores, "backlog_rpo_visibility"),
+        capa_constraint=_diag(score.diagnostic_scores, "capa_constraint"),
+        asp_pricing_power=_diag(score.diagnostic_scores, "asp_pricing_power"),
+        structural_shortage=_diag(score.diagnostic_scores, "structural_shortage"),
+        one_off_shortage_risk=_diag(score.diagnostic_scores, "one_off_shortage_risk"),
+        price_bars_count=coverage["price_bars_count"],
+        financial_actuals_count=coverage["financial_actuals_count"],
+        disclosures_count=coverage["disclosures_count"],
+        research_reports_count=coverage["research_reports_count"],
+        news_items_count=coverage["news_items_count"],
+        consensus_count=coverage["consensus_count"],
+        consensus_revisions_count=coverage["consensus_revisions_count"],
+        failed_stage2_total_score="failed_stage2_total_score" in failed,
+        failed_stage2_eps_fcf="failed_stage2_eps_fcf" in failed,
+        failed_stage2_valuation="failed_stage2_valuation" in failed,
+        failed_stage2_information_confidence="failed_stage2_information_confidence" in failed,
+        failed_stage3_total_score="failed_stage3_total_score" in failed,
+        failed_stage3_eps_fcf="failed_stage3_eps_fcf" in failed,
+        failed_stage3_visibility="failed_stage3_visibility" in failed,
+        failed_stage3_bottleneck="failed_stage3_bottleneck" in failed,
+        failed_stage3_market_mispricing="failed_stage3_market_mispricing" in failed,
+        failed_stage3_valuation="failed_stage3_valuation" in failed,
+        failed_stage3_revision="failed_stage3_revision" in failed,
+        failed_stage3_contract_quality="failed_stage3_contract_quality" in failed,
+        failed_stage3_red_team="failed_stage3_red_team" in failed,
+        red_team_risk=scored.red_team.risk_level.value,
+        hard_audit_count=hard_audit_count,
+        explanation=_explain(scored, diagnostics, hard_audit_count),
+    )
+
+
+def _explain(scored: AsOfEvidenceBundleScore, diagnostics: StageGateDiagnostics, hard_audit_count: int) -> str:
+    if hard_audit_count:
+        return "Parser audit produced hard findings, so Green is blocked."
+    if scored.red_team.has_hard_break:
+        return "Red Team hard thesis-break blocked promotion."
+    if not diagnostics.stage2_gate_passed:
+        gates = ", ".join(name for name in diagnostics.failed_gate_names if name.startswith("failed_stage2"))
+        return f"Stage 2 gate failed: {gates}."
+    if not diagnostics.stage3_green_gate_passed:
+        gates = ", ".join(name for name in diagnostics.failed_gate_names if name.startswith("failed_stage3"))
+        return f"Stage 2 is possible, but Stage 3-Green gate failed: {gates}."
+    return "All Stage 3-Green gates passed."
+
+
+def render_autopsy_markdown(result: AsOfStagePromotionAutopsyResult) -> str:
+    stage_counts = Counter(row.current_stage.value for row in result.rows)
+    lines = [
+        "# As-Of Stage Promotion Autopsy",
+        "",
+        "## Executive Summary",
+        "",
+        f"- candidates_analyzed: {len(result.rows)}",
+        f"- Stage 2 count: {stage_counts.get(Stage.STAGE_2.value, 0)}",
+        f"- Stage 3-Green count: {stage_counts.get(Stage.STAGE_3_GREEN.value, 0)}",
+        f"- Stage 3-Yellow count: {stage_counts.get(Stage.STAGE_3_YELLOW.value, 0)}",
+        f"- Stage 3-Red count: {stage_counts.get(Stage.STAGE_3_RED.value, 0)}",
+        "",
+        "Promotion is based on merged official plus web evidence. Stage thresholds were not changed.",
+        "",
+        "## Benchmark Gate Answers",
+        "",
+        "| company | appeared | first stage | autopsy stage | main explanation |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    by_symbol = {row.symbol: row for row in result.rows}
+    for item in result.benchmark_rows:
+        symbol = str(item.get("symbol"))
+        row = by_symbol.get(symbol)
+        lines.append(
+            f"| {item.get('company_name')} | {'yes' if item.get('appeared_in_candidates') else 'no'} | "
+            f"{item.get('first_stage') or 'n/a'} | {row.current_stage.value if row else 'not analyzed'} | "
+            f"{row.explanation if row else item.get('failure_stage', 'not selected for autopsy')} |"
+        )
+    lines.extend(
+        [
+            "",
+            "## Candidate Gate Matrix",
+            "",
+            "| symbol | company | date | stage | score | info | EPS/FCF | visibility | bottleneck | valuation | failed gates |",
+            "| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
+        ]
+    )
+    for row in result.rows:
+        failed_gates = [field.name for field in fields(row) if field.name.startswith("failed_") and getattr(row, field.name)]
+        lines.append(
+            f"| {row.symbol} | {row.company_name} | {row.as_of_date.isoformat()} | {row.current_stage.value} | "
+            f"{row.current_score:.2f} | {row.information_confidence:.2f} | {row.eps_fcf_explosion:.2f} | "
+            f"{row.earnings_visibility:.2f} | {row.bottleneck_pricing:.2f} | {row.valuation_rerating:.2f} | "
+            f"{', '.join(failed_gates) or 'none'} |"
+        )
+    lines.extend(
+        [
+            "",
+            "## What This Means",
+            "",
+            "- If a structural case remains Stage 1, the table shows whether the block is total score, EPS/FCF, visibility, bottleneck, valuation, revision, contract quality, Red Team, or audit.",
+            "- If a case is Stage 2 but not Green, it means the candidate evidence improved but at least one strict Green gate still failed.",
+            "- One-off and overheat labels should remain contained and should not be forced into Green.",
+        ]
+    )
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def _write_outputs(result: AsOfStagePromotionAutopsyResult) -> Mapping[str, Path]:
+    report_date = result.config.report_date or date.today()
+    root = Path(result.config.output_directory)
+    root.mkdir(parents=True, exist_ok=True)
+    paths = {
+        "autopsy_md": root / f"{report_date.isoformat()}_autopsy.md",
+        "autopsy_json": root / f"{report_date.isoformat()}_autopsy.json",
+        "score_components_csv": root / "score_components_by_candidate.csv",
+        "stage_gate_matrix_csv": root / "stage_gate_matrix.csv",
+        "feature_input_coverage_csv": root / "feature_input_coverage.csv",
+    }
+    paths["autopsy_md"].write_text(render_autopsy_markdown(result), encoding="utf-8")
+    paths["autopsy_json"].write_text(json.dumps(_jsonable(result.rows), ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
+    _write_csv(paths["score_components_csv"], result.rows, _score_component_fields())
+    _write_csv(paths["stage_gate_matrix_csv"], result.rows, _gate_fields())
+    _write_csv(paths["feature_input_coverage_csv"], result.rows, _coverage_fields())
+    return paths
+
+
+def _write_csv(path: Path, rows: Sequence[StagePromotionAutopsyRow], fieldnames: Sequence[str]) -> None:
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in rows:
+            item = _jsonable(row)
+            writer.writerow({key: item.get(key) for key in fieldnames})
+
+
+def _score_component_fields() -> tuple[str, ...]:
+    return (
+        "symbol",
+        "company_name",
+        "as_of_date",
+        "layer",
+        "current_stage",
+        "current_score",
+        "eps_fcf_explosion",
+        "earnings_visibility",
+        "bottleneck_pricing",
+        "market_mispricing",
+        "valuation_rerating",
+        "capital_allocation",
+        "information_confidence",
+        "risk_penalty",
+        "revision_score",
+        "price_stage_score",
+        "contract_quality",
+        "backlog_rpo_visibility",
+        "capa_constraint",
+        "asp_pricing_power",
+        "structural_shortage",
+        "one_off_shortage_risk",
+        "red_team_risk",
+        "hard_audit_count",
+        "explanation",
+    )
+
+
+def _gate_fields() -> tuple[str, ...]:
+    return (
+        "symbol",
+        "company_name",
+        "as_of_date",
+        "current_stage",
+        "failed_stage2_total_score",
+        "failed_stage2_eps_fcf",
+        "failed_stage2_valuation",
+        "failed_stage2_information_confidence",
+        "failed_stage3_total_score",
+        "failed_stage3_eps_fcf",
+        "failed_stage3_visibility",
+        "failed_stage3_bottleneck",
+        "failed_stage3_market_mispricing",
+        "failed_stage3_valuation",
+        "failed_stage3_revision",
+        "failed_stage3_contract_quality",
+        "failed_stage3_red_team",
+    )
+
+
+def _coverage_fields() -> tuple[str, ...]:
+    return (
+        "symbol",
+        "company_name",
+        "as_of_date",
+        "current_stage",
+        "price_bars_count",
+        "financial_actuals_count",
+        "disclosures_count",
+        "research_reports_count",
+        "news_items_count",
+        "consensus_count",
+        "consensus_revisions_count",
+    )
+
+
+def _select_candidate_rows(
+    candidates: Sequence[Mapping[str, Any]],
+    benchmark_rows: Sequence[Mapping[str, Any]],
+    top_candidates: int,
+) -> tuple[Mapping[str, Any], ...]:
+    selected: dict[tuple[str, str], Mapping[str, Any]] = {}
+    for item in candidates[:top_candidates]:
+        selected[(str(item["symbol"]), str(item["as_of_date"]))] = item
+    by_symbol: dict[str, list[Mapping[str, Any]]] = {}
+    for item in candidates:
+        by_symbol.setdefault(str(item["symbol"]), []).append(item)
+    for benchmark in benchmark_rows:
+        if not benchmark.get("appeared_in_candidates"):
+            continue
+        symbol = str(benchmark.get("symbol"))
+        first_date = str(benchmark.get("first_detected_date"))
+        matches = [item for item in by_symbol.get(symbol, ()) if str(item.get("as_of_date")) == first_date]
+        if matches:
+            selected[(symbol, first_date)] = matches[0]
+    return tuple(selected.values())
+
+
+def _candidate_from_row(row: Mapping[str, Any]) -> CheapScanCandidate:
+    layer = RecommendedNextLayer(str(row.get("layer") or "event_search"))
+    return CheapScanCandidate(
+        symbol=str(row["symbol"]),
+        company_name=str(row["company_name"]),
+        market=Market.KR,
+        as_of_date=date.fromisoformat(str(row["as_of_date"])),
+        reason_codes=tuple(row.get("reason_codes") or ()),
+        cheap_scan_total_score=float(row.get("score") or row.get("merged_score") or 0.0),
+        recommended_next_layer=layer,
+        candidate_source_path=str(row.get("candidate_source_path") or "official_cheap_scan"),
+    )
+
+
+def _load_json(path: Path) -> Any:
+    if not path.exists():
+        return []
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _diag(values: Mapping[str, Any], key: str) -> float:
+    try:
+        return float(values.get(key, 0.0))
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _jsonable(value: Any) -> Any:
+    if isinstance(value, (date, datetime)):
+        return value.isoformat()
+    if isinstance(value, Enum):
+        return value.value
+    if isinstance(value, Path):
+        return str(value)
+    if is_dataclass(value):
+        return {field.name: _jsonable(getattr(value, field.name)) for field in fields(value)}
+    if isinstance(value, Mapping):
+        return {str(key): _jsonable(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple, set, frozenset)):
+        return [_jsonable(item) for item in value]
+    return value
+
+
+__all__ = [
+    "AsOfStagePromotionAutopsy",
+    "AsOfStagePromotionAutopsyConfig",
+    "AsOfStagePromotionAutopsyResult",
+    "StagePromotionAutopsyRow",
+    "render_autopsy_markdown",
+]

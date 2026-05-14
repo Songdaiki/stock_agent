@@ -6,21 +6,32 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
-    "layer": "event_search",
+    "layer": "deep_research",
+    "merged_score": 62.1937,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "DISC_EARNINGS_PREANNOUNCE",
+      "DISC_OP_YOY_100P",
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH",
       "PRICE_60D_TOP_PERCENTILE",
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 30.995,
+    "score": 62.1937,
     "stage": "1",
-    "symbol": "298040"
+    "symbol": "298040",
+    "web_only_score": 34.4437,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2023-07-01",
@@ -29,9 +40,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 62.1937,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -40,9 +59,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 30.995,
+    "score": 62.1937,
     "stage": "1",
-    "symbol": "298040"
+    "symbol": "298040",
+    "web_only_score": 34.4437,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2023-08-01",
@@ -51,9 +72,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "deep_research",
+    "merged_score": 65.5219,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "DISC_SUPPLY_CONTRACT",
@@ -65,9 +94,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 25.3988,
-    "stage": "1",
-    "symbol": "267260"
+    "score": 65.5219,
+    "stage": "2",
+    "symbol": "267260",
+    "web_only_score": 28.8475,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2023-08-01",
@@ -76,9 +107,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 62.1937,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -86,9 +125,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 30.995,
+    "score": 62.1937,
     "stage": "1",
-    "symbol": "298040"
+    "symbol": "298040",
+    "web_only_score": 34.4437,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2023-08-01",
@@ -97,9 +138,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 0,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
       "DISC_CONVERTIBLE_BOND",
@@ -109,8 +154,10 @@
     ],
     "rejected_future_documents": 3,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "247540"
+    "stage": "1",
+    "symbol": "247540",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2023-09-01",
@@ -119,9 +166,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "deep_research",
+    "merged_score": 65.5219,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "DISC_SUPPLY_CONTRACT",
@@ -133,9 +188,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 25.3988,
-    "stage": "1",
-    "symbol": "267260"
+    "score": 65.5219,
+    "stage": "2",
+    "symbol": "267260",
+    "web_only_score": 28.8475,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2023-09-01",
@@ -144,9 +201,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 62.1937,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -154,9 +219,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 30.995,
+    "score": 62.1937,
     "stage": "1",
-    "symbol": "298040"
+    "symbol": "298040",
+    "web_only_score": 34.4437,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2023-09-01",
@@ -165,9 +232,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 0,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -176,8 +247,10 @@
     ],
     "rejected_future_documents": 3,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "247540"
+    "stage": "1",
+    "symbol": "247540",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2023-10-01",
@@ -186,9 +259,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.5219,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -197,9 +278,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 25.3988,
-    "stage": "1",
-    "symbol": "267260"
+    "score": 65.5219,
+    "stage": "2",
+    "symbol": "267260",
+    "web_only_score": 28.8475,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2023-10-01",
@@ -208,9 +291,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 62.1937,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -218,9 +309,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 30.995,
+    "score": 62.1937,
     "stage": "1",
-    "symbol": "298040"
+    "symbol": "298040",
+    "web_only_score": 34.4437,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2023-10-01",
@@ -229,9 +322,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 0,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -240,8 +337,10 @@
     ],
     "rejected_future_documents": 3,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "247540"
+    "stage": "1",
+    "symbol": "247540",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2023-11-01",
@@ -250,9 +349,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.5219,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -261,9 +368,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 25.3988,
-    "stage": "1",
-    "symbol": "267260"
+    "score": 65.5219,
+    "stage": "2",
+    "symbol": "267260",
+    "web_only_score": 28.8475,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2023-11-01",
@@ -272,9 +381,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 62.1937,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -282,9 +399,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 30.995,
+    "score": 62.1937,
     "stage": "1",
-    "symbol": "298040"
+    "symbol": "298040",
+    "web_only_score": 34.4437,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2023-11-01",
@@ -293,9 +412,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 0,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -304,8 +427,10 @@
     ],
     "rejected_future_documents": 3,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "247540"
+    "stage": "1",
+    "symbol": "247540",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2023-12-01",
@@ -314,9 +439,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "deep_research",
+    "merged_score": 65.547,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "DISC_SUPPLY_CONTRACT",
@@ -326,9 +459,11 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 34.3483,
-    "stage": "1",
-    "symbol": "103590"
+    "score": 65.547,
+    "stage": "2",
+    "symbol": "103590",
+    "web_only_score": 37.797,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2023-12-01",
@@ -337,9 +472,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.5219,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -348,9 +491,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 25.3988,
-    "stage": "1",
-    "symbol": "267260"
+    "score": 65.5219,
+    "stage": "2",
+    "symbol": "267260",
+    "web_only_score": 28.8475,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2023-12-01",
@@ -359,9 +504,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 62.1937,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -369,9 +522,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 30.995,
+    "score": 62.1937,
     "stage": "1",
-    "symbol": "298040"
+    "symbol": "298040",
+    "web_only_score": 34.4437,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2023-12-01",
@@ -380,9 +535,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 1,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -391,8 +550,10 @@
     ],
     "rejected_future_documents": 2,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "247540"
+    "stage": "1",
+    "symbol": "247540",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-01-01",
@@ -401,9 +562,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "deep_research",
+    "merged_score": 65.547,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "DISC_SUPPLY_CONTRACT",
@@ -413,9 +582,11 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 34.3483,
-    "stage": "1",
-    "symbol": "103590"
+    "score": 65.547,
+    "stage": "2",
+    "symbol": "103590",
+    "web_only_score": 37.797,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-01-01",
@@ -424,9 +595,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.5219,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -435,9 +614,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 25.3988,
-    "stage": "1",
-    "symbol": "267260"
+    "score": 65.5219,
+    "stage": "2",
+    "symbol": "267260",
+    "web_only_score": 28.8475,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-01-01",
@@ -446,9 +627,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 62.1937,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -456,9 +645,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 30.995,
+    "score": 62.1937,
     "stage": "1",
-    "symbol": "298040"
+    "symbol": "298040",
+    "web_only_score": 34.4437,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-01-01",
@@ -467,9 +658,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 1,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -478,8 +673,10 @@
     ],
     "rejected_future_documents": 2,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "247540"
+    "stage": "1",
+    "symbol": "247540",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-02-01",
@@ -488,9 +685,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.5219,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -499,9 +704,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 25.3988,
-    "stage": "1",
-    "symbol": "267260"
+    "score": 65.5219,
+    "stage": "2",
+    "symbol": "267260",
+    "web_only_score": 28.8475,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-02-01",
@@ -510,9 +717,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 62.1937,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -520,9 +735,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 30.995,
+    "score": 62.1937,
     "stage": "1",
-    "symbol": "298040"
+    "symbol": "298040",
+    "web_only_score": 34.4437,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-02-01",
@@ -531,9 +748,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 1,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -542,8 +763,10 @@
     ],
     "rejected_future_documents": 2,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "247540"
+    "stage": "1",
+    "symbol": "247540",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-02-01",
@@ -552,18 +775,28 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.547,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 34.3483,
-    "stage": "1",
-    "symbol": "103590"
+    "score": 65.547,
+    "stage": "2",
+    "symbol": "103590",
+    "web_only_score": 37.797,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-03-01",
@@ -572,9 +805,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.5219,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -583,9 +824,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 25.3988,
-    "stage": "1",
-    "symbol": "267260"
+    "score": 65.5219,
+    "stage": "2",
+    "symbol": "267260",
+    "web_only_score": 28.8475,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-03-01",
@@ -594,9 +837,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 62.1937,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -604,9 +855,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 30.995,
+    "score": 62.1937,
     "stage": "1",
-    "symbol": "298040"
+    "symbol": "298040",
+    "web_only_score": 34.4437,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-03-01",
@@ -615,9 +868,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 1,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -626,8 +883,10 @@
     ],
     "rejected_future_documents": 2,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "247540"
+    "stage": "1",
+    "symbol": "247540",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-03-01",
@@ -636,18 +895,28 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.547,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 34.3483,
-    "stage": "1",
-    "symbol": "103590"
+    "score": 65.547,
+    "stage": "2",
+    "symbol": "103590",
+    "web_only_score": 37.797,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-04-01",
@@ -656,9 +925,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.5219,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -667,9 +944,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 25.3988,
-    "stage": "1",
-    "symbol": "267260"
+    "score": 65.5219,
+    "stage": "2",
+    "symbol": "267260",
+    "web_only_score": 28.8475,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-04-01",
@@ -678,9 +957,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 62.1937,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -689,30 +976,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 30.995,
+    "score": 62.1937,
     "stage": "1",
-    "symbol": "298040"
-  },
-  {
-    "as_of_date": "2024-04-01",
-    "candidate_source_path": "official_cheap_scan",
-    "company_name": "에코프로비엠",
-    "date_unverified_documents": 0,
-    "date_verified_documents": 1,
-    "evidence_types_seen": [
-      "official_cheap_scan"
-    ],
-    "layer": "event_search",
-    "rank": 3,
-    "reason_codes": [
-      "PRICE_VOLUME_SPIKE",
-      "PRICE_NEAR_52W_HIGH",
-      "PRICE_60D_TOP_PERCENTILE"
-    ],
-    "rejected_future_documents": 2,
-    "score": 0.0,
-    "stage": "0",
-    "symbol": "247540"
+    "symbol": "298040",
+    "web_only_score": 34.4437,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-04-01",
@@ -721,18 +989,26 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 1,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "financial_actual",
+      "disclosure"
     ],
     "layer": "event_search",
-    "rank": 4,
+    "merged_score": 19.58,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
+    "rank": 3,
     "reason_codes": [
       "DISC_EARNINGS_PREANNOUNCE",
+      "DISC_OP_YOY_100P",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 2,
-    "score": 0.0,
-    "stage": "0",
-    "symbol": "000660"
+    "score": 19.58,
+    "stage": "1",
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-04-01",
@@ -741,18 +1017,53 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 1,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "financial_actual",
+      "disclosure"
     ],
     "layer": "event_search",
-    "rank": 5,
+    "merged_score": 17.08,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
+    "rank": 4,
     "reason_codes": [
       "DISC_EARNINGS_PREANNOUNCE",
+      "DISC_OP_YOY_100P",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 2,
+    "score": 17.08,
+    "stage": "1",
+    "symbol": "005930",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
+  },
+  {
+    "as_of_date": "2024-04-01",
+    "candidate_source_path": "official_cheap_scan",
+    "company_name": "에코프로비엠",
+    "date_unverified_documents": 0,
+    "date_verified_documents": 1,
+    "evidence_types_seen": [
+      "price",
+      "disclosure"
+    ],
+    "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
+    "rank": 5,
+    "reason_codes": [
+      "PRICE_VOLUME_SPIKE",
+      "PRICE_NEAR_52W_HIGH",
+      "PRICE_60D_TOP_PERCENTILE"
+    ],
+    "rejected_future_documents": 2,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "005930"
+    "stage": "1",
+    "symbol": "247540",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-04-01",
@@ -761,18 +1072,28 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.547,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 6,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 34.3483,
-    "stage": "1",
-    "symbol": "103590"
+    "score": 65.547,
+    "stage": "2",
+    "symbol": "103590",
+    "web_only_score": 37.797,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-05-01",
@@ -781,9 +1102,14 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 1,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "financial_actual",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 20.08,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -793,9 +1119,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 2,
-    "score": 0.0,
-    "stage": "0",
-    "symbol": "000660"
+    "score": 20.08,
+    "stage": "1",
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-05-01",
@@ -804,9 +1132,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.5219,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -815,9 +1151,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 25.3988,
-    "stage": "1",
-    "symbol": "267260"
+    "score": 65.5219,
+    "stage": "2",
+    "symbol": "267260",
+    "web_only_score": 28.8475,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-05-01",
@@ -826,9 +1164,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 1,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -837,8 +1179,10 @@
     ],
     "rejected_future_documents": 2,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "247540"
+    "stage": "1",
+    "symbol": "247540",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-05-01",
@@ -847,18 +1191,28 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.547,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 34.3483,
-    "stage": "1",
-    "symbol": "103590"
+    "score": 65.547,
+    "stage": "2",
+    "symbol": "103590",
+    "web_only_score": 37.797,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-06-01",
@@ -867,21 +1221,32 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
-    "layer": "event_search",
+    "layer": "deep_research",
+    "merged_score": 45.6775,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "DISC_EARNINGS_PREANNOUNCE",
+      "DISC_OP_YOY_100P",
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH",
       "PRICE_GAP_WITH_DISCLOSURE",
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 16.3475,
+    "score": 45.6775,
     "stage": "1",
-    "symbol": "003230"
+    "symbol": "003230",
+    "web_only_score": 17.9275,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-06-01",
@@ -890,9 +1255,14 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "financial_actual",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 20.08,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 2,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -902,9 +1272,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
-    "symbol": "000660"
+    "score": 20.08,
+    "stage": "1",
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-06-01",
@@ -913,9 +1285,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.5219,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -924,9 +1304,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 25.3988,
-    "stage": "1",
-    "symbol": "267260"
+    "score": 65.5219,
+    "stage": "2",
+    "symbol": "267260",
+    "web_only_score": 28.8475,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-06-01",
@@ -935,9 +1317,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -946,8 +1332,10 @@
     ],
     "rejected_future_documents": 1,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "247540"
+    "stage": "1",
+    "symbol": "247540",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-06-01",
@@ -956,9 +1344,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 5,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -968,7 +1359,9 @@
     "rejected_future_documents": 1,
     "score": 0.0,
     "stage": "0",
-    "symbol": "257720"
+    "symbol": "257720",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-06-01",
@@ -977,18 +1370,28 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.547,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 6,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 34.3483,
-    "stage": "1",
-    "symbol": "103590"
+    "score": 65.547,
+    "stage": "2",
+    "symbol": "103590",
+    "web_only_score": 37.797,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-07-01",
@@ -997,9 +1400,14 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "financial_actual",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 20.08,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1009,9 +1417,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
-    "symbol": "000660"
+    "score": 20.08,
+    "stage": "1",
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-07-01",
@@ -1020,9 +1430,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 45.6775,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1031,9 +1449,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 16.3475,
+    "score": 45.6775,
     "stage": "1",
-    "symbol": "003230"
+    "symbol": "003230",
+    "web_only_score": 17.9275,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-07-01",
@@ -1042,9 +1462,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1054,7 +1477,9 @@
     "rejected_future_documents": 1,
     "score": 0.0,
     "stage": "0",
-    "symbol": "257720"
+    "symbol": "257720",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-07-01",
@@ -1063,18 +1488,28 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.547,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 34.3483,
-    "stage": "1",
-    "symbol": "103590"
+    "score": 65.547,
+    "stage": "2",
+    "symbol": "103590",
+    "web_only_score": 37.797,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-08-01",
@@ -1083,9 +1518,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "deep_research",
+    "merged_score": 32.6675,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "DISC_SUPPLY_CONTRACT",
@@ -1095,9 +1537,11 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 29.6675,
+    "score": 32.6675,
     "stage": "1",
-    "symbol": "012450"
+    "symbol": "012450",
+    "web_only_score": 29.6675,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-08-01",
@@ -1106,9 +1550,14 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "financial_actual",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 20.08,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 2,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1118,9 +1567,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
-    "symbol": "000660"
+    "score": 20.08,
+    "stage": "1",
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-08-01",
@@ -1129,9 +1580,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 45.6775,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1140,9 +1599,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 16.3475,
+    "score": 45.6775,
     "stage": "1",
-    "symbol": "003230"
+    "symbol": "003230",
+    "web_only_score": 17.9275,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-08-01",
@@ -1151,9 +1612,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.547,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1161,9 +1630,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 34.3483,
-    "stage": "1",
-    "symbol": "103590"
+    "score": 65.547,
+    "stage": "2",
+    "symbol": "103590",
+    "web_only_score": 37.797,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-08-01",
@@ -1172,9 +1643,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 5,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1184,7 +1658,9 @@
     "rejected_future_documents": 1,
     "score": 0.0,
     "stage": "0",
-    "symbol": "257720"
+    "symbol": "257720",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-09-01",
@@ -1193,9 +1669,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "deep_research",
+    "merged_score": 32.6675,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "DISC_SUPPLY_CONTRACT",
@@ -1205,9 +1688,11 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 29.6675,
+    "score": 32.6675,
     "stage": "1",
-    "symbol": "012450"
+    "symbol": "012450",
+    "web_only_score": 29.6675,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-09-01",
@@ -1216,9 +1701,14 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "financial_actual",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 20.08,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 2,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1228,9 +1718,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
-    "symbol": "000660"
+    "score": 20.08,
+    "stage": "1",
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-09-01",
@@ -1239,9 +1731,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 45.6775,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1250,9 +1750,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 16.3475,
+    "score": 45.6775,
     "stage": "1",
-    "symbol": "003230"
+    "symbol": "003230",
+    "web_only_score": 17.9275,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-09-01",
@@ -1261,9 +1763,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.547,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1271,9 +1781,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 34.3483,
-    "stage": "1",
-    "symbol": "103590"
+    "score": 65.547,
+    "stage": "2",
+    "symbol": "103590",
+    "web_only_score": 37.797,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-09-01",
@@ -1282,9 +1794,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 5,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1294,7 +1809,9 @@
     "rejected_future_documents": 1,
     "score": 0.0,
     "stage": "0",
-    "symbol": "257720"
+    "symbol": "257720",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-10-01",
@@ -1303,9 +1820,14 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "financial_actual",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 20.08,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1315,9 +1837,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
-    "symbol": "000660"
+    "score": 20.08,
+    "stage": "1",
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-10-01",
@@ -1326,9 +1850,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 45.6775,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1337,9 +1869,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 16.3475,
+    "score": 45.6775,
     "stage": "1",
-    "symbol": "003230"
+    "symbol": "003230",
+    "web_only_score": 17.9275,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-10-01",
@@ -1348,9 +1882,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 65.547,
+    "merged_stage": "2",
+    "promotion_delta": "1_to_2",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1358,9 +1900,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 34.3483,
-    "stage": "1",
-    "symbol": "103590"
+    "score": 65.547,
+    "stage": "2",
+    "symbol": "103590",
+    "web_only_score": 37.797,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-10-01",
@@ -1369,9 +1913,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1381,7 +1928,9 @@
     "rejected_future_documents": 1,
     "score": 0.0,
     "stage": "0",
-    "symbol": "257720"
+    "symbol": "257720",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-10-01",
@@ -1390,18 +1939,27 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 32.6675,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 5,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 29.6675,
+    "score": 32.6675,
     "stage": "1",
-    "symbol": "012450"
+    "symbol": "012450",
+    "web_only_score": 29.6675,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-11-01",
@@ -1410,9 +1968,14 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "financial_actual",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 20.08,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1422,9 +1985,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
-    "symbol": "000660"
+    "score": 20.08,
+    "stage": "1",
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-11-01",
@@ -1433,9 +1998,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 45.6775,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1444,9 +2017,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 16.3475,
+    "score": 45.6775,
     "stage": "1",
-    "symbol": "003230"
+    "symbol": "003230",
+    "web_only_score": 17.9275,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-11-01",
@@ -1455,9 +2030,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1467,7 +2045,9 @@
     "rejected_future_documents": 1,
     "score": 0.0,
     "stage": "0",
-    "symbol": "257720"
+    "symbol": "257720",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-11-01",
@@ -1476,18 +2056,27 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 32.6675,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 29.6675,
+    "score": 32.6675,
     "stage": "1",
-    "symbol": "012450"
+    "symbol": "012450",
+    "web_only_score": 29.6675,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-12-01",
@@ -1496,9 +2085,14 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "financial_actual",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 20.08,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1508,9 +2102,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
-    "symbol": "000660"
+    "score": 20.08,
+    "stage": "1",
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-12-01",
@@ -1519,9 +2115,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 45.6775,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1530,9 +2134,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 16.3475,
+    "score": 45.6775,
     "stage": "1",
-    "symbol": "003230"
+    "symbol": "003230",
+    "web_only_score": 17.9275,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-12-01",
@@ -1541,9 +2147,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1553,7 +2162,9 @@
     "rejected_future_documents": 1,
     "score": 0.0,
     "stage": "0",
-    "symbol": "257720"
+    "symbol": "257720",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2024-12-01",
@@ -1562,18 +2173,27 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 32.6675,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 29.6675,
+    "score": 32.6675,
     "stage": "1",
-    "symbol": "012450"
+    "symbol": "012450",
+    "web_only_score": 29.6675,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-01-01",
@@ -1582,9 +2202,14 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "financial_actual",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 20.08,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1594,9 +2219,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
-    "symbol": "000660"
+    "score": 20.08,
+    "stage": "1",
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-01-01",
@@ -1605,9 +2232,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 45.6775,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1616,9 +2251,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 16.3475,
+    "score": 45.6775,
     "stage": "1",
-    "symbol": "003230"
+    "symbol": "003230",
+    "web_only_score": 17.9275,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-01-01",
@@ -1627,9 +2264,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1639,7 +2279,9 @@
     "rejected_future_documents": 1,
     "score": 0.0,
     "stage": "0",
-    "symbol": "257720"
+    "symbol": "257720",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-01-01",
@@ -1648,18 +2290,27 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 32.6675,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 29.6675,
+    "score": 32.6675,
     "stage": "1",
-    "symbol": "012450"
+    "symbol": "012450",
+    "web_only_score": 29.6675,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-02-01",
@@ -1668,9 +2319,14 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "financial_actual",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 20.08,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1680,9 +2336,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
-    "symbol": "000660"
+    "score": 20.08,
+    "stage": "1",
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-02-01",
@@ -1691,9 +2349,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 45.6775,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1702,9 +2368,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 16.3475,
+    "score": 45.6775,
     "stage": "1",
-    "symbol": "003230"
+    "symbol": "003230",
+    "web_only_score": 17.9275,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-02-01",
@@ -1713,9 +2381,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 2,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1725,7 +2396,9 @@
     "rejected_future_documents": 1,
     "score": 0.0,
     "stage": "0",
-    "symbol": "257720"
+    "symbol": "257720",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-02-01",
@@ -1734,41 +2407,27 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 32.6675,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 29.6675,
+    "score": 32.6675,
     "stage": "1",
-    "symbol": "012450"
-  },
-  {
-    "as_of_date": "2025-03-01",
-    "candidate_source_path": "official_cheap_scan",
-    "company_name": "SK하이닉스",
-    "date_unverified_documents": 0,
-    "date_verified_documents": 3,
-    "evidence_types_seen": [
-      "official_cheap_scan"
-    ],
-    "layer": "event_search",
-    "rank": 1,
-    "reason_codes": [
-      "PRICE_NEAR_52W_HIGH",
-      "FIN_OP_TURNAROUND",
-      "FIN_OPM_EXPANSION_5P",
-      "FIN_FCF_TURNAROUND",
-      "FIN_CFO_NET_INCOME_IMPROVEMENT"
-    ],
-    "rejected_future_documents": 0,
-    "score": 0.0,
-    "stage": "0",
-    "symbol": "000660"
+    "symbol": "012450",
+    "web_only_score": 29.6675,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-03-01",
@@ -1777,20 +2436,60 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "rank": 2,
+    "merged_score": 40.1962,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
+    "rank": 1,
     "reason_codes": [
       "DISC_EARNINGS_PREANNOUNCE",
+      "DISC_OP_YOY_100P",
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH",
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 15.7475,
+    "score": 40.1962,
     "stage": "1",
-    "symbol": "062040"
+    "symbol": "062040",
+    "web_only_score": 19.1962,
+    "web_only_stage": "1"
+  },
+  {
+    "as_of_date": "2025-03-01",
+    "candidate_source_path": "official_cheap_scan",
+    "company_name": "SK하이닉스",
+    "date_unverified_documents": 0,
+    "date_verified_documents": 3,
+    "evidence_types_seen": [
+      "price",
+      "financial_actual",
+      "disclosure"
+    ],
+    "layer": "event_search",
+    "merged_score": 20.08,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
+    "rank": 2,
+    "reason_codes": [
+      "PRICE_NEAR_52W_HIGH",
+      "FIN_OP_TURNAROUND",
+      "FIN_OPM_EXPANSION_5P",
+      "FIN_FCF_TURNAROUND",
+      "FIN_CFO_NET_INCOME_IMPROVEMENT"
+    ],
+    "rejected_future_documents": 0,
+    "score": 20.08,
+    "stage": "1",
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-03-01",
@@ -1799,9 +2498,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 45.6775,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1809,9 +2516,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 16.3475,
+    "score": 45.6775,
     "stage": "1",
-    "symbol": "003230"
+    "symbol": "003230",
+    "web_only_score": 17.9275,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-03-01",
@@ -1820,9 +2529,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1832,7 +2544,9 @@
     "rejected_future_documents": 0,
     "score": 0.0,
     "stage": "0",
-    "symbol": "257720"
+    "symbol": "257720",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-03-01",
@@ -1841,18 +2555,27 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 32.6675,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 5,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 29.6675,
+    "score": 32.6675,
     "stage": "1",
-    "symbol": "012450"
+    "symbol": "012450",
+    "web_only_score": 29.6675,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-04-01",
@@ -1861,20 +2584,30 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 40.1962,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "DISC_EARNINGS_PREANNOUNCE",
+      "DISC_OP_YOY_100P",
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH",
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 15.7475,
+    "score": 40.1962,
     "stage": "1",
-    "symbol": "062040"
+    "symbol": "062040",
+    "web_only_score": 19.1962,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-04-01",
@@ -1883,9 +2616,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -1894,9 +2630,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-04-01",
@@ -1905,9 +2643,17 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "financial_actual",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 45.6775,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1915,9 +2661,11 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 16.3475,
+    "score": 45.6775,
     "stage": "1",
-    "symbol": "003230"
+    "symbol": "003230",
+    "web_only_score": 17.9275,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-04-01",
@@ -1926,9 +2674,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1938,7 +2689,9 @@
     "rejected_future_documents": 0,
     "score": 0.0,
     "stage": "0",
-    "symbol": "257720"
+    "symbol": "257720",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-04-01",
@@ -1947,18 +2700,27 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 32.6675,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 5,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 29.6675,
+    "score": 32.6675,
     "stage": "1",
-    "symbol": "012450"
+    "symbol": "012450",
+    "web_only_score": 29.6675,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-05-01",
@@ -1967,9 +2729,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -1978,9 +2743,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-05-01",
@@ -1989,9 +2756,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 32.6675,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -1999,9 +2773,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 29.6675,
+    "score": 32.6675,
     "stage": "1",
-    "symbol": "012450"
+    "symbol": "012450",
+    "web_only_score": 29.6675,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-05-01",
@@ -2010,9 +2786,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 40.1962,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -2020,9 +2803,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 15.7475,
+    "score": 40.1962,
     "stage": "1",
-    "symbol": "062040"
+    "symbol": "062040",
+    "web_only_score": 19.1962,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-06-01",
@@ -2031,9 +2816,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2042,9 +2830,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-06-01",
@@ -2053,9 +2843,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 32.6675,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -2063,9 +2860,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 29.6675,
+    "score": 32.6675,
     "stage": "1",
-    "symbol": "012450"
+    "symbol": "012450",
+    "web_only_score": 29.6675,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-06-01",
@@ -2074,9 +2873,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 40.1962,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -2084,9 +2890,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 15.7475,
+    "score": 40.1962,
     "stage": "1",
-    "symbol": "062040"
+    "symbol": "062040",
+    "web_only_score": 19.1962,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-07-01",
@@ -2095,9 +2903,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2106,9 +2917,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-07-01",
@@ -2117,9 +2930,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 32.6675,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -2127,9 +2947,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 29.6675,
+    "score": 32.6675,
     "stage": "1",
-    "symbol": "012450"
+    "symbol": "012450",
+    "web_only_score": 29.6675,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-07-01",
@@ -2138,9 +2960,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 40.1962,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -2148,9 +2977,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 15.7475,
+    "score": 40.1962,
     "stage": "1",
-    "symbol": "062040"
+    "symbol": "062040",
+    "web_only_score": 19.1962,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-08-01",
@@ -2159,9 +2990,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2170,9 +3004,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-08-01",
@@ -2181,9 +3017,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 40.1962,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -2191,9 +3034,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 15.7475,
+    "score": 40.1962,
     "stage": "1",
-    "symbol": "062040"
+    "symbol": "062040",
+    "web_only_score": 19.1962,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-09-01",
@@ -2202,9 +3047,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2213,9 +3061,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-09-01",
@@ -2224,9 +3074,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 40.1962,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -2234,9 +3091,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 15.7475,
+    "score": 40.1962,
     "stage": "1",
-    "symbol": "062040"
+    "symbol": "062040",
+    "web_only_score": 19.1962,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-10-01",
@@ -2245,9 +3104,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2256,9 +3118,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-10-01",
@@ -2267,9 +3131,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 40.1962,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -2277,9 +3148,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 15.7475,
+    "score": 40.1962,
     "stage": "1",
-    "symbol": "062040"
+    "symbol": "062040",
+    "web_only_score": 19.1962,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-11-01",
@@ -2288,9 +3161,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2299,9 +3175,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-11-01",
@@ -2310,9 +3188,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 40.1962,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -2320,9 +3205,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 15.7475,
+    "score": 40.1962,
     "stage": "1",
-    "symbol": "062040"
+    "symbol": "062040",
+    "web_only_score": 19.1962,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-12-01",
@@ -2331,9 +3218,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2342,9 +3232,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2025-12-01",
@@ -2353,9 +3245,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 40.1962,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -2363,9 +3262,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 15.7475,
+    "score": 40.1962,
     "stage": "1",
-    "symbol": "062040"
+    "symbol": "062040",
+    "web_only_score": 19.1962,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2026-01-01",
@@ -2374,9 +3275,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2385,9 +3289,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2026-01-01",
@@ -2396,9 +3302,16 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 8,
     "evidence_types_seen": [
-      "research_report"
+      "price",
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
+    "merged_score": 40.1962,
+    "merged_stage": "1",
+    "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -2406,9 +3319,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 15.7475,
+    "score": 40.1962,
     "stage": "1",
-    "symbol": "062040"
+    "symbol": "062040",
+    "web_only_score": 19.1962,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2026-02-01",
@@ -2417,9 +3332,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2428,9 +3346,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2026-02-01",
@@ -2439,9 +3359,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 2,
     "reason_codes": [
       "DISC_RIGHTS_OFFERING",
@@ -2451,8 +3375,10 @@
     ],
     "rejected_future_documents": 0,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "001440"
+    "stage": "1",
+    "symbol": "001440",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2026-03-01",
@@ -2461,9 +3387,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2472,9 +3401,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2026-03-01",
@@ -2483,9 +3414,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 2,
     "reason_codes": [
       "DISC_RIGHTS_OFFERING",
@@ -2495,8 +3430,10 @@
     ],
     "rejected_future_documents": 0,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "001440"
+    "stage": "1",
+    "symbol": "001440",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2026-04-01",
@@ -2505,9 +3442,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2516,9 +3456,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2026-04-01",
@@ -2527,9 +3469,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -2538,8 +3484,10 @@
     ],
     "rejected_future_documents": 0,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "001440"
+    "stage": "1",
+    "symbol": "001440",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2026-05-01",
@@ -2548,9 +3496,12 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "financial_actual"
     ],
     "layer": "event_search",
+    "merged_score": 3.0,
+    "merged_stage": "0",
+    "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2559,9 +3510,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
+    "score": 3.0,
     "stage": "0",
-    "symbol": "000660"
+    "symbol": "000660",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   },
   {
     "as_of_date": "2026-05-01",
@@ -2570,9 +3523,13 @@
     "date_unverified_documents": 0,
     "date_verified_documents": 3,
     "evidence_types_seen": [
-      "official_cheap_scan"
+      "price",
+      "disclosure"
     ],
     "layer": "event_search",
+    "merged_score": 0.0,
+    "merged_stage": "1",
+    "promotion_delta": "0_to_1",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -2581,7 +3538,9 @@
     ],
     "rejected_future_documents": 0,
     "score": 0.0,
-    "stage": "0",
-    "symbol": "001440"
+    "stage": "1",
+    "symbol": "001440",
+    "web_only_score": 0.0,
+    "web_only_stage": "0"
   }
 ]

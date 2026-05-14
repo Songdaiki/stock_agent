@@ -333,10 +333,15 @@ def extract_e2r_text_fields(text: str) -> dict[str, Any]:
         fields["prepayment_exists"] = True
     if "해지 불가" in text or "취소 불가" in text or "take-or-pay" in lowered:
         fields["non_cancellable"] = True
-    if "사상 최대 수주잔고" in text or "record backlog" in lowered:
+    if "사상 최대 수주잔고" in text or ("수주잔고" in text and "사상 최대" in text) or "record backlog" in lowered:
         fields["record_backlog"] = True
     if "capa 부족" in lowered or "생산능력 부족" in text or "capacity constraint" in lowered:
         fields["capacity_constraint"] = True
+    if "리드타임 장기화" in text and ("공급부족" in text or "공급 부족" in text):
+        fields["capacity_constraint"] = True
+        fields["capa_shortage"] = True
+    if any(token in text for token in ("ASP 상승", "판가 상승", "가격 상승", "ASP 개선", "판가 개선")):
+        fields["pricing_power_confirmed"] = True
     if "판가 전가" in text or "가격 전가" in text or "pricing power" in lowered:
         fields["pricing_power_confirmed"] = True
     if "멀티플 상향" in text or "리레이팅" in text or "rerating" in lowered:

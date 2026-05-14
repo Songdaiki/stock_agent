@@ -2,7 +2,11 @@
 
 | evidence type | count |
 | --- | ---: |
-| official_cheap_scan | 53 |
+| consensus | 67 |
+| consensus_revision | 67 |
+| disclosure | 95 |
+| financial_actual | 71 |
+| price | 106 |
 | research_report | 67 |
 
 - date_verified_documents: 646

@@ -340,6 +340,8 @@ class DeterministicFeatureEngineer:
         score += _score_ratio(lead_time, 18.0) * 0.20
         score += _score_percent(expansion, 80.0) * 0.20
         score += _score_ratio(locked_years, 3.0) * 0.15
+        if fields.any_bool("lead_time_mentioned"):
+            score += 8.0
         if fields.any_bool("capacity_constraint", "capa_shortage"):
             score += 15.0
         return _clamp(score)
@@ -550,6 +552,8 @@ class DeterministicFeatureEngineer:
     @staticmethod
     def _information_confidence_score(inputs: FeatureEngineeringInput) -> float:
         source_count = 0
+        if inputs.price_bars:
+            source_count += 1
         if inputs.financial_actuals:
             source_count += 1
         if inputs.consensus:
