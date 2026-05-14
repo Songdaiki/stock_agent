@@ -8,6 +8,17 @@ from e2r.backtest.layer1_recall import (
     evaluate_layer1_recall_case,
     failure_reason_for_layer1_miss,
 )
+from e2r.backtest.blind_discovery_replay import (
+    BlindDiscoveryConfig,
+    BlindDiscoveryReplay,
+    BlindDiscoveryResult,
+)
+from e2r.backtest.benchmark_labels import BenchmarkLabel, load_benchmark_labels
+from e2r.backtest.stage_lifecycle_detector import (
+    StageLifecycleDetection,
+    StageLifecycleDetectionInput,
+    StageLifecycleDetector,
+)
 from e2r.backtest.monthly_replay_suite import (
     MonthlyReplaySuiteConfig,
     MonthlyReplaySuiteResult,
@@ -42,9 +53,16 @@ __all__ = [
     "HistoricalReplayMode",
     "HistoricalUniverseReplay",
     "HistoricalUniverseReplayResult",
+    "BenchmarkLabel",
+    "BlindDiscoveryConfig",
+    "BlindDiscoveryReplay",
+    "BlindDiscoveryResult",
     "ReplayFrequency",
     "STAGE4B_UNKNOWN_INSUFFICIENT_EVIDENCE",
     "StageLifecycleBacktest",
+    "StageLifecycleDetection",
+    "StageLifecycleDetectionInput",
+    "StageLifecycleDetector",
     "StageLifecycleInput",
     "StageLifecycleResult",
     "Layer1RecallCase",
@@ -56,6 +74,7 @@ __all__ = [
     "evaluate_layer1_recall",
     "evaluate_layer1_recall_case",
     "failure_reason_for_layer1_miss",
+    "load_benchmark_labels",
     "render_historical_case_replay_summary",
     "render_historical_replay_summary",
 ]

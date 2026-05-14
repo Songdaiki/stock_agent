@@ -17,6 +17,14 @@ Where is evidence missing?
 
 It does not generate buy/sell recommendations.
 
+Important:
+
+```text
+The production flow is E2R_STANDARD.
+official_only / case_fixture / hybrid are diagnostic replay modes.
+case_fixture success is regression success, not proof of live discovery.
+```
+
 ## How To Run
 
 Default suite:
