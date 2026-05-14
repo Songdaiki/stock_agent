@@ -222,6 +222,7 @@ class E2RCaseRecord:
     price_pattern: str = "unknown"
     score_weight_hint: Mapping[str, float] = field(default_factory=dict)
     green_guardrails: tuple[str, ...] = field(default_factory=tuple)
+    notes: str = ""
     price_validation: PriceValidation = field(default_factory=PriceValidation)
     price_path: PricePathSummary = field(default_factory=PricePathSummary)
     data_quality: CaseDataQuality = field(
@@ -265,6 +266,7 @@ class E2RCaseRecord:
             price_pattern=str(value.get("price_pattern") or "unknown"),
             score_weight_hint=dict(value.get("score_weight_hint") or {}),
             green_guardrails=tuple(value.get("green_guardrails") or ()),
+            notes=str(value.get("notes") or ""),
             price_validation=PriceValidation.from_mapping(value.get("price_validation")),
             price_path=PricePathSummary.from_mapping(value.get("price_path")),
             data_quality=CaseDataQuality.from_mapping(value.get("data_quality") or {}),
@@ -323,6 +325,7 @@ class E2RCaseRecord:
             "price_pattern": self.price_pattern,
             "score_weight_hint": dict(self.score_weight_hint),
             "green_guardrails": list(self.green_guardrails),
+            "notes": self.notes,
             "price_validation": self.price_validation.as_dict(),
             "price_path": self.price_path.as_dict(),
             "data_quality": self.data_quality.as_dict(),

@@ -1,19 +1,10 @@
 # Score-Price Alignment Summary
 
 ## Alignment Distribution
-- aligned: 14
-- evidence_good_but_price_failed: 5
-- false_positive_score: 18
-- unknown: 29
+- unknown: 67
 
 ## Rerating Result Distribution
-- cyclical_rerating: 5
-- event_premium: 8
-- no_rerating: 5
-- theme_overheat: 4
-- thesis_break: 14
-- true_rerating: 1
-- unknown: 29
+- unknown: 67
 
 ## Event Premium Cases
 - nuclear_czech_policy_contract: 체코 원전 정책계약

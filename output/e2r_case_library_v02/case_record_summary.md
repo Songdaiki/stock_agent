@@ -1,9 +1,9 @@
 # E2R Case Record Pack v0.2 Summary
 
-- case_count: 66
+- case_count: 67
 - archetypes_with_cases: 27
 - archetypes_covered_2x2: 3
-- cases_needing_price_backfill: 54
+- cases_needing_price_backfill: 67
 
 ## Case Type Distribution
 - 4b_watch: 1
@@ -13,7 +13,7 @@
 - failed_rerating: 15
 - one_off: 1
 - overheat: 4
-- structural_success: 6
+- structural_success: 7
 - success_candidate: 13
 
 ## Interpretation
