@@ -35,6 +35,7 @@ class CasePriceBackfillTests(unittest.TestCase):
                 "red_flag_fields": ["contract cancellation"],
                 "score_price_alignment": "unknown",
                 "rerating_result": "unknown",
+                "stage_failure_type": "stage2_watch_success",
                 "price_validation": {"price_validation_status": "needs_price_backfill"},
                 "data_quality": {
                     "official_data_available": True,
@@ -48,6 +49,7 @@ class CasePriceBackfillTests(unittest.TestCase):
         record.validate()
         self.assertEqual(record.case_type, "success_candidate")
         self.assertEqual(record.secondary_archetypes[0].value, "AI_DATA_CENTER_INFRASTRUCTURE")
+        self.assertEqual(record.stage_failure_type, "stage2_watch_success")
 
     def test_price_backfill_leaves_null_when_price_data_missing(self):
         record = E2RCaseRecord.from_mapping(
@@ -83,6 +85,7 @@ class CasePriceBackfillTests(unittest.TestCase):
         filled = backfill_case_price_paths((hd,), price_root="data/historical_official/prices")[0]
 
         self.assertEqual(filled.price_validation.stage3_price, 66000)
+        self.assertIsNotNone(filled.price_validation.peak_return_from_stage3)
         self.assertEqual(filled.price_validation.price_validation_status, "price_filled")
 
 

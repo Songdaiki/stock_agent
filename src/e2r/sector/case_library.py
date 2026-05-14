@@ -61,6 +61,18 @@ RERATING_RESULT_VALUES = frozenset(
         "policy_event_rerating",
     }
 )
+STAGE_FAILURE_TYPE_VALUES = frozenset(
+    {
+        "unknown",
+        "green_success",
+        "yellow_success",
+        "stage2_watch_success",
+        "false_green",
+        "false_yellow",
+        "should_have_been_red",
+        "missed_structural",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -97,6 +109,7 @@ class PriceValidation:
     stage4b_price: float | None = None
     stage4c_price: float | None = None
     peak_price: float | None = None
+    peak_return_from_stage3: float | None = None
     mfe_90d: float | None = None
     mfe_180d: float | None = None
     mfe_1y: float | None = None
@@ -105,6 +118,9 @@ class PriceValidation:
     mae_1y: float | None = None
     drawdown_after_peak: float | None = None
     below_stage3_price_flag: bool | None = None
+    time_to_50pct: int | None = None
+    time_to_100pct: int | None = None
+    time_to_200pct: int | None = None
     price_validation_status: str = "needs_price_backfill"
 
     @classmethod
@@ -117,6 +133,7 @@ class PriceValidation:
             stage4b_price=_float_or_none(value.get("stage4b_price")),
             stage4c_price=_float_or_none(value.get("stage4c_price")),
             peak_price=_float_or_none(value.get("peak_price")),
+            peak_return_from_stage3=_float_or_none(value.get("peak_return_from_stage3")),
             mfe_90d=_float_or_none(value.get("mfe_90d")),
             mfe_180d=_float_or_none(value.get("mfe_180d")),
             mfe_1y=_float_or_none(value.get("mfe_1y")),
@@ -125,10 +142,13 @@ class PriceValidation:
             mae_1y=_float_or_none(value.get("mae_1y")),
             drawdown_after_peak=_float_or_none(value.get("drawdown_after_peak")),
             below_stage3_price_flag=_bool_or_none(value.get("below_stage3_price_flag")),
+            time_to_50pct=_int_or_none(value.get("time_to_50pct")),
+            time_to_100pct=_int_or_none(value.get("time_to_100pct")),
+            time_to_200pct=_int_or_none(value.get("time_to_200pct")),
             price_validation_status=str(value.get("price_validation_status") or "needs_price_backfill"),
         )
 
-    def as_dict(self) -> dict[str, float | bool | str | None]:
+    def as_dict(self) -> dict[str, float | int | bool | str | None]:
         return {key: getattr(self, key) for key in self.__dataclass_fields__}
 
 
@@ -190,6 +210,7 @@ class E2RCaseRecord:
     false_positive_reason: str | None = None
     score_price_alignment: str = "unknown"
     rerating_result: str = "unknown"
+    stage_failure_type: str = "unknown"
     price_pattern: str = "unknown"
     score_weight_hint: Mapping[str, float] = field(default_factory=dict)
     green_guardrails: tuple[str, ...] = field(default_factory=tuple)
@@ -232,6 +253,7 @@ class E2RCaseRecord:
             false_positive_reason=value.get("false_positive_reason"),
             score_price_alignment=str(value.get("score_price_alignment") or "unknown"),
             rerating_result=str(value.get("rerating_result") or "unknown"),
+            stage_failure_type=str(value.get("stage_failure_type") or "unknown"),
             price_pattern=str(value.get("price_pattern") or "unknown"),
             score_weight_hint=dict(value.get("score_weight_hint") or {}),
             green_guardrails=tuple(value.get("green_guardrails") or ()),
@@ -253,6 +275,8 @@ class E2RCaseRecord:
             raise ValueError(f"unsupported score_price_alignment: {self.score_price_alignment}")
         if self.rerating_result not in RERATING_RESULT_VALUES:
             raise ValueError(f"unsupported rerating_result: {self.rerating_result}")
+        if self.stage_failure_type not in STAGE_FAILURE_TYPE_VALUES:
+            raise ValueError(f"unsupported stage_failure_type: {self.stage_failure_type}")
         if self.data_quality.stage_dates_confidence < 0 or self.data_quality.stage_dates_confidence > 1:
             raise ValueError("stage_dates_confidence must be between 0 and 1")
 
@@ -287,6 +311,7 @@ class E2RCaseRecord:
             "false_positive_reason": self.false_positive_reason,
             "score_price_alignment": self.score_price_alignment,
             "rerating_result": self.rerating_result,
+            "stage_failure_type": self.stage_failure_type,
             "price_pattern": self.price_pattern,
             "score_weight_hint": dict(self.score_weight_hint),
             "green_guardrails": list(self.green_guardrails),
@@ -495,6 +520,12 @@ def _float_or_none(value: Any) -> float | None:
     return float(value)
 
 
+def _int_or_none(value: Any) -> int | None:
+    if value in (None, ""):
+        return None
+    return int(value)
+
+
 def _bool_or_none(value: Any) -> bool | None:
     if value in (None, ""):
         return None
@@ -519,6 +550,7 @@ __all__ = [
     "PricePathSummary",
     "RERATING_RESULT_VALUES",
     "SCORE_PRICE_ALIGNMENT_VALUES",
+    "STAGE_FAILURE_TYPE_VALUES",
     "coverage_by_archetype",
     "load_case_library",
     "render_case_coverage_summary",

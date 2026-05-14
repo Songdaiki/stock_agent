@@ -71,6 +71,10 @@ def _fill_record(record: E2RCaseRecord, bars: tuple[dict[str, float | date], ...
     mfe_1y, mae_1y = _mfe_mae(bars, anchor_date, anchor_price, 365)
     below_flag = _below_anchor_after(bars, anchor_date, anchor_price)
     drawdown = _drawdown_after_peak(bars, anchor_date, peak_price)
+    peak_return_from_stage3 = _return_from_anchor(peak_price, stage3_price) if stage3_price else None
+    time_to_50pct = _time_to_return(bars, record.stage3_date, stage3_price, 50.0)
+    time_to_100pct = _time_to_return(bars, record.stage3_date, stage3_price, 100.0)
+    time_to_200pct = _time_to_return(bars, record.stage3_date, stage3_price, 200.0)
     return replace(
         record,
         price_validation=PriceValidation(
@@ -80,6 +84,7 @@ def _fill_record(record: E2RCaseRecord, bars: tuple[dict[str, float | date], ...
             stage4b_price=stage4b_price,
             stage4c_price=stage4c_price,
             peak_price=peak_price,
+            peak_return_from_stage3=peak_return_from_stage3,
             mfe_90d=mfe_90d,
             mfe_180d=mfe_180d,
             mfe_1y=mfe_1y,
@@ -88,6 +93,9 @@ def _fill_record(record: E2RCaseRecord, bars: tuple[dict[str, float | date], ...
             mae_1y=mae_1y,
             drawdown_after_peak=drawdown,
             below_stage3_price_flag=below_flag,
+            time_to_50pct=time_to_50pct,
+            time_to_100pct=time_to_100pct,
+            time_to_200pct=time_to_200pct,
             price_validation_status="price_filled",
         ),
     )
@@ -141,6 +149,27 @@ def _mfe_mae(bars: tuple[dict[str, float | date], ...], start: date, anchor_pric
 
 def _below_anchor_after(bars: tuple[dict[str, float | date], ...], start: date, anchor_price: float) -> bool:
     return any(float(bar["low"]) < anchor_price for bar in _bars_after(bars, start))
+
+
+def _return_from_anchor(price: float | None, anchor_price: float | None) -> float | None:
+    if price is None or anchor_price is None or anchor_price <= 0:
+        return None
+    return round((price / anchor_price - 1.0) * 100.0, 3)
+
+
+def _time_to_return(
+    bars: tuple[dict[str, float | date], ...],
+    start: date | None,
+    anchor_price: float | None,
+    target_pct: float,
+) -> int | None:
+    if start is None or anchor_price is None or anchor_price <= 0:
+        return None
+    target_price = anchor_price * (1.0 + target_pct / 100.0)
+    for bar in _bars_after(bars, start):
+        if float(bar["high"]) >= target_price:
+            return (bar["date"] - start).days  # type: ignore[operator]
+    return None
 
 
 def _drawdown_after_peak(bars: tuple[dict[str, float | date], ...], start: date, peak_price: float | None) -> float | None:

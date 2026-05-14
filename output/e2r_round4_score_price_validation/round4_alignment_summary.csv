@@ -1,0 +1,28 @@
+archetype,case_count,aligned,unknown,false_positive_score,price_moved_without_evidence,evidence_good_but_price_failed,green_policy
+AI_DATA_CENTER_INFRASTRUCTURE,3,0,3,0,0,0,Green possible only with confirmed order/revenue and cross-evidence.
+BATTERY_MATERIALS_CAPEX_OVERHEAT,2,0,2,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+BIOTECH_PRE_REVENUE_REGULATORY,2,0,2,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+BIOTECH_ROYALTY_COMMERCIALIZATION,3,0,3,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+CDMO_HEALTHCARE_CONTRACT,2,0,2,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+COMMODITY_SPREAD,2,0,2,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+CONSTRUCTION_REAL_ESTATE_CREDIT,2,0,2,0,0,0,Green very restricted; credit risk must be resolved first.
+CONTRACT_BACKLOG_INDUSTRIAL,4,0,4,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+DEFENSE_GOVERNMENT_BACKLOG,2,0,2,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+EDUCATION_SPECIALTY_SERVICES,2,0,2,0,0,0,"Green requires durable recurring revenue, not policy-event traffic."
+EXPORT_RECURRING_CONSUMER,3,0,3,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+FINANCIAL_SPREAD_BALANCE_SHEET,2,0,2,0,0,0,Green possible with ROE/PBR gap plus executed shareholder return.
+GAME_CONTENT_IP,2,0,2,0,0,0,"Green requires repeat monetization, not release anticipation."
+HOLDING_RESTRUCTURING_GOVERNANCE,3,0,3,0,0,0,Green requires executed capital return backed by NAV/FCF improvement.
+K_BEAUTY_EXPORT_DISTRIBUTION,4,0,4,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+MEDICAL_DEVICE_HEALTHCARE_EXPORT,3,0,3,0,0,0,Green possible with export channel plus recurring revenue and FCF proof.
+MEMORY_HBM_CAPACITY,4,0,4,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+NUCLEAR_SMR_GRID_POLICY,2,0,2,0,0,0,Green only with contract economics and low legal/policy risk.
+ONE_OFF_EVENT_DEMAND,1,0,1,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+PLATFORM_SOFTWARE_INTERNET,4,0,4,0,0,0,Green is rare and requires monetization plus margin/FCF proof.
+ROBOTICS_FACTORY_AUTOMATION,2,0,2,0,0,0,Green blocked until revenue and margin evidence are visible.
+SEMI_EQUIPMENT_CAPEX,2,0,2,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+SHIPBUILDING_OFFSHORE_BACKLOG,2,0,2,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+SHIPPING_FREIGHT_CYCLE,2,0,2,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+THEME_VALUATION_OVERHEAT,1,0,1,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.
+TRAVEL_LEISURE_REOPENING,2,0,2,0,0,0,Green exceptional; most cases stay Yellow/Watch.
+VALUE_UP_SHAREHOLDER_RETURN,3,0,3,0,0,0,Fallback rule; keep Green restricted until archetype-specific validation exists.

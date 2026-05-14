@@ -41,6 +41,7 @@ class ScorePriceAlignmentTests(unittest.TestCase):
 
         self.assertEqual(result.rerating_result, "event_premium")
         self.assertNotEqual(result.rerating_result, "true_rerating")
+        self.assertEqual(result.stage_failure_type, "stage2_watch_success")
 
     def test_structural_success_with_missing_price_remains_unknown(self):
         result = evaluate_score_price_alignment(_record("structural_success"))
@@ -63,11 +64,13 @@ class ScorePriceAlignmentTests(unittest.TestCase):
         result = evaluate_score_price_alignment(record)
 
         self.assertEqual(result.score_price_alignment, "price_moved_without_evidence")
+        self.assertEqual(result.stage_failure_type, "missed_structural")
 
     def test_stage4c_after_candidate_becomes_thesis_break(self):
         result = evaluate_score_price_alignment(_record("4c_thesis_break", stage4c_date="2024-06-01"))
 
         self.assertEqual(result.rerating_result, "thesis_break")
+        self.assertEqual(result.stage_failure_type, "should_have_been_red")
 
 
 if __name__ == "__main__":

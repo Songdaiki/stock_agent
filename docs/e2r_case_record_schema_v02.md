@@ -42,6 +42,7 @@ Example:
 - `expected_group`
 - `score_price_alignment`
 - `rerating_result`
+- `stage_failure_type`
 - `price_pattern`
 
 Allowed `case_type` values:
@@ -76,6 +77,27 @@ Allowed `rerating_result` values:
 - `thesis_break`
 - `credit_relief_rally`
 - `policy_event_rerating`
+
+Allowed `stage_failure_type` values:
+
+- `unknown`
+- `green_success`
+- `yellow_success`
+- `stage2_watch_success`
+- `false_green`
+- `false_yellow`
+- `should_have_been_red`
+- `missed_structural`
+
+Example:
+
+```text
+robotics theme case
+-> strategic investment headline appears
+-> no revenue conversion
+-> price spikes and then fades
+-> stage_failure_type = should_have_been_red
+```
 
 ## Lifecycle Fields
 
@@ -114,6 +136,7 @@ scoring still requires real Evidence objects from the E2R flow.
 - `stage4b_price`
 - `stage4c_price`
 - `peak_price`
+- `peak_return_from_stage3`
 - `mfe_90d`
 - `mfe_180d`
 - `mfe_1y`
@@ -122,6 +145,9 @@ scoring still requires real Evidence objects from the E2R flow.
 - `mae_1y`
 - `drawdown_after_peak`
 - `below_stage3_price_flag`
+- `time_to_50pct`
+- `time_to_100pct`
+- `time_to_200pct`
 - `price_validation_status`
 
 If local price data is missing:
