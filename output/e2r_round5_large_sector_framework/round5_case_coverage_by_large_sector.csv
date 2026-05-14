@@ -1,0 +1,11 @@
+large_sector,korean_name,green_permission,archetype_count,case_count,aligned_count,unknown_alignment_count,price_backfill_needed_count
+INDUSTRIAL_ORDERS,산업재/수주,HIGH,4,10,0,10,10
+EXPORT_CONSUMER,수출 소비재,HIGH,3,10,0,10,10
+SEMICONDUCTOR_AI_INFRA,반도체/AI 인프라,HIGH,3,9,0,9,9
+CYCLICAL_SPREAD,사이클/스프레드,LOW,6,6,0,6,6
+FINANCIAL_CAPITAL_ALLOCATION,금융/자본배분,MEDIUM,4,8,0,8,8
+BIOTECH_HEALTHCARE,바이오/헬스케어,LOW,4,7,0,7,7
+PLATFORM_IP_SERVICES,플랫폼/IP/서비스,MEDIUM,3,8,0,8,8
+DOMESTIC_REOPENING,내수/리오프닝,LOW,2,2,0,2,2
+REAL_ESTATE_CREDIT_REGULATED,부동산/신용/규제자산,RESTRICTED,2,2,0,2,2
+THEME_EVENT_GUARDRAIL,테마/이벤트,RESTRICTED,4,4,0,4,4

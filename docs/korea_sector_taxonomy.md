@@ -69,6 +69,36 @@ Source priority:
 - `ONE_OFF_EVENT_DEMAND`: 팬데믹 진단키트 같은 일회성 수요
 - `THEME_VALUATION_OVERHEAT`: 근거보다 가격/테마가 앞선 과열
 
+## Round 5 Large-Sector Layer
+
+Round 5 adds a broad-sector layer above archetypes:
+
+```text
+대섹터 -> E2R Archetype -> Stage evidence -> peer normalization
+```
+
+Example:
+
+```text
+산업재/수주
+-> CONTRACT_BACKLOG_INDUSTRIAL, DEFENSE_GOVERNMENT_BACKLOG, SHIPBUILDING_OFFSHORE_BACKLOG
+-> contract quality, backlog, delivery schedule, margin path
+
+플랫폼/IP/서비스
+-> PLATFORM_SOFTWARE_INTERNET, GAME_CONTENT_IP, EDUCATION_SPECIALTY_SERVICES
+-> ARPU, repeat monetization, OPM/FCF, regulation/IP risk
+```
+
+The report-only matrix can be rebuilt with:
+
+```bash
+PYTHONPATH=src python -m e2r.cli.build_round5_large_sector_report \
+  --cases data/e2r_case_library/cases_v02.jsonl \
+  --output-directory output/e2r_round5_large_sector_framework
+```
+
+This layer still does not change StageClassifier thresholds.
+
 ## Build Command
 
 ```bash
