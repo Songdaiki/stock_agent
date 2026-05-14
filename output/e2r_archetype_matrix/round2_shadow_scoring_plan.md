@@ -20,3 +20,4 @@ This is not production scoring. It identifies which archetypes should be compare
 - Do not replace StageClassifier in the first shadow run.
 - Use promotion bands for visibility before changing Green gates.
 - Keep one-off and overheat archetypes as guardrails, not Green factories.
+- Review price-pattern labels before treating a move as durable rerating.

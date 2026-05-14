@@ -28,7 +28,7 @@ So the repo now has a Round-2 playbook layer:
 - `src/e2r/sector/archetype_matrix.py`
 - `src/e2r/cli/build_round2_archetype_matrix_report.py`
 - `output/e2r_archetype_matrix/*`
-- source round: `docs/round/round_01.md`
+- source rounds: `docs/round/round_01.md`, `docs/round/round_02.md`
 
 ## What This Is
 
@@ -40,6 +40,7 @@ This is calibration material:
 - Green gate policy
 - peer-normalization metrics
 - case coverage gaps
+- Round-2 price-pattern taxonomy
 
 ## What This Is Not
 
@@ -138,7 +139,8 @@ Priority 3:
 
 ## Promotion Bands
 
-The matrix records the reporting bands from `round_01.md`:
+The matrix records the reporting bands from `round_01.md` and keeps them
+visible while `round_02.md` adds price-pattern context:
 
 ```text
 Stage 2
@@ -156,6 +158,31 @@ Example:
 ```text
 deterministic_stage = Stage 2
 promotion_band = Stage 3-Watch
+```
+
+## Round-2 Price Patterns
+
+`round_02.md` adds lifecycle labels for how price usually behaves after the
+evidence appears:
+
+```text
+DIRECT_RERATING
+STAIR_STEP_RERATING
+CYCLE_SPIKE_NORMALIZATION
+THEME_FRONT_RUN
+ACCOUNTING_TRUST_COLLAPSE
+```
+
+Example:
+
+```text
+CONTRACT_BACKLOG_INDUSTRIAL
+-> STAIR_STEP_RERATING
+-> 20~30% pullbacks can happen, but backlog/margin/revision evidence decides whether the Stage remains intact.
+
+THEME_VALUATION_OVERHEAT
+-> THEME_FRONT_RUN or ACCOUNTING_TRUST_COLLAPSE
+-> strong price action does not create Green without EPS/FCF durability.
 ```
 
 ## Guardrails

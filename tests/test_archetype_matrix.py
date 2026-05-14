@@ -7,11 +7,13 @@ from e2r.sector.archetype_matrix import (
     ROUND2_DEEP_DIVE_PRIORITY_GROUPS,
     ROUND2_FIRST_SHADOW_SCORING_ARCHETYPES,
     ROUND2_PEER_NORMALIZATION_METRICS,
+    ROUND2_PRICE_PATTERN_TYPES,
     ROUND2_PROMOTION_BANDS,
     all_matrix_entries,
     deep_dive_priority_tier,
     first_shadow_scoring_candidate,
     matrix_entry,
+    price_patterns_for,
     round2_case_gap_summary,
     write_round2_matrix_reports,
 )
@@ -71,6 +73,21 @@ class ArchetypeMatrixTests(unittest.TestCase):
         self.assertIn("Stage 2-High", ROUND2_PROMOTION_BANDS)
         self.assertIn("Stage 3-Watch", ROUND2_PROMOTION_BANDS)
 
+    def test_round_02_price_patterns_are_archetype_specific(self):
+        self.assertIn("STAIR_STEP_RERATING", ROUND2_PRICE_PATTERN_TYPES)
+        self.assertIn(
+            "STAIR_STEP_RERATING",
+            price_patterns_for(E2RArchetype.CONTRACT_BACKLOG_INDUSTRIAL),
+        )
+        self.assertIn(
+            "ACCOUNTING_TRUST_COLLAPSE",
+            price_patterns_for(E2RArchetype.THEME_VALUATION_OVERHEAT),
+        )
+        self.assertIn(
+            "CYCLE_SPIKE_NORMALIZATION",
+            price_patterns_for(E2RArchetype.SHIPPING_FREIGHT_CYCLE),
+        )
+
     def test_case_gap_summary_uses_round1_rollup(self):
         records = load_case_library("data/e2r_case_library/cases_v02.jsonl")
         rows = round2_case_gap_summary(records)
@@ -80,6 +97,7 @@ class ArchetypeMatrixTests(unittest.TestCase):
         self.assertGreaterEqual(by_archetype["SEMI_EQUIPMENT_CAPEX"]["positive_count"], 2)
         self.assertTrue(by_archetype["SEMI_EQUIPMENT_CAPEX"]["first_shadow_scoring_candidate"])
         self.assertEqual(by_archetype["SHIPBUILDING_OFFSHORE_BACKLOG"]["deep_dive_priority_tier"], 1)
+        self.assertIn("price_patterns", by_archetype["THEME_VALUATION_OVERHEAT"])
         self.assertIn(by_archetype["ONE_OFF_EVENT_DEMAND"]["status"], {"needs_more_counterexamples", "green_guardrail_only"})
 
     def test_report_writer_outputs_matrix_files(self):
@@ -92,8 +110,10 @@ class ArchetypeMatrixTests(unittest.TestCase):
             self.assertTrue(paths["peer_metrics"].exists())
             self.assertTrue(paths["case_gap_matrix"].exists())
             self.assertTrue(paths["shadow_scoring_plan"].exists())
+            self.assertTrue(paths["price_pattern_taxonomy"].exists())
             self.assertIn("Round-2 E2R Archetype Matrix", paths["matrix"].read_text(encoding="utf-8"))
             self.assertIn("Stage 3-Watch", paths["priority"].read_text(encoding="utf-8"))
+            self.assertIn("ACCOUNTING_TRUST_COLLAPSE", paths["price_pattern_taxonomy"].read_text(encoding="utf-8"))
 
     def test_production_scoring_modules_do_not_import_round2_matrix(self):
         paths = [

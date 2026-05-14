@@ -1,6 +1,6 @@
 # Round-2 Case Mining Priorities
 
-Source round: `docs/round/round_01.md`
+Source rounds: `docs/round/round_01.md`, `docs/round/round_02.md`
 
 There are two priority concepts:
 
@@ -48,6 +48,8 @@ Stage 2, Stage 2-High, Stage 3-Watch, Stage 3-Yellow, Stage 3-Green
 
 A strong candidate can remain deterministic Stage 2 while being reported as Stage 3-Watch.
 Example: HD/Iljin-style cases can show `deterministic_stage=Stage 2` and `promotion_band=Stage 3-Watch` until Green evidence is complete.
+
+Round 2 also adds price-pattern labels. Example: a shipping case can be `CYCLE_SPIKE_NORMALIZATION`, while SMCI-like cases can be `ACCOUNTING_TRUST_COLLAPSE`.
 
 ## What not to change yet
 - Do not apply score weights before case/path coverage is checked.

@@ -41,6 +41,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: backlog_to_sales_100pct_plus, lead_time_extended, capa_shortage, asp_opm_improvement, fy1_fy2_eps_revision
 - 4B: target_price_raises_cluster, excessive_price_runup, new_order_slowdown, revision_momentum_slowdown
 - 4C: contract_cancellation_or_delay, asp_opm_decline, backlog_decline, oversupply
+- price_patterns: STAIR_STEP_RERATING, SECTOR_SPREAD_RERATING, MARGIN_NORMALIZATION_RERATING
 
 ### DEFENSE_GOVERNMENT_BACKLOG
 - success_cases: 한화에어로스페이스
@@ -51,6 +52,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: government_customer, multi_year_contract, delivery_visibility, opm_improvement, fy2_fy3_revision
 - 4B: defense_sector_overheat, valuation_consensus_saturated, new_contract_expectation_priced_in
 - 4C: delivery_delay, cost_overrun, contract_cancellation, export_approval_or_political_risk
+- price_patterns: BACKLOG_RERATING, PROGRAM_MILESTONE_RERATING
 
 ### SHIPBUILDING_OFFSHORE_BACKLOG
 - success_cases: -
@@ -61,6 +63,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: backlog_quality_improvement, fy2_fy3_ship_price_reflection, cost_stability, long_delivery_slots
 - 4B: order_peak, newbuild_price_slowdown, valuation_saturated
 - 4C: contract_cancellation, steel_or_labor_cost_spike, delivery_delay, order_cycle_slowdown
+- price_patterns: PRICE_ORDER_RERATING, BACKLOG_RERATING, CYCLE_SPIKE_NORMALIZATION
 
 ### EXPORT_RECURRING_CONSUMER
 - success_cases: 삼양식품
@@ -71,6 +74,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: recurring_consumption, channel_diversification, asp_hold, capa_and_volume_growth, old_domestic_frame
 - 4B: margin_peak, global_brand_consensus_crowded, inventory_or_channel_stuffing_risk
 - 4C: export_growth_slowdown, overseas_inventory_issue, asp_opm_decline, regulatory_or_recall_issue
+- price_patterns: EXPORT_CHANNEL_RERATING, STAIR_STEP_RERATING
 
 ### K_BEAUTY_EXPORT_DISTRIBUTION
 - success_cases: -
@@ -81,6 +85,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: repeat_orders, offline_or_major_retail_entry, no_inventory_receivable_problem, china_dependence_down, old_china_cosmetics_frame
 - 4B: kbeauty_overcrowding, new_brand_saturation, target_price_overheat
 - 4C: sell_through_slowdown, inventory_increase, receivables_deterioration, tariff_or_regulation_impact
+- price_patterns: EXPORT_CHANNEL_RERATING, THEME_FRONT_RUN
 
 ### MEMORY_HBM_CAPACITY
 - success_cases: SK하이닉스
@@ -91,6 +96,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: lta_or_prepayment_or_price_band, capa_constraint, multi_year_consensus_revision, pbr_to_per_frame_shift
 - 4B: per_rerating_consensus, target_multiple_saturated, capex_expansion_news, customer_price_resistance
 - 4C: dram_nand_hbm_price_decline, oversupply, customer_ai_capex_slowdown, consensus_revision_down
+- price_patterns: CAPACITY_BOTTLENECK_RERATING, STAIR_STEP_RERATING, CYCLE_SPIKE_NORMALIZATION
 
 ### SEMI_EQUIPMENT_CAPEX
 - success_cases: -
@@ -101,6 +107,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: bottleneck_equipment_position, long_customer_capex_path, repeat_or_consumable_demand, high_opm
 - 4B: capex_peak, customer_order_slowdown, equipment_lead_time_normalization
 - 4C: order_cancellation, customer_capex_cut, inventory_build
+- price_patterns: CAPACITY_BOTTLENECK_RERATING, CYCLE_SPIKE_NORMALIZATION
 
 ### MEDICAL_DEVICE_HEALTHCARE_EXPORT
 - success_cases: -
@@ -111,6 +118,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: global_channel, repeat_consumable_structure, high_fcf_conversion
 - 4B: medical_beauty_crowding, margin_peak, valuation_saturation
 - 4C: approval_delay, regulation, competition_intensifies
+- price_patterns: EXPORT_CHANNEL_RERATING, DIRECT_RERATING
 
 ### FINANCIAL_SPREAD_BALANCE_SHEET
 - success_cases: -
@@ -121,6 +129,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: pbr_roe_frame_change, recurring_roe, credible_shareholder_return
 - 4B: pbr_gap_closed, return_policy_fully_priced, roe_peak
 - 4C: credit_cost_up, pf_loss, capital_ratio_deterioration
+- price_patterns: VALUE_UP_RERATING
 
 ### TURNAROUND_COST_RESTRUCTURING
 - success_cases: -
@@ -131,6 +140,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: recurring_margin, growth_and_cost_structure_improve_together
 - 4B: turnaround_fully_priced, margin_peak
 - 4C: restructuring_failure, debt_or_liquidity_risk
+- price_patterns: DIRECT_RERATING
 
 ### COMMODITY_SPREAD
 - success_cases: -
@@ -141,6 +151,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: cost_curve_advantage, capacity_discipline, long_term_supply_constraint
 - 4B: spread_peak, inventory_build, broad_consensus_bullish
 - 4C: spread_reversal, china_or_global_capacity_addition, demand_slowdown
+- price_patterns: CYCLE_SPIKE_NORMALIZATION
 
 ### SHIPPING_FREIGHT_CYCLE
 - success_cases: HMM 2020~2021
@@ -151,6 +162,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: multi_year_contract_freight, fleet_supply_constraint
 - 4B: freight_rate_peak, spot_future_divergence, new_vessel_supply
 - 4C: freight_rate_drop, overcapacity, demand_slowdown
+- price_patterns: CYCLE_SPIKE_NORMALIZATION
 
 ### BATTERY_MATERIALS_CAPEX_OVERHEAT
 - success_cases: -
@@ -161,6 +173,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: long_term_contract, price_pass_through, demand_durability, valuation_runway
 - 4B: price_runup, crowding, per_pbr_overheat, revision_slowdown
 - 4C: ev_demand_slowdown, mineral_price_decline, capa_overbuild, margin_compression
+- price_patterns: THEME_FRONT_RUN, CYCLE_SPIKE_NORMALIZATION
 
 ### AUTO_MOBILITY_COMPONENTS
 - success_cases: -
@@ -171,6 +184,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: global_share_gain, valuation_discount_resolution, roe_fcf_durability
 - 4B: peak_margin, tariff_policy_risk, valuation_rerating_complete
 - 4C: tariff_or_demand_slowdown, cost_increase, recall_or_quality_cost
+- price_patterns: VALUE_UP_RERATING, MARGIN_NORMALIZATION_RERATING
 
 ### CONSTRUCTION_REAL_ESTATE_CREDIT
 - success_cases: -
@@ -181,6 +195,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: post_restructuring_repeat_cash_flow
 - 4B: credit_relief_fully_priced, order_quality_ignored
 - 4C: pf_loss, unsold_inventory_increase, credit_rating_downgrade
+- price_patterns: DIRECT_RERATING
 
 ### UTILITIES_REGULATED_TARIFF
 - success_cases: -
@@ -191,6 +206,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: regulatory_frame_change, durable_tariff_pass_through
 - 4B: policy_relief_fully_priced, debt_burden_ignored
 - 4C: tariff_freeze, cost_spike, debt_pressure
+- price_patterns: DIRECT_RERATING
 
 ### BIOTECH_REGULATORY
 - success_cases: -
@@ -201,6 +217,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: actual_sales_or_royalty, eps_fcf_conversion, low_dilution_risk
 - 4B: royalty_curve_priced, clinical_news_crowded
 - 4C: clinical_failure, approval_delay, rights_or_cb_dilution
+- price_patterns: REGULATORY_REVENUE_CONVERSION, THEME_FRONT_RUN
 
 ### ROBOTICS_FACTORY_AUTOMATION
 - success_cases: -
@@ -211,6 +228,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: repeat_revenue_or_consumables, customer_lock_in, cost_leverage
 - 4B: order_delay, missed_results, valuation_overheat
 - 4C: revenue_failure, customer_order_cut, theme_unwind
+- price_patterns: DIRECT_RERATING
 
 ### PLATFORM_SOFTWARE_INTERNET
 - success_cases: -
@@ -221,6 +239,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: recurring_revenue, pricing_power, margin_expansion, old_frame_valuation
 - 4B: platform_multiple_saturated, ai_cost_ignored, crowded_reports
 - 4C: regulation, take_rate_decline, traffic_decline
+- price_patterns: DIRECT_RERATING
 
 ### GAME_CONTENT_IP
 - success_cases: -
@@ -231,6 +250,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: ip_repeatability, global_monetization, low_churn
 - 4B: hit_peak, crowded_ip_reports, valuation_saturation
 - 4C: new_game_failure, contract_risk, core_ip_damage
+- price_patterns: DIRECT_RERATING
 
 ### HOLDING_RESTRUCTURING_GOVERNANCE
 - success_cases: -
@@ -241,6 +261,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: structural_governance_change, repeat_shareholder_return, foreign_ownership_rerating
 - 4B: event_premium_fully_priced, return_policy_no_longer_incremental
 - 4C: controlling_shareholder_risk, subsidiary_value_impairment
+- price_patterns: DIRECT_RERATING
 
 ### ONE_OFF_EVENT_DEMAND
 - success_cases: -
@@ -251,6 +272,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: green_blocked_unless_recurrence_proven
 - 4B: market_extrapolates_one_off, valuation_overheat
 - 4C: demand_normalization, guidance_down, asp_drop
+- price_patterns: CYCLE_SPIKE_NORMALIZATION
 
 ### THEME_VALUATION_OVERHEAT
 - success_cases: -
@@ -261,6 +283,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: green_extremely_limited
 - 4B: valuation_saturation, crowded_reports, price_blowoff
 - 4C: accounting_issue, guidance_miss, revision_down
+- price_patterns: THEME_FRONT_RUN, ACCOUNTING_TRUST_COLLAPSE
 
 ### RETAIL_DOMESTIC_CONSUMER
 - success_cases: -
@@ -271,6 +294,7 @@ This is calibration material. It is not production scoring.
 - Stage 3: structural_channel_advantage, fcf_improvement, valuation_discount_resolution
 - 4B: reopening_trade_crowded, margin_peak, traffic_growth_slowdown
 - 4C: inventory_increase, competition_intensifies, consumer_slowdown
+- price_patterns: DIRECT_RERATING
 
 ### GENERIC_UNCLASSIFIED
 - success_cases: -
@@ -281,3 +305,4 @@ This is calibration material. It is not production scoring.
 - Stage 3: blocked_until_archetype_assigned
 - 4B: unknown
 - 4C: unknown
+- price_patterns: DIRECT_RERATING

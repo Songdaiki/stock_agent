@@ -30,6 +30,7 @@ Added:
 - `output/e2r_archetype_matrix/round2_peer_normalization_metrics.md`
 - `output/e2r_archetype_matrix/round2_case_gap_matrix.csv`
 - `output/e2r_archetype_matrix/round2_shadow_scoring_plan.md`
+- `output/e2r_archetype_matrix/round2_price_pattern_taxonomy.md`
 
 ## Round 01 Patch
 
@@ -55,6 +56,34 @@ The generated priority report now shows:
 - deep-dive priority tier
 - first shadow-scoring candidate flag
 - promotion band reminder
+
+## Round 02 Patch
+
+`docs/round/round_02.md` added price-path context to the same archetype matrix.
+This does not change production scoring. It adds lifecycle labels so a case can
+be reviewed with the right price pattern.
+
+Examples:
+
+```text
+HD현대일렉트릭-like backlog case
+-> price_pattern = STAIR_STEP_RERATING
+-> Stage 2/Stage 3-Watch can survive a pullback only if backlog, margin, and revision evidence remain intact
+
+HMM/씨젠-like one-off or cycle case
+-> price_pattern = CYCLE_SPIKE_NORMALIZATION
+-> EPS explosion is not enough for structural Green
+
+SMCI-like trust issue
+-> price_pattern = ACCOUNTING_TRUST_COLLAPSE
+-> strong prior growth must still be blocked by audit/trust 4C evidence
+```
+
+The generated reports now include:
+
+- archetype-specific price patterns in the matrix
+- `round2_price_pattern_taxonomy.md`
+- price-pattern columns in the case-gap matrix
 
 ## Important
 
@@ -95,4 +124,3 @@ Do not use it to force Stage 3-Green.
 - production feature scoring
 - live candidate generation
 - Red Team decisions
-

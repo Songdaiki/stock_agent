@@ -87,7 +87,98 @@ ROUND2_PROMOTION_BANDS = (
 )
 
 
-ROUND2_SOURCE_ROUND_PATH = "docs/round/round_01.md"
+ROUND2_SOURCE_ROUND_PATHS = (
+    "docs/round/round_01.md",
+    "docs/round/round_02.md",
+)
+
+# Backward-compatible alias for older report consumers.
+ROUND2_SOURCE_ROUND_PATH = ROUND2_SOURCE_ROUND_PATHS[-1]
+
+
+ROUND2_PRICE_PATTERN_TYPES: Mapping[str, str] = {
+    "DIRECT_RERATING": "Stage 2 이후 조정 없이 급등하는 유형",
+    "STAIR_STEP_RERATING": "Stage 2 이후 20~30% 조정 반복 후 계속 상승하는 유형",
+    "CYCLE_SPIKE_NORMALIZATION": "EPS는 폭발하지만 4B/4C가 빨리 와야 하는 유형",
+    "THEME_FRONT_RUN": "가격이 먼저 가고 EPS/FCF가 못 따라오는 유형",
+    "ACCOUNTING_TRUST_COLLAPSE": "Stage 2~3처럼 보이다가 회계/감사/신뢰 이슈로 4C가 터지는 유형",
+    "SECTOR_SPREAD_RERATING": "선도주 리레이팅 이후 동종 섹터로 Stage 1->2가 확산되는 유형",
+    "MARGIN_NORMALIZATION_RERATING": "저마진 물량 정리나 비용구조 개선으로 OPM이 정상화되는 유형",
+    "BACKLOG_RERATING": "계약 하나보다 수주잔고 체급 변화가 가격 프레임을 바꾸는 유형",
+    "PROGRAM_MILESTONE_RERATING": "정부/프로그램 milestone이 납품과 매출 인식으로 이어지는 유형",
+    "PRICE_ORDER_RERATING": "선가/운임/제품가격과 수주가 동시에 움직이는 유형",
+    "EXPORT_CHANNEL_RERATING": "수출 채널 확장과 반복 수요가 내수 프레임을 깨는 유형",
+    "CAPACITY_BOTTLENECK_RERATING": "HBM/CAPA/장비 리드타임 병목이 다년 EPS 경로를 바꾸는 유형",
+    "VALUE_UP_RERATING": "ROE/PBR/주주환원 조합이 Korea discount를 줄이는 유형",
+    "REGULATORY_REVENUE_CONVERSION": "허가/기술이전이 실제 매출·로열티·FCF로 전환되어야 하는 유형",
+}
+
+
+ROUND2_ARCHETYPE_PRICE_PATTERNS: Mapping[E2RArchetype, tuple[str, ...]] = {
+    E2RArchetype.CONTRACT_BACKLOG_INDUSTRIAL: (
+        "STAIR_STEP_RERATING",
+        "SECTOR_SPREAD_RERATING",
+        "MARGIN_NORMALIZATION_RERATING",
+    ),
+    E2RArchetype.DEFENSE_GOVERNMENT_BACKLOG: (
+        "BACKLOG_RERATING",
+        "PROGRAM_MILESTONE_RERATING",
+    ),
+    E2RArchetype.SHIPBUILDING_OFFSHORE_BACKLOG: (
+        "PRICE_ORDER_RERATING",
+        "BACKLOG_RERATING",
+        "CYCLE_SPIKE_NORMALIZATION",
+    ),
+    E2RArchetype.EXPORT_RECURRING_CONSUMER: (
+        "EXPORT_CHANNEL_RERATING",
+        "STAIR_STEP_RERATING",
+    ),
+    E2RArchetype.K_BEAUTY_EXPORT_DISTRIBUTION: (
+        "EXPORT_CHANNEL_RERATING",
+        "THEME_FRONT_RUN",
+    ),
+    E2RArchetype.MEMORY_HBM_CAPACITY: (
+        "CAPACITY_BOTTLENECK_RERATING",
+        "STAIR_STEP_RERATING",
+        "CYCLE_SPIKE_NORMALIZATION",
+    ),
+    E2RArchetype.SEMI_EQUIPMENT_CAPEX: (
+        "CAPACITY_BOTTLENECK_RERATING",
+        "CYCLE_SPIKE_NORMALIZATION",
+    ),
+    E2RArchetype.BATTERY_MATERIALS_CAPEX_OVERHEAT: (
+        "THEME_FRONT_RUN",
+        "CYCLE_SPIKE_NORMALIZATION",
+    ),
+    E2RArchetype.COMMODITY_SPREAD: (
+        "CYCLE_SPIKE_NORMALIZATION",
+    ),
+    E2RArchetype.SHIPPING_FREIGHT_CYCLE: (
+        "CYCLE_SPIKE_NORMALIZATION",
+    ),
+    E2RArchetype.AUTO_MOBILITY_COMPONENTS: (
+        "VALUE_UP_RERATING",
+        "MARGIN_NORMALIZATION_RERATING",
+    ),
+    E2RArchetype.FINANCIAL_SPREAD_BALANCE_SHEET: (
+        "VALUE_UP_RERATING",
+    ),
+    E2RArchetype.BIOTECH_REGULATORY: (
+        "REGULATORY_REVENUE_CONVERSION",
+        "THEME_FRONT_RUN",
+    ),
+    E2RArchetype.MEDICAL_DEVICE_HEALTHCARE_EXPORT: (
+        "EXPORT_CHANNEL_RERATING",
+        "DIRECT_RERATING",
+    ),
+    E2RArchetype.ONE_OFF_EVENT_DEMAND: (
+        "CYCLE_SPIKE_NORMALIZATION",
+    ),
+    E2RArchetype.THEME_VALUATION_OVERHEAT: (
+        "THEME_FRONT_RUN",
+        "ACCOUNTING_TRUST_COLLAPSE",
+    ),
+}
 
 
 @dataclass(frozen=True)
@@ -542,6 +633,11 @@ def first_shadow_scoring_candidate(archetype: E2RArchetype | str) -> bool:
     return round1_core_for(archetype) in ROUND2_FIRST_SHADOW_SCORING_ARCHETYPES
 
 
+def price_patterns_for(archetype: E2RArchetype | str) -> tuple[str, ...]:
+    item = round1_core_for(archetype)
+    return ROUND2_ARCHETYPE_PRICE_PATTERNS.get(item, ("DIRECT_RERATING",))
+
+
 def round2_case_gap_summary(records: Iterable[E2RCaseRecord]) -> tuple[dict[str, object], ...]:
     rows = tuple(records)
     output: list[dict[str, object]] = []
@@ -568,6 +664,7 @@ def round2_case_gap_summary(records: Iterable[E2RCaseRecord]) -> tuple[dict[str,
                 "status": status,
                 "positive_case_ids": tuple(record.case_id for record in positive),
                 "counterexample_case_ids": tuple(record.case_id for record in counter),
+                "price_patterns": price_patterns_for(entry.archetype),
             }
         )
     return tuple(output)
@@ -587,12 +684,14 @@ def write_round2_matrix_reports(
     peer_md = output / "round2_peer_normalization_metrics.md"
     gap_csv = output / "round2_case_gap_matrix.csv"
     shadow_md = output / "round2_shadow_scoring_plan.md"
+    price_patterns_md = output / "round2_price_pattern_taxonomy.md"
     matrix_md.write_text(render_round2_matrix_markdown(), encoding="utf-8")
     _write_weights_csv(weights_csv)
     priority_md.write_text(render_round2_priority_markdown(records), encoding="utf-8")
     peer_md.write_text(render_peer_normalization_markdown(), encoding="utf-8")
     _write_gap_csv(gap_csv, records)
     shadow_md.write_text(render_shadow_scoring_plan_markdown(records), encoding="utf-8")
+    price_patterns_md.write_text(render_price_pattern_taxonomy_markdown(), encoding="utf-8")
     return {
         "matrix": matrix_md,
         "weights": weights_csv,
@@ -600,6 +699,7 @@ def write_round2_matrix_reports(
         "peer_metrics": peer_md,
         "case_gap_matrix": gap_csv,
         "shadow_scoring_plan": shadow_md,
+        "price_pattern_taxonomy": price_patterns_md,
     }
 
 
@@ -635,6 +735,7 @@ def render_round2_matrix_markdown() -> str:
                 f"- Stage 3: {', '.join(entry.stage3_signals)}",
                 f"- 4B: {', '.join(entry.stage4b_signals)}",
                 f"- 4C: {', '.join(entry.stage4c_signals)}",
+                f"- price_patterns: {', '.join(price_patterns_for(entry.archetype))}",
             ]
         )
     return "\n".join(lines) + "\n"
@@ -645,7 +746,7 @@ def render_round2_priority_markdown(records: Iterable[E2RCaseRecord]) -> str:
     lines = [
         "# Round-2 Case Mining Priorities",
         "",
-        f"Source round: `{ROUND2_SOURCE_ROUND_PATH}`",
+        "Source rounds: " + ", ".join(f"`{path}`" for path in ROUND2_SOURCE_ROUND_PATHS),
         "",
         "There are two priority concepts:",
         "",
@@ -680,6 +781,8 @@ def render_round2_priority_markdown(records: Iterable[E2RCaseRecord]) -> str:
             "",
             "A strong candidate can remain deterministic Stage 2 while being reported as Stage 3-Watch.",
             "Example: HD/Iljin-style cases can show `deterministic_stage=Stage 2` and `promotion_band=Stage 3-Watch` until Green evidence is complete.",
+            "",
+            "Round 2 also adds price-pattern labels. Example: a shipping case can be `CYCLE_SPIKE_NORMALIZATION`, while SMCI-like cases can be `ACCOUNTING_TRUST_COLLAPSE`.",
         ]
     )
     lines.extend(
@@ -690,6 +793,44 @@ def render_round2_priority_markdown(records: Iterable[E2RCaseRecord]) -> str:
             "- Do not lower Stage 3-Green to improve recall.",
             "- Do not use this matrix as candidate-generation input.",
             "- Use it to decide what evidence snapshots, price paths, and counterexamples to add next.",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def render_price_pattern_taxonomy_markdown() -> str:
+    lines = [
+        "# Round-2 Price Pattern Taxonomy",
+        "",
+        "This is lifecycle calibration material, not a production trading signal.",
+        "",
+        "Round 2 links Stage progression to price-path behavior so 4B/4C is not treated as price-only.",
+        "",
+        "## Pattern Types",
+    ]
+    for pattern, description in ROUND2_PRICE_PATTERN_TYPES.items():
+        lines.append(f"- `{pattern}`: {description}")
+    lines.extend(
+        [
+            "",
+            "## Archetype Mapping",
+            "",
+            "| archetype | price patterns | Green implication |",
+            "|---|---|---|",
+        ]
+    )
+    for entry in all_matrix_entries():
+        patterns = price_patterns_for(entry.archetype)
+        descriptions = "; ".join(f"{pattern}: {ROUND2_PRICE_PATTERN_TYPES[pattern]}" for pattern in patterns)
+        lines.append(f"| {entry.archetype.value} | {descriptions} | {entry.green_gate_policy} |")
+    lines.extend(
+        [
+            "",
+            "## Example",
+            "",
+            "A power-equipment candidate can be Stage 2 with `STAIR_STEP_RERATING`: it may pull back 20~30% and still remain structurally intact if backlog, margin, and revision evidence persist.",
+            "",
+            "A theme or one-off case can have strong price action, but `THEME_FRONT_RUN` or `CYCLE_SPIKE_NORMALIZATION` keeps Green restricted until EPS/FCF durability is proven.",
         ]
     )
     return "\n".join(lines) + "\n"
@@ -720,6 +861,7 @@ def render_shadow_scoring_plan_markdown(records: Iterable[E2RCaseRecord]) -> str
             "- Do not replace StageClassifier in the first shadow run.",
             "- Use promotion bands for visibility before changing Green gates.",
             "- Keep one-off and overheat archetypes as guardrails, not Green factories.",
+            "- Review price-pattern labels before treating a move as durable rerating.",
         ]
     )
     return "\n".join(lines) + "\n"
@@ -793,6 +935,7 @@ def _write_gap_csv(path: Path, records: Iterable[E2RCaseRecord]) -> Path:
                 "positive_count",
                 "counterexample_count",
                 "status",
+                "price_patterns",
                 "positive_case_ids",
                 "counterexample_case_ids",
             ),
@@ -802,6 +945,7 @@ def _write_gap_csv(path: Path, records: Iterable[E2RCaseRecord]) -> Path:
             writer.writerow(
                 {
                     **{key: value for key, value in row.items() if not key.endswith("_case_ids")},
+                    "price_patterns": "|".join(row["price_patterns"]),
                     "positive_case_ids": "|".join(row["positive_case_ids"]),
                     "counterexample_case_ids": "|".join(row["counterexample_case_ids"]),
                 }
@@ -812,16 +956,21 @@ def _write_gap_csv(path: Path, records: Iterable[E2RCaseRecord]) -> Path:
 __all__ = [
     "ArchetypeMatrixEntry",
     "ROUND2_ARCHETYPE_MATRIX",
+    "ROUND2_ARCHETYPE_PRICE_PATTERNS",
     "ROUND2_DEEP_DIVE_PRIORITY_GROUPS",
     "ROUND2_FIRST_SHADOW_SCORING_ARCHETYPES",
     "ROUND2_PEER_NORMALIZATION_METRICS",
+    "ROUND2_PRICE_PATTERN_TYPES",
     "ROUND2_PROMOTION_BANDS",
     "ROUND2_SOURCE_ROUND_PATH",
+    "ROUND2_SOURCE_ROUND_PATHS",
     "all_matrix_entries",
     "deep_dive_priority_tier",
     "first_shadow_scoring_candidate",
     "matrix_entry",
+    "price_patterns_for",
     "render_peer_normalization_markdown",
+    "render_price_pattern_taxonomy_markdown",
     "render_round2_matrix_markdown",
     "render_round2_priority_markdown",
     "render_shadow_scoring_plan_markdown",
