@@ -23,7 +23,44 @@ from e2r.sector.archetypes import (
 from e2r.sources.source_errors import date_value
 
 
-EXPECTED_GROUPS = POSITIVE_GROUPS | COUNTEREXAMPLE_GROUPS
+CASE_TYPES = frozenset(
+    {
+        "structural_success",
+        "success_candidate",
+        "cyclical_success",
+        "one_off",
+        "overheat",
+        "failed_rerating",
+        "event_premium",
+        "4b_watch",
+        "4c_thesis_break",
+    }
+)
+LEGACY_EXPECTED_GROUPS = frozenset({"boom_bust"})
+EXPECTED_GROUPS = POSITIVE_GROUPS | COUNTEREXAMPLE_GROUPS | LEGACY_EXPECTED_GROUPS
+SCORE_PRICE_ALIGNMENT_VALUES = frozenset(
+    {
+        "unknown",
+        "aligned",
+        "false_positive_score",
+        "missed_due_to_score",
+        "price_moved_without_evidence",
+        "evidence_good_but_price_failed",
+    }
+)
+RERATING_RESULT_VALUES = frozenset(
+    {
+        "unknown",
+        "true_rerating",
+        "cyclical_rerating",
+        "event_premium",
+        "theme_overheat",
+        "no_rerating",
+        "thesis_break",
+        "credit_relief_rally",
+        "policy_event_rerating",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -47,6 +84,51 @@ class PricePathSummary:
         return cls(**{key: _float_or_none((value or {}).get(key)) for key in cls.__dataclass_fields__})
 
     def as_dict(self) -> dict[str, float | None]:
+        return {key: getattr(self, key) for key in self.__dataclass_fields__}
+
+
+@dataclass(frozen=True)
+class PriceValidation:
+    """Stage price and forward path validation for one case."""
+
+    stage1_price: float | None = None
+    stage2_price: float | None = None
+    stage3_price: float | None = None
+    stage4b_price: float | None = None
+    stage4c_price: float | None = None
+    peak_price: float | None = None
+    mfe_90d: float | None = None
+    mfe_180d: float | None = None
+    mfe_1y: float | None = None
+    mae_90d: float | None = None
+    mae_180d: float | None = None
+    mae_1y: float | None = None
+    drawdown_after_peak: float | None = None
+    below_stage3_price_flag: bool | None = None
+    price_validation_status: str = "needs_price_backfill"
+
+    @classmethod
+    def from_mapping(cls, value: Mapping[str, Any] | None) -> "PriceValidation":
+        value = value or {}
+        return cls(
+            stage1_price=_float_or_none(value.get("stage1_price")),
+            stage2_price=_float_or_none(value.get("stage2_price")),
+            stage3_price=_float_or_none(value.get("stage3_price")),
+            stage4b_price=_float_or_none(value.get("stage4b_price")),
+            stage4c_price=_float_or_none(value.get("stage4c_price")),
+            peak_price=_float_or_none(value.get("peak_price")),
+            mfe_90d=_float_or_none(value.get("mfe_90d")),
+            mfe_180d=_float_or_none(value.get("mfe_180d")),
+            mfe_1y=_float_or_none(value.get("mfe_1y")),
+            mae_90d=_float_or_none(value.get("mae_90d")),
+            mae_180d=_float_or_none(value.get("mae_180d")),
+            mae_1y=_float_or_none(value.get("mae_1y")),
+            drawdown_after_peak=_float_or_none(value.get("drawdown_after_peak")),
+            below_stage3_price_flag=_bool_or_none(value.get("below_stage3_price_flag")),
+            price_validation_status=str(value.get("price_validation_status") or "needs_price_backfill"),
+        )
+
+    def as_dict(self) -> dict[str, float | bool | str | None]:
         return {key: getattr(self, key) for key in self.__dataclass_fields__}
 
 
@@ -86,6 +168,9 @@ class E2RCaseRecord:
     sector_raw: str
     primary_archetype: E2RArchetype
     expected_group: str
+    large_sector: str = ""
+    secondary_archetypes: tuple[E2RArchetype, ...] = field(default_factory=tuple)
+    case_type: str = "structural_success"
     stage1_date: date | None = None
     stage2_date: date | None = None
     stage3_date: date | None = None
@@ -94,8 +179,21 @@ class E2RCaseRecord:
     stage4c_date: date | None = None
     peak_date: date | None = None
     evidence_summary: str = ""
+    stage1_evidence: tuple[str, ...] = field(default_factory=tuple)
+    stage2_evidence: tuple[str, ...] = field(default_factory=tuple)
+    stage3_evidence: tuple[str, ...] = field(default_factory=tuple)
+    stage4b_evidence: tuple[str, ...] = field(default_factory=tuple)
+    stage4c_evidence: tuple[str, ...] = field(default_factory=tuple)
+    must_have_fields: tuple[str, ...] = field(default_factory=tuple)
+    red_flag_fields: tuple[str, ...] = field(default_factory=tuple)
     key_evidence_fields: tuple[str, ...] = field(default_factory=tuple)
     false_positive_reason: str | None = None
+    score_price_alignment: str = "unknown"
+    rerating_result: str = "unknown"
+    price_pattern: str = "unknown"
+    score_weight_hint: Mapping[str, float] = field(default_factory=dict)
+    green_guardrails: tuple[str, ...] = field(default_factory=tuple)
+    price_validation: PriceValidation = field(default_factory=PriceValidation)
     price_path: PricePathSummary = field(default_factory=PricePathSummary)
     data_quality: CaseDataQuality = field(
         default_factory=lambda: CaseDataQuality(False, False, False, 0.0)
@@ -103,6 +201,7 @@ class E2RCaseRecord:
 
     @classmethod
     def from_mapping(cls, value: Mapping[str, Any]) -> "E2RCaseRecord":
+        case_type = str(value.get("case_type") or _legacy_case_type(value.get("expected_group")) or "structural_success")
         return cls(
             case_id=str(value["case_id"]),
             symbol=str(value["symbol"]),
@@ -110,7 +209,10 @@ class E2RCaseRecord:
             market=str(value.get("market") or "KR"),
             sector_raw=str(value.get("sector_raw") or ""),
             primary_archetype=E2RArchetype(value["primary_archetype"]),
-            expected_group=str(value["expected_group"]),
+            expected_group=str(value.get("expected_group") or case_type),
+            large_sector=str(value.get("large_sector") or ""),
+            secondary_archetypes=tuple(E2RArchetype(item) for item in value.get("secondary_archetypes", ()) or ()),
+            case_type=case_type,
             stage1_date=_date_or_none(value.get("stage1_date")),
             stage2_date=_date_or_none(value.get("stage2_date")),
             stage3_date=_date_or_none(value.get("stage3_date")),
@@ -119,8 +221,21 @@ class E2RCaseRecord:
             stage4c_date=_date_or_none(value.get("stage4c_date")),
             peak_date=_date_or_none(value.get("peak_date")),
             evidence_summary=str(value.get("evidence_summary") or ""),
+            stage1_evidence=tuple(value.get("stage1_evidence") or ()),
+            stage2_evidence=tuple(value.get("stage2_evidence") or ()),
+            stage3_evidence=tuple(value.get("stage3_evidence") or ()),
+            stage4b_evidence=tuple(value.get("stage4b_evidence") or ()),
+            stage4c_evidence=tuple(value.get("stage4c_evidence") or ()),
+            must_have_fields=tuple(value.get("must_have_fields") or value.get("key_evidence_fields") or ()),
+            red_flag_fields=tuple(value.get("red_flag_fields") or ()),
             key_evidence_fields=tuple(value.get("key_evidence_fields") or ()),
             false_positive_reason=value.get("false_positive_reason"),
+            score_price_alignment=str(value.get("score_price_alignment") or "unknown"),
+            rerating_result=str(value.get("rerating_result") or "unknown"),
+            price_pattern=str(value.get("price_pattern") or "unknown"),
+            score_weight_hint=dict(value.get("score_weight_hint") or {}),
+            green_guardrails=tuple(value.get("green_guardrails") or ()),
+            price_validation=PriceValidation.from_mapping(value.get("price_validation")),
             price_path=PricePathSummary.from_mapping(value.get("price_path")),
             data_quality=CaseDataQuality.from_mapping(value.get("data_quality") or {}),
         )
@@ -132,6 +247,12 @@ class E2RCaseRecord:
             raise ValueError("symbol must be non-empty")
         if self.expected_group not in EXPECTED_GROUPS:
             raise ValueError(f"unsupported expected_group: {self.expected_group}")
+        if self.case_type not in CASE_TYPES:
+            raise ValueError(f"unsupported case_type: {self.case_type}")
+        if self.score_price_alignment not in SCORE_PRICE_ALIGNMENT_VALUES:
+            raise ValueError(f"unsupported score_price_alignment: {self.score_price_alignment}")
+        if self.rerating_result not in RERATING_RESULT_VALUES:
+            raise ValueError(f"unsupported rerating_result: {self.rerating_result}")
         if self.data_quality.stage_dates_confidence < 0 or self.data_quality.stage_dates_confidence > 1:
             raise ValueError("stage_dates_confidence must be between 0 and 1")
 
@@ -144,6 +265,9 @@ class E2RCaseRecord:
             "sector_raw": self.sector_raw,
             "primary_archetype": self.primary_archetype.value,
             "expected_group": self.expected_group,
+            "large_sector": self.large_sector,
+            "secondary_archetypes": [item.value for item in self.secondary_archetypes],
+            "case_type": self.case_type,
             "stage1_date": _date_text(self.stage1_date),
             "stage2_date": _date_text(self.stage2_date),
             "stage3_date": _date_text(self.stage3_date),
@@ -152,8 +276,21 @@ class E2RCaseRecord:
             "stage4c_date": _date_text(self.stage4c_date),
             "peak_date": _date_text(self.peak_date),
             "evidence_summary": self.evidence_summary,
+            "stage1_evidence": list(self.stage1_evidence),
+            "stage2_evidence": list(self.stage2_evidence),
+            "stage3_evidence": list(self.stage3_evidence),
+            "stage4b_evidence": list(self.stage4b_evidence),
+            "stage4c_evidence": list(self.stage4c_evidence),
+            "must_have_fields": list(self.must_have_fields),
+            "red_flag_fields": list(self.red_flag_fields),
             "key_evidence_fields": list(self.key_evidence_fields),
             "false_positive_reason": self.false_positive_reason,
+            "score_price_alignment": self.score_price_alignment,
+            "rerating_result": self.rerating_result,
+            "price_pattern": self.price_pattern,
+            "score_weight_hint": dict(self.score_weight_hint),
+            "green_guardrails": list(self.green_guardrails),
+            "price_validation": self.price_validation.as_dict(),
             "price_path": self.price_path.as_dict(),
             "data_quality": self.data_quality.as_dict(),
         }
@@ -206,8 +343,8 @@ def coverage_by_archetype(
     coverage: list[ArchetypeCoverage] = []
     for definition in all_archetype_definitions():
         archetype_records = tuple(record for record in records_tuple if record.primary_archetype == definition.archetype)
-        positive = tuple(record for record in archetype_records if record.expected_group in POSITIVE_GROUPS)
-        counter = tuple(record for record in archetype_records if record.expected_group in COUNTEREXAMPLE_GROUPS)
+        positive = tuple(record for record in archetype_records if record.case_type in POSITIVE_GROUPS)
+        counter = tuple(record for record in archetype_records if record.case_type in COUNTEREXAMPLE_GROUPS)
         status = (
             "covered"
             if len(positive) >= min_positive_cases and len(counter) >= min_counterexamples
@@ -344,10 +481,24 @@ def _date_text(value: date | None) -> str | None:
     return value.isoformat() if value else None
 
 
+def _legacy_case_type(value: Any) -> str | None:
+    if value == "boom_bust":
+        return "4b_watch"
+    if value in CASE_TYPES:
+        return str(value)
+    return None
+
+
 def _float_or_none(value: Any) -> float | None:
     if value in (None, ""):
         return None
     return float(value)
+
+
+def _bool_or_none(value: Any) -> bool | None:
+    if value in (None, ""):
+        return None
+    return _bool(value)
 
 
 def _bool(value: Any) -> bool:
@@ -360,10 +511,14 @@ def _bool(value: Any) -> bool:
 
 __all__ = [
     "ArchetypeCoverage",
+    "CASE_TYPES",
     "CaseDataQuality",
     "E2RCaseRecord",
     "EXPECTED_GROUPS",
+    "PriceValidation",
     "PricePathSummary",
+    "RERATING_RESULT_VALUES",
+    "SCORE_PRICE_ALIGNMENT_VALUES",
     "coverage_by_archetype",
     "load_case_library",
     "render_case_coverage_summary",

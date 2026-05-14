@@ -25,11 +25,21 @@ class E2RArchetype(str, Enum):
     COMMODITY_SPREAD = "COMMODITY_SPREAD"
     SHIPPING_FREIGHT_CYCLE = "SHIPPING_FREIGHT_CYCLE"
     AUTO_MOBILITY_COMPONENTS = "AUTO_MOBILITY_COMPONENTS"
+    AUTO_MOBILITY_COMPLETED_VEHICLE = "AUTO_MOBILITY_COMPLETED_VEHICLE"
     ROBOTICS_FACTORY_AUTOMATION = "ROBOTICS_FACTORY_AUTOMATION"
+    AI_DATA_CENTER_INFRASTRUCTURE = "AI_DATA_CENTER_INFRASTRUCTURE"
+    NUCLEAR_SMR_GRID_POLICY = "NUCLEAR_SMR_GRID_POLICY"
+    TRAVEL_LEISURE_REOPENING = "TRAVEL_LEISURE_REOPENING"
+    EDUCATION_SPECIALTY_SERVICES = "EDUCATION_SPECIALTY_SERVICES"
+    RARE_METALS_STRATEGIC_MATERIALS = "RARE_METALS_STRATEGIC_MATERIALS"
+    VALUE_UP_SHAREHOLDER_RETURN = "VALUE_UP_SHAREHOLDER_RETURN"
     PLATFORM_SOFTWARE_INTERNET = "PLATFORM_SOFTWARE_INTERNET"
     GAME_CONTENT_IP = "GAME_CONTENT_IP"
     FINANCIAL_SPREAD_BALANCE_SHEET = "FINANCIAL_SPREAD_BALANCE_SHEET"
     BIOTECH_REGULATORY = "BIOTECH_REGULATORY"
+    BIOTECH_PRE_REVENUE_REGULATORY = "BIOTECH_PRE_REVENUE_REGULATORY"
+    BIOTECH_ROYALTY_COMMERCIALIZATION = "BIOTECH_ROYALTY_COMMERCIALIZATION"
+    CDMO_HEALTHCARE_CONTRACT = "CDMO_HEALTHCARE_CONTRACT"
     MEDICAL_DEVICE_HEALTHCARE_EXPORT = "MEDICAL_DEVICE_HEALTHCARE_EXPORT"
     RETAIL_DOMESTIC_CONSUMER = "RETAIL_DOMESTIC_CONSUMER"
     CONSTRUCTION_REAL_ESTATE_CREDIT = "CONSTRUCTION_REAL_ESTATE_CREDIT"
@@ -181,6 +191,66 @@ ARCHETYPE_DEFINITIONS.update(
             false_positive_patterns=("story-only rerating", "no cash flow", "dilution ignored"),
             preferred_score_weights=_weights(eps_fcf=18, visibility=8, bottleneck=8, mispricing=7, valuation=5),
         ),
+        E2RArchetype.AI_DATA_CENTER_INFRASTRUCTURE: ArchetypeDefinition(
+            archetype=E2RArchetype.AI_DATA_CENTER_INFRASTRUCTURE,
+            stage1_radar_signals=("AI data center power demand", "grid bottleneck", "server/rack order keyword"),
+            stage2_candidate_signals=("confirmed orders", "capacity constraint", "OP/EPS revision"),
+            stage3_high_conviction_signals=("multi-source data-center demand", "power/cooling bottleneck", "EPS/FCF bodyweight change"),
+            stage4a_ongoing_signals=("orders convert to revenue", "capacity remains scarce", "revision path intact"),
+            stage4b_graduation_overheat_signals=("AI infrastructure narrative crowded", "price outruns orders", "capex slowdown hints"),
+            stage4c_thesis_break_signals=("customer capex cut", "order cancellation", "margin pressure"),
+            key_evidence_families=("disclosure", "research_report", "news", "consensus_revision"),
+            false_positive_patterns=("AI keyword only", "no confirmed order", "power theme without revenue"),
+            preferred_score_weights=_weights(eps_fcf=22, visibility=22, bottleneck=21, mispricing=13, valuation=12),
+        ),
+        E2RArchetype.NUCLEAR_SMR_GRID_POLICY: ArchetypeDefinition(
+            archetype=E2RArchetype.NUCLEAR_SMR_GRID_POLICY,
+            stage1_radar_signals=("nuclear policy event", "SMR/grid contract keyword", "export project news"),
+            stage2_candidate_signals=("contract award", "permitted project timeline", "supplier revenue visibility"),
+            stage3_high_conviction_signals=("binding project economics", "multi-year backlog", "EPS/FCF path confirmed"),
+            stage4a_ongoing_signals=("project schedule intact", "policy support intact"),
+            stage4b_graduation_overheat_signals=("policy premium crowds valuation", "legal delay ignored"),
+            stage4c_thesis_break_signals=("legal delay", "project cancellation", "cost overrun"),
+            key_evidence_families=("disclosure", "news", "research_report"),
+            false_positive_patterns=("policy headline without contract", "legal appeal ignored"),
+            preferred_score_weights=_weights(eps_fcf=18, visibility=24, bottleneck=14, mispricing=15, valuation=12),
+        ),
+        E2RArchetype.VALUE_UP_SHAREHOLDER_RETURN: ArchetypeDefinition(
+            archetype=E2RArchetype.VALUE_UP_SHAREHOLDER_RETURN,
+            stage1_radar_signals=("buyback/cancellation", "dividend policy", "value-up disclosure"),
+            stage2_candidate_signals=("ROE improvement", "capital return durability", "NAV discount narrowing catalyst"),
+            stage3_high_conviction_signals=("repeatable cash return", "governance improvement", "earnings/NAV support"),
+            stage4a_ongoing_signals=("capital return continues", "balance sheet remains healthy"),
+            stage4b_graduation_overheat_signals=("event premium fully priced", "return policy no longer incremental"),
+            stage4c_thesis_break_signals=("buyback without cancellation", "governance dispute", "credit deterioration"),
+            key_evidence_families=("disclosure", "financial_actual", "news", "research_report"),
+            false_positive_patterns=("announcement-only premium", "no FCF/NAV improvement", "one-off event"),
+            preferred_score_weights=_weights(eps_fcf=16, visibility=19, bottleneck=8, mispricing=24, valuation=20),
+        ),
+        E2RArchetype.BIOTECH_ROYALTY_COMMERCIALIZATION: ArchetypeDefinition(
+            archetype=E2RArchetype.BIOTECH_ROYALTY_COMMERCIALIZATION,
+            stage1_radar_signals=("royalty deal", "commercial launch", "milestone payment"),
+            stage2_candidate_signals=("royalty economics", "partner launch progress", "cash runway"),
+            stage3_high_conviction_signals=("commercial royalty visibility", "repeatable milestone/royalty path", "dilution risk controlled"),
+            stage4a_ongoing_signals=("launch curve intact", "partner execution intact"),
+            stage4b_graduation_overheat_signals=("royalty curve fully priced", "trial/news crowding"),
+            stage4c_thesis_break_signals=("trial failure", "label/commercial setback", "CB/dilution pressure"),
+            key_evidence_families=("disclosure", "news", "research_report"),
+            false_positive_patterns=("pre-revenue story treated as cash flow", "dilution ignored"),
+            preferred_score_weights=_weights(eps_fcf=15, visibility=23, bottleneck=9, mispricing=18, valuation=12),
+        ),
+        E2RArchetype.CDMO_HEALTHCARE_CONTRACT: ArchetypeDefinition(
+            archetype=E2RArchetype.CDMO_HEALTHCARE_CONTRACT,
+            stage1_radar_signals=("CDMO contract", "capacity utilization", "new plant validation"),
+            stage2_candidate_signals=("multi-year manufacturing order", "utilization ramp", "margin path"),
+            stage3_high_conviction_signals=("contracted capacity", "utilization leverage", "FCF path"),
+            stage4a_ongoing_signals=("utilization and order intake remain strong",),
+            stage4b_graduation_overheat_signals=("capacity priced before utilization", "customer concentration ignored"),
+            stage4c_thesis_break_signals=("underutilization", "contract delay", "quality issue"),
+            key_evidence_families=("disclosure", "financial_actual", "research_report"),
+            false_positive_patterns=("capacity exists but demand absent", "validation delay"),
+            preferred_score_weights=_weights(eps_fcf=20, visibility=24, bottleneck=16, mispricing=14, valuation=12),
+        ),
     }
 )
 
@@ -199,8 +269,10 @@ def all_archetype_definitions() -> tuple[ArchetypeDefinition, ...]:
     return tuple(ARCHETYPE_DEFINITIONS[item] for item in E2RArchetype)
 
 
-POSITIVE_GROUPS = frozenset({"structural_success", "cyclical_success"})
-COUNTEREXAMPLE_GROUPS = frozenset({"one_off", "boom_bust", "overheat", "failed_rerating"})
+POSITIVE_GROUPS = frozenset({"structural_success", "success_candidate", "cyclical_success"})
+COUNTEREXAMPLE_GROUPS = frozenset(
+    {"one_off", "boom_bust", "overheat", "failed_rerating", "event_premium", "4b_watch", "4c_thesis_break"}
+)
 
 
 __all__ = [
