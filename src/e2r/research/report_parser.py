@@ -185,6 +185,7 @@ def _extract_fields(text: str) -> dict[str, Any]:
         "contract_duration_months": ("계약기간", "계약 기간", "duration months"),
         "capa_increase_pct": ("CAPA 증가율", "CAPA 증설", "생산능력 증가"),
         "export_ratio": ("수출 비중", "Export ratio"),
+        "export_growth_pct": ("수출 증가율", "수출 성장률", "Export growth"),
         "us_revenue_ratio": ("미국향 매출 비중", "북미 매출 비중", "US revenue ratio"),
         "asp_yoy_pct": ("ASP 상승률", "판가 상승률", "가격 상승률"),
         "lead_time_months": ("리드타임", "lead time"),
@@ -204,6 +205,7 @@ def _extract_fields(text: str) -> dict[str, Any]:
         "contract_amount_to_prior_sales",
         "capa_increase_pct",
         "export_ratio",
+        "export_growth_pct",
         "us_revenue_ratio",
         "asp_yoy_pct",
         "opm_expansion_pctp",
@@ -236,14 +238,19 @@ def _extract_fields(text: str) -> dict[str, Any]:
         fields["asp_increase_mentioned"] = any(token in text for token in ("ASP 상승", "판가 상승", "가격 상승", "ASP 개선"))
     if any(token in text for token in ("ASP 상승", "판가 상승", "가격 상승", "ASP 개선", "판가 개선")):
         fields["pricing_power_confirmed"] = True
+        fields["pricing_power_mentioned"] = True
     if "리드타임" in text or "lead time" in text.lower():
         fields["lead_time_mentioned"] = True
     if any(token in text for token in ("리드타임 장기화", "CAPA 부족", "생산능력 부족", "공급부족")):
         fields["capacity_constraint"] = True
+    if "리드타임 장기화" in text:
+        fields["lead_time_extended"] = True
     if "공급부족" in text or "공급 부족" in text or "shortage" in text.lower():
         fields["shortage_mentioned"] = True
+        fields["supply_shortage_mentioned"] = True
     if "구조적 공급부족" in text or "structural shortage" in text.lower():
         fields["shortage_type"] = "structural"
+        fields["structural_shortage_mentioned"] = True
     lowered = text.lower()
     if any(token in lowered for token in ("pandemic", "temporary", "one-off", "one off")) or any(
         token in text for token in ("팬데믹", "코로나", "일회성", "진단키트")
@@ -255,7 +262,39 @@ def _extract_fields(text: str) -> dict[str, Any]:
         fields["one_off_shortage_risk"] = 90.0
     if "사상 최대 수주잔고" in text or ("수주잔고" in text and "사상 최대" in text):
         fields["record_backlog"] = True
+        fields["backlog_record_high"] = True
+    _add_qualitative_e2r_fields(text, fields)
     return fields
+
+
+def _add_qualitative_e2r_fields(text: str, fields: dict[str, Any]) -> None:
+    lowered = text.lower()
+    if any(token in text for token in ("수출 비중 확대", "수출 확대", "수출 증가", "해외 매출 확대")):
+        fields["export_channel_expansion"] = True
+        fields["export_growth_mentioned"] = True
+    if any(token in text for token in ("해외 채널 확대", "해외 채널 확장", "북미 채널", "미국 채널")):
+        fields["overseas_channel_expansion"] = True
+        fields["channel_expansion"] = True
+    if any(token in text for token in ("반복 수요", "재구매", "리오더", "recurring demand", "repeat purchase")):
+        fields["recurring_consumer_demand"] = True
+    if "불닭" in text and any(token in text for token in ("수출", "채널", "미국", "해외")):
+        fields["recurring_consumer_demand"] = True
+        fields["export_channel_expansion"] = True
+    if any(token in text for token in ("고마진 믹스", "믹스 개선", "수익성 높은", "OPM 개선", "마진 개선")):
+        fields["high_margin_mix_improvement"] = True
+    if "hbm" in lowered and any(token in text for token in ("수요 증가", "수요 확대", "수요 강세")):
+        fields["hbm_demand_mentioned"] = True
+    if any(token in text for token in ("메모리 가격 상승", "DRAM 가격 상승", "D램 가격 상승", "NAND 가격 상승", "낸드 가격 상승")):
+        fields["memory_price_increase_mentioned"] = True
+        fields["pricing_power_mentioned"] = True
+    if any(token in text for token in ("공급조절", "감산", "공급 discipline", "supply discipline")):
+        fields["supply_discipline_mentioned"] = True
+    if any(token in text for token in ("선주문", "preorder", "allocation", "우선 배정")):
+        fields["customer_preorder_or_allocation"] = True
+    if any(token in text for token in ("정부 고객", "정부향", "폴란드", "방산")):
+        fields["government_customer"] = True
+    if any(token in text for token in ("장기계약", "장기 공급계약", "다년 계약", "multi-year")):
+        fields["multi_year_contract"] = True
 
 
 def _report_date(text: str, metadata: Mapping[str, Any]) -> date:

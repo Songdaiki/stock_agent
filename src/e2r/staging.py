@@ -174,7 +174,13 @@ class StageClassifier:
     @staticmethod
     def _is_stage_3_green(score: ScoreSnapshot, red_team: RedTeamAssessment) -> bool:
         revision_score = _score_diagnostic(score, "revision_score")
+        structural_visibility_quality = _score_diagnostic(
+            score,
+            "structural_visibility_quality",
+            _score_diagnostic(score, "contract_quality", 100.0),
+        )
         contract_quality = _score_diagnostic(score, "contract_quality", 100.0)
+        contract_required_for_green = _score_diagnostic(score, "contract_required_for_green", 0.0)
         one_off_shortage_risk = _score_diagnostic(score, "one_off_shortage_risk")
         return (
             score.total_score >= 85.0
@@ -184,7 +190,8 @@ class StageClassifier:
             and score.market_mispricing_score >= 10.0
             and score.valuation_rerating_score >= 10.0
             and revision_score >= STAGE_3_GREEN_MIN_REVISION_SCORE
-            and contract_quality >= 45.0
+            and structural_visibility_quality >= 45.0
+            and (contract_required_for_green < 1.0 or contract_quality >= 45.0)
             and one_off_shortage_risk < 70.0
             and red_team.risk_level == RedTeamRiskLevel.LOW
         )
@@ -205,7 +212,12 @@ class StageClassifier:
             or score.valuation_rerating_score < 7.0
             or score.earnings_visibility_score < 12.0
             or score.bottleneck_pricing_score < 12.0
-            or _score_diagnostic(score, "contract_quality", 100.0) < 25.0
+            or _score_diagnostic(
+                score,
+                "structural_visibility_quality",
+                _score_diagnostic(score, "contract_quality", 100.0),
+            )
+            < 25.0
             or one_off_shortage_risk >= 80.0
             or _score_diagnostic(score, "theme_overheat_score") >= 70.0
         )

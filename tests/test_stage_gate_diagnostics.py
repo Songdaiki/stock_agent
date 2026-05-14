@@ -29,7 +29,8 @@ class StageGateDiagnosticsTests(unittest.TestCase):
         self.assertFalse(diag.stage3_green_gate_passed)
         self.assertIn("failed_stage2_total_score", diag.failed_gate_names)
         self.assertIn("failed_stage3_bottleneck", diag.failed_gate_names)
-        self.assertIn("failed_stage3_contract_quality", diag.failed_gate_names)
+        self.assertIn("failed_structural_visibility_quality", diag.failed_gate_names)
+        self.assertEqual(diag.sector_profile, "GENERIC")
         self.assertEqual(diag.values_vs_thresholds["failed_stage3_revision"]["passed"], True)
 
 

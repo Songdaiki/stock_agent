@@ -17,6 +17,7 @@ from e2r.research.naver_search_provider import NaverFreeSearchProvider
 from e2r.research.page_fetcher import PageFetcher
 from e2r.research.pdf_text_extractor import PDFTextExtractor
 from e2r.research.query_planner import QueryPlan, QueryPlanner, QuerySpec
+from e2r.research.report_consensus_proxy import build_report_consensus_proxy
 from e2r.research.search_budget import ResearchLayer, SearchBudget, SearchBudgetTracker
 from e2r.research.search_provider import FixtureSearchProvider, SearchProvider, SearchResult
 from e2r.research.search_result_ranker import SearchResultRanker
@@ -154,12 +155,15 @@ class FreeWebResearchRunner:
                 top_results=inputs.top_results,
             )
         )
+        proxy = build_report_consensus_proxy(web_result.parsed_reports, as_of_date=inputs.as_of_date)
         feature_input = FeatureEngineeringInput(
             symbol=inputs.symbol,
             as_of_date=inputs.as_of_date,
             disclosures=web_result.parsed_disclosures,
-            research_reports=web_result.parsed_reports,
+            research_reports=proxy.reports,
             news_items=web_result.parsed_news,
+            consensus=proxy.consensus,
+            consensus_revisions=proxy.consensus_revisions,
         )
         feature_result = self._engineer.engineer(feature_input)
         score = feature_result.score()

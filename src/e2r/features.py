@@ -19,6 +19,18 @@ from .models import (
 )
 from .red_team import RedTeamSignals
 from .scoring import DeterministicScorer, ScoringPayload
+from .sector_profiles import SectorProfile, infer_sector_profile, profile_id
+
+
+EVIDENCE_FAMILIES: tuple[str, ...] = (
+    "price",
+    "financial_actual",
+    "disclosure",
+    "research_report",
+    "consensus",
+    "consensus_revision",
+    "news",
+)
 
 
 def _require_date(value: date, field_name: str) -> None:
@@ -197,14 +209,23 @@ class DeterministicFeatureEngineer:
     def engineer(self, inputs: FeatureEngineeringInput) -> FeatureEngineeringResult:
         evidence_ids = self._evidence_ids(inputs)
         field_source = _ParsedFieldSource(inputs)
+        sector_profile = infer_sector_profile(
+            symbol=inputs.symbol,
+            text=field_source.text_blob(),
+            parsed_fields=field_source.combined_fields(),
+        )
         sub_scores = self._industrial_sub_scores(field_source, evidence_ids)
-        components = self._components(inputs, field_source, sub_scores)
-        risk_penalty = self._risk_penalty(sub_scores)
+        sector_metrics = self._sector_metrics(inputs, field_source, sub_scores, sector_profile)
+        components = self._components(inputs, field_source, sub_scores, sector_metrics)
+        risk_penalty = self._risk_penalty(sub_scores, sector_metrics["structural_visibility_quality"], sector_profile)
         revision_score = self._revision_score(inputs, field_source)
         price_stage_score = self._price_stage_score(inputs.price_bars)
         diagnostic_scores = {
             "revision_score": revision_score,
             "price_stage_score": price_stage_score,
+            "sector_profile_id": profile_id(sector_profile),
+            **{key: _round(value) for key, value in sector_metrics.items()},
+            **self._evidence_family_diagnostics(inputs),
         }
         if price_stage_score >= 90.0 and revision_score < 50.0:
             diagnostic_scores["theme_overheat_score"] = _round(min(100.0, price_stage_score))
@@ -224,6 +245,8 @@ class DeterministicFeatureEngineer:
             "shortage_type": sub_scores.shortage_type.value,
             "revision_score": revision_score,
             "price_stage_score": price_stage_score,
+            "sector_profile": sector_profile.value,
+            **{key: _round(value) for key, value in sector_metrics.items()},
         }
         return FeatureEngineeringResult(
             payload=payload,
@@ -238,20 +261,34 @@ class DeterministicFeatureEngineer:
         inputs: FeatureEngineeringInput,
         fields: "_ParsedFieldSource",
         sub_scores: IndustrialSubScores,
+        sector_metrics: Mapping[str, float],
     ) -> dict[str, float]:
         eps_fcf = self._eps_fcf_explosion(inputs, fields)
         fcf_quality = self._fcf_quality(inputs, fields)
-        visibility_raw = (
+        industrial_visibility_raw = (
             sub_scores.contract_quality * 0.35
             + sub_scores.backlog_rpo_visibility * 0.45
             + fcf_quality * 0.20
         )
+        sector_visibility_raw = (
+            sector_metrics["structural_visibility_quality"] * 0.55
+            + sector_metrics["medium_term_revision_visibility"] * 0.20
+            + fcf_quality * 0.15
+            + sub_scores.backlog_rpo_visibility * 0.10
+        )
+        visibility_raw = max(industrial_visibility_raw, sector_visibility_raw)
         earnings_visibility = visibility_raw / 100.0 * 20.0 - sub_scores.one_off_shortage_risk / 100.0 * 3.0
-        bottleneck_raw = (
+        industrial_bottleneck_raw = (
             sub_scores.capa_constraint * 0.35
             + sub_scores.asp_pricing_power * 0.35
             + sub_scores.structural_shortage * 0.30
         )
+        sector_bottleneck_raw = (
+            sector_metrics["sector_bottleneck_score"] * 0.60
+            + sub_scores.asp_pricing_power * 0.25
+            + sub_scores.structural_shortage * 0.15
+        )
+        bottleneck_raw = max(industrial_bottleneck_raw, sector_bottleneck_raw)
         bottleneck_pricing = bottleneck_raw / 100.0 * 20.0 - sub_scores.one_off_shortage_risk / 100.0 * 4.0
         revision_score = self._revision_score(inputs, fields)
         valuation_score = self._valuation_score(inputs, fields)
@@ -300,6 +337,97 @@ class DeterministicFeatureEngineer:
             evidence_ids=evidence_ids,
         )
 
+    def _sector_metrics(
+        self,
+        inputs: FeatureEngineeringInput,
+        fields: "_ParsedFieldSource",
+        sub_scores: IndustrialSubScores,
+        sector_profile: SectorProfile,
+    ) -> dict[str, float]:
+        recurring = self._recurring_demand_visibility_score(fields)
+        export_channel = self._export_channel_visibility_score(fields)
+        medium_revision = self._medium_term_revision_visibility_score(inputs, fields)
+        domain_evidence = self._domain_specific_evidence_score(fields, sector_profile)
+        if sector_profile in {SectorProfile.POWER_EQUIPMENT, SectorProfile.DEFENSE, SectorProfile.BATTERY_OVERHEAT}:
+            sector_visibility = (
+                sub_scores.contract_quality * 0.28
+                + sub_scores.backlog_rpo_visibility * 0.30
+                + medium_revision * 0.18
+                + domain_evidence * 0.24
+            )
+            sector_bottleneck = (
+                sub_scores.capa_constraint * 0.35
+                + sub_scores.asp_pricing_power * 0.25
+                + sub_scores.structural_shortage * 0.25
+                + domain_evidence * 0.15
+            )
+            structural_visibility = (
+                sub_scores.contract_quality * 0.25
+                + sub_scores.backlog_rpo_visibility * 0.25
+                + sector_visibility * 0.30
+                + medium_revision * 0.20
+            )
+        elif sector_profile in {SectorProfile.K_FOOD_EXPORT, SectorProfile.K_BEAUTY_EXPORT}:
+            sector_visibility = (
+                export_channel * 0.32
+                + recurring * 0.24
+                + medium_revision * 0.24
+                + sub_scores.asp_pricing_power * 0.12
+                + domain_evidence * 0.08
+            )
+            sector_bottleneck = (
+                sub_scores.asp_pricing_power * 0.35
+                + domain_evidence * 0.25
+                + recurring * 0.20
+                + medium_revision * 0.20
+            )
+            structural_visibility = (
+                sector_visibility * 0.46
+                + export_channel * 0.20
+                + recurring * 0.18
+                + medium_revision * 0.16
+            )
+        elif sector_profile == SectorProfile.MEMORY_HBM:
+            sector_visibility = (
+                domain_evidence * 0.36
+                + medium_revision * 0.28
+                + sub_scores.asp_pricing_power * 0.18
+                + sub_scores.capa_constraint * 0.18
+            )
+            sector_bottleneck = (
+                domain_evidence * 0.40
+                + sub_scores.capa_constraint * 0.30
+                + sub_scores.asp_pricing_power * 0.20
+                + medium_revision * 0.10
+            )
+            structural_visibility = (
+                sector_visibility * 0.45
+                + medium_revision * 0.25
+                + sector_bottleneck * 0.20
+                + sub_scores.backlog_rpo_visibility * 0.10
+            )
+        else:
+            industrial_visibility = sub_scores.contract_quality * 0.35 + sub_scores.backlog_rpo_visibility * 0.35 + medium_revision * 0.30
+            export_visibility = export_channel * 0.35 + recurring * 0.25 + medium_revision * 0.25 + domain_evidence * 0.15
+            sector_visibility = max(industrial_visibility, export_visibility)
+            sector_bottleneck = max(
+                sub_scores.capa_constraint * 0.35 + sub_scores.asp_pricing_power * 0.35 + sub_scores.structural_shortage * 0.30,
+                domain_evidence * 0.35 + sub_scores.asp_pricing_power * 0.35 + recurring * 0.30,
+            )
+            structural_visibility = max(industrial_visibility, export_visibility)
+        return {
+            "recurring_demand_visibility": _round(_clamp(recurring)),
+            "export_channel_visibility": _round(_clamp(export_channel)),
+            "medium_term_revision_visibility": _round(_clamp(medium_revision)),
+            "domain_specific_evidence_score": _round(_clamp(domain_evidence)),
+            "sector_visibility_score": _round(_clamp(sector_visibility)),
+            "sector_bottleneck_score": _round(_clamp(sector_bottleneck)),
+            "structural_visibility_quality": _round(_clamp(structural_visibility)),
+            "contract_required_for_green": 1.0
+            if sector_profile in {SectorProfile.POWER_EQUIPMENT, SectorProfile.DEFENSE, SectorProfile.BATTERY_OVERHEAT}
+            else 0.0,
+        }
+
     @staticmethod
     def _contract_quality_score(fields: "_ParsedFieldSource") -> float:
         duration = fields.max_number("contract_duration_months", "lta_duration_months")
@@ -307,6 +435,7 @@ class DeterministicFeatureEngineer:
         has_prepayment = fields.any_bool("prepayment_exists", "customer_prepayment")
         non_cancellable = fields.any_bool("non_cancellable", "take_or_pay")
         recurring = fields.any_bool("recurring_consumer_demand", "repeat_purchase", "channel_expansion")
+        multi_year_contract = fields.any_bool("multi_year_contract", "government_customer")
         score = 0.0
         if duration is not None:
             score += _clamp(duration / 60.0 * 35.0, 0.0, 35.0)
@@ -318,7 +447,100 @@ class DeterministicFeatureEngineer:
             score += 15.0
         if recurring:
             score += 35.0
+        if multi_year_contract:
+            score += 18.0
         return _clamp(score)
+
+    @staticmethod
+    def _recurring_demand_visibility_score(fields: "_ParsedFieldSource") -> float:
+        score = 0.0
+        if fields.any_bool("recurring_consumer_demand", "repeat_purchase"):
+            score += 35.0
+        if fields.any_bool("channel_expansion", "export_channel_expansion", "overseas_channel_expansion"):
+            score += 25.0
+        if fields.any_bool("brand_channel_expansion", "platform_distribution_scale"):
+            score += 20.0
+        if fields.any_bool("high_margin_mix_improvement"):
+            score += 10.0
+        score += _score_percent(fields.max_percent("opm_expansion_pctp", "opm_expansion"), 10.0) * 0.10
+        return _clamp(score)
+
+    @staticmethod
+    def _export_channel_visibility_score(fields: "_ParsedFieldSource") -> float:
+        export_ratio = fields.max_percent("export_ratio", "export_mix_pct")
+        us_ratio = fields.max_percent("us_revenue_ratio", "north_america_revenue_ratio")
+        export_growth = fields.max_percent("export_growth_pct")
+        score = _score_percent(export_ratio, 75.0) * 0.34
+        score += _score_percent(us_ratio, 40.0) * 0.18
+        score += _score_percent(export_growth, 80.0) * 0.24
+        if fields.any_bool("export_channel_expansion", "overseas_channel_expansion", "export_growth_mentioned"):
+            score += 18.0
+        if fields.any_bool("brand_channel_expansion", "platform_distribution_scale"):
+            score += 12.0
+        return _clamp(score)
+
+    @staticmethod
+    def _medium_term_revision_visibility_score(inputs: FeatureEngineeringInput, fields: "_ParsedFieldSource") -> float:
+        revision_score = DeterministicFeatureEngineer._revision_score(inputs, fields)
+        fy1_op = fields.max_number("fy1_op")
+        fy2_op = fields.max_number("fy2_op")
+        fy1_eps = fields.max_number("fy1_eps")
+        fy2_eps = fields.max_number("fy2_eps")
+        op_growth = _growth_pct(fy2_op, fy1_op)
+        eps_growth = _growth_pct(fy2_eps, fy1_eps)
+        score = revision_score * 0.50
+        score += _score_percent(op_growth, 60.0) * 0.25
+        score += _score_percent(eps_growth, 60.0) * 0.25
+        return _clamp(score)
+
+    @staticmethod
+    def _domain_specific_evidence_score(fields: "_ParsedFieldSource", sector_profile: SectorProfile) -> float:
+        if sector_profile == SectorProfile.MEMORY_HBM:
+            keys = (
+                "hbm_demand_mentioned",
+                "memory_price_increase_mentioned",
+                "supply_discipline_mentioned",
+                "customer_preorder_or_allocation",
+                "hbm_capacity_constraint",
+                "advanced_packaging_bottleneck",
+            )
+            return _clamp(sum(20.0 for key in keys if fields.any_bool(key)))
+        if sector_profile in {SectorProfile.K_FOOD_EXPORT, SectorProfile.K_BEAUTY_EXPORT}:
+            keys = (
+                "export_channel_expansion",
+                "overseas_channel_expansion",
+                "recurring_consumer_demand",
+                "export_growth_mentioned",
+                "high_margin_mix_improvement",
+                "pricing_power_mentioned",
+            )
+            return _clamp(sum(16.0 for key in keys if fields.any_bool(key)))
+        if sector_profile == SectorProfile.DEFENSE:
+            keys = ("government_customer", "multi_year_contract", "export_contract", "delivery_schedule", "record_backlog")
+            return _clamp(sum(20.0 for key in keys if fields.any_bool(key)))
+        if sector_profile == SectorProfile.POWER_EQUIPMENT:
+            keys = (
+                "lead_time_extended",
+                "supply_shortage_mentioned",
+                "structural_shortage_mentioned",
+                "backlog_record_high",
+                "record_backlog",
+                "multi_year_contract",
+            )
+            return _clamp(sum(18.0 for key in keys if fields.any_bool(key)))
+        return _clamp(
+            sum(
+                14.0
+                for key in (
+                    "pricing_power_mentioned",
+                    "recurring_consumer_demand",
+                    "supply_shortage_mentioned",
+                    "structural_shortage_mentioned",
+                    "market_frame_shift",
+                )
+                if fields.any_bool(key)
+            )
+        )
 
     @staticmethod
     def _backlog_rpo_visibility_score(fields: "_ParsedFieldSource") -> float:
@@ -340,9 +562,9 @@ class DeterministicFeatureEngineer:
         score += _score_ratio(lead_time, 18.0) * 0.20
         score += _score_percent(expansion, 80.0) * 0.20
         score += _score_ratio(locked_years, 3.0) * 0.15
-        if fields.any_bool("lead_time_mentioned"):
+        if fields.any_bool("lead_time_mentioned", "lead_time_extended"):
             score += 8.0
-        if fields.any_bool("capacity_constraint", "capa_shortage"):
+        if fields.any_bool("capacity_constraint", "capa_shortage", "hbm_capacity_constraint", "advanced_packaging_bottleneck"):
             score += 15.0
         return _clamp(score)
 
@@ -353,7 +575,7 @@ class DeterministicFeatureEngineer:
         target_multiple_delta = fields.max_number("target_multiple_delta")
         score = _score_percent(asp, 30.0) * 0.55 + _score_percent(mix, 80.0) * 0.25
         score += _score_ratio(target_multiple_delta, 10.0) * 0.10
-        if fields.any_bool("pricing_power_confirmed", "customers_accept_price"):
+        if fields.any_bool("pricing_power_confirmed", "customers_accept_price", "pricing_power_mentioned", "asp_increase_mentioned"):
             score += 20.0
         return _clamp(score)
 
@@ -375,6 +597,13 @@ class DeterministicFeatureEngineer:
             return ShortageType.ONE_OFF
         if fields.any_bool("cyclical_shortage", "commodity_cycle"):
             return ShortageType.CYCLICAL
+        if fields.any_bool(
+            "structural_shortage_mentioned",
+            "supply_shortage_mentioned",
+            "hbm_demand_mentioned",
+            "supply_discipline_mentioned",
+        ):
+            return ShortageType.STRUCTURAL
         structural_blend = contract_quality * 0.25 + backlog_rpo_visibility * 0.30 + capa_constraint * 0.25 + asp_pricing_power * 0.20
         if structural_blend >= 65.0:
             return ShortageType.STRUCTURAL
@@ -571,11 +800,33 @@ class DeterministicFeatureEngineer:
         return _clamp(source_count * 0.75 + analyst_bonus, 0.0, 5.0)
 
     @staticmethod
-    def _risk_penalty(sub_scores: IndustrialSubScores) -> float:
+    def _risk_penalty(
+        sub_scores: IndustrialSubScores,
+        structural_visibility_quality: float,
+        sector_profile: SectorProfile,
+    ) -> float:
         penalty = sub_scores.one_off_shortage_risk / 100.0 * 8.0
-        if sub_scores.contract_quality < 35.0:
-            penalty += (35.0 - sub_scores.contract_quality) / 35.0 * 4.0
+        if structural_visibility_quality < 35.0:
+            penalty += (35.0 - structural_visibility_quality) / 35.0 * 4.0
+        if sector_profile in {SectorProfile.POWER_EQUIPMENT, SectorProfile.DEFENSE} and sub_scores.contract_quality < 25.0:
+            penalty += (25.0 - sub_scores.contract_quality) / 25.0 * 2.0
         return _round(_clamp(penalty, 0.0, 15.0))
+
+    @staticmethod
+    def _evidence_family_diagnostics(inputs: FeatureEngineeringInput) -> dict[str, float]:
+        flags = {
+            "price": bool(inputs.price_bars),
+            "financial_actual": bool(inputs.financial_actuals),
+            "disclosure": bool(inputs.disclosures),
+            "research_report": bool(inputs.research_reports),
+            "consensus": bool(inputs.consensus),
+            "consensus_revision": bool(inputs.consensus_revisions),
+            "news": bool(inputs.news_items),
+        }
+        diagnostics = {f"evidence_family_{key}": 1.0 if present else 0.0 for key, present in flags.items()}
+        diagnostics["cross_evidence_family_count"] = float(sum(1 for present in flags.values() if present))
+        diagnostics["report_date_confidence"] = 100.0
+        return diagnostics
 
     @staticmethod
     def _red_team_signals(
@@ -670,7 +921,10 @@ class _ParsedFieldSource:
 
     def __init__(self, inputs: FeatureEngineeringInput) -> None:
         mappings: list[Mapping[str, Any]] = []
+        text_parts: list[str] = []
         mappings.extend(item.parsed_fields for item in inputs.disclosures)
+        for item in inputs.disclosures:
+            text_parts.extend(part for part in (item.title, item.raw_text or "") if part)
         for report in inputs.research_reports:
             report_fields = dict(report.parsed_fields)
             for key in (
@@ -699,14 +953,17 @@ class _ParsedFieldSource:
                 "backlog",
                 "new_orders",
                 "order_backlog_to_sales",
+                "contract_amount_to_prior_sales",
+                "contract_duration_months",
                 "capa_increase_pct",
                 "export_ratio",
                 "us_revenue_ratio",
                 "asp_increase_mentioned",
                 "lead_time_mentioned",
                 "shortage_mentioned",
+                "raw_text",
             ):
-                value = getattr(report, key)
+                value = getattr(report, key, None)
                 if value is not None:
                     report_fields.setdefault(key, value)
             if report.target_multiple_before is not None and report.target_multiple_after is not None:
@@ -715,8 +972,21 @@ class _ParsedFieldSource:
                     report.target_multiple_after - report.target_multiple_before,
                 )
             mappings.append(report_fields)
+            text_parts.extend(
+                part
+                for part in (
+                    report.title,
+                    report.raw_text or "",
+                    " ".join(report.investment_points),
+                    " ".join(report.risk_points),
+                )
+                if part
+            )
         mappings.extend(item.parsed_fields for item in inputs.news_items)
+        for item in inputs.news_items:
+            text_parts.extend(part for part in (item.title, item.body or "", item.sector or "") if part)
         self._mappings = tuple(mappings)
+        self._text = "\n".join(text_parts)
 
     def values(self, *keys: str) -> tuple[Any, ...]:
         values: list[Any] = []
@@ -740,6 +1010,17 @@ class _ParsedFieldSource:
             if value is not None and str(value).strip():
                 return str(value).strip()
         return None
+
+    def combined_fields(self) -> dict[str, Any]:
+        combined: dict[str, Any] = {}
+        for mapping in self._mappings:
+            for key, value in mapping.items():
+                if value not in (None, "") and key not in combined:
+                    combined[key] = value
+        return combined
+
+    def text_blob(self) -> str:
+        return self._text
 
 
 def build_feature_input_from_connector(

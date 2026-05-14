@@ -329,15 +329,36 @@ def parse_disclosure_text(raw_text: str, *, title: str = "") -> dict[str, Any]:
         parsed["record_backlog"] = True
     if any(token in text for token in ("ASP 상승", "판가 상승", "가격 상승", "ASP 개선", "판가 개선")):
         parsed["pricing_power_confirmed"] = True
+        parsed["pricing_power_mentioned"] = True
+        parsed["asp_increase_mentioned"] = True
     if "리드타임" in text:
         parsed["lead_time_mentioned"] = True
     if "리드타임 장기화" in text and ("공급부족" in text or "공급 부족" in text):
+        parsed["lead_time_extended"] = True
         parsed["capacity_constraint"] = True
         parsed["capa_shortage"] = True
     if "공급부족" in text or "공급 부족" in text:
         parsed["shortage_mentioned"] = True
+        parsed["supply_shortage_mentioned"] = True
     if "구조적 공급부족" in text:
         parsed["shortage_type"] = "structural"
+        parsed["structural_shortage_mentioned"] = True
+    if any(token in text for token in ("수출 비중 확대", "수출 확대", "수출 증가", "해외 매출 확대")):
+        parsed["export_channel_expansion"] = True
+        parsed["export_growth_mentioned"] = True
+    if any(token in text for token in ("해외 채널 확대", "해외 채널 확장", "북미 채널", "미국 채널")):
+        parsed["overseas_channel_expansion"] = True
+        parsed["channel_expansion"] = True
+    if "hbm" in text.lower() and any(token in text for token in ("수요 증가", "수요 확대", "수요 강세")):
+        parsed["hbm_demand_mentioned"] = True
+    if any(token in text for token in ("메모리 가격 상승", "DRAM 가격 상승", "D램 가격 상승", "NAND 가격 상승", "낸드 가격 상승")):
+        parsed["memory_price_increase_mentioned"] = True
+    if any(token in text for token in ("공급조절", "감산")) or "supply discipline" in text.lower():
+        parsed["supply_discipline_mentioned"] = True
+    if any(token in text for token in ("장기계약", "장기 공급계약", "다년 계약")) or "multi-year" in text.lower():
+        parsed["multi_year_contract"] = True
+    if any(token in text for token in ("정부 고객", "정부향", "폴란드", "방산")):
+        parsed["government_customer"] = True
 
     if any(token in title for token in ("거래정지", "상장폐지", "관리종목")):
         parsed["listing_risk"] = True

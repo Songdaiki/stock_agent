@@ -14,6 +14,9 @@ class ReportParserFixtureFieldTests(unittest.TestCase):
             ("062040", "data/report_snapshots/sanil_electric_20250215.txt", ("fy1_eps", "export_ratio", "us_revenue_ratio", "pricing_power_confirmed")),
             ("003230", "data/report_snapshots/samyang_foods_20240516.txt", ("fy1_eps", "fy2_eps", "target_revision_pct", "pricing_power_confirmed")),
             ("012450", "data/report_snapshots/hanwha_aerospace_20240801.txt", ("contract_amount_to_prior_sales", "contract_duration_months", "order_backlog_to_sales")),
+            ("257720", "data/report_snapshots/silicontwo_20240516.txt", ("export_channel_expansion", "overseas_channel_expansion", "recurring_consumer_demand", "fy2_eps")),
+            ("005930", "data/report_snapshots/samsung_memory_20240401.txt", ("hbm_demand_mentioned", "memory_price_increase_mentioned", "supply_discipline_mentioned", "fy2_op")),
+            ("000660", "data/report_snapshots/sk_hynix_memory_20240401.txt", ("hbm_demand_mentioned", "memory_price_increase_mentioned", "supply_discipline_mentioned", "fy2_eps")),
         )
         for symbol, path, expected_fields in cases:
             with self.subTest(path=path):

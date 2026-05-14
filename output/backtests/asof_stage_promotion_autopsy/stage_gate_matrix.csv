@@ -1,54 +1,83 @@
-symbol,company_name,as_of_date,current_stage,failed_stage2_total_score,failed_stage2_eps_fcf,failed_stage2_valuation,failed_stage2_information_confidence,failed_stage3_total_score,failed_stage3_eps_fcf,failed_stage3_visibility,failed_stage3_bottleneck,failed_stage3_market_mispricing,failed_stage3_valuation,failed_stage3_revision,failed_stage3_contract_quality,failed_stage3_red_team
-298040,효성중공업,2023-06-01,1,True,False,False,False,True,False,True,True,False,False,False,True,False
-298040,효성중공업,2023-07-01,1,True,False,False,False,True,False,True,True,False,False,False,True,False
-267260,HD현대일렉트릭,2023-08-01,2,False,False,False,False,True,False,True,True,False,True,False,True,False
-298040,효성중공업,2023-08-01,1,True,False,False,False,True,False,True,True,False,False,False,True,False
-247540,에코프로비엠,2023-08-01,1,True,True,True,True,True,True,True,True,True,True,True,True,False
-267260,HD현대일렉트릭,2023-09-01,2,False,False,False,False,True,False,True,True,False,True,False,True,False
-298040,효성중공업,2023-09-01,1,True,False,False,False,True,False,True,True,False,False,False,True,False
-247540,에코프로비엠,2023-09-01,1,True,True,True,True,True,True,True,True,True,True,True,True,False
-267260,HD현대일렉트릭,2023-10-01,2,False,False,False,False,True,False,True,True,False,True,False,True,False
-298040,효성중공업,2023-10-01,1,True,False,False,False,True,False,True,True,False,False,False,True,False
-247540,에코프로비엠,2023-10-01,1,True,True,True,True,True,True,True,True,True,True,True,True,False
-267260,HD현대일렉트릭,2023-11-01,2,False,False,False,False,True,False,True,True,False,True,False,True,False
-298040,효성중공업,2023-11-01,1,True,False,False,False,True,False,True,True,False,False,False,True,False
-247540,에코프로비엠,2023-11-01,1,True,True,True,True,True,True,True,True,True,True,True,True,False
-103590,일진전기,2023-12-01,2,False,False,False,False,True,False,True,True,False,False,False,True,False
-267260,HD현대일렉트릭,2023-12-01,2,False,False,False,False,True,False,True,True,False,True,False,True,False
-298040,효성중공업,2023-12-01,1,True,False,False,False,True,False,True,True,False,False,False,True,False
-247540,에코프로비엠,2023-12-01,1,True,True,True,True,True,True,True,True,True,True,True,True,False
-103590,일진전기,2024-01-01,2,False,False,False,False,True,False,True,True,False,False,False,True,False
-267260,HD현대일렉트릭,2024-01-01,2,False,False,False,False,True,False,True,True,False,True,False,True,False
-298040,효성중공업,2024-01-01,1,True,False,False,False,True,False,True,True,False,False,False,True,False
-247540,에코프로비엠,2024-01-01,1,True,True,True,True,True,True,True,True,True,True,True,True,False
-267260,HD현대일렉트릭,2024-02-01,2,False,False,False,False,True,False,True,True,False,True,False,True,False
-298040,효성중공업,2024-02-01,1,True,False,False,False,True,False,True,True,False,False,False,True,False
-247540,에코프로비엠,2024-02-01,1,True,True,True,True,True,True,True,True,True,True,True,True,False
-103590,일진전기,2024-02-01,2,False,False,False,False,True,False,True,True,False,False,False,True,False
-267260,HD현대일렉트릭,2024-03-01,2,False,False,False,False,True,False,True,True,False,True,False,True,False
-298040,효성중공업,2024-03-01,1,True,False,False,False,True,False,True,True,False,False,False,True,False
-247540,에코프로비엠,2024-03-01,1,True,True,True,True,True,True,True,True,True,True,True,True,False
-103590,일진전기,2024-03-01,2,False,False,False,False,True,False,True,True,False,False,False,True,False
-267260,HD현대일렉트릭,2024-04-01,2,False,False,False,False,True,False,True,True,False,True,False,True,False
-298040,효성중공업,2024-04-01,1,True,False,False,False,True,False,True,True,False,False,False,True,False
-000660,SK하이닉스,2024-04-01,1,True,False,True,True,True,True,True,True,True,True,True,True,False
-005930,삼성전자,2024-04-01,1,True,False,True,True,True,True,True,True,True,True,True,True,False
-247540,에코프로비엠,2024-04-01,1,True,True,True,True,True,True,True,True,True,True,True,True,False
-103590,일진전기,2024-04-01,2,False,False,False,False,True,False,True,True,False,False,False,True,False
-000660,SK하이닉스,2024-05-01,1,True,False,True,True,True,True,True,True,True,True,True,True,False
-267260,HD현대일렉트릭,2024-05-01,2,False,False,False,False,True,False,True,True,False,True,False,True,False
-247540,에코프로비엠,2024-05-01,1,True,True,True,True,True,True,True,True,True,True,True,True,False
-103590,일진전기,2024-05-01,2,False,False,False,False,True,False,True,True,False,False,False,True,False
-003230,삼양식품,2024-06-01,1,True,False,False,False,True,False,True,True,True,True,False,True,False
-000660,SK하이닉스,2024-06-01,1,True,False,True,True,True,True,True,True,True,True,True,True,False
-267260,HD현대일렉트릭,2024-06-01,2,False,False,False,False,True,False,True,True,False,True,False,True,False
-247540,에코프로비엠,2024-06-01,1,True,True,True,True,True,True,True,True,True,True,True,True,False
-257720,실리콘투,2024-06-01,0,True,True,True,True,True,True,True,True,True,True,True,True,False
-103590,일진전기,2024-06-01,2,False,False,False,False,True,False,True,True,False,False,False,True,False
-000660,SK하이닉스,2024-07-01,1,True,False,True,True,True,True,True,True,True,True,True,True,False
-003230,삼양식품,2024-07-01,1,True,False,False,False,True,False,True,True,True,True,False,True,False
-257720,실리콘투,2024-07-01,0,True,True,True,True,True,True,True,True,True,True,True,True,False
-103590,일진전기,2024-07-01,2,False,False,False,False,True,False,True,True,False,False,False,True,False
-062040,산일전기,2025-03-01,1,True,False,False,False,True,False,True,True,True,True,False,True,False
-012450,한화에어로스페이스,2024-08-01,1,True,True,False,False,True,True,True,True,True,True,False,True,False
-001440,대한전선-like,2026-02-01,1,True,True,True,True,True,True,True,True,True,True,True,True,False
+symbol,company_name,as_of_date,current_stage,promotion_band,sector_profile,failed_stage2_total_score,failed_stage2_eps_fcf,failed_stage2_valuation,failed_stage2_information_confidence,failed_stage3_total_score,failed_stage3_eps_fcf,failed_stage3_visibility,failed_stage3_bottleneck,failed_stage3_market_mispricing,failed_stage3_valuation,failed_stage3_revision,failed_stage3_contract_quality,failed_structural_visibility_quality,failed_sector_visibility,failed_sector_bottleneck,failed_green_cross_evidence,failed_report_date_confidence,failed_domain_specific_evidence,failed_stage3_red_team
+298040,효성중공업,2023-06-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,True,True,False,False,False,True,False,False,False,False,False,False,False
+298040,효성중공업,2023-07-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,True,True,False,False,False,True,False,False,False,False,False,False,False
+267260,HD현대일렉트릭,2023-08-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,False,False,False,False,False
+298040,효성중공업,2023-08-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,True,True,False,False,False,True,False,False,False,False,False,False,False
+247540,에코프로비엠,2023-08-01,1,Stage 1,GENERIC,True,True,True,True,True,True,True,True,True,True,True,False,True,True,True,True,False,True,False
+267260,HD현대일렉트릭,2023-09-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,False,False,False,False,False
+298040,효성중공업,2023-09-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,True,True,False,False,False,True,False,False,False,False,False,False,False
+247540,에코프로비엠,2023-09-01,1,Stage 1,GENERIC,True,True,True,True,True,True,True,True,True,True,True,False,True,True,True,True,False,True,False
+267260,HD현대일렉트릭,2023-10-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,False,False,False,False,False
+298040,효성중공업,2023-10-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,True,True,False,False,False,True,False,False,False,False,False,False,False
+247540,에코프로비엠,2023-10-01,1,Stage 1,GENERIC,True,True,True,True,True,True,True,True,True,True,True,False,True,True,True,True,False,True,False
+267260,HD현대일렉트릭,2023-11-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,False,False,False,False,False
+298040,효성중공업,2023-11-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,True,True,False,False,False,True,False,False,False,False,False,False,False
+247540,에코프로비엠,2023-11-01,1,Stage 1,GENERIC,True,True,True,True,True,True,True,True,True,True,True,False,True,True,True,True,False,True,False
+103590,일진전기,2023-12-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,True,False,False,True,False
+267260,HD현대일렉트릭,2023-12-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,False,False,False,False,False
+298040,효성중공업,2023-12-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,True,True,False,False,False,True,False,False,False,False,False,False,False
+247540,에코프로비엠,2023-12-01,1,Stage 1,GENERIC,True,True,True,True,True,True,True,True,True,True,True,False,True,True,True,True,False,True,False
+103590,일진전기,2024-01-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,True,False,False,True,False
+267260,HD현대일렉트릭,2024-01-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,False,False,False,False,False
+298040,효성중공업,2024-01-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,True,True,False,False,False,True,False,False,False,False,False,False,False
+247540,에코프로비엠,2024-01-01,1,Stage 1,GENERIC,True,True,True,True,True,True,True,True,True,True,True,False,True,True,True,True,False,True,False
+267260,HD현대일렉트릭,2024-02-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,False,False,False,False,False
+298040,효성중공업,2024-02-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,True,True,False,False,False,True,False,False,False,False,False,False,False
+247540,에코프로비엠,2024-02-01,1,Stage 1,GENERIC,True,True,True,True,True,True,True,True,True,True,True,False,True,True,True,True,False,True,False
+103590,일진전기,2024-02-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,True,False,False,True,False
+267260,HD현대일렉트릭,2024-03-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,False,False,False,False,False
+298040,효성중공업,2024-03-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,True,True,False,False,False,True,False,False,False,False,False,False,False
+247540,에코프로비엠,2024-03-01,1,Stage 1,GENERIC,True,True,True,True,True,True,True,True,True,True,True,False,True,True,True,True,False,True,False
+103590,일진전기,2024-03-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,True,False,False,True,False
+267260,HD현대일렉트릭,2024-04-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,False,False,False,False,False
+298040,효성중공업,2024-04-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,True,True,False,False,False,True,False,False,False,False,False,False,False
+000660,SK하이닉스,2024-04-01,2,Stage 2-High,MEMORY_HBM,False,False,False,False,True,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+005930,삼성전자,2024-04-01,2,Stage 2-High,MEMORY_HBM,False,False,False,False,True,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+247540,에코프로비엠,2024-04-01,1,Stage 1,GENERIC,True,True,True,True,True,True,True,True,True,True,True,False,True,True,True,True,False,True,False
+103590,일진전기,2024-04-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,True,False,False,True,False
+000660,SK하이닉스,2024-05-01,2,Stage 2-High,MEMORY_HBM,False,False,False,False,True,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+267260,HD현대일렉트릭,2024-05-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,False,False,False,False,False
+247540,에코프로비엠,2024-05-01,1,Stage 1,GENERIC,True,True,True,True,True,True,True,True,True,True,True,False,True,True,True,True,False,True,False
+103590,일진전기,2024-05-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,True,False,False,True,False
+003230,삼양식품,2024-06-01,1,Stage 1,K_FOOD_EXPORT,True,False,False,False,True,False,True,True,True,True,False,False,False,False,False,False,False,False,False
+000660,SK하이닉스,2024-06-01,2,Stage 2-High,MEMORY_HBM,False,False,False,False,True,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+267260,HD현대일렉트릭,2024-06-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,False,False,False,False,False
+247540,에코프로비엠,2024-06-01,1,Stage 1,GENERIC,True,True,True,True,True,True,True,True,True,True,True,False,True,True,True,True,False,True,False
+257720,실리콘투,2024-06-01,1,Stage 1,K_BEAUTY_EXPORT,True,True,False,False,True,True,True,True,True,True,False,False,False,False,False,False,False,False,False
+103590,일진전기,2024-06-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,True,False,False,True,False
+000660,SK하이닉스,2024-07-01,2,Stage 2-High,MEMORY_HBM,False,False,False,False,True,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+003230,삼양식품,2024-07-01,1,Stage 1,K_FOOD_EXPORT,True,False,False,False,True,False,True,True,True,True,False,False,False,False,False,False,False,False,False
+257720,실리콘투,2024-07-01,1,Stage 1,K_BEAUTY_EXPORT,True,True,False,False,True,True,True,True,True,True,False,False,False,False,False,False,False,False,False
+103590,일진전기,2024-07-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,True,False,False,True,False
+012450,한화에어로스페이스,2024-08-01,1,Stage 1,DEFENSE,True,True,False,False,True,True,True,True,True,True,False,False,False,False,True,False,False,True,False
+000660,SK하이닉스,2024-08-01,2,Stage 2-High,MEMORY_HBM,False,False,False,False,True,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+003230,삼양식품,2024-08-01,1,Stage 1,K_FOOD_EXPORT,True,False,False,False,True,False,True,True,True,True,False,False,False,False,False,False,False,False,False
+103590,일진전기,2024-08-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,True,False,False,True,False
+257720,실리콘투,2024-08-01,1,Stage 1,K_BEAUTY_EXPORT,True,True,False,False,True,True,True,True,True,True,False,False,False,False,False,False,False,False,False
+012450,한화에어로스페이스,2024-09-01,1,Stage 1,DEFENSE,True,True,False,False,True,True,True,True,True,True,False,False,False,False,True,False,False,True,False
+000660,SK하이닉스,2024-09-01,2,Stage 2-High,MEMORY_HBM,False,False,False,False,True,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+003230,삼양식품,2024-09-01,1,Stage 1,K_FOOD_EXPORT,True,False,False,False,True,False,True,True,True,True,False,False,False,False,False,False,False,False,False
+103590,일진전기,2024-09-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,True,False,False,True,False
+257720,실리콘투,2024-09-01,1,Stage 1,K_BEAUTY_EXPORT,True,True,False,False,True,True,True,True,True,True,False,False,False,False,False,False,False,False,False
+000660,SK하이닉스,2024-10-01,2,Stage 2-High,MEMORY_HBM,False,False,False,False,True,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+003230,삼양식품,2024-10-01,1,Stage 1,K_FOOD_EXPORT,True,False,False,False,True,False,True,True,True,True,False,False,False,False,False,False,False,False,False
+103590,일진전기,2024-10-01,2,Stage 2-High,POWER_EQUIPMENT,False,False,False,False,True,False,False,True,False,False,False,True,False,False,True,False,False,True,False
+257720,실리콘투,2024-10-01,1,Stage 1,K_BEAUTY_EXPORT,True,True,False,False,True,True,True,True,True,True,False,False,False,False,False,False,False,False,False
+012450,한화에어로스페이스,2024-10-01,1,Stage 1,DEFENSE,True,True,False,False,True,True,True,True,True,True,False,False,False,False,True,False,False,True,False
+000660,SK하이닉스,2024-11-01,2,Stage 2-High,MEMORY_HBM,False,False,False,False,True,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+003230,삼양식품,2024-11-01,1,Stage 1,K_FOOD_EXPORT,True,False,False,False,True,False,True,True,True,True,False,False,False,False,False,False,False,False,False
+257720,실리콘투,2024-11-01,1,Stage 1,K_BEAUTY_EXPORT,True,True,False,False,True,True,True,True,True,True,False,False,False,False,False,False,False,False,False
+012450,한화에어로스페이스,2024-11-01,1,Stage 1,DEFENSE,True,True,False,False,True,True,True,True,True,True,False,False,False,False,True,False,False,True,False
+000660,SK하이닉스,2024-12-01,2,Stage 2-High,MEMORY_HBM,False,False,False,False,True,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+003230,삼양식품,2024-12-01,1,Stage 1,K_FOOD_EXPORT,True,False,False,False,True,False,True,True,True,True,False,False,False,False,False,False,False,False,False
+257720,실리콘투,2024-12-01,1,Stage 1,K_BEAUTY_EXPORT,True,True,False,False,True,True,True,True,True,True,False,False,False,False,False,False,False,False,False
+012450,한화에어로스페이스,2024-12-01,1,Stage 1,DEFENSE,True,True,False,False,True,True,True,True,True,True,False,False,False,False,True,False,False,True,False
+000660,SK하이닉스,2025-01-01,2,Stage 2-High,MEMORY_HBM,False,False,False,False,True,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+003230,삼양식품,2025-01-01,1,Stage 1,K_FOOD_EXPORT,True,False,False,False,True,False,True,True,True,True,False,False,False,False,False,False,False,False,False
+257720,실리콘투,2025-01-01,1,Stage 1,K_BEAUTY_EXPORT,True,True,False,False,True,True,True,True,True,True,False,False,False,False,False,False,False,False,False
+012450,한화에어로스페이스,2025-01-01,1,Stage 1,DEFENSE,True,True,False,False,True,True,True,True,True,True,False,False,False,False,True,False,False,True,False
+000660,SK하이닉스,2025-02-01,2,Stage 2-High,MEMORY_HBM,False,False,False,False,True,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+003230,삼양식품,2025-02-01,1,Stage 1,K_FOOD_EXPORT,True,False,False,False,True,False,True,True,True,True,False,False,False,False,False,False,False,False,False
+257720,실리콘투,2025-02-01,1,Stage 1,K_BEAUTY_EXPORT,True,True,False,False,True,True,True,True,True,True,False,False,False,False,False,False,False,False,False
+062040,산일전기,2025-03-01,1,Stage 1,POWER_EQUIPMENT,True,False,False,False,True,False,True,True,False,True,False,True,True,True,False,False,False,False,False
+001440,대한전선-like,2026-02-01,1,Stage 1,GENERIC,True,True,True,True,True,True,True,True,True,True,True,False,True,True,True,True,False,True,False

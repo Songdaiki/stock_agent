@@ -41,6 +41,7 @@ from e2r.research.asof_web_research import (
 from e2r.research.report_snapshot_store import ReportSnapshotStore
 from e2r.research.search_provider import EmptySearchProvider, SearchProvider
 from e2r.research.search_snapshot_store import SearchSnapshotStore
+from e2r.stage_gate_diagnostics import promotion_band
 
 
 DEFAULT_ASOF_REPLAY_OUTPUT_DIR = Path("output/backtests/asof_research_replay")
@@ -132,6 +133,7 @@ class AsOfReplayCandidate:
     web_only_score: float | None = None
     merged_score: float | None = None
     promotion_delta: str = "none"
+    promotion_band: str = "Stage 1"
 
 
 @dataclass(frozen=True)
@@ -342,6 +344,7 @@ def _candidate_row(
         web_only_score=web_only_score,
         merged_score=merged_score,
         promotion_delta=_promotion_delta(web_only_stage, merged_stage),
+        promotion_band=promotion_band(merged_scoring.score, merged_stage),
     )
 
 
@@ -475,6 +478,7 @@ def _failure_stage(
 
 def render_asof_replay_summary(result: AsOfResearchReplayResult) -> str:
     stage_counts = Counter(item.stage.value for item in result.discovered_candidates)
+    band_counts = Counter(item.promotion_band for item in result.discovered_candidates)
     lines = [
         "# As-Of Research Replay Summary",
         "",
@@ -496,6 +500,8 @@ def render_asof_replay_summary(result: AsOfResearchReplayResult) -> str:
         f"- Stage 3-Green count: {stage_counts.get(Stage.STAGE_3_GREEN.value, 0)}",
         f"- Stage 3-Yellow count: {stage_counts.get(Stage.STAGE_3_YELLOW.value, 0)}",
         f"- Stage 3-Red count: {stage_counts.get(Stage.STAGE_3_RED.value, 0)}",
+        f"- Stage 2-High band count: {band_counts.get('Stage 2-High', 0)}",
+        f"- Stage 3-Watch band count: {band_counts.get('Stage 3-Watch', 0)}",
         f"- merged scoring used: yes",
         "",
         "This replay starts from official historical universe data. Web research is executed only after Layer-1 candidate generation.",
@@ -689,6 +695,7 @@ def _write_candidates(csv_path: Path, json_path: Path, rows: Sequence[AsOfReplay
                 "web_only_score",
                 "merged_score",
                 "promotion_delta",
+                "promotion_band",
             ),
         )
         writer.writeheader()
@@ -711,6 +718,7 @@ def _write_candidates(csv_path: Path, json_path: Path, rows: Sequence[AsOfReplay
                     "web_only_score": item.web_only_score if item.web_only_score is not None else "",
                     "merged_score": item.merged_score if item.merged_score is not None else "",
                     "promotion_delta": item.promotion_delta,
+                    "promotion_band": item.promotion_band,
                 }
             )
 

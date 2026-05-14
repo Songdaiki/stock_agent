@@ -307,6 +307,7 @@ def extract_e2r_text_fields(text: str) -> dict[str, Any]:
         ("asp_yoy_pct", ("ASP YoY", "ASP 상승률", "판가 상승률")),
         ("price_increase_pct", ("가격 상승률",)),
         ("opm_expansion_pctp", ("OPM 개선폭", "마진 개선폭")),
+        ("export_growth_pct", ("수출 증가율", "수출 성장률", "Export growth")),
         ("op_delta_to_market_cap", ("OP 증가분/시총", "영업이익 증가분/시총")),
         ("capex_to_sales", ("CAPEX/매출", "투자/매출")),
         ("target_multiple_delta", ("멀티플 상향폭", "multiple expansion")),
@@ -338,17 +339,25 @@ def extract_e2r_text_fields(text: str) -> dict[str, Any]:
     if "capa 부족" in lowered or "생산능력 부족" in text or "capacity constraint" in lowered:
         fields["capacity_constraint"] = True
     if "리드타임 장기화" in text and ("공급부족" in text or "공급 부족" in text):
+        fields["lead_time_extended"] = True
+        fields["supply_shortage_mentioned"] = True
         fields["capacity_constraint"] = True
         fields["capa_shortage"] = True
     if any(token in text for token in ("ASP 상승", "판가 상승", "가격 상승", "ASP 개선", "판가 개선")):
         fields["pricing_power_confirmed"] = True
+        fields["pricing_power_mentioned"] = True
+        fields["asp_increase_mentioned"] = True
     if "판가 전가" in text or "가격 전가" in text or "pricing power" in lowered:
         fields["pricing_power_confirmed"] = True
+        fields["pricing_power_mentioned"] = True
     if "멀티플 상향" in text or "리레이팅" in text or "rerating" in lowered:
         fields["market_frame_shift"] = True
         fields["target_multiple_rerating"] = True
     if "구조적 공급부족" in text or "structural shortage" in lowered:
         fields["shortage_type"] = "structural"
+        fields["structural_shortage_mentioned"] = True
+    if "공급부족" in text or "공급 부족" in text or "shortage" in lowered:
+        fields["supply_shortage_mentioned"] = True
     if any(token in lowered for token in ("pandemic", "temporary", "one-off")) or any(token in text for token in ("팬데믹", "코로나", "일회성", "진단키트")):
         fields["shortage_type"] = "one_off"
         fields["one_off_shortage"] = True
@@ -380,7 +389,41 @@ def extract_e2r_text_fields(text: str) -> dict[str, Any]:
     if "회계 이슈" in text or "감사의견" in text or "accounting issue" in lowered:
         fields["accounting_or_trust_issue"] = True
         fields["risk_comment"] = _excerpt(text, ("회계 이슈", "감사의견", "accounting issue"))
+    _add_qualitative_e2r_fields(text, lowered, fields)
     return fields
+
+
+def _add_qualitative_e2r_fields(text: str, lowered: str, fields: dict[str, Any]) -> None:
+    if any(token in text for token in ("수출 비중 확대", "수출 확대", "수출 증가", "해외 매출 확대")):
+        fields["export_channel_expansion"] = True
+        fields["export_growth_mentioned"] = True
+    if any(token in text for token in ("해외 채널 확대", "해외 채널 확장", "북미 채널", "미국 채널")):
+        fields["overseas_channel_expansion"] = True
+        fields["channel_expansion"] = True
+    if any(token in text for token in ("반복 수요", "재구매", "리오더")) or any(
+        token in lowered for token in ("recurring demand", "repeat purchase")
+    ):
+        fields["recurring_consumer_demand"] = True
+    if "불닭" in text and any(token in text for token in ("수출", "채널", "미국", "해외")):
+        fields["recurring_consumer_demand"] = True
+        fields["export_channel_expansion"] = True
+    if any(token in text for token in ("고마진 믹스", "믹스 개선", "수익성 높은", "OPM 개선", "마진 개선")):
+        fields["high_margin_mix_improvement"] = True
+    if "hbm" in lowered and any(token in text for token in ("수요 증가", "수요 확대", "수요 강세")):
+        fields["hbm_demand_mentioned"] = True
+    if any(token in text for token in ("메모리 가격 상승", "DRAM 가격 상승", "D램 가격 상승", "NAND 가격 상승", "낸드 가격 상승")):
+        fields["memory_price_increase_mentioned"] = True
+        fields["pricing_power_mentioned"] = True
+    if any(token in text for token in ("공급조절", "감산")) or "supply discipline" in lowered:
+        fields["supply_discipline_mentioned"] = True
+    if any(token in text for token in ("선주문", "우선 배정")) or any(token in lowered for token in ("preorder", "allocation")):
+        fields["customer_preorder_or_allocation"] = True
+    if any(token in text for token in ("정부 고객", "정부향", "폴란드", "방산")):
+        fields["government_customer"] = True
+    if any(token in text for token in ("장기계약", "장기 공급계약", "다년 계약")) or "multi-year" in lowered:
+        fields["multi_year_contract"] = True
+    if any(token in text for token in ("사상 최대 수주잔고", "최대 수주잔고")):
+        fields["backlog_record_high"] = True
 
 
 def _number_after(text: str, labels: tuple[str, ...]) -> float | None:

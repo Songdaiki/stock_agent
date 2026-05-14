@@ -27,7 +27,7 @@ from e2r.research.asof_web_research import (
 )
 from e2r.research.report_snapshot_store import ReportSnapshotStore
 from e2r.research.search_snapshot_store import SearchSnapshotStore
-from e2r.stage_gate_diagnostics import StageGateDiagnostics, diagnose_stage_gates
+from e2r.stage_gate_diagnostics import StageGateDiagnostics, diagnose_stage_gates, promotion_band
 
 
 DEFAULT_STAGE_PROMOTION_OUTPUT_DIR = Path("output/backtests/asof_stage_promotion_autopsy")
@@ -74,6 +74,17 @@ class StagePromotionAutopsyRow:
     asp_pricing_power: float
     structural_shortage: float
     one_off_shortage_risk: float
+    structural_visibility_quality: float
+    sector_visibility_score: float
+    sector_bottleneck_score: float
+    recurring_demand_visibility: float
+    export_channel_visibility: float
+    medium_term_revision_visibility: float
+    domain_specific_evidence_score: float
+    sector_profile: str
+    promotion_band: str
+    cross_evidence_families_present: str
+    missing_evidence_families: str
     price_bars_count: int
     financial_actuals_count: int
     disclosures_count: int
@@ -93,6 +104,12 @@ class StagePromotionAutopsyRow:
     failed_stage3_valuation: bool
     failed_stage3_revision: bool
     failed_stage3_contract_quality: bool
+    failed_structural_visibility_quality: bool
+    failed_sector_visibility: bool
+    failed_sector_bottleneck: bool
+    failed_green_cross_evidence: bool
+    failed_report_date_confidence: bool
+    failed_domain_specific_evidence: bool
     failed_stage3_red_team: bool
     red_team_risk: str
     hard_audit_count: int
@@ -199,6 +216,17 @@ def _autopsy_row(
         asp_pricing_power=_diag(score.diagnostic_scores, "asp_pricing_power"),
         structural_shortage=_diag(score.diagnostic_scores, "structural_shortage"),
         one_off_shortage_risk=_diag(score.diagnostic_scores, "one_off_shortage_risk"),
+        structural_visibility_quality=_diag(score.diagnostic_scores, "structural_visibility_quality"),
+        sector_visibility_score=_diag(score.diagnostic_scores, "sector_visibility_score"),
+        sector_bottleneck_score=_diag(score.diagnostic_scores, "sector_bottleneck_score"),
+        recurring_demand_visibility=_diag(score.diagnostic_scores, "recurring_demand_visibility"),
+        export_channel_visibility=_diag(score.diagnostic_scores, "export_channel_visibility"),
+        medium_term_revision_visibility=_diag(score.diagnostic_scores, "medium_term_revision_visibility"),
+        domain_specific_evidence_score=_diag(score.diagnostic_scores, "domain_specific_evidence_score"),
+        sector_profile=diagnostics.sector_profile,
+        promotion_band=promotion_band(score, scored.stage.stage),
+        cross_evidence_families_present=", ".join(diagnostics.cross_evidence_families_present),
+        missing_evidence_families=", ".join(diagnostics.missing_evidence_families),
         price_bars_count=coverage["price_bars_count"],
         financial_actuals_count=coverage["financial_actuals_count"],
         disclosures_count=coverage["disclosures_count"],
@@ -218,6 +246,12 @@ def _autopsy_row(
         failed_stage3_valuation="failed_stage3_valuation" in failed,
         failed_stage3_revision="failed_stage3_revision" in failed,
         failed_stage3_contract_quality="failed_stage3_contract_quality" in failed,
+        failed_structural_visibility_quality="failed_structural_visibility_quality" in failed,
+        failed_sector_visibility="failed_sector_visibility" in failed,
+        failed_sector_bottleneck="failed_sector_bottleneck" in failed,
+        failed_green_cross_evidence="failed_green_cross_evidence" in failed,
+        failed_report_date_confidence="failed_report_date_confidence" in failed,
+        failed_domain_specific_evidence="failed_domain_specific_evidence" in failed,
         failed_stage3_red_team="failed_stage3_red_team" in failed,
         red_team_risk=scored.red_team.risk_level.value,
         hard_audit_count=hard_audit_count,
@@ -273,16 +307,16 @@ def render_autopsy_markdown(result: AsOfStagePromotionAutopsyResult) -> str:
             "",
             "## Candidate Gate Matrix",
             "",
-            "| symbol | company | date | stage | score | info | EPS/FCF | visibility | bottleneck | valuation | failed gates |",
-            "| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
+            "| symbol | company | date | stage | band | sector | score | info | EPS/FCF | visibility | structural visibility | bottleneck | valuation | failed gates |",
+            "| --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
         ]
     )
     for row in result.rows:
         failed_gates = [field.name for field in fields(row) if field.name.startswith("failed_") and getattr(row, field.name)]
         lines.append(
-            f"| {row.symbol} | {row.company_name} | {row.as_of_date.isoformat()} | {row.current_stage.value} | "
+            f"| {row.symbol} | {row.company_name} | {row.as_of_date.isoformat()} | {row.current_stage.value} | {row.promotion_band} | {row.sector_profile} | "
             f"{row.current_score:.2f} | {row.information_confidence:.2f} | {row.eps_fcf_explosion:.2f} | "
-            f"{row.earnings_visibility:.2f} | {row.bottleneck_pricing:.2f} | {row.valuation_rerating:.2f} | "
+            f"{row.earnings_visibility:.2f} | {row.structural_visibility_quality:.2f} | {row.bottleneck_pricing:.2f} | {row.valuation_rerating:.2f} | "
             f"{', '.join(failed_gates) or 'none'} |"
         )
     lines.extend(
@@ -350,6 +384,17 @@ def _score_component_fields() -> tuple[str, ...]:
         "asp_pricing_power",
         "structural_shortage",
         "one_off_shortage_risk",
+        "structural_visibility_quality",
+        "sector_visibility_score",
+        "sector_bottleneck_score",
+        "recurring_demand_visibility",
+        "export_channel_visibility",
+        "medium_term_revision_visibility",
+        "domain_specific_evidence_score",
+        "sector_profile",
+        "promotion_band",
+        "cross_evidence_families_present",
+        "missing_evidence_families",
         "red_team_risk",
         "hard_audit_count",
         "explanation",
@@ -362,6 +407,8 @@ def _gate_fields() -> tuple[str, ...]:
         "company_name",
         "as_of_date",
         "current_stage",
+        "promotion_band",
+        "sector_profile",
         "failed_stage2_total_score",
         "failed_stage2_eps_fcf",
         "failed_stage2_valuation",
@@ -374,6 +421,12 @@ def _gate_fields() -> tuple[str, ...]:
         "failed_stage3_valuation",
         "failed_stage3_revision",
         "failed_stage3_contract_quality",
+        "failed_structural_visibility_quality",
+        "failed_sector_visibility",
+        "failed_sector_bottleneck",
+        "failed_green_cross_evidence",
+        "failed_report_date_confidence",
+        "failed_domain_specific_evidence",
         "failed_stage3_red_team",
     )
 

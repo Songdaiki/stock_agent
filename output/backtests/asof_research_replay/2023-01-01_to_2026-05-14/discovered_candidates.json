@@ -14,9 +14,10 @@
       "consensus_revision"
     ],
     "layer": "deep_research",
-    "merged_score": 62.1937,
-    "merged_stage": "1",
-    "promotion_delta": "unchanged",
+    "merged_score": 72.4169,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "DISC_EARNINGS_PREANNOUNCE",
@@ -27,10 +28,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 62.1937,
-    "stage": "1",
+    "score": 72.4169,
+    "stage": "2",
     "symbol": "298040",
-    "web_only_score": 34.4437,
+    "web_only_score": 47.1669,
     "web_only_stage": "1"
   },
   {
@@ -48,9 +49,10 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 62.1937,
-    "merged_stage": "1",
-    "promotion_delta": "unchanged",
+    "merged_score": 72.4169,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -59,10 +61,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 62.1937,
-    "stage": "1",
+    "score": 72.4169,
+    "stage": "2",
     "symbol": "298040",
-    "web_only_score": 34.4437,
+    "web_only_score": 47.1669,
     "web_only_stage": "1"
   },
   {
@@ -80,8 +82,9 @@
       "consensus_revision"
     ],
     "layer": "deep_research",
-    "merged_score": 65.5219,
+    "merged_score": 72.5223,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
@@ -94,10 +97,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 65.5219,
+    "score": 72.5223,
     "stage": "2",
     "symbol": "267260",
-    "web_only_score": 28.8475,
+    "web_only_score": 41.7506,
     "web_only_stage": "1"
   },
   {
@@ -115,9 +118,10 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 62.1937,
-    "merged_stage": "1",
-    "promotion_delta": "unchanged",
+    "merged_score": 72.4169,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -125,10 +129,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 62.1937,
-    "stage": "1",
+    "score": 72.4169,
+    "stage": "2",
     "symbol": "298040",
-    "web_only_score": 34.4437,
+    "web_only_score": 47.1669,
     "web_only_stage": "1"
   },
   {
@@ -144,6 +148,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
@@ -174,8 +179,9 @@
       "consensus_revision"
     ],
     "layer": "deep_research",
-    "merged_score": 65.5219,
+    "merged_score": 72.5223,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
@@ -188,10 +194,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 65.5219,
+    "score": 72.5223,
     "stage": "2",
     "symbol": "267260",
-    "web_only_score": 28.8475,
+    "web_only_score": 41.7506,
     "web_only_stage": "1"
   },
   {
@@ -209,9 +215,10 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 62.1937,
-    "merged_stage": "1",
-    "promotion_delta": "unchanged",
+    "merged_score": 72.4169,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -219,10 +226,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 62.1937,
-    "stage": "1",
+    "score": 72.4169,
+    "stage": "2",
     "symbol": "298040",
-    "web_only_score": 34.4437,
+    "web_only_score": 47.1669,
     "web_only_stage": "1"
   },
   {
@@ -238,6 +245,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
@@ -267,8 +275,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.5219,
+    "merged_score": 72.5223,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
@@ -278,10 +287,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 65.5219,
+    "score": 72.5223,
     "stage": "2",
     "symbol": "267260",
-    "web_only_score": 28.8475,
+    "web_only_score": 41.7506,
     "web_only_stage": "1"
   },
   {
@@ -299,9 +308,10 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 62.1937,
-    "merged_stage": "1",
-    "promotion_delta": "unchanged",
+    "merged_score": 72.4169,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -309,10 +319,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 62.1937,
-    "stage": "1",
+    "score": 72.4169,
+    "stage": "2",
     "symbol": "298040",
-    "web_only_score": 34.4437,
+    "web_only_score": 47.1669,
     "web_only_stage": "1"
   },
   {
@@ -328,6 +338,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
@@ -357,8 +368,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.5219,
+    "merged_score": 72.5223,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
@@ -368,10 +380,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 65.5219,
+    "score": 72.5223,
     "stage": "2",
     "symbol": "267260",
-    "web_only_score": 28.8475,
+    "web_only_score": 41.7506,
     "web_only_stage": "1"
   },
   {
@@ -389,9 +401,10 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 62.1937,
-    "merged_stage": "1",
-    "promotion_delta": "unchanged",
+    "merged_score": 72.4169,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -399,10 +412,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 62.1937,
-    "stage": "1",
+    "score": 72.4169,
+    "stage": "2",
     "symbol": "298040",
-    "web_only_score": 34.4437,
+    "web_only_score": 47.1669,
     "web_only_stage": "1"
   },
   {
@@ -418,6 +431,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
@@ -447,8 +461,9 @@
       "consensus_revision"
     ],
     "layer": "deep_research",
-    "merged_score": 65.547,
+    "merged_score": 68.3326,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
@@ -459,10 +474,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 65.547,
+    "score": 68.3326,
     "stage": "2",
     "symbol": "103590",
-    "web_only_score": 37.797,
+    "web_only_score": 43.0826,
     "web_only_stage": "1"
   },
   {
@@ -480,8 +495,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.5219,
+    "merged_score": 72.5223,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
@@ -491,10 +507,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 65.5219,
+    "score": 72.5223,
     "stage": "2",
     "symbol": "267260",
-    "web_only_score": 28.8475,
+    "web_only_score": 41.7506,
     "web_only_stage": "1"
   },
   {
@@ -512,9 +528,10 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 62.1937,
-    "merged_stage": "1",
-    "promotion_delta": "unchanged",
+    "merged_score": 72.4169,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -522,10 +539,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 62.1937,
-    "stage": "1",
+    "score": 72.4169,
+    "stage": "2",
     "symbol": "298040",
-    "web_only_score": 34.4437,
+    "web_only_score": 47.1669,
     "web_only_stage": "1"
   },
   {
@@ -541,6 +558,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 4,
     "reason_codes": [
@@ -570,8 +588,9 @@
       "consensus_revision"
     ],
     "layer": "deep_research",
-    "merged_score": 65.547,
+    "merged_score": 68.3326,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
@@ -582,10 +601,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 65.547,
+    "score": 68.3326,
     "stage": "2",
     "symbol": "103590",
-    "web_only_score": 37.797,
+    "web_only_score": 43.0826,
     "web_only_stage": "1"
   },
   {
@@ -603,8 +622,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.5219,
+    "merged_score": 72.5223,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
@@ -614,10 +634,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 65.5219,
+    "score": 72.5223,
     "stage": "2",
     "symbol": "267260",
-    "web_only_score": 28.8475,
+    "web_only_score": 41.7506,
     "web_only_stage": "1"
   },
   {
@@ -635,9 +655,10 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 62.1937,
-    "merged_stage": "1",
-    "promotion_delta": "unchanged",
+    "merged_score": 72.4169,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 3,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -645,10 +666,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 62.1937,
-    "stage": "1",
+    "score": 72.4169,
+    "stage": "2",
     "symbol": "298040",
-    "web_only_score": 34.4437,
+    "web_only_score": 47.1669,
     "web_only_stage": "1"
   },
   {
@@ -664,6 +685,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 4,
     "reason_codes": [
@@ -693,8 +715,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.5219,
+    "merged_score": 72.5223,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
@@ -704,10 +727,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 65.5219,
+    "score": 72.5223,
     "stage": "2",
     "symbol": "267260",
-    "web_only_score": 28.8475,
+    "web_only_score": 41.7506,
     "web_only_stage": "1"
   },
   {
@@ -725,9 +748,10 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 62.1937,
-    "merged_stage": "1",
-    "promotion_delta": "unchanged",
+    "merged_score": 72.4169,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -735,10 +759,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 62.1937,
-    "stage": "1",
+    "score": 72.4169,
+    "stage": "2",
     "symbol": "298040",
-    "web_only_score": 34.4437,
+    "web_only_score": 47.1669,
     "web_only_stage": "1"
   },
   {
@@ -754,6 +778,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
@@ -783,8 +808,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.547,
+    "merged_score": 68.3326,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 4,
     "reason_codes": [
@@ -792,10 +818,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 65.547,
+    "score": 68.3326,
     "stage": "2",
     "symbol": "103590",
-    "web_only_score": 37.797,
+    "web_only_score": 43.0826,
     "web_only_stage": "1"
   },
   {
@@ -813,8 +839,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.5219,
+    "merged_score": 72.5223,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
@@ -824,10 +851,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 65.5219,
+    "score": 72.5223,
     "stage": "2",
     "symbol": "267260",
-    "web_only_score": 28.8475,
+    "web_only_score": 41.7506,
     "web_only_stage": "1"
   },
   {
@@ -845,9 +872,10 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 62.1937,
-    "merged_stage": "1",
-    "promotion_delta": "unchanged",
+    "merged_score": 72.4169,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -855,10 +883,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 62.1937,
-    "stage": "1",
+    "score": 72.4169,
+    "stage": "2",
     "symbol": "298040",
-    "web_only_score": 34.4437,
+    "web_only_score": 47.1669,
     "web_only_stage": "1"
   },
   {
@@ -874,6 +902,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
@@ -903,8 +932,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.547,
+    "merged_score": 68.3326,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 4,
     "reason_codes": [
@@ -912,10 +942,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 65.547,
+    "score": 68.3326,
     "stage": "2",
     "symbol": "103590",
-    "web_only_score": 37.797,
+    "web_only_score": 43.0826,
     "web_only_stage": "1"
   },
   {
@@ -933,8 +963,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.5219,
+    "merged_score": 72.5223,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
@@ -944,10 +975,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 65.5219,
+    "score": 72.5223,
     "stage": "2",
     "symbol": "267260",
-    "web_only_score": 28.8475,
+    "web_only_score": 41.7506,
     "web_only_stage": "1"
   },
   {
@@ -965,9 +996,10 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 62.1937,
-    "merged_stage": "1",
-    "promotion_delta": "unchanged",
+    "merged_score": 72.4169,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_VOLUME_SPIKE",
@@ -976,10 +1008,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 62.1937,
-    "stage": "1",
+    "score": 72.4169,
+    "stage": "2",
     "symbol": "298040",
-    "web_only_score": 34.4437,
+    "web_only_score": 47.1669,
     "web_only_stage": "1"
   },
   {
@@ -987,56 +1019,64 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 1,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
       "price",
       "financial_actual",
-      "disclosure"
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 19.58,
-    "merged_stage": "1",
-    "promotion_delta": "0_to_1",
+    "merged_score": 71.4913,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 3,
     "reason_codes": [
       "DISC_EARNINGS_PREANNOUNCE",
       "DISC_OP_YOY_100P",
       "PRICE_NEAR_52W_HIGH"
     ],
-    "rejected_future_documents": 2,
-    "score": 19.58,
-    "stage": "1",
+    "rejected_future_documents": 0,
+    "score": 71.4913,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-04-01",
     "candidate_source_path": "official_cheap_scan",
     "company_name": "삼성전자",
     "date_unverified_documents": 0,
-    "date_verified_documents": 1,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
       "price",
       "financial_actual",
-      "disclosure"
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 17.08,
-    "merged_stage": "1",
-    "promotion_delta": "0_to_1",
+    "merged_score": 66.8683,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 4,
     "reason_codes": [
       "DISC_EARNINGS_PREANNOUNCE",
       "DISC_OP_YOY_100P",
       "PRICE_NEAR_52W_HIGH"
     ],
-    "rejected_future_documents": 2,
-    "score": 17.08,
-    "stage": "1",
+    "rejected_future_documents": 0,
+    "score": 66.8683,
+    "stage": "2",
     "symbol": "005930",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 52.8683,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-04-01",
@@ -1051,6 +1091,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 5,
     "reason_codes": [
@@ -1080,8 +1121,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.547,
+    "merged_score": 68.3326,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 6,
     "reason_codes": [
@@ -1089,10 +1131,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 65.547,
+    "score": 68.3326,
     "stage": "2",
     "symbol": "103590",
-    "web_only_score": 37.797,
+    "web_only_score": 43.0826,
     "web_only_stage": "1"
   },
   {
@@ -1100,16 +1142,20 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 1,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
       "price",
       "financial_actual",
-      "disclosure"
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 20.08,
-    "merged_stage": "1",
-    "promotion_delta": "0_to_1",
+    "merged_score": 71.8663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1118,12 +1164,12 @@
       "FIN_FCF_TURNAROUND",
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
-    "rejected_future_documents": 2,
-    "score": 20.08,
-    "stage": "1",
+    "rejected_future_documents": 0,
+    "score": 71.8663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-05-01",
@@ -1140,8 +1186,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.5219,
+    "merged_score": 72.5223,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
@@ -1151,10 +1198,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 65.5219,
+    "score": 72.5223,
     "stage": "2",
     "symbol": "267260",
-    "web_only_score": 28.8475,
+    "web_only_score": 41.7506,
     "web_only_stage": "1"
   },
   {
@@ -1170,6 +1217,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 3,
     "reason_codes": [
@@ -1199,8 +1247,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.547,
+    "merged_score": 68.3326,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 4,
     "reason_codes": [
@@ -1208,10 +1257,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 65.547,
+    "score": 68.3326,
     "stage": "2",
     "symbol": "103590",
-    "web_only_score": 37.797,
+    "web_only_score": 43.0826,
     "web_only_stage": "1"
   },
   {
@@ -1229,8 +1278,9 @@
       "consensus_revision"
     ],
     "layer": "deep_research",
-    "merged_score": 45.6775,
+    "merged_score": 62.807,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
@@ -1242,10 +1292,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 45.6775,
+    "score": 62.807,
     "stage": "1",
     "symbol": "003230",
-    "web_only_score": 17.9275,
+    "web_only_score": 37.557,
     "web_only_stage": "1"
   },
   {
@@ -1253,16 +1303,20 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
       "price",
       "financial_actual",
-      "disclosure"
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 20.08,
-    "merged_stage": "1",
-    "promotion_delta": "0_to_1",
+    "merged_score": 71.8663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1271,12 +1325,12 @@
       "FIN_FCF_TURNAROUND",
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
-    "rejected_future_documents": 1,
-    "score": 20.08,
-    "stage": "1",
+    "rejected_future_documents": 0,
+    "score": 71.8663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-06-01",
@@ -1293,8 +1347,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.5219,
+    "merged_score": 72.5223,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 3,
     "reason_codes": [
@@ -1304,10 +1359,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 65.5219,
+    "score": 72.5223,
     "stage": "2",
     "symbol": "267260",
-    "web_only_score": 28.8475,
+    "web_only_score": 41.7506,
     "web_only_stage": "1"
   },
   {
@@ -1323,6 +1378,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 4,
     "reason_codes": [
@@ -1342,13 +1398,17 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "실리콘투",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "price"
+      "price",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 0.0,
-    "merged_stage": "0",
+    "merged_score": 51.6846,
+    "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 5,
     "reason_codes": [
@@ -1356,12 +1416,12 @@
       "PRICE_NEAR_52W_HIGH",
       "PRICE_60D_TOP_PERCENTILE"
     ],
-    "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
+    "rejected_future_documents": 0,
+    "score": 51.6846,
+    "stage": "1",
     "symbol": "257720",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 50.9346,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-06-01",
@@ -1378,8 +1438,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.547,
+    "merged_score": 68.3326,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 6,
     "reason_codes": [
@@ -1387,10 +1448,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 65.547,
+    "score": 68.3326,
     "stage": "2",
     "symbol": "103590",
-    "web_only_score": 37.797,
+    "web_only_score": 43.0826,
     "web_only_stage": "1"
   },
   {
@@ -1398,16 +1459,20 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
       "price",
       "financial_actual",
-      "disclosure"
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 20.08,
-    "merged_stage": "1",
-    "promotion_delta": "0_to_1",
+    "merged_score": 71.8663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1416,12 +1481,12 @@
       "FIN_FCF_TURNAROUND",
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
-    "rejected_future_documents": 1,
-    "score": 20.08,
-    "stage": "1",
+    "rejected_future_documents": 0,
+    "score": 71.8663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-07-01",
@@ -1438,8 +1503,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 45.6775,
+    "merged_score": 62.807,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -1449,10 +1515,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 45.6775,
+    "score": 62.807,
     "stage": "1",
     "symbol": "003230",
-    "web_only_score": 17.9275,
+    "web_only_score": 37.557,
     "web_only_stage": "1"
   },
   {
@@ -1460,13 +1526,17 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "실리콘투",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "price"
+      "price",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 0.0,
-    "merged_stage": "0",
+    "merged_score": 51.6846,
+    "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
@@ -1474,12 +1544,12 @@
       "PRICE_NEAR_52W_HIGH",
       "PRICE_60D_TOP_PERCENTILE"
     ],
-    "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
+    "rejected_future_documents": 0,
+    "score": 51.6846,
+    "stage": "1",
     "symbol": "257720",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 50.9346,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-07-01",
@@ -1496,8 +1566,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.547,
+    "merged_score": 68.3326,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 4,
     "reason_codes": [
@@ -1505,10 +1576,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 65.547,
+    "score": 68.3326,
     "stage": "2",
     "symbol": "103590",
-    "web_only_score": 37.797,
+    "web_only_score": 43.0826,
     "web_only_stage": "1"
   },
   {
@@ -1525,8 +1596,9 @@
       "consensus_revision"
     ],
     "layer": "deep_research",
-    "merged_score": 32.6675,
+    "merged_score": 35.8035,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
@@ -1537,10 +1609,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 32.6675,
+    "score": 35.8035,
     "stage": "1",
     "symbol": "012450",
-    "web_only_score": 29.6675,
+    "web_only_score": 34.3035,
     "web_only_stage": "1"
   },
   {
@@ -1548,16 +1620,20 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
       "price",
       "financial_actual",
-      "disclosure"
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 20.08,
-    "merged_stage": "1",
-    "promotion_delta": "0_to_1",
+    "merged_score": 71.8663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1566,12 +1642,12 @@
       "FIN_FCF_TURNAROUND",
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
-    "rejected_future_documents": 1,
-    "score": 20.08,
-    "stage": "1",
+    "rejected_future_documents": 0,
+    "score": 71.8663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-08-01",
@@ -1588,8 +1664,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 45.6775,
+    "merged_score": 62.807,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
@@ -1599,10 +1676,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 45.6775,
+    "score": 62.807,
     "stage": "1",
     "symbol": "003230",
-    "web_only_score": 17.9275,
+    "web_only_score": 37.557,
     "web_only_stage": "1"
   },
   {
@@ -1620,8 +1697,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.547,
+    "merged_score": 68.3326,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 4,
     "reason_codes": [
@@ -1630,10 +1708,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 65.547,
+    "score": 68.3326,
     "stage": "2",
     "symbol": "103590",
-    "web_only_score": 37.797,
+    "web_only_score": 43.0826,
     "web_only_stage": "1"
   },
   {
@@ -1641,13 +1719,17 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "실리콘투",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "price"
+      "price",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 0.0,
-    "merged_stage": "0",
+    "merged_score": 51.6846,
+    "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 5,
     "reason_codes": [
@@ -1655,12 +1737,12 @@
       "PRICE_NEAR_52W_HIGH",
       "PRICE_60D_TOP_PERCENTILE"
     ],
-    "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
+    "rejected_future_documents": 0,
+    "score": 51.6846,
+    "stage": "1",
     "symbol": "257720",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 50.9346,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-09-01",
@@ -1676,8 +1758,9 @@
       "consensus_revision"
     ],
     "layer": "deep_research",
-    "merged_score": 32.6675,
+    "merged_score": 35.8035,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
@@ -1688,10 +1771,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 32.6675,
+    "score": 35.8035,
     "stage": "1",
     "symbol": "012450",
-    "web_only_score": 29.6675,
+    "web_only_score": 34.3035,
     "web_only_stage": "1"
   },
   {
@@ -1699,16 +1782,20 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
       "price",
       "financial_actual",
-      "disclosure"
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 20.08,
-    "merged_stage": "1",
-    "promotion_delta": "0_to_1",
+    "merged_score": 71.8663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1717,12 +1804,12 @@
       "FIN_FCF_TURNAROUND",
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
-    "rejected_future_documents": 1,
-    "score": 20.08,
-    "stage": "1",
+    "rejected_future_documents": 0,
+    "score": 71.8663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-09-01",
@@ -1739,8 +1826,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 45.6775,
+    "merged_score": 62.807,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
@@ -1750,10 +1838,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 45.6775,
+    "score": 62.807,
     "stage": "1",
     "symbol": "003230",
-    "web_only_score": 17.9275,
+    "web_only_score": 37.557,
     "web_only_stage": "1"
   },
   {
@@ -1771,8 +1859,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.547,
+    "merged_score": 68.3326,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 4,
     "reason_codes": [
@@ -1781,10 +1870,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 65.547,
+    "score": 68.3326,
     "stage": "2",
     "symbol": "103590",
-    "web_only_score": 37.797,
+    "web_only_score": 43.0826,
     "web_only_stage": "1"
   },
   {
@@ -1792,13 +1881,17 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "실리콘투",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "price"
+      "price",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 0.0,
-    "merged_stage": "0",
+    "merged_score": 51.6846,
+    "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 5,
     "reason_codes": [
@@ -1806,28 +1899,32 @@
       "PRICE_NEAR_52W_HIGH",
       "PRICE_60D_TOP_PERCENTILE"
     ],
-    "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
+    "rejected_future_documents": 0,
+    "score": 51.6846,
+    "stage": "1",
     "symbol": "257720",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 50.9346,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-10-01",
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
       "price",
       "financial_actual",
-      "disclosure"
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 20.08,
-    "merged_stage": "1",
-    "promotion_delta": "0_to_1",
+    "merged_score": 71.8663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1836,12 +1933,12 @@
       "FIN_FCF_TURNAROUND",
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
-    "rejected_future_documents": 1,
-    "score": 20.08,
-    "stage": "1",
+    "rejected_future_documents": 0,
+    "score": 71.8663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-10-01",
@@ -1858,8 +1955,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 45.6775,
+    "merged_score": 62.807,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -1869,10 +1967,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 45.6775,
+    "score": 62.807,
     "stage": "1",
     "symbol": "003230",
-    "web_only_score": 17.9275,
+    "web_only_score": 37.557,
     "web_only_stage": "1"
   },
   {
@@ -1890,8 +1988,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 65.547,
+    "merged_score": 68.3326,
     "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
     "promotion_delta": "1_to_2",
     "rank": 3,
     "reason_codes": [
@@ -1900,10 +1999,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 65.547,
+    "score": 68.3326,
     "stage": "2",
     "symbol": "103590",
-    "web_only_score": 37.797,
+    "web_only_score": 43.0826,
     "web_only_stage": "1"
   },
   {
@@ -1911,13 +2010,17 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "실리콘투",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "price"
+      "price",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 0.0,
-    "merged_stage": "0",
+    "merged_score": 51.6846,
+    "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
@@ -1925,12 +2028,12 @@
       "PRICE_NEAR_52W_HIGH",
       "PRICE_60D_TOP_PERCENTILE"
     ],
-    "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
+    "rejected_future_documents": 0,
+    "score": 51.6846,
+    "stage": "1",
     "symbol": "257720",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 50.9346,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-10-01",
@@ -1946,8 +2049,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 32.6675,
+    "merged_score": 35.8035,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 5,
     "reason_codes": [
@@ -1955,10 +2059,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 32.6675,
+    "score": 35.8035,
     "stage": "1",
     "symbol": "012450",
-    "web_only_score": 29.6675,
+    "web_only_score": 34.3035,
     "web_only_stage": "1"
   },
   {
@@ -1966,16 +2070,20 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
       "price",
       "financial_actual",
-      "disclosure"
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 20.08,
-    "merged_stage": "1",
-    "promotion_delta": "0_to_1",
+    "merged_score": 71.8663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -1984,12 +2092,12 @@
       "FIN_FCF_TURNAROUND",
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
-    "rejected_future_documents": 1,
-    "score": 20.08,
-    "stage": "1",
+    "rejected_future_documents": 0,
+    "score": 71.8663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-11-01",
@@ -2006,8 +2114,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 45.6775,
+    "merged_score": 62.807,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -2017,10 +2126,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 45.6775,
+    "score": 62.807,
     "stage": "1",
     "symbol": "003230",
-    "web_only_score": 17.9275,
+    "web_only_score": 37.557,
     "web_only_stage": "1"
   },
   {
@@ -2028,13 +2137,17 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "실리콘투",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "price"
+      "price",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 0.0,
-    "merged_stage": "0",
+    "merged_score": 51.6846,
+    "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
@@ -2042,12 +2155,12 @@
       "PRICE_NEAR_52W_HIGH",
       "PRICE_60D_TOP_PERCENTILE"
     ],
-    "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
+    "rejected_future_documents": 0,
+    "score": 51.6846,
+    "stage": "1",
     "symbol": "257720",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 50.9346,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-11-01",
@@ -2063,8 +2176,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 32.6675,
+    "merged_score": 35.8035,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
@@ -2072,10 +2186,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 32.6675,
+    "score": 35.8035,
     "stage": "1",
     "symbol": "012450",
-    "web_only_score": 29.6675,
+    "web_only_score": 34.3035,
     "web_only_stage": "1"
   },
   {
@@ -2083,16 +2197,20 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
       "price",
       "financial_actual",
-      "disclosure"
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 20.08,
-    "merged_stage": "1",
-    "promotion_delta": "0_to_1",
+    "merged_score": 71.8663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -2101,12 +2219,12 @@
       "FIN_FCF_TURNAROUND",
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
-    "rejected_future_documents": 1,
-    "score": 20.08,
-    "stage": "1",
+    "rejected_future_documents": 0,
+    "score": 71.8663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-12-01",
@@ -2123,8 +2241,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 45.6775,
+    "merged_score": 62.807,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -2134,10 +2253,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 45.6775,
+    "score": 62.807,
     "stage": "1",
     "symbol": "003230",
-    "web_only_score": 17.9275,
+    "web_only_score": 37.557,
     "web_only_stage": "1"
   },
   {
@@ -2145,13 +2264,17 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "실리콘투",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "price"
+      "price",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 0.0,
-    "merged_stage": "0",
+    "merged_score": 51.6846,
+    "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
@@ -2159,12 +2282,12 @@
       "PRICE_NEAR_52W_HIGH",
       "PRICE_60D_TOP_PERCENTILE"
     ],
-    "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
+    "rejected_future_documents": 0,
+    "score": 51.6846,
+    "stage": "1",
     "symbol": "257720",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 50.9346,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2024-12-01",
@@ -2180,8 +2303,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 32.6675,
+    "merged_score": 35.8035,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
@@ -2189,10 +2313,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 32.6675,
+    "score": 35.8035,
     "stage": "1",
     "symbol": "012450",
-    "web_only_score": 29.6675,
+    "web_only_score": 34.3035,
     "web_only_stage": "1"
   },
   {
@@ -2200,16 +2324,20 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
       "price",
       "financial_actual",
-      "disclosure"
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 20.08,
-    "merged_stage": "1",
-    "promotion_delta": "0_to_1",
+    "merged_score": 71.8663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -2218,12 +2346,12 @@
       "FIN_FCF_TURNAROUND",
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
-    "rejected_future_documents": 1,
-    "score": 20.08,
-    "stage": "1",
+    "rejected_future_documents": 0,
+    "score": 71.8663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-01-01",
@@ -2240,8 +2368,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 45.6775,
+    "merged_score": 62.807,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -2251,10 +2380,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 45.6775,
+    "score": 62.807,
     "stage": "1",
     "symbol": "003230",
-    "web_only_score": 17.9275,
+    "web_only_score": 37.557,
     "web_only_stage": "1"
   },
   {
@@ -2262,13 +2391,17 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "실리콘투",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "price"
+      "price",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 0.0,
-    "merged_stage": "0",
+    "merged_score": 51.6846,
+    "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
@@ -2276,12 +2409,12 @@
       "PRICE_NEAR_52W_HIGH",
       "PRICE_60D_TOP_PERCENTILE"
     ],
-    "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
+    "rejected_future_documents": 0,
+    "score": 51.6846,
+    "stage": "1",
     "symbol": "257720",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 50.9346,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-01-01",
@@ -2297,8 +2430,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 32.6675,
+    "merged_score": 35.8035,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
@@ -2306,10 +2440,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 32.6675,
+    "score": 35.8035,
     "stage": "1",
     "symbol": "012450",
-    "web_only_score": 29.6675,
+    "web_only_score": 34.3035,
     "web_only_stage": "1"
   },
   {
@@ -2317,16 +2451,20 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
       "price",
       "financial_actual",
-      "disclosure"
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 20.08,
-    "merged_stage": "1",
-    "promotion_delta": "0_to_1",
+    "merged_score": 71.8663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -2335,12 +2473,12 @@
       "FIN_FCF_TURNAROUND",
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
-    "rejected_future_documents": 1,
-    "score": 20.08,
-    "stage": "1",
+    "rejected_future_documents": 0,
+    "score": 71.8663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-02-01",
@@ -2357,8 +2495,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 45.6775,
+    "merged_score": 62.807,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -2368,10 +2507,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 45.6775,
+    "score": 62.807,
     "stage": "1",
     "symbol": "003230",
-    "web_only_score": 17.9275,
+    "web_only_score": 37.557,
     "web_only_stage": "1"
   },
   {
@@ -2379,13 +2518,17 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "실리콘투",
     "date_unverified_documents": 0,
-    "date_verified_documents": 2,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "price"
+      "price",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 0.0,
-    "merged_stage": "0",
+    "merged_score": 51.6846,
+    "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
@@ -2393,12 +2536,12 @@
       "PRICE_NEAR_52W_HIGH",
       "PRICE_60D_TOP_PERCENTILE"
     ],
-    "rejected_future_documents": 1,
-    "score": 0.0,
-    "stage": "0",
+    "rejected_future_documents": 0,
+    "score": 51.6846,
+    "stage": "1",
     "symbol": "257720",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 50.9346,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-02-01",
@@ -2414,8 +2557,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 32.6675,
+    "merged_score": 35.8035,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
@@ -2423,10 +2567,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 32.6675,
+    "score": 35.8035,
     "stage": "1",
     "symbol": "012450",
-    "web_only_score": 29.6675,
+    "web_only_score": 34.3035,
     "web_only_stage": "1"
   },
   {
@@ -2443,8 +2587,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 40.1962,
+    "merged_score": 52.4696,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
@@ -2455,10 +2600,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 40.1962,
+    "score": 52.4696,
     "stage": "1",
     "symbol": "062040",
-    "web_only_score": 19.1962,
+    "web_only_score": 32.9696,
     "web_only_stage": "1"
   },
   {
@@ -2466,16 +2611,20 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
       "price",
       "financial_actual",
-      "disclosure"
+      "disclosure",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 20.08,
-    "merged_stage": "1",
-    "promotion_delta": "0_to_1",
+    "merged_score": 71.8663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "PRICE_NEAR_52W_HIGH",
@@ -2485,11 +2634,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 20.08,
-    "stage": "1",
+    "score": 71.8663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-03-01",
@@ -2506,8 +2655,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 45.6775,
+    "merged_score": 62.807,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
@@ -2516,10 +2666,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 45.6775,
+    "score": 62.807,
     "stage": "1",
     "symbol": "003230",
-    "web_only_score": 17.9275,
+    "web_only_score": 37.557,
     "web_only_stage": "1"
   },
   {
@@ -2527,13 +2677,17 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "실리콘투",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "price"
+      "price",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 0.0,
-    "merged_stage": "0",
+    "merged_score": 51.6846,
+    "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
@@ -2542,11 +2696,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
-    "stage": "0",
+    "score": 51.6846,
+    "stage": "1",
     "symbol": "257720",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 50.9346,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-03-01",
@@ -2562,8 +2716,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 32.6675,
+    "merged_score": 35.8035,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 5,
     "reason_codes": [
@@ -2571,10 +2726,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 32.6675,
+    "score": 35.8035,
     "stage": "1",
     "symbol": "012450",
-    "web_only_score": 29.6675,
+    "web_only_score": 34.3035,
     "web_only_stage": "1"
   },
   {
@@ -2591,8 +2746,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 40.1962,
+    "merged_score": 52.4696,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 1,
     "reason_codes": [
@@ -2603,10 +2759,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 40.1962,
+    "score": 52.4696,
     "stage": "1",
     "symbol": "062040",
-    "web_only_score": 19.1962,
+    "web_only_score": 32.9696,
     "web_only_stage": "1"
   },
   {
@@ -2614,14 +2770,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 2,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2630,11 +2790,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-04-01",
@@ -2651,8 +2811,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 45.6775,
+    "merged_score": 62.807,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
@@ -2661,10 +2822,10 @@
       "FIN_OPM_EXPANSION_5P"
     ],
     "rejected_future_documents": 0,
-    "score": 45.6775,
+    "score": 62.807,
     "stage": "1",
     "symbol": "003230",
-    "web_only_score": 17.9275,
+    "web_only_score": 37.557,
     "web_only_stage": "1"
   },
   {
@@ -2672,13 +2833,17 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "실리콘투",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "price"
+      "price",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 0.0,
-    "merged_stage": "0",
+    "merged_score": 51.6846,
+    "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 4,
     "reason_codes": [
@@ -2687,11 +2852,11 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 0.0,
-    "stage": "0",
+    "score": 51.6846,
+    "stage": "1",
     "symbol": "257720",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 50.9346,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-04-01",
@@ -2707,8 +2872,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 32.6675,
+    "merged_score": 35.8035,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 5,
     "reason_codes": [
@@ -2716,10 +2882,10 @@
       "PRICE_NEAR_52W_HIGH"
     ],
     "rejected_future_documents": 0,
-    "score": 32.6675,
+    "score": 35.8035,
     "stage": "1",
     "symbol": "012450",
-    "web_only_score": 29.6675,
+    "web_only_score": 34.3035,
     "web_only_stage": "1"
   },
   {
@@ -2727,14 +2893,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2743,11 +2913,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-05-01",
@@ -2763,8 +2933,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 32.6675,
+    "merged_score": 35.8035,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -2773,10 +2944,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 32.6675,
+    "score": 35.8035,
     "stage": "1",
     "symbol": "012450",
-    "web_only_score": 29.6675,
+    "web_only_score": 34.3035,
     "web_only_stage": "1"
   },
   {
@@ -2793,8 +2964,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 40.1962,
+    "merged_score": 52.4696,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
@@ -2803,10 +2975,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 40.1962,
+    "score": 52.4696,
     "stage": "1",
     "symbol": "062040",
-    "web_only_score": 19.1962,
+    "web_only_score": 32.9696,
     "web_only_stage": "1"
   },
   {
@@ -2814,14 +2986,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2830,11 +3006,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-06-01",
@@ -2850,8 +3026,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 32.6675,
+    "merged_score": 35.8035,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -2860,10 +3037,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 32.6675,
+    "score": 35.8035,
     "stage": "1",
     "symbol": "012450",
-    "web_only_score": 29.6675,
+    "web_only_score": 34.3035,
     "web_only_stage": "1"
   },
   {
@@ -2880,8 +3057,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 40.1962,
+    "merged_score": 52.4696,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
@@ -2890,10 +3068,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 40.1962,
+    "score": 52.4696,
     "stage": "1",
     "symbol": "062040",
-    "web_only_score": 19.1962,
+    "web_only_score": 32.9696,
     "web_only_stage": "1"
   },
   {
@@ -2901,14 +3079,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -2917,11 +3099,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-07-01",
@@ -2937,8 +3119,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 32.6675,
+    "merged_score": 35.8035,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -2947,10 +3130,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 32.6675,
+    "score": 35.8035,
     "stage": "1",
     "symbol": "012450",
-    "web_only_score": 29.6675,
+    "web_only_score": 34.3035,
     "web_only_stage": "1"
   },
   {
@@ -2967,8 +3150,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 40.1962,
+    "merged_score": 52.4696,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 3,
     "reason_codes": [
@@ -2977,10 +3161,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 40.1962,
+    "score": 52.4696,
     "stage": "1",
     "symbol": "062040",
-    "web_only_score": 19.1962,
+    "web_only_score": 32.9696,
     "web_only_stage": "1"
   },
   {
@@ -2988,14 +3172,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -3004,11 +3192,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-08-01",
@@ -3024,8 +3212,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 40.1962,
+    "merged_score": 52.4696,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -3034,10 +3223,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 40.1962,
+    "score": 52.4696,
     "stage": "1",
     "symbol": "062040",
-    "web_only_score": 19.1962,
+    "web_only_score": 32.9696,
     "web_only_stage": "1"
   },
   {
@@ -3045,14 +3234,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -3061,11 +3254,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-09-01",
@@ -3081,8 +3274,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 40.1962,
+    "merged_score": 52.4696,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -3091,10 +3285,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 40.1962,
+    "score": 52.4696,
     "stage": "1",
     "symbol": "062040",
-    "web_only_score": 19.1962,
+    "web_only_score": 32.9696,
     "web_only_stage": "1"
   },
   {
@@ -3102,14 +3296,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -3118,11 +3316,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-10-01",
@@ -3138,8 +3336,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 40.1962,
+    "merged_score": 52.4696,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -3148,10 +3347,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 40.1962,
+    "score": 52.4696,
     "stage": "1",
     "symbol": "062040",
-    "web_only_score": 19.1962,
+    "web_only_score": 32.9696,
     "web_only_stage": "1"
   },
   {
@@ -3159,14 +3358,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -3175,11 +3378,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-11-01",
@@ -3195,8 +3398,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 40.1962,
+    "merged_score": 52.4696,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -3205,10 +3409,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 40.1962,
+    "score": 52.4696,
     "stage": "1",
     "symbol": "062040",
-    "web_only_score": 19.1962,
+    "web_only_score": 32.9696,
     "web_only_stage": "1"
   },
   {
@@ -3216,14 +3420,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -3232,11 +3440,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2025-12-01",
@@ -3252,8 +3460,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 40.1962,
+    "merged_score": 52.4696,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -3262,10 +3471,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 40.1962,
+    "score": 52.4696,
     "stage": "1",
     "symbol": "062040",
-    "web_only_score": 19.1962,
+    "web_only_score": 32.9696,
     "web_only_stage": "1"
   },
   {
@@ -3273,14 +3482,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -3289,11 +3502,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2026-01-01",
@@ -3309,8 +3522,9 @@
       "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 40.1962,
+    "merged_score": 52.4696,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "unchanged",
     "rank": 2,
     "reason_codes": [
@@ -3319,10 +3533,10 @@
       "PRICE_60D_TOP_PERCENTILE"
     ],
     "rejected_future_documents": 0,
-    "score": 40.1962,
+    "score": 52.4696,
     "stage": "1",
     "symbol": "062040",
-    "web_only_score": 19.1962,
+    "web_only_score": 32.9696,
     "web_only_stage": "1"
   },
   {
@@ -3330,14 +3544,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -3346,11 +3564,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2026-02-01",
@@ -3365,6 +3583,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 2,
     "reason_codes": [
@@ -3385,14 +3604,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -3401,11 +3624,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2026-03-01",
@@ -3420,6 +3643,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 2,
     "reason_codes": [
@@ -3440,14 +3664,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -3456,11 +3684,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2026-04-01",
@@ -3475,6 +3703,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 2,
     "reason_codes": [
@@ -3494,14 +3723,18 @@
     "candidate_source_path": "official_cheap_scan",
     "company_name": "SK하이닉스",
     "date_unverified_documents": 0,
-    "date_verified_documents": 3,
+    "date_verified_documents": 8,
     "evidence_types_seen": [
-      "financial_actual"
+      "financial_actual",
+      "research_report",
+      "consensus",
+      "consensus_revision"
     ],
     "layer": "event_search",
-    "merged_score": 3.0,
-    "merged_stage": "0",
-    "promotion_delta": "unchanged",
+    "merged_score": 70.3663,
+    "merged_stage": "2",
+    "promotion_band": "Stage 2-High",
+    "promotion_delta": "1_to_2",
     "rank": 1,
     "reason_codes": [
       "FIN_OP_TURNAROUND",
@@ -3510,11 +3743,11 @@
       "FIN_CFO_NET_INCOME_IMPROVEMENT"
     ],
     "rejected_future_documents": 0,
-    "score": 3.0,
-    "stage": "0",
+    "score": 70.3663,
+    "stage": "2",
     "symbol": "000660",
-    "web_only_score": 0.0,
-    "web_only_stage": "0"
+    "web_only_score": 61.6163,
+    "web_only_stage": "1"
   },
   {
     "as_of_date": "2026-05-01",
@@ -3529,6 +3762,7 @@
     "layer": "event_search",
     "merged_score": 0.0,
     "merged_stage": "1",
+    "promotion_band": "Stage 1",
     "promotion_delta": "0_to_1",
     "rank": 2,
     "reason_codes": [
