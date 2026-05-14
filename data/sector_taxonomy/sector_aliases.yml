@@ -1,0 +1,13 @@
+# Human-readable aliases. Runtime defaults cover the same families; this file
+# makes the taxonomy mapping editable without changing code.
+전력기기: 전력기기/전선
+전선: 전력기기/전선
+방산: 방산
+조선: 조선/해양
+음식료: 식품수출
+화장품유통: K-뷰티/유통
+반도체: 메모리/HBM
+반도체장비: 반도체장비
+2차전지: 2차전지/소재
+해운: 해운/운임
+진단: 의료기기/헬스케어

@@ -1,0 +1,14 @@
+symbol,company_name,market,exchange,listed_date,sector_raw,industry_raw,sector_custom,sector_source,sector_confidence,primary_archetype,secondary_archetypes,business_keywords,product_keywords,mapping_reason
+000660,SK하이닉스,KR,KRX,1996-12-26,반도체,,메모리/HBM,rule,0.670,MEMORY_HBM_CAPACITY,,반도체,,keyword_match:반도체
+001440,대한전선-like,KR,KRX,1968-12-27,전선,,전력기기/전선,rule,0.670,CONTRACT_BACKLOG_INDUSTRIAL,,전선,,keyword_match:전선
+003230,삼양식품,KR,KRX,1975-06-30,음식료,,식품수출,rule,0.790,EXPORT_RECURRING_CONSUMER,,음식료|식품,,"keyword_match:음식료,식품"
+005930,삼성전자,KR,KRX,1975-06-11,반도체,,메모리/HBM,rule,0.670,MEMORY_HBM_CAPACITY,,반도체,,keyword_match:반도체
+011200,HMM,KR,KRX,1995-10-05,해운,,해운/운임,rule,0.670,SHIPPING_FREIGHT_CYCLE,,해운,,keyword_match:해운
+012450,한화에어로스페이스,KR,KRX,1987-05-27,방산,,방산,rule,0.670,DEFENSE_GOVERNMENT_BACKLOG,,방산,,keyword_match:방산
+062040,산일전기,KR,KRX,2024-07-29,전력기기,,전력기기/전선,rule,0.790,CONTRACT_BACKLOG_INDUSTRIAL,UTILITIES_REGULATED_TARIFF,전력기기|전력,,"keyword_match:전력기기,전력"
+096530,씨젠,KR,KRX,2010-09-10,진단,,의료기기/헬스케어,rule,0.670,MEDICAL_DEVICE_HEALTHCARE_EXPORT,,진단,,keyword_match:진단
+103590,일진전기,KR,KRX,2008-08-01,전력기기,,전력기기/전선,rule,0.790,CONTRACT_BACKLOG_INDUSTRIAL,UTILITIES_REGULATED_TARIFF,전력기기|전력,,"keyword_match:전력기기,전력"
+247540,에코프로비엠,KR,KRX,2019-03-05,2차전지,,2차전지/소재,rule,0.670,BATTERY_MATERIALS_CAPEX_OVERHEAT,,2차전지,,keyword_match:2차전지
+257720,실리콘투,KR,KRX,2021-09-29,화장품유통,,K-뷰티/유통,rule,0.910,K_BEAUTY_EXPORT_DISTRIBUTION,RETAIL_DOMESTIC_CONSUMER,화장품|화장품유통|유통,,"keyword_match:화장품,화장품유통,유통"
+267260,HD현대일렉트릭,KR,KRX,2017-05-10,전력기기,,전력기기/전선,rule,0.790,CONTRACT_BACKLOG_INDUSTRIAL,UTILITIES_REGULATED_TARIFF,전력기기|전력,,"keyword_match:전력기기,전력"
+298040,효성중공업,KR,KRX,2018-07-13,전력기기,,전력기기/전선,rule,0.790,CONTRACT_BACKLOG_INDUSTRIAL,UTILITIES_REGULATED_TARIFF,전력기기|전력,,"keyword_match:전력기기,전력"

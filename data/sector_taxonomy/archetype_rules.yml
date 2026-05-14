@@ -1,0 +1,8 @@
+# Extra keywords appended to built-in archetype rules.
+CONTRACT_BACKLOG_INDUSTRIAL: 초고압,변압기,전력망
+DEFENSE_GOVERNMENT_BACKLOG: 방산수출,정부고객
+EXPORT_RECURRING_CONSUMER: 불닭,해외채널
+K_BEAUTY_EXPORT_DISTRIBUTION: K뷰티,인디브랜드
+MEMORY_HBM_CAPACITY: 고대역폭메모리,AI메모리
+BATTERY_MATERIALS_CAPEX_OVERHEAT: 양극재,전구체
+ONE_OFF_EVENT_DEMAND: 팬데믹,진단키트

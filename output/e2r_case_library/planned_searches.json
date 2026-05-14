@@ -1,0 +1,366 @@
+[
+  {
+    "symbol": "000660",
+    "company_name": "SK하이닉스",
+    "primary_archetype": "MEMORY_HBM_CAPACITY",
+    "query": "SK하이닉스 HBM demand 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "000660",
+    "company_name": "SK하이닉스",
+    "primary_archetype": "MEMORY_HBM_CAPACITY",
+    "query": "SK하이닉스 memory price increase 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "000660",
+    "company_name": "SK하이닉스",
+    "primary_archetype": "MEMORY_HBM_CAPACITY",
+    "query": "SK하이닉스 consensus revision 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "000660",
+    "company_name": "SK하이닉스",
+    "primary_archetype": "MEMORY_HBM_CAPACITY",
+    "query": "SK하이닉스 DRAM/NAND/HBM pricing 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "001440",
+    "company_name": "대한전선-like",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "대한전선-like supply contract disclosure 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "001440",
+    "company_name": "대한전선-like",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "대한전선-like backlog keyword 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "001440",
+    "company_name": "대한전선-like",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "대한전선-like contract_amount_to_prior_sales 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "001440",
+    "company_name": "대한전선-like",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "대한전선-like contract_duration_months 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "003230",
+    "company_name": "삼양식품",
+    "primary_archetype": "EXPORT_RECURRING_CONSUMER",
+    "query": "삼양식품 export growth 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "003230",
+    "company_name": "삼양식품",
+    "primary_archetype": "EXPORT_RECURRING_CONSUMER",
+    "query": "삼양식품 OPM surprise 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "003230",
+    "company_name": "삼양식품",
+    "primary_archetype": "EXPORT_RECURRING_CONSUMER",
+    "query": "삼양식품 FY1/FY2 EPS/OP revision 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "003230",
+    "company_name": "삼양식품",
+    "primary_archetype": "EXPORT_RECURRING_CONSUMER",
+    "query": "삼양식품 export mix increase 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "005930",
+    "company_name": "삼성전자",
+    "primary_archetype": "MEMORY_HBM_CAPACITY",
+    "query": "삼성전자 HBM demand 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "005930",
+    "company_name": "삼성전자",
+    "primary_archetype": "MEMORY_HBM_CAPACITY",
+    "query": "삼성전자 memory price increase 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "005930",
+    "company_name": "삼성전자",
+    "primary_archetype": "MEMORY_HBM_CAPACITY",
+    "query": "삼성전자 consensus revision 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "005930",
+    "company_name": "삼성전자",
+    "primary_archetype": "MEMORY_HBM_CAPACITY",
+    "query": "삼성전자 DRAM/NAND/HBM pricing 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "011200",
+    "company_name": "HMM",
+    "primary_archetype": "SHIPPING_FREIGHT_CYCLE",
+    "query": "HMM price/trading value breakout 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "011200",
+    "company_name": "HMM",
+    "primary_archetype": "SHIPPING_FREIGHT_CYCLE",
+    "query": "HMM sector keyword appears 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "011200",
+    "company_name": "HMM",
+    "primary_archetype": "SHIPPING_FREIGHT_CYCLE",
+    "query": "HMM reported OP/EPS acceleration 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "011200",
+    "company_name": "HMM",
+    "primary_archetype": "SHIPPING_FREIGHT_CYCLE",
+    "query": "HMM research report confirmation 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "012450",
+    "company_name": "한화에어로스페이스",
+    "primary_archetype": "DEFENSE_GOVERNMENT_BACKLOG",
+    "query": "한화에어로스페이스 export defense contract 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "012450",
+    "company_name": "한화에어로스페이스",
+    "primary_archetype": "DEFENSE_GOVERNMENT_BACKLOG",
+    "query": "한화에어로스페이스 government customer disclosure 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "012450",
+    "company_name": "한화에어로스페이스",
+    "primary_archetype": "DEFENSE_GOVERNMENT_BACKLOG",
+    "query": "한화에어로스페이스 multi-year delivery schedule 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "012450",
+    "company_name": "한화에어로스페이스",
+    "primary_archetype": "DEFENSE_GOVERNMENT_BACKLOG",
+    "query": "한화에어로스페이스 order backlog 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "062040",
+    "company_name": "산일전기",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "산일전기 supply contract disclosure 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "062040",
+    "company_name": "산일전기",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "산일전기 backlog keyword 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "062040",
+    "company_name": "산일전기",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "산일전기 contract_amount_to_prior_sales 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "062040",
+    "company_name": "산일전기",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "산일전기 contract_duration_months 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "096530",
+    "company_name": "씨젠",
+    "primary_archetype": "MEDICAL_DEVICE_HEALTHCARE_EXPORT",
+    "query": "씨젠 price/trading value breakout 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "096530",
+    "company_name": "씨젠",
+    "primary_archetype": "MEDICAL_DEVICE_HEALTHCARE_EXPORT",
+    "query": "씨젠 sector keyword appears 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "096530",
+    "company_name": "씨젠",
+    "primary_archetype": "MEDICAL_DEVICE_HEALTHCARE_EXPORT",
+    "query": "씨젠 reported OP/EPS acceleration 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "096530",
+    "company_name": "씨젠",
+    "primary_archetype": "MEDICAL_DEVICE_HEALTHCARE_EXPORT",
+    "query": "씨젠 research report confirmation 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "103590",
+    "company_name": "일진전기",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "일진전기 supply contract disclosure 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "103590",
+    "company_name": "일진전기",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "일진전기 backlog keyword 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "103590",
+    "company_name": "일진전기",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "일진전기 contract_amount_to_prior_sales 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "103590",
+    "company_name": "일진전기",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "일진전기 contract_duration_months 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "247540",
+    "company_name": "에코프로비엠",
+    "primary_archetype": "BATTERY_MATERIALS_CAPEX_OVERHEAT",
+    "query": "에코프로비엠 price/trading value breakout 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "247540",
+    "company_name": "에코프로비엠",
+    "primary_archetype": "BATTERY_MATERIALS_CAPEX_OVERHEAT",
+    "query": "에코프로비엠 sector keyword appears 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "247540",
+    "company_name": "에코프로비엠",
+    "primary_archetype": "BATTERY_MATERIALS_CAPEX_OVERHEAT",
+    "query": "에코프로비엠 reported OP/EPS acceleration 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "247540",
+    "company_name": "에코프로비엠",
+    "primary_archetype": "BATTERY_MATERIALS_CAPEX_OVERHEAT",
+    "query": "에코프로비엠 research report confirmation 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "257720",
+    "company_name": "실리콘투",
+    "primary_archetype": "K_BEAUTY_EXPORT_DISTRIBUTION",
+    "query": "실리콘투 export growth 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "257720",
+    "company_name": "실리콘투",
+    "primary_archetype": "K_BEAUTY_EXPORT_DISTRIBUTION",
+    "query": "실리콘투 platform/distribution expansion 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "257720",
+    "company_name": "실리콘투",
+    "primary_archetype": "K_BEAUTY_EXPORT_DISTRIBUTION",
+    "query": "실리콘투 brand/customer diversification 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "257720",
+    "company_name": "실리콘투",
+    "primary_archetype": "K_BEAUTY_EXPORT_DISTRIBUTION",
+    "query": "실리콘투 FY1/FY2 OP/EPS revision 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "267260",
+    "company_name": "HD현대일렉트릭",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "HD현대일렉트릭 supply contract disclosure 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "267260",
+    "company_name": "HD현대일렉트릭",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "HD현대일렉트릭 backlog keyword 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "267260",
+    "company_name": "HD현대일렉트릭",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "HD현대일렉트릭 contract_amount_to_prior_sales 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "267260",
+    "company_name": "HD현대일렉트릭",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "HD현대일렉트릭 contract_duration_months 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "298040",
+    "company_name": "효성중공업",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "효성중공업 supply contract disclosure 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "298040",
+    "company_name": "효성중공업",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "효성중공업 backlog keyword 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "298040",
+    "company_name": "효성중공업",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "효성중공업 contract_amount_to_prior_sales 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  },
+  {
+    "symbol": "298040",
+    "company_name": "효성중공업",
+    "primary_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+    "query": "효성중공업 contract_duration_months 2023 2026 PDF",
+    "purpose": "case_mining_candidate_search"
+  }
+]

@@ -1,0 +1,3 @@
+# Reserved for future symbol-level taxonomy fixes.
+# Checkpoint 28A does not require overrides because mappings should be
+# sector/archetype rules rather than stock-name hacks.
