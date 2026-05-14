@@ -1,0 +1,1183 @@
+# Archetype/sub-archetype routing rules v0.5.
+# Research/shadow material only; not production scoring.
+archetypes:
+  ADVANCED_PACKAGING_PCB:
+    large_sector: "AI·반도체·전자부품"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "ai_server_demand"
+      - "capacity_constraint"
+      - "op_eps_revision"
+      - "order_visibility"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "유리기판"
+      - "인쇄회로기판(PCB)"
+  AGRI_COMMODITY_INPUTS:
+    large_sector: "소재·스프레드·전략자원"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "commodity_cost"
+      - "inventory_status"
+      - "price_pass_through"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "농업-종자비료농약"
+  AGRI_LIVESTOCK_FOOD_COMMODITY:
+    large_sector: "농업·생활서비스·기타"
+    green_policy: "red_watch"
+    must_have_evidence:
+      - "feed_cost"
+      - "inventory_status"
+      - "op_eps_revision"
+      - "price_pass_through"
+    red_flag_evidence:
+      - "commodity_reversal"
+      - "disease_event_only"
+      - "feed_cost_squeeze"
+      - "weather_theme"
+    sample_theme_tags:
+      - "대두"
+      - "배합사료"
+      - "양돈주"
+      - "육계주"
+  AIRLINE_TRAVEL_CYCLE:
+    large_sector: "모빌리티·운송·레저"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "cost_risk"
+      - "traffic_recovery"
+      - "yield_or_margin"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "항공사"
+  AI_CHIP_FABRIC_INFRA:
+    large_sector: "AI·반도체·전자부품"
+    green_policy: "event_only"
+    must_have_evidence:
+      - "direct_exposure"
+      - "orders_or_revenue"
+      - "revision_support"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "뉴로모픽 반도체"
+      - "시스템반도체"
+      - "퓨리오사AI 관련주"
+  AI_DATA_CENTER_INFRASTRUCTURE:
+    large_sector: "산업재·수주·인프라"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "capacity_bottleneck"
+      - "confirmed_order"
+      - "data_center_capex"
+      - "op_eps_revision"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "광섬유-광케이블-광통신"
+      - "냉각시스템"
+      - "반도체-디스플레이-클린룸"
+  AI_SOFTWARE_APPLICATION:
+    large_sector: "플랫폼·콘텐츠·SW·보안"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "cost_efficiency"
+      - "opm_leverage"
+      - "paid_usage"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "인공지능(AI)"
+  APPAREL_BRAND_OEM:
+    large_sector: "소비재·유통·브랜드"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "brand_momentum"
+      - "inventory_status"
+      - "order_visibility"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "의류 OEM-ODM"
+      - "의류 브랜드"
+      - "의류소재"
+  AUTO_COMPLETED_VEHICLE:
+    large_sector: "모빌리티·운송·레저"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "mix_improvement"
+      - "roe_fcf"
+      - "shareholder_return"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "자동차 연비개선-경량화"
+  AUTO_MOBILITY_COMPONENTS:
+    large_sector: "모빌리티·운송·레저"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "asp"
+      - "content_growth"
+      - "content_per_vehicle"
+      - "customer_diversification"
+      - "margin_improvement"
+      - "oe_re_mix"
+      - "opm_improvement"
+      - "raw_material_spread"
+    red_flag_evidence:
+      - "auto_demand_slowdown"
+      - "customer_concentration"
+      - "factory_disruption"
+      - "raw_material_inflation"
+    sample_theme_tags:
+      - "자율주행"
+      - "카메라"
+      - "현대-기아차 부품주"
+  BATTERY_EQUIPMENT_PARTS:
+    large_sector: "2차전지·전기차·친환경"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "capex_visibility"
+      - "customer_orders"
+      - "margin_visibility"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "2차전지 공정장비"
+      - "2차전지 부품"
+      - "전기차 부품"
+  BATTERY_MATERIALS_CAPEX_OVERHEAT:
+    large_sector: "2차전지·전기차·친환경"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "contract_quality"
+      - "demand_visibility"
+      - "fcf_after_capex"
+      - "price_pass_through"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "2차전지 생산-판매"
+      - "2차전지 소재"
+  BATTERY_RECYCLING_ESS_SHIFT:
+    large_sector: "2차전지·전기차·친환경"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "ess_demand"
+      - "fcf_after_capex"
+      - "recycling_volume"
+      - "utilization_improvement"
+    red_flag_evidence:
+      - "ev_headline_only"
+      - "margin_unclear"
+      - "mineral_price_dependency"
+      - "recycling_volume_absent"
+    sample_theme_tags:
+      - "전고체 배터리"
+      - "전기차 화재"
+      - "폐배터리"
+  BEAUTY_OEM_ODM_SUPPLYCHAIN:
+    large_sector: "소비재·유통·브랜드"
+    green_policy: "watch_to_green"
+    must_have_evidence:
+      - "capacity_utilization"
+      - "customer_diversification"
+      - "margin_visibility"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "화장품 OEM-ODM"
+      - "화장품 원재료 및 부자재"
+  BIOTECH_PRE_REVENUE_REGULATORY:
+    large_sector: "바이오·헬스케어·의료기기"
+    green_policy: "red_watch"
+    must_have_evidence:
+      - "cash_runway"
+      - "clinical_milestone"
+      - "dilution_risk"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "AI 신약개발"
+      - "면역세포치료제"
+      - "줄기세포치료제"
+      - "치매치료"
+      - "탈모치료"
+      - "희귀질환 치료제"
+  BIOTECH_ROYALTY_COMMERCIALIZATION:
+    large_sector: "바이오·헬스케어·의료기기"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "approval"
+      - "partner_launch"
+      - "royalty_or_revenue"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "난임"
+      - "바이오-이중항체"
+      - "비만 치료제"
+  BUILDING_MATERIALS_CYCLE:
+    large_sector: "건설·부동산·건자재"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "cost_spread"
+      - "housing_cycle"
+      - "price_hike"
+      - "volume"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "건자재"
+      - "건자재-가구"
+      - "건자재-거푸집"
+      - "건자재-시멘트레미콘콘크리트"
+  CANNABIS_REGULATED_HEALTH:
+    large_sector: "바이오·헬스케어·의료기기"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "cash_flow"
+      - "legal_revenue"
+      - "regulatory_approval"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "마리화나"
+  CASINO_DUTYFREE_TOURISM:
+    large_sector: "모빌리티·운송·레저"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "drop_or_sales"
+      - "opm_leverage"
+      - "visitor_mix"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "면세점"
+      - "카지노"
+  CDMO_HEALTHCARE_CONTRACT:
+    large_sector: "바이오·헬스케어·의료기기"
+    green_policy: "watch_to_green"
+    must_have_evidence:
+      - "capacity_utilization"
+      - "customer_diversification"
+      - "fcf_conversion"
+      - "long_term_contract"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "CMO-원료의약품"
+      - "바이오시밀러"
+  CHEMICAL_SPREAD:
+    large_sector: "소재·스프레드·전략자원"
+    green_policy: "red_watch"
+    must_have_evidence:
+      - "capacity_discipline"
+      - "inventory_status"
+      - "product_spread"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "주정"
+      - "페인트"
+      - "화학"
+  CLIMATE_DISASTER_EVENT:
+    large_sector: "정책·지정학·재난·이벤트"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "margin_visibility"
+      - "repeat_demand"
+      - "sell_through"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "황사미세먼지-공기정화"
+  CLOUD_AI_SOFTWARE_INFRA:
+    large_sector: "플랫폼·콘텐츠·SW·보안"
+    green_policy: "watch_to_green"
+    must_have_evidence:
+      - "arpu"
+      - "carrier_capex"
+      - "opm_leverage"
+      - "order_conversion"
+      - "paid_usage"
+      - "recurring_revenue"
+    red_flag_evidence:
+      - "ai_cost_overrun"
+      - "capex_delay"
+      - "churn"
+      - "mau_without_monetization"
+      - "price_only_rally"
+      - "regulatory_risk"
+      - "theme_only_equipment"
+    sample_theme_tags:
+      - "5G-6G"
+      - "클라우드 컴퓨팅"
+  COMMODITY_SPREAD:
+    large_sector: "소재·스프레드·전략자원"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "cost_curve"
+      - "metal_price"
+      - "supply_constraint"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "금은"
+  CONSTRUCTION_REAL_ESTATE_CREDIT:
+    large_sector: "건설·부동산·건자재"
+    green_policy: "red_watch"
+    must_have_evidence:
+      - "cash_flow"
+      - "credit_risk"
+      - "pf_exposure"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "대형 건설사"
+      - "중소형 건설사"
+  CONSUMER_REGULATED_PRODUCT:
+    large_sector: "농업·생활서비스·기타"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "compliance_record"
+      - "margin_visibility"
+      - "regulated_revenue"
+      - "repeat_demand"
+    red_flag_evidence:
+      - "one_product_event"
+      - "regulatory_change"
+      - "tax_hike"
+      - "youth_access_risk"
+    sample_theme_tags:
+      - "전자담배"
+  CONTRACT_BACKLOG_INDUSTRIAL:
+    large_sector: "산업재·수주·인프라"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "backlog"
+      - "contract_or_order"
+      - "margin_visibility"
+      - "op_eps_revision"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "강관"
+      - "건설기계"
+      - "전력설비"
+      - "전선-케이블"
+  CRO_CLINICAL_SERVICE:
+    large_sector: "바이오·헬스케어·의료기기"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "clinical_volume"
+      - "opm_fcf_conversion"
+      - "service_contract"
+      - "utilization"
+    red_flag_evidence:
+      - "customer_concentration"
+      - "project_delay"
+      - "trial_volume_without_margin"
+    sample_theme_tags:
+      - "CRO"
+  DEFENSE_GOVERNMENT_BACKLOG:
+    large_sector: "산업재·수주·인프라"
+    green_policy: "green_allowed"
+    must_have_evidence:
+      - "delivery_schedule"
+      - "government_customer"
+      - "multi_year_contract"
+      - "op_eps_revision"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "방위산업"
+      - "스페이스X"
+      - "항공우주"
+  DIAGNOSTICS_INFECTIOUS_DISEASE:
+    large_sector: "바이오·헬스케어·의료기기"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "margin_normalization"
+      - "recurring_non_event_demand"
+      - "revenue_after_event"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "동물백신-방역"
+      - "전염병-진단"
+  DIAGNOSTICS_INFECTIOUS_EVENT:
+    large_sector: "바이오·헬스케어·의료기기"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "margin_normalization"
+      - "post_event_revenue"
+      - "recurring_non_event_demand"
+    red_flag_evidence:
+      - "demand_cliff"
+      - "guidance_down"
+      - "inventory_build"
+      - "one_off_demand"
+    sample_theme_tags:
+      - "황사미세먼지-마스크"
+  DIGITAL_ASSET_TOKENIZATION:
+    large_sector: "금융·자본배분·디지털금융"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "cash_flow"
+      - "license_or_partner"
+      - "regulated_revenue"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "STO"
+      - "디지털자산-블록체인"
+      - "스테이블코인"
+  DIGITAL_HEALTHCARE_AI:
+    large_sector: "바이오·헬스케어·의료기기"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "recurring_revenue"
+      - "regulatory_clearance"
+      - "reimbursement_or_contract"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "마이크로바이옴"
+      - "원격의료"
+      - "유전체검사"
+      - "의료 AI"
+  DISASTER_REBUILD_EVENT:
+    large_sector: "건설·부동산·건자재"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "actual_order"
+      - "margin_visibility"
+      - "repeat_demand"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "지진"
+      - "폭염"
+  DISPLAY_OLED_EQUIPMENT:
+    large_sector: "AI·반도체·전자부품"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "margin_visibility"
+      - "orders"
+      - "panel_capex"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "OLED-소재부품"
+      - "OLED-장비"
+      - "반도체-디스플레이-이송장비"
+  ECOMMERCE_FRESH_LOGISTICS:
+    large_sector: "소비재·유통·브랜드"
+    green_policy: "event_only"
+    must_have_evidence:
+      - "logistics_margin"
+      - "repeat_orders"
+      - "unit_economics"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "마켓컬리오아시스 관련주"
+      - "콜드체인"
+      - "택배와 종합물류"
+  EDUCATION_SPECIALTY_SERVICES:
+    large_sector: "농업·생활서비스·기타"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "enrollment_or_user_growth"
+      - "opm_leverage"
+      - "policy_risk"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "교육"
+      - "취업일자리"
+  ELECTRONIC_COMPONENTS:
+    large_sector: "AI·반도체·전자부품"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "content_growth"
+      - "customer_diversification"
+      - "margin_improvement"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "LED"
+      - "MLCC"
+      - "무선충전"
+      - "스마트폰 부품-소재"
+  ENERGY_DISTRIBUTION_FUEL:
+    large_sector: "2차전지·전기차·친환경"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "demand_visibility"
+      - "inventory_status"
+      - "spread"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "LNG 발전유통"
+      - "LPG"
+      - "유가 상승 수혜-유류도소매"
+      - "유가 상승 수혜-윤활유"
+  EVENT_DISEASE_PEST_DEMAND:
+    large_sector: "정책·지정학·재난·이벤트"
+    green_policy: "event_only"
+    must_have_evidence:
+      - "margin_normalization"
+      - "post_event_revenue"
+      - "recurring_non_event_demand"
+    red_flag_evidence:
+      - "demand_cliff"
+      - "guidance_down"
+      - "inventory_build"
+      - "one_off_demand"
+    sample_theme_tags:
+      - "빈대퇴치"
+      - "엠폭스"
+      - "코로나19-제약"
+  EV_INFRASTRUCTURE:
+    large_sector: "2차전지·전기차·친환경"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "policy_support"
+      - "recurring_revenue"
+      - "utilization"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "전기차-인프라"
+  EXPORT_RECURRING_CONSUMER:
+    large_sector: "소비재·유통·브랜드"
+    green_policy: "green_allowed"
+    must_have_evidence:
+      - "channel_expansion"
+      - "export_growth"
+      - "fy1_fy2_revision"
+      - "recurring_demand"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "K-푸드"
+      - "건강기능식품"
+      - "라면"
+      - "음식료"
+      - "음식료-유통"
+  FINANCIAL_SPREAD_BALANCE_SHEET:
+    large_sector: "금융·자본배분·디지털금융"
+    green_policy: "green_allowed"
+    must_have_evidence:
+      - "capital_ratio"
+      - "credit_cost"
+      - "pbr"
+      - "roe"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "금융지주회사"
+      - "은행"
+  FOOD_AGRI_LIVESTOCK_CYCLE:
+    large_sector: "소비재·유통·브랜드"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "commodity_cycle"
+      - "feed_cost"
+      - "inventory_status"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "참치 원양어업"
+  GAME_CONTENT_IP:
+    large_sector: "플랫폼·콘텐츠·SW·보안"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "global_revenue"
+      - "ip_repeatability"
+      - "op_eps_revision"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "게임"
+      - "미디어 컨텐츠"
+      - "방송-언론"
+      - "엔터"
+      - "음원서비스"
+  GEOPOLITICAL_RECONSTRUCTION:
+    large_sector: "정책·지정학·재난·이벤트"
+    green_policy: "event_only"
+    must_have_evidence:
+      - "contract_award"
+      - "funding"
+      - "supplier_margin"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "네옴시티"
+      - "우크라 재건"
+  HOLDING_RESTRUCTURING_GOVERNANCE:
+    large_sector: "건설·부동산·건자재"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "capital_strength"
+      - "fcf_visibility"
+      - "nav_discount"
+      - "roe"
+      - "shareholder_return_execution"
+      - "trading_margin"
+    red_flag_evidence:
+      - "commodity_inventory_loss"
+      - "governance_discount"
+      - "one_off_event_premium"
+    sample_theme_tags:
+      - "부동산 자산 보유"
+      - "종합상사"
+  HOME_LIVING_APPLIANCE:
+    large_sector: "소비재·유통·브랜드"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "channel_expansion"
+      - "margin_visibility"
+      - "repeat_demand"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "밥솥"
+      - "스마트홈"
+      - "유아용품"
+      - "키즈"
+  HYDROGEN_FUEL_CELL:
+    large_sector: "2차전지·전기차·친환경"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "commercial_revenue"
+      - "cost_curve"
+      - "policy_support"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "수소차-기타부품"
+  HYDROGEN_FUEL_CELL_INFRA:
+    large_sector: "2차전지·전기차·친환경"
+    green_policy: "watch_to_green"
+    must_have_evidence:
+      - "commercial_revenue"
+      - "cost_curve"
+      - "customer_demand"
+      - "production_capacity"
+    red_flag_evidence:
+      - "no_revenue"
+      - "policy_dependency"
+      - "project_delay"
+      - "utilization_down"
+    sample_theme_tags:
+      - "수소차-연료전지"
+      - "수소차-인프라"
+  INSURANCE_UNDERWRITING_CYCLE:
+    large_sector: "금융·자본배분·디지털금융"
+    green_policy: "green_allowed"
+    must_have_evidence:
+      - "credit_risk"
+      - "csm_or_capital"
+      - "loss_ratio"
+      - "shareholder_return"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "생명보험"
+      - "손해보험"
+      - "화재"
+  K_BEAUTY_EXPORT_DISTRIBUTION:
+    large_sector: "소비재·유통·브랜드"
+    green_policy: "green_allowed"
+    must_have_evidence:
+      - "channel_diversification"
+      - "export_growth"
+      - "opm_roe_improvement"
+      - "repeat_orders"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "화장품 브랜드"
+  MEDIA_AD_CONTENT_CYCLE:
+    large_sector: "플랫폼·콘텐츠·SW·보안"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "ad_recovery"
+      - "global_revenue"
+      - "ip_repeatability"
+      - "opm_leverage"
+    red_flag_evidence:
+      - "ad_cycle_down"
+      - "contract_scandal"
+      - "hit_driven_miss"
+      - "single_ip_dependence"
+    sample_theme_tags:
+      - "광고"
+  MEDICAL_DEVICE_HEALTHCARE_EXPORT:
+    large_sector: "바이오·헬스케어·의료기기"
+    green_policy: "green_allowed"
+    must_have_evidence:
+      - "consumable_repeat_revenue"
+      - "export_growth"
+      - "opm_roe_improvement"
+      - "regulatory_approval"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "미용기기"
+      - "보툴리눔 톡신"
+      - "수술용 로봇"
+      - "치아-임플란트"
+  MEMORY_HBM_CAPACITY:
+    large_sector: "AI·반도체·전자부품"
+    green_policy: "green_allowed"
+    must_have_evidence:
+      - "hbm_demand"
+      - "medium_term_revision"
+      - "memory_price"
+      - "supply_discipline"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "반도체-CXL"
+      - "반도체-HBM"
+      - "종합반도체"
+  METAVERSE_NFT_THEME:
+    large_sector: "플랫폼·콘텐츠·SW·보안"
+    green_policy: "red_flag"
+    must_have_evidence:
+      - "regulatory_risk"
+      - "revenue_conversion"
+      - "user_monetization"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "NFT"
+      - "메타버스"
+  NONFERROUS_STRATEGIC_METALS:
+    large_sector: "소재·스프레드·전략자원"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "cost_curve"
+      - "metal_price"
+      - "supply_constraint"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "비철금속"
+      - "비철금속-구리"
+      - "비철금속-리튬"
+      - "페라이트"
+  NORTH_KOREA_POLICY_EVENT:
+    large_sector: "정책·지정학·재난·이벤트"
+    green_policy: "event_only"
+    must_have_evidence:
+      - "binding_policy"
+      - "funded_project"
+      - "revenue_visibility"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "금강산 관광"
+      - "남북경협-DMZ"
+      - "남북경협-개성공단"
+      - "남북경협-광물자원개발"
+  NUCLEAR_SMR_GRID_POLICY:
+    large_sector: "산업재·수주·인프라"
+    green_policy: "watch_to_green"
+    must_have_evidence:
+      - "binding_contract"
+      - "permitted_project_timeline"
+      - "supplier_revenue_visibility"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "스마트그리드"
+      - "원자력(원전)"
+  PAPER_PACKAGING:
+    large_sector: "소재·스프레드·전략자원"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "cost_pass_through"
+      - "demand_visibility"
+      - "paper_spread"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "골판지"
+      - "제지"
+  PAYMENT_FINTECH_INFRA:
+    large_sector: "금융·자본배분·디지털금융"
+    green_policy: "watch_to_green"
+    must_have_evidence:
+      - "regulatory_risk"
+      - "take_rate"
+      - "transaction_volume"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "결제서비스"
+      - "신용정보"
+      - "지역화폐"
+      - "토스 관련주"
+  PLATFORM_SOFTWARE_INTERNET:
+    large_sector: "플랫폼·콘텐츠·SW·보안"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "arpu"
+      - "opm_leverage"
+      - "recurring_revenue"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "원격근무"
+  POLICY_LOCAL_THEME:
+    large_sector: "정책·지정학·재난·이벤트"
+    green_policy: "event_only"
+    must_have_evidence:
+      - "funding"
+      - "policy_execution"
+      - "revenue_visibility"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "세종시"
+  RAIL_INFRASTRUCTURE:
+    large_sector: "산업재·수주·인프라"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "confirmed_order"
+      - "funded_project"
+      - "margin_visibility"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "철도"
+  RARE_METALS_STRATEGIC_MATERIALS:
+    large_sector: "소재·스프레드·전략자원"
+    green_policy: "event_only"
+    must_have_evidence:
+      - "cost_curve"
+      - "metal_price"
+      - "supply_constraint"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "희토류"
+  REFINING_OIL_SPREAD:
+    large_sector: "소재·스프레드·전략자원"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "demand_visibility"
+      - "inventory_status"
+      - "refining_margin"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "화학-정유"
+  REIT_DEVELOPMENT_TRUST:
+    large_sector: "건설·부동산·건자재"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "cash_yield"
+      - "debt_cost"
+      - "nav_discount"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "부동산-개발신탁리츠"
+  RENEWABLE_ENERGY_POLICY:
+    large_sector: "2차전지·전기차·친환경"
+    green_policy: "event_only"
+    must_have_evidence:
+      - "margin_visibility"
+      - "project_backlog"
+      - "tariff_or_policy"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "탄소배출권"
+      - "탈 플라스틱"
+      - "풍력"
+  RENTAL_USED_CAR_MOBILITY:
+    large_sector: "모빌리티·운송·레저"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "demand_visibility"
+      - "fleet_margin"
+      - "residual_value"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "렌터카-중고차"
+      - "자전거"
+  RETAIL_CONVENIENCE_OFFLINE:
+    large_sector: "소비재·유통·브랜드"
+    green_policy: "watch_to_green"
+    must_have_evidence:
+      - "inventory_turnover"
+      - "opm_improvement"
+      - "same_store_sales"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "편의점"
+      - "홈쇼핑"
+  ROBOTICS_FACTORY_AUTOMATION:
+    large_sector: "플랫폼·콘텐츠·SW·보안"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "customer_adoption"
+      - "opm_improvement"
+      - "repeat_revenue"
+      - "revenue_conversion"
+    red_flag_evidence:
+      - "high_valuation_ipo"
+      - "mou_poc_only"
+      - "no_revenue"
+      - "tam_only"
+    sample_theme_tags:
+      - "서비스용 로봇"
+      - "피지컬AI"
+  SECURITIES_BROKERAGE_CYCLE:
+    large_sector: "금융·자본배분·디지털금융"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "brokerage_cycle"
+      - "capital_risk"
+      - "ib_pipeline"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "벤처캐피탈"
+      - "증권사"
+  SECURITY_IDENTITY_DEEPFAKE:
+    large_sector: "플랫폼·콘텐츠·SW·보안"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "op_eps_revision"
+      - "recurring_contract"
+      - "regulatory_demand"
+      - "security_demand"
+    red_flag_evidence:
+      - "budget_cut"
+      - "churn"
+      - "no_recurring_revenue"
+      - "theme_only_security"
+    sample_theme_tags:
+      - "CCTV"
+      - "IT 보안"
+      - "딥페이크"
+      - "생체인식"
+  SEMI_EQUIPMENT_CAPEX:
+    large_sector: "AI·반도체·전자부품"
+    green_policy: "watch_to_green"
+    must_have_evidence:
+      - "customer_capex"
+      - "customer_diversification"
+      - "orders"
+      - "revenue_conversion"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "반도체-전공정 장비"
+      - "반도체-후공정 장비"
+  SEMI_MATERIALS_PROCESS:
+    large_sector: "AI·반도체·전자부품"
+    green_policy: "watch_to_green"
+    must_have_evidence:
+      - "customer_qualification"
+      - "margin_visibility"
+      - "volume_ramp"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "반도체-전공정 소재"
+      - "반도체-후공정 소재"
+  SHIPBUILDING_OFFSHORE_BACKLOG:
+    large_sector: "산업재·수주·인프라"
+    green_policy: "watch_to_green"
+    must_have_evidence:
+      - "low_margin_backlog_clearance"
+      - "newbuild_price"
+      - "op_revision"
+      - "orderbook_quality"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "LNG선-기자재"
+      - "엔진(조선-AI)"
+      - "조선"
+      - "조선 기자재"
+      - "피팅 밸브"
+  SHIPPING_FREIGHT_CYCLE:
+    large_sector: "모빌리티·운송·레저"
+    green_policy: "red_watch"
+    must_have_evidence:
+      - "contract_vs_spot"
+      - "freight_rate"
+      - "vessel_supply"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "해운"
+  SMART_FACTORY_AUTOMATION:
+    large_sector: "산업재·수주·인프라"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "component_content_growth"
+      - "customer_adoption"
+      - "opm_improvement"
+      - "revenue_conversion"
+    red_flag_evidence:
+      - "no_revenue_conversion"
+      - "robot_theme_only"
+      - "single_mou"
+    sample_theme_tags:
+      - "로봇 부품"
+      - "제조용 로봇/스마트팩토리"
+      - "컨택센터"
+      - "키오스크"
+  SMART_FARM_AGRI_TECH:
+    large_sector: "농업·생활서비스·기타"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "margin_visibility"
+      - "order_or_adoption"
+      - "revenue_conversion"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "농업-농기계"
+      - "스마트팜"
+  SOLAR_TARIFF_SUPPLYCHAIN:
+    large_sector: "2차전지·전기차·친환경"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "subsidy_support"
+      - "supply_chain_clearance"
+      - "tariff_visibility"
+      - "utilization"
+    red_flag_evidence:
+      - "customs_hold"
+      - "subsidy_cut"
+      - "supply_chain_disruption"
+      - "tariff_delay"
+    sample_theme_tags:
+      - "태양광"
+  SPECULATIVE_SCIENCE_THEME:
+    large_sector: "정책·지정학·재난·이벤트"
+    green_policy: "red_flag"
+    must_have_evidence:
+      - "commercial_revenue"
+      - "contract_or_order"
+      - "technical_validation"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "그래핀"
+      - "맥신"
+      - "양자 기술"
+      - "초전도체"
+  STEEL_METAL_SPREAD:
+    large_sector: "소재·스프레드·전략자원"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "china_supply"
+      - "inventory_status"
+      - "steel_spread"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "건자재-철근"
+      - "철강 주요업체"
+      - "철강 중소형업체"
+  THEME_VALUATION_OVERHEAT:
+    large_sector: "정책·지정학·재난·이벤트"
+    green_policy: "red_flag"
+    must_have_evidence:
+      - "audited_financials"
+      - "cash_flow"
+      - "governance_trust"
+    red_flag_evidence:
+      - "accounting_risk"
+      - "governance_trust_break"
+      - "theme_only_price_rally"
+    sample_theme_tags:
+      - "국내 상장한 중국 주"
+  TIRE_AUTO_COMPONENT_SPREAD:
+    large_sector: "모빌리티·운송·레저"
+    green_policy: "watch_to_green"
+    must_have_evidence:
+      - "asp"
+      - "customer_diversification"
+      - "oe_re_mix"
+      - "raw_material_spread"
+    red_flag_evidence:
+      - "auto_demand_slowdown"
+      - "customer_concentration"
+      - "factory_disruption"
+      - "raw_material_inflation"
+    sample_theme_tags:
+      - "타이어"
+  TRAVEL_LEISURE_REOPENING:
+    large_sector: "모빌리티·운송·레저"
+    green_policy: "event_only"
+    must_have_evidence:
+      - "cost_risk"
+      - "opm_improvement"
+      - "repeat_demand"
+      - "traffic_or_membership"
+      - "traffic_recovery"
+      - "yield_or_margin"
+    red_flag_evidence:
+      - "discretionary_slowdown"
+      - "reopening_only"
+      - "weather_event"
+    sample_theme_tags:
+      - "골프"
+      - "야놀자 관련주"
+      - "여행-레저"
+  URBAN_AIR_DRONE:
+    large_sector: "모빌리티·운송·레저"
+    green_policy: "red_watch"
+    must_have_evidence:
+      - "government_or_commercial_order"
+      - "regulatory_approval"
+      - "revenue_conversion"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "드론-플라잉카"
+  VALUE_UP_SHAREHOLDER_RETURN:
+    large_sector: "금융·자본배분·디지털금융"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "capital_strength"
+      - "roe"
+      - "shareholder_return_execution"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "고배당주"
+      - "밸류업 지수 편입"
+  WASTE_RECYCLING_ENVIRONMENT:
+    large_sector: "교육·생활서비스·농수축산"
+    green_policy: "watch_only"
+    must_have_evidence:
+      - "capacity_utilization"
+      - "margin_visibility"
+      - "regulated_demand"
+    red_flag_evidence:
+      - "redteam_review_required"
+    sample_theme_tags:
+      - "폐기물처리"

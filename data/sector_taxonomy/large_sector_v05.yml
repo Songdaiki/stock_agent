@@ -1,0 +1,39 @@
+# Round-18 large sector taxonomy v0.5.
+# Report/calibration material only; not production scoring evidence.
+large_sectors:
+  - order: 1
+    name: "산업재·수주·인프라"
+    role: "전력설비, 전선, 조선, 방산, 원전, 철도, 건설기계"
+  - order: 2
+    name: "AI·반도체·전자부품"
+    role: "HBM, CXL, 시스템반도체, PCB, OLED, MLCC, 유리기판"
+  - order: 3
+    name: "2차전지·전기차·친환경"
+    role: "2차전지, 폐배터리, 전고체, 수소, 태양광, 풍력"
+  - order: 4
+    name: "소재·스프레드·전략자원"
+    role: "화학, 정유, 철강, 비철, 리튬, 희토류, 금은, 그래핀"
+  - order: 5
+    name: "소비재·유통·브랜드"
+    role: "편의점, 라면, K푸드, 화장품, 의류, 홈쇼핑, 건기식"
+  - order: 6
+    name: "금융·자본배분·디지털금융"
+    role: "은행, 보험, 증권, 밸류업, 고배당, 결제, STO, 스테이블코인"
+  - order: 7
+    name: "바이오·헬스케어·의료기기"
+    role: "CMO, CRO, 바이오시밀러, 진단, 의료AI, 미용기기, 보톡스"
+  - order: 8
+    name: "플랫폼·콘텐츠·SW·보안"
+    role: "게임, 엔터, 클라우드, AI SW, 보안, 딥페이크, 메타버스"
+  - order: 9
+    name: "모빌리티·운송·레저"
+    role: "항공, 해운, 렌터카, 여행, 카지노, 면세, 자율주행"
+  - order: 10
+    name: "건설·부동산·건자재"
+    role: "대형/중소형 건설, 리츠, 시멘트, 철근, 가구, 개발신탁"
+  - order: 11
+    name: "정책·지정학·재난·이벤트"
+    role: "남북경협, 우크라 재건, 세종시, 지진, 폭염, 전염병, 황사"
+  - order: 12
+    name: "농업·생활서비스·기타"
+    role: "교육, 취업, 키즈, 스마트팜, 양돈, 육계, 사료, 참치"

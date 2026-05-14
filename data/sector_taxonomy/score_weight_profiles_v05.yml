@@ -1,0 +1,192 @@
+# Round-18 score-weight profiles v0.5.
+# Shadow/research use only. Do not apply to production scoring.
+CONTRACT_BACKLOG_INDUSTRIAL:
+  eps_fcf: 20
+  structural_visibility: 24
+  bottleneck_pricing: 22
+  market_mispricing: 12
+  valuation_rerating: 12
+  capital_allocation: 1
+  information_confidence: 5
+  risk_penalty: "medium"
+  green_policy: "green_allowed"
+AI_DATA_CENTER_INFRASTRUCTURE:
+  eps_fcf: 22
+  structural_visibility: 23
+  bottleneck_pricing: 20
+  market_mispricing: 14
+  valuation_rerating: 12
+  capital_allocation: 0
+  information_confidence: 5
+  risk_penalty: "medium_high"
+  green_policy: "green_allowed"
+EXPORT_RECURRING_CONSUMER:
+  eps_fcf: 22
+  structural_visibility: 23
+  bottleneck_pricing: 12
+  market_mispricing: 16
+  valuation_rerating: 13
+  capital_allocation: 0
+  information_confidence: 5
+  risk_penalty: "medium"
+  green_policy: "green_allowed"
+K_BEAUTY_EXPORT_DISTRIBUTION:
+  eps_fcf: 22
+  structural_visibility: 23
+  bottleneck_pricing: 12
+  market_mispricing: 16
+  valuation_rerating: 13
+  capital_allocation: 0
+  information_confidence: 5
+  risk_penalty: "inventory_receivables_china_dependency"
+  green_policy: "green_allowed"
+MEMORY_HBM_CAPACITY:
+  eps_fcf: 24
+  structural_visibility: 21
+  bottleneck_pricing: 19
+  market_mispricing: 15
+  valuation_rerating: 12
+  capital_allocation: 0
+  information_confidence: 5
+  risk_penalty: "cycle_capex_reversal"
+  green_policy: "green_allowed"
+CDMO_HEALTHCARE_CONTRACT:
+  eps_fcf: 20
+  structural_visibility: 24
+  bottleneck_pricing: 12
+  market_mispricing: 12
+  valuation_rerating: 12
+  capital_allocation: 0
+  information_confidence: 5
+  risk_penalty: "litigation_capacity_utilization"
+  green_policy: "green_allowed"
+FINANCIAL_SPREAD_BALANCE_SHEET:
+  eps_fcf: 15
+  structural_visibility: 20
+  bottleneck_pricing: 5
+  market_mispricing: 15
+  valuation_rerating: 25
+  capital_allocation: 10
+  information_confidence: 5
+  risk_penalty: "credit_underwriting_capital"
+  green_policy: "green_allowed"
+PLATFORM_SOFTWARE_INTERNET:
+  eps_fcf: 20
+  structural_visibility: 22
+  bottleneck_pricing: 8
+  market_mispricing: 16
+  valuation_rerating: 14
+  capital_allocation: 0
+  information_confidence: 5
+  risk_penalty: "regulation_ai_cost_governance"
+  green_policy: "watch_to_green"
+ROBOTICS_FACTORY_AUTOMATION:
+  eps_fcf: 18
+  structural_visibility: 15
+  bottleneck_pricing: 10
+  market_mispricing: 12
+  valuation_rerating: 10
+  capital_allocation: 0
+  information_confidence: 5
+  risk_penalty: "monetization_failure_theme"
+  green_policy: "watch_only"
+DIGITAL_ASSET_TOKENIZATION:
+  eps_fcf: 16
+  structural_visibility: 18
+  bottleneck_pricing: 8
+  market_mispricing: 16
+  valuation_rerating: 12
+  capital_allocation: 3
+  information_confidence: 5
+  risk_penalty: "regulation_security_adoption"
+  green_policy: "watch_only"
+UTILITIES_REGULATED_TARIFF:
+  eps_fcf: 18
+  structural_visibility: 18
+  bottleneck_pricing: 12
+  market_mispricing: 12
+  valuation_rerating: 10
+  capital_allocation: 0
+  information_confidence: 5
+  risk_penalty: "policy_subsidy_supply_chain"
+  green_policy: "watch_only"
+RETAIL_DOMESTIC_CONSUMER:
+  eps_fcf: 18
+  structural_visibility: 16
+  bottleneck_pricing: 5
+  market_mispricing: 14
+  valuation_rerating: 14
+  capital_allocation: 3
+  information_confidence: 5
+  risk_penalty: "logistics_inventory_competition"
+  green_policy: "watch_to_green"
+SHIPPING_FREIGHT_CYCLE:
+  eps_fcf: 20
+  structural_visibility: 8
+  bottleneck_pricing: 18
+  market_mispricing: 8
+  valuation_rerating: 8
+  capital_allocation: 0
+  information_confidence: 5
+  risk_penalty: "very_high_cycle"
+  green_policy: "red_watch"
+COMMODITY_SPREAD:
+  eps_fcf: 20
+  structural_visibility: 8
+  bottleneck_pricing: 16
+  market_mispricing: 8
+  valuation_rerating: 8
+  capital_allocation: 0
+  information_confidence: 5
+  risk_penalty: "oversupply_china"
+  green_policy: "red_watch"
+BATTERY_MATERIALS_CAPEX_OVERHEAT:
+  eps_fcf: 20
+  structural_visibility: 16
+  bottleneck_pricing: 14
+  market_mispricing: 10
+  valuation_rerating: 10
+  capital_allocation: 0
+  information_confidence: 5
+  risk_penalty: "very_high_capex_overheat"
+  green_policy: "red_watch"
+CONSTRUCTION_REAL_ESTATE_CREDIT:
+  eps_fcf: 18
+  structural_visibility: 10
+  bottleneck_pricing: 8
+  market_mispricing: 12
+  valuation_rerating: 10
+  capital_allocation: 0
+  information_confidence: 5
+  risk_penalty: "very_high_credit_pf"
+  green_policy: "red_watch"
+ONE_OFF_EVENT_DEMAND:
+  eps_fcf: 20
+  structural_visibility: 5
+  bottleneck_pricing: 5
+  market_mispricing: 5
+  valuation_rerating: 5
+  capital_allocation: 0
+  information_confidence: 5
+  risk_penalty: "extreme_one_off"
+  green_policy: "event_only"
+THEME_VALUATION_OVERHEAT:
+  eps_fcf: 5
+  structural_visibility: 5
+  bottleneck_pricing: 5
+  market_mispricing: 5
+  valuation_rerating: 5
+  capital_allocation: 0
+  information_confidence: 3
+  risk_penalty: "extreme_theme"
+  green_policy: "red_flag"
+GENERIC_UNCLASSIFIED:
+  eps_fcf: 15
+  structural_visibility: 15
+  bottleneck_pricing: 10
+  market_mispricing: 10
+  valuation_rerating: 10
+  capital_allocation: 0
+  information_confidence: 3
+  risk_penalty: "unknown"
+  green_policy: "watch_only"

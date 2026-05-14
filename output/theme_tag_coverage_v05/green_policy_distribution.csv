@@ -1,0 +1,7 @@
+green_policy,count
+event_only,16
+green_allowed,16
+red_flag,6
+red_watch,19
+watch_only,125
+watch_to_green,26
