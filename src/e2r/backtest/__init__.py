@@ -21,6 +21,13 @@ from e2r.backtest.e2r_standard_replay import (
     E2RStandardReplayResult,
     E2RStandardReplaySnapshot,
 )
+from e2r.backtest.missed_benchmark_autopsy import (
+    AutopsyConfig,
+    AutopsyRow,
+    EvidenceAvailability,
+    MissedBenchmarkAutopsy,
+    MissedBenchmarkAutopsyResult,
+)
 from e2r.backtest.stage_lifecycle_detector import (
     StageLifecycleDetection,
     StageLifecycleDetectionInput,
@@ -61,6 +68,8 @@ __all__ = [
     "HistoricalUniverseReplay",
     "HistoricalUniverseReplayResult",
     "BenchmarkLabel",
+    "AutopsyConfig",
+    "AutopsyRow",
     "BlindDiscoveryConfig",
     "BlindDiscoveryReplay",
     "BlindDiscoveryResult",
@@ -69,6 +78,9 @@ __all__ = [
     "E2RStandardReplayConfig",
     "E2RStandardReplayResult",
     "E2RStandardReplaySnapshot",
+    "EvidenceAvailability",
+    "MissedBenchmarkAutopsy",
+    "MissedBenchmarkAutopsyResult",
     "ReplayFrequency",
     "STAGE4B_UNKNOWN_INSUFFICIENT_EVIDENCE",
     "StageLifecycleBacktest",
