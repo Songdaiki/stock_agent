@@ -34,7 +34,17 @@ class E2RArchetype(str, Enum):
     RARE_METALS_STRATEGIC_MATERIALS = "RARE_METALS_STRATEGIC_MATERIALS"
     VALUE_UP_SHAREHOLDER_RETURN = "VALUE_UP_SHAREHOLDER_RETURN"
     PLATFORM_SOFTWARE_INTERNET = "PLATFORM_SOFTWARE_INTERNET"
+    CLOUD_AI_SOFTWARE_INFRA = "CLOUD_AI_SOFTWARE_INFRA"
+    AI_SOFTWARE_APPLICATION = "AI_SOFTWARE_APPLICATION"
+    GENERATIVE_AI_IP_RISK = "GENERATIVE_AI_IP_RISK"
+    CONTACT_CENTER_AI_AUTOMATION = "CONTACT_CENTER_AI_AUTOMATION"
+    SERVICE_KIOSK_SELF_CHECKOUT = "SERVICE_KIOSK_SELF_CHECKOUT"
     GAME_CONTENT_IP = "GAME_CONTENT_IP"
+    MEDIA_AD_CONTENT_CYCLE = "MEDIA_AD_CONTENT_CYCLE"
+    STREAMING_AD_PLATFORM = "STREAMING_AD_PLATFORM"
+    SECURITY_IDENTITY_DEEPFAKE = "SECURITY_IDENTITY_DEEPFAKE"
+    METAVERSE_NFT_THEME = "METAVERSE_NFT_THEME"
+    PLATFORM_GOVERNANCE_LEGAL_RISK = "PLATFORM_GOVERNANCE_LEGAL_RISK"
     FINANCIAL_SPREAD_BALANCE_SHEET = "FINANCIAL_SPREAD_BALANCE_SHEET"
     INSURANCE_UNDERWRITING_CYCLE = "INSURANCE_UNDERWRITING_CYCLE"
     SECURITIES_BROKERAGE_CYCLE = "SECURITIES_BROKERAGE_CYCLE"
@@ -256,6 +266,66 @@ ARCHETYPE_DEFINITIONS.update(
             key_evidence_families=("disclosure", "financial_actual", "news", "research_report"),
             false_positive_patterns=("announcement-only premium", "no FCF/NAV improvement", "one-off event"),
             preferred_score_weights=_weights(eps_fcf=16, visibility=19, bottleneck=8, mispricing=24, valuation=20),
+        ),
+        E2RArchetype.CLOUD_AI_SOFTWARE_INFRA: ArchetypeDefinition(
+            archetype=E2RArchetype.CLOUD_AI_SOFTWARE_INFRA,
+            stage1_radar_signals=("cloud ERP transition", "B2B SaaS expansion", "AI workflow feature"),
+            stage2_candidate_signals=("ARR growth", "recurring revenue", "customer retention", "OPM improvement"),
+            stage3_high_conviction_signals=("customer lock-in", "FCF conversion", "net retention", "old software-frame rerating"),
+            stage4a_ongoing_signals=("ARR and retention remain strong", "FCF conversion continues"),
+            stage4b_graduation_overheat_signals=("AI SaaS narrative crowded", "valuation saturation"),
+            stage4c_thesis_break_signals=("churn spike", "AI compute cost surge", "OPM decline", "services revenue reversion"),
+            key_evidence_families=("financial_actual", "research_report", "news"),
+            false_positive_patterns=("AI feature only", "SI-like revenue mistaken for SaaS", "retention not verified"),
+            preferred_score_weights=_weights(eps_fcf=20, visibility=23, bottleneck=8, mispricing=16, valuation=14),
+        ),
+        E2RArchetype.AI_SOFTWARE_APPLICATION: ArchetypeDefinition(
+            archetype=E2RArchetype.AI_SOFTWARE_APPLICATION,
+            stage1_radar_signals=("AI application launch", "enterprise adoption headline", "API usage growth"),
+            stage2_candidate_signals=("paid customer growth", "API revenue", "workflow integration", "gross margin visibility"),
+            stage3_high_conviction_signals=("repeat paid usage", "FCF conversion", "compute cost controlled"),
+            stage4a_ongoing_signals=("paid usage expands", "unit economics remain healthy"),
+            stage4b_graduation_overheat_signals=("AI app narrative crowded", "valuation before margin proof"),
+            stage4c_thesis_break_signals=("compute cost spike", "model dependency", "copyright or data lawsuit"),
+            key_evidence_families=("financial_actual", "research_report", "news"),
+            false_positive_patterns=("AI label without paid usage", "free user growth mistaken for revenue"),
+            preferred_score_weights=_weights(eps_fcf=19, visibility=18, bottleneck=9, mispricing=15, valuation=13),
+        ),
+        E2RArchetype.GAME_CONTENT_IP: ArchetypeDefinition(
+            archetype=E2RArchetype.GAME_CONTENT_IP,
+            stage1_radar_signals=("new title announcement", "IP expansion", "platform user growth"),
+            stage2_candidate_signals=("bookings growth", "sell-through", "live-service monetization", "OP/EPS revision"),
+            stage3_high_conviction_signals=("repeat IP portfolio", "global monetization", "low single-title risk"),
+            stage4a_ongoing_signals=("bookings and live service remain strong", "pipeline executes"),
+            stage4b_graduation_overheat_signals=("single IP valuation crowded", "launch expectations saturated"),
+            stage4c_thesis_break_signals=("title delay", "bookings guide cut", "child safety regulation", "user growth slowdown"),
+            key_evidence_families=("financial_actual", "research_report", "news"),
+            false_positive_patterns=("pre-release hype", "single-title dependency", "user growth without monetization"),
+            preferred_score_weights=_weights(eps_fcf=20, visibility=18, bottleneck=6, mispricing=14, valuation=12),
+        ),
+        E2RArchetype.MEDIA_AD_CONTENT_CYCLE: ArchetypeDefinition(
+            archetype=E2RArchetype.MEDIA_AD_CONTENT_CYCLE,
+            stage1_radar_signals=("ad market recovery", "CTV growth", "digital ad rebound"),
+            stage2_candidate_signals=("ad revenue growth", "ARPU improvement", "OPM improvement"),
+            stage3_high_conviction_signals=("repeat platform ad revenue", "hybrid subscription/ad model", "budget resilience"),
+            stage4a_ongoing_signals=("ad revenue and ARPU remain strong",),
+            stage4b_graduation_overheat_signals=("ad-tech valuation crowded", "growth expectations saturated"),
+            stage4c_thesis_break_signals=("client budget cut", "revenue miss", "privacy lawsuit", "scam ad regulation"),
+            key_evidence_families=("financial_actual", "research_report", "news"),
+            false_positive_patterns=("cyclical ad rebound treated as structural", "privacy risk ignored"),
+            preferred_score_weights=_weights(eps_fcf=18, visibility=16, bottleneck=6, mispricing=14, valuation=12),
+        ),
+        E2RArchetype.SECURITY_IDENTITY_DEEPFAKE: ArchetypeDefinition(
+            archetype=E2RArchetype.SECURITY_IDENTITY_DEEPFAKE,
+            stage1_radar_signals=("cybersecurity demand", "identity threat", "deepfake regulation"),
+            stage2_candidate_signals=("ARR growth", "customer diversification", "low churn", "OPM improvement"),
+            stage3_high_conviction_signals=("security platform lock-in", "renewal strength", "operational trust intact"),
+            stage4a_ongoing_signals=("renewals and trust remain strong",),
+            stage4b_graduation_overheat_signals=("security valuation crowded", "incident risk ignored"),
+            stage4c_thesis_break_signals=("global outage", "customer lawsuit", "renewal risk", "trust damage"),
+            key_evidence_families=("financial_actual", "research_report", "news"),
+            false_positive_patterns=("threat narrative without revenue", "operational trust risk ignored"),
+            preferred_score_weights=_weights(eps_fcf=20, visibility=20, bottleneck=10, mispricing=14, valuation=13),
         ),
         E2RArchetype.BIOTECH_ROYALTY_COMMERCIALIZATION: ArchetypeDefinition(
             archetype=E2RArchetype.BIOTECH_ROYALTY_COMMERCIALIZATION,
