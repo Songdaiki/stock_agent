@@ -1,0 +1,8 @@
+order,step_id,description,required_evidence,failure_mode
+1,industry_structure_change,Industry structure changes before the market fully updates the frame.,supply_demand_change|capacity_constraint_or_channel_shift|company_level_event,good_theme_without_company_evidence
+2,eps_fcf_bodyweight_change,"The structure must lift medium-term EPS/FCF, not just produce a headline.",fy1_fy2_revision|op_or_fcf_growth|margin_or_cash_conversion,price_or_news_without_eps_fcf
+3,durability_lock,"The earnings change needs durability through contracts, backlog, RPO, capacity, channel, or recurring demand.",contract_quality|backlog_rpo|capacity_lock|recurring_revenue_or_demand,one_off_shortage_or_event
+4,old_frame_mispricing,The market still prices the company with the old industry frame.,valuation_discount|old_peer_frame|underappreciated_revision_path,already_fully_rerated
+5,valuation_rerating,A credible new valuation frame must exist and still have runway.,new_peer_multiple|pbr_roe_or_per_frame_shift|rerating_room,valuation_saturation
+6,price_path_validation,The post-signal price path must align with evidence instead of being price-only noise.,stage_price|mfe_mae|below_entry_check|peak_and_drawdown,price_moved_without_evidence
+7,redteam_4b_4c_survival,"The candidate must survive accounting, leverage, commercialization, policy, cycle, 4B, and 4C checks.",no_hard_redteam|no_thesis_break|not_saturated_4b|policy_shock_review,hard_redteam_or_4c

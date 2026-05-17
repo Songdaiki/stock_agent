@@ -1,0 +1,11 @@
+{
+  "source_round": "docs/round/round_119.md",
+  "principle_step_count": 7,
+  "green_gate_count": 7,
+  "loop7_focus_count": 13,
+  "theme_tag_rule_count": 5,
+  "false_green_pattern_count": 10,
+  "production_scoring_changed": false,
+  "case_records_are_candidate_generation_input": false,
+  "theme_tags_are_score_evidence": false
+}
