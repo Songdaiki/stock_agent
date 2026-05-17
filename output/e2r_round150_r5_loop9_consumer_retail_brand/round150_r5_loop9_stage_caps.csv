@@ -1,0 +1,6 @@
+cap_id,max_stage,condition,example,production_scoring_changed
+stage1_buzz_or_scale_only_cap,Stage 1,"viral brand, TikTok sales, K-food/K-beauty trend, ecommerce GMV, user count, or channel headline only",A TikTok-famous beauty device or a fast-fashion growth headline without margin and safety evidence.,false
+stage2_export_channel_revision_cap,Stage 2,"export growth, ASP rise, OP/EPS revision, overseas channel entry, Amazon/TikTok/Ulta sales, or OEM order growth",Samyang OP revision and US/Europe shipment evidence; K-beauty Ulta/Sephora/Target/Costco entry.,false
+stage3_operating_confirmation_required,Stage 3 candidate,"sell-through, reorder, OPM/FCF improvement, inventory/receivables stability, repeated consumption, and price-path alignment",Samyang can move toward Stage 3 only if export growth converts into reorder and clean inventory.,false
+stage4b_crowded_global_brand_rerating,4B-watch,the market already accepts the K-food/K-beauty/beauty-device rerating and price moves first,APR share price more than quadrupled; d'Alba more than doubled after listing.,false
+stage4c_hard_redteam,4C,"recall, country sales ban, data breach, supplier pressure, payment delay, tariff, IP/product safety, hardware guidance cut, or FCF cut","Coupang data breach, Coupang supplier/payment fine, Whirlpool guidance/dividend cut, or Shein/Temu product-safety/IP cases.",false
