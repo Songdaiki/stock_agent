@@ -1,0 +1,7 @@
+case_id,detected_stage,price_path_status,verdict,normalization_adjustment
+ge_vernova_data_center_orders_case,Stage 2 -> Stage 3 / 4B-watch,event-day price reaction confirmed in round note; longer MFE/MAE still needs official OHLCV backfill,score_to_stage_to_price_aligned,"keep EPS/FCF, visibility, and bottleneck weights high; reduce valuation room through 4B watch"
+siemens_energy_fcf_buyback_case,Stage 3 candidate / 4B-watch,FCF and buyback evidence strong; price path requires OHLCV backfill,partially_confirmed,raise capital/FCF conversion weight but require price validation before Green
+ls_electric_525kv_us_datacenter_transformer_case,Stage 2,contract detail strong; price path requires backfill,stage2_not_green_yet,raise EHV visibility; keep EPS/FCF cap until margin and revisions appear
+hyundai_rotem_morocco_rail_case,Stage 2,large contract visible; price path and margin require backfill,stage2_not_green_yet,"rail remains capped before margin, warranty, financing, FX, and OP/EPS evidence"
+hanwha_aerospace_dilution_trim_case,Stage 2 structure + 4C-watch,capital raise shock matched negative price-path warning in round note,redteam_alignment_confirmed,strengthen capital discipline penalty and stage_after_redteam downgrade
+hd_hyundai_huntington_us_navy_aux_case,Stage 1~2 option,MoU/MoA only; any price move is event premium until contract economics appear,green_block_correct,"strengthen MoU/MoA score cap and require vessel count, contract value, schedule, margin, and yard CAPEX"
