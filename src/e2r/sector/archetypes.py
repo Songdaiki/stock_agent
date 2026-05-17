@@ -127,6 +127,7 @@ class E2RArchetype(str, Enum):
     AUTO_MOBILITY_COMPLETED_VEHICLE = "AUTO_MOBILITY_COMPLETED_VEHICLE"
     AUTO_HYBRID_VALUEUP = "AUTO_HYBRID_VALUEUP"
     AUTO_TARIFF_LOCALIZATION = "AUTO_TARIFF_LOCALIZATION"
+    AUTO_US_LOCALIZATION_LABOR_VISA_RISK = "AUTO_US_LOCALIZATION_LABOR_VISA_RISK"
     HYBRID_COMPONENT_BOTTLENECK = "HYBRID_COMPONENT_BOTTLENECK"
     TIRE_AUTO_COMPONENT_SPREAD = "TIRE_AUTO_COMPONENT_SPREAD"
     AIRLINE_TRAVEL_CYCLE = "AIRLINE_TRAVEL_CYCLE"
@@ -138,10 +139,14 @@ class E2RArchetype(str, Enum):
     AUTONOMOUS_ROBOTAXI_DEPLOYMENT = "AUTONOMOUS_ROBOTAXI_DEPLOYMENT"
     ROBOTAXI_OPERATIONAL_REALITY_CHECK = "ROBOTAXI_OPERATIONAL_REALITY_CHECK"
     ROBOTAXI_SAFETY_REGULATORY_OVERLAY = "ROBOTAXI_SAFETY_REGULATORY_OVERLAY"
+    AV_CRASH_DISCLOSURE_PROBE_OVERLAY = "AV_CRASH_DISCLOSURE_PROBE_OVERLAY"
     AUTONOMOUS_TRUCKING_COMMERCIAL_LAUNCH = "AUTONOMOUS_TRUCKING_COMMERCIAL_LAUNCH"
+    AUTONOMOUS_TRUCKING_PAID_FREIGHT_MILESTONE = "AUTONOMOUS_TRUCKING_PAID_FREIGHT_MILESTONE"
     AUTONOMOUS_TRUCKING_UNIT_ECONOMICS = "AUTONOMOUS_TRUCKING_UNIT_ECONOMICS"
+    TOURISM_POLICY_EVENT = "TOURISM_POLICY_EVENT"
     URBAN_AIR_DRONE = "URBAN_AIR_DRONE"
     EVTOL_CERTIFICATION_CASH_BURN = "EVTOL_CERTIFICATION_CASH_BURN"
+    PART135_NOT_TYPE_CERTIFICATION = "PART135_NOT_TYPE_CERTIFICATION"
     SPACE_SUPPLYCHAIN = "SPACE_SUPPLYCHAIN"
     SATELLITE_CONNECTIVITY_INFRA = "SATELLITE_CONNECTIVITY_INFRA"
     AIRLINE_INTEGRATION_SCALE = "AIRLINE_INTEGRATION_SCALE"
@@ -497,6 +502,18 @@ ARCHETYPE_DEFINITIONS.update(
             false_positive_patterns=("buyback headline without FCF", "one-quarter sales mix", "policy headline only"),
             preferred_score_weights=_weights(eps_fcf=20, visibility=18, bottleneck=10, mispricing=15, valuation=17),
         ),
+        E2RArchetype.AUTO_US_LOCALIZATION_LABOR_VISA_RISK: ArchetypeDefinition(
+            archetype=E2RArchetype.AUTO_US_LOCALIZATION_LABOR_VISA_RISK,
+            stage1_radar_signals=("US localization", "factory ramp-up", "tariff mitigation plan"),
+            stage2_candidate_signals=("local production ramp", "labor plan", "visa process stable"),
+            stage3_high_conviction_signals=("not applicable; RedTeam overlay for localization execution risk",),
+            stage4a_ongoing_signals=("ramp and labor availability remain stable",),
+            stage4b_graduation_overheat_signals=("localization benefit priced before ramp proof",),
+            stage4c_thesis_break_signals=("ramp-up delay", "skilled labor shortage", "visa delay", "labor dispute"),
+            key_evidence_families=("news", "disclosure", "financial_actual"),
+            false_positive_patterns=("localization treated as margin recovery before ramp proof",),
+            preferred_score_weights=_weights(eps_fcf=0, visibility=0, bottleneck=0, mispricing=0, valuation=0),
+        ),
         E2RArchetype.AUTO_MOBILITY_COMPONENTS: ArchetypeDefinition(
             archetype=E2RArchetype.AUTO_MOBILITY_COMPONENTS,
             stage1_radar_signals=("auto parts order", "ADAS or EV component", "high-value lighting or electronics"),
@@ -545,6 +562,18 @@ ARCHETYPE_DEFINITIONS.update(
             false_positive_patterns=("visa news treated as spend proof", "tourist count without margin"),
             preferred_score_weights=_weights(eps_fcf=18, visibility=13, bottleneck=5, mispricing=12, valuation=10),
         ),
+        E2RArchetype.TOURISM_POLICY_EVENT: ArchetypeDefinition(
+            archetype=E2RArchetype.TOURISM_POLICY_EVENT,
+            stage1_radar_signals=("visa policy", "tourism policy", "group-tour reopening"),
+            stage2_candidate_signals=("tourist arrivals", "visitor spend", "drop amount", "duty-free sales"),
+            stage3_high_conviction_signals=("policy converts to OPM/FCF", "visitor mix and spend verified"),
+            stage4a_ongoing_signals=("spend and margins remain visible after policy event",),
+            stage4b_graduation_overheat_signals=("tourism policy rally crowded", "price moves before spend evidence"),
+            stage4c_thesis_break_signals=("tourist spend disappoints", "duty-free ASP weak", "casino drop weak"),
+            key_evidence_families=("news", "financial_actual", "research_report"),
+            false_positive_patterns=("visa headline treated as earnings", "arrival count without spend"),
+            preferred_score_weights=_weights(eps_fcf=8, visibility=7, bottleneck=4, mispricing=10, valuation=6),
+        ),
         E2RArchetype.SHIPPING_FREIGHT_CYCLE: ArchetypeDefinition(
             archetype=E2RArchetype.SHIPPING_FREIGHT_CYCLE,
             stage1_radar_signals=("freight rate spike", "Red Sea disruption", "vessel capacity adjustment"),
@@ -580,6 +609,42 @@ ARCHETYPE_DEFINITIONS.update(
             key_evidence_families=("news", "financial_actual", "research_report"),
             false_positive_patterns=("certification step treated as full commercialization", "theme rally before revenue"),
             preferred_score_weights=_weights(eps_fcf=10, visibility=10, bottleneck=6, mispricing=12, valuation=7),
+        ),
+        E2RArchetype.PART135_NOT_TYPE_CERTIFICATION: ArchetypeDefinition(
+            archetype=E2RArchetype.PART135_NOT_TYPE_CERTIFICATION,
+            stage1_radar_signals=("Part 135 approval", "operator certificate", "air-taxi launch plan"),
+            stage2_candidate_signals=("type certification", "production certification", "commercial revenue"),
+            stage3_high_conviction_signals=("not applicable; Part 135 alone is not Stage 3 proof",),
+            stage4a_ongoing_signals=("certification path remains intact",),
+            stage4b_graduation_overheat_signals=("Part 135 milestone overpriced before aircraft certification",),
+            stage4c_thesis_break_signals=("type certification missing", "cash burn", "discounted offering", "production delay"),
+            key_evidence_families=("news", "financial_actual", "research_report"),
+            false_positive_patterns=("operator certification confused with aircraft commercialization",),
+            preferred_score_weights=_weights(eps_fcf=0, visibility=0, bottleneck=0, mispricing=0, valuation=0),
+        ),
+        E2RArchetype.AV_CRASH_DISCLOSURE_PROBE_OVERLAY: ArchetypeDefinition(
+            archetype=E2RArchetype.AV_CRASH_DISCLOSURE_PROBE_OVERLAY,
+            stage1_radar_signals=("AV crash report", "NHTSA preliminary evaluation", "remote assistance disclosure"),
+            stage2_candidate_signals=("crash count quantified", "operational change after incident", "software fix confirmed"),
+            stage3_high_conviction_signals=("not applicable; crash/probe evidence is a RedTeam overlay",),
+            stage4a_ongoing_signals=("incident remediation remains transparent",),
+            stage4b_graduation_overheat_signals=("AV deployment priced while crash probe unresolved",),
+            stage4c_thesis_break_signals=("NHTSA probe", "crash reports", "remote assistance dependence", "hazard response failure"),
+            key_evidence_families=("news", "regulatory", "disclosure"),
+            false_positive_patterns=("deployment headline ignores safety probe",),
+            preferred_score_weights=_weights(eps_fcf=0, visibility=0, bottleneck=0, mispricing=0, valuation=0),
+        ),
+        E2RArchetype.AUTONOMOUS_TRUCKING_PAID_FREIGHT_MILESTONE: ArchetypeDefinition(
+            archetype=E2RArchetype.AUTONOMOUS_TRUCKING_PAID_FREIGHT_MILESTONE,
+            stage1_radar_signals=("driverless trucking pilot", "freight customer announcement", "route launch"),
+            stage2_candidate_signals=("paid freight", "driverless miles", "customer route", "carrier partner"),
+            stage3_high_conviction_signals=("repeat customer", "fleet utilization", "cost per mile", "insurance cost stable"),
+            stage4a_ongoing_signals=("paid miles expand across routes", "unit economics improve"),
+            stage4b_graduation_overheat_signals=("paid freight milestone priced as scaled autonomy",),
+            stage4c_thesis_break_signals=("tiny fleet", "restricted ODD", "negative FCF", "remote support cost spike"),
+            key_evidence_families=("news", "financial_actual", "research_report"),
+            false_positive_patterns=("one route treated as full network", "paid milestone without margin evidence"),
+            preferred_score_weights=_weights(eps_fcf=17, visibility=17, bottleneck=10, mispricing=14, valuation=9),
         ),
         E2RArchetype.SATELLITE_CONNECTIVITY_INFRA: ArchetypeDefinition(
             archetype=E2RArchetype.SATELLITE_CONNECTIVITY_INFRA,
