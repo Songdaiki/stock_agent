@@ -1,0 +1,8 @@
+axis_id,points,loop11_direction,reason,production_scoring_changed
+eps_fcf_opm_conversion,22,raise_actual_conversion,"R12 stories can start from disease, policy, AI, IP, or commodity news, but OP/EPS/FCF and OPM conversion decide stage promotion.",false
+recurring_order_regulatory_visibility,20,raise_repeatability,"Repeat revenue, repeat contract, export channel, regulated distribution, licensing, FDA/regulatory scope, and subscriptions matter more than theme labels.",false
+unit_economics_pass_through_demand_durability,18,raise_unit_economics,"Farm income, dealer inventory, feed cost, CAC, churn, IP diversification, fuel cost, and price pass-through determine durability.",false
+price_path_early_validation,10,capture_but_cool_event_price,"IPO pops and event rallies validate Stage 1/2 price-path, but they often need 4B-watch.",false
+regulation_litigation_public_health_disclosure,16,hard_redteam_gate,"Public-health regulation, legal settlement, policy reversal, AI substitution, disease normalization, and low disclosure confidence cap unsafe Green.",false
+capital_discipline_debt_cash_runway,8,check_funding_quality,"Smart farm, education, IP, and regulated-consumer names need debt, cash-runway, inventory, and receivables checks.",false
+valuation_room_4b_margin,6,small_but_required,"R12 event stories often price narrative before FCF, so valuation room is small and 4B has to be explicit.",false
