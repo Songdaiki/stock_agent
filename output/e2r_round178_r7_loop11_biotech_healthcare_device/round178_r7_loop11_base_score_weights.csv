@@ -1,0 +1,8 @@
+component,points,loop11_direction,reason,production_scoring_changed
+commercialization_eps_fcf_conversion,24,raise_actual_bodyweight,"Approval, license, clinical, or AI-performance headlines matter only after royalty, prescription, commercial sales, OPM, FCF, or EPS conversion appears.",false
+prescription_royalty_reimbursement_repeat_revenue_visibility,22,raise_repeat_economics,"Royalty recognition, scripts, reimbursement/PBM, procedure volume, consumables, and repeat sales decide Stage 2 to Stage 3 promotion.",false
+partner_approval_contract_visibility,16,stage2_enabler_not_green_alone,"FDA/EMA/MFDS approval, big-pharma partner, launch schedule, contract, milestone, and territory can lift Stage 2 but do not unlock Green by themselves.",false
+safety_regulatory_cmc_patent_disclosure_confidence,14,hard_redteam_gate,"CRL, manufacturing inspection, patent, reimbursement, safety, off-label, and missing disclosure detail can cap or break the thesis.",false
+early_price_path_validation,10,loop11_axis,Stage 2 이후 60D MFE and Stage 2 이후 120D MFE help separate early Stage 3 from late approval-chasing.,false
+cash_runway_capital_discipline,8,biotech_funding_gate,"Cash runway, dilution, capex integration, and milestone timing decide whether commercialization can survive.",false
+valuation_room_4b_runway,6,cool_approval_overheat,"Biotech and medical-device narratives often reprice before adoption, royalty, or reimbursement; valuation room is deliberately small.",false
