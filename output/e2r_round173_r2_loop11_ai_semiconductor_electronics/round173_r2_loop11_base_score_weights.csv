@@ -1,0 +1,8 @@
+component,points,loop11_direction,reason
+eps_fcf_opm_conversion,24,keep_high,"AI semiconductor candidates need OP/EPS/FCF conversion, not keyword exposure."
+customer_contract_shipment_visibility,22,raise_detail_requirement,"Customer name, contract amount, shipment schedule, repeat orders, and diversification drive Stage 2/3."
+bottleneck_pricing_power,18,keep_high,"HBM bonder, AI server PCB, test socket, and foundry capacity bottlenecks matter only when revenue conversion is visible."
+early_price_path_validation,12,new_loop11_axis,Stage 2 must be tested against 60D/120D MFE before a late 4B crowding call.
+information_confidence_disclosure_detail,8,hard_review,"Media reports, MOU, private-company linkage, and missing customer details cap Stage 3."
+capital_discipline_fcf_stability,6,watch,"Capex, dilution, customer concentration, and FCF drag can cool equipment and component stories."
+valuation_room_4b_runway,10,raise_4b_focus,Large semiconductor reratings must be cooled when price outruns revisions or narratives crowd.
