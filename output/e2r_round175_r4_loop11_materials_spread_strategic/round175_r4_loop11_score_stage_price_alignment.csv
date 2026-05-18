@@ -1,0 +1,11 @@
+case_id,detected_stage,price_path_status,verdict,normalization_adjustment
+copper_ai_grid_korea_basket_stage2_cap_case,Stage 1/2,Copper macro price path strong; Korean individual KRX/revision path needs backfill,macro_bottleneck_not_company_green,"credit copper AI-grid bottleneck; cap before individual order backlog, OPM, and FCF"
+poongsan_copper_defense_mna_unwind_case,Stage 2 -> 4C-watch,M&A premium should unwind after Hanwha review drop and Poongsan sale denial,event_unwind_alignment,remove M&A premium; retain copper/defense only if OP/EPS evidence exists
+oci_holdings_spacex_polysilicon_report_cap_case,Stage 1/2 option,SpaceX talks can move price but remain media-only before confirmation,report_not_contract_cap,support research routing; block Stage 3 before confirmed terms
+steel_tariff_directionality_korea_case,Stage 1 event,China-only tariff can lift Korean steel while all-import tariff can hurt it,directionality_required,score tariff target and export exposure before stage upgrade
+seah_steel_export_tariff_4c_case,4C-watch,US 50% steel tariff and -8% price reaction are aligned hard risk,direct_tariff_4c_alignment,apply export exposure and local-production offset gates
+specialty_steel_us_localization_option_case,Stage 1/2 option,Localization can offset tariff but needs volume and margin,localization_not_green_yet,"cap before local revenue, margin, and FCF"
+lithium_rare_earth_price_only_theme_case,Stage 1 / 4B-watch,Lithium/rare-earth event rally is price-only without production and FCF,event_rally_not_structural,credit event only lightly; block Green without offtake and earnings
+rare_earth_theme_korea_stage1_case,Stage 1 / overheat watch,Rare-earth keyword basket can rally without revenue,theme_only_contained,cap before actual rare-earth revenue and supply contract
+chemical_spread_korea_watch_red_case,Watch/Red,Spread can reverse before volume and FCF stabilize,spread_durability_required,"require durable spread, volume, and OPM/FCF"
+disclosure_confidence_materials_cap_case,cap,Missing counterparty/amount/period/volume/margin keeps Stage capped,detail_cap_correct,fetch and parse detail before considering Stage 3

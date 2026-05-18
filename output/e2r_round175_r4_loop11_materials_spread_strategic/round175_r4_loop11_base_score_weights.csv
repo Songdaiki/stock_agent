@@ -1,0 +1,8 @@
+component,points,loop11_direction,reason
+eps_fcf_opm_conversion,22,keep_high,Commodity price is capped until OP/EPS/FCF and margin conversion are visible.
+contract_offtake_customer_visibility,20,raise_detail_requirement,"Customer, contract amount, period, offtake, price floor, and confirmed sale terms drive Stage 2."
+bottleneck_pricing_power,16,allow_macro_bottleneck_but_cap_green,"Copper shortage, non-China supply, tariffs, and strategic scarcity matter only when company economics follow."
+early_price_path_validation,12,loop11_axis,Stage 2 after-rally MFE/MAE and event-day moves distinguish early catch from late event chasing.
+cycle_spread_durability,12,raise_for_r4,"R4 must test raw material prices, inventory P/L, export volume, spread, and pass-through durability."
+disclosure_confidence_redteam,10,hard_review,"Media-only, report-only, company denial, missing terms, CB/BW, and direct tariff exposure can hard-cap the case."
+valuation_room_4b_runway,8,cool_event_rallies,"Theme baskets, commodity spikes, M&A rumors, and tariff rallies reduce runway quickly."
