@@ -1,0 +1,13 @@
+case_id,detected_stage,price_path_status,verdict,normalization_adjustment
+kb_financial_valueup_stage3_candidate,Stage 3 candidate + 4B-watch,Net profit and leader frame strong; KRX/PBR/CET1 path need backfill,valueup_leader_requires_capital_quality,"credit profit and return; cap before CET1, credit cost, and PBR-band proof"
+shinhan_overseas_profit_valueup_candidate,Stage 2/3 candidate,Overseas profit diversification supports rerating but return execution needs proof,overseas_profit_diversification_candidate,credit overseas profit; require repeat return and CET1
+woori_financial_nonbank_capital_buffer_gate_case,Stage 2,Non-bank expansion has CET1/capital-buffer gate,nonbank_expansion_capital_gate,credit M&A option; cap before CET1 and return durability
+jb_financial_regional_high_roe_valueup_case,Stage 2/3 candidate,High ROE regional bank needs liquidity and credit quality checks,regional_high_roe_with_liquidity_cap,credit high ROE; penalize liquidity and regional credit risk
+korea_insurance_capital_release_valueup_case,Stage 2/3 candidate,"Capital release needs K-ICS, CSM, loss ratio, and IFRS17 quality",insurance_capital_release_requires_kics_csm,credit return option; cap before K-ICS/CSM/loss ratio
+kakaobank_profitability_valuation_cap_case,Stage 2/3 candidate,Record profit and non-interest income matter; users alone do not,internet_bank_profit_not_user_count,credit profit model; penalize credit cost and platform valuation
+naver_dunamu_equity_option_security_4c_watch_case,Stage 2 + 4C-watch,Deal-value reaction and abnormal withdrawal occur together,digital_asset_equity_option_security_gate,credit deal value; hard-review security and approval
+toss_superapp_ipo_stablecoin_related_stock_cap_case,Stage 1/2 option,Toss story is strong but listed related-stock linkage is missing,related_stock_green_cap,"credit optionality; require IPO filing, direct equity, and revenue model"
+seoul_guarantee_ipo_ransomware_security_case,Stage 2 -> 4C-watch,IPO and guarantee balance are offset by ransomware service disruption,guarantee_insurance_security_hard_cap,credit IPO option; block Green before security remediation
+securities_brokerage_market_beta_cycle_case,Stage 2 cycle,KOSPI rally can lift brokerage revenue but remains cyclical,brokerage_market_beta_not_green,credit trading value; cap before IB/PF/ROE durability
+financial_valueup_crowded_4b_watch_case,4B-watch,Financial basket rally can outrun individual return and credit confirmation,valueup_crowding_4b_watch,cool broad basket when PBR rerating precedes execution
+bank_credit_cost_pf_overlay_case,hard gate,PF credit cost can invalidate value-up narratives,pf_credit_cost_hard_gate,require reserve and capital-ratio proof
