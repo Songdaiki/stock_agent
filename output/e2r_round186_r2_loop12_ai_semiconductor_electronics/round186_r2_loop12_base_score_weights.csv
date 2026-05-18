@@ -1,0 +1,8 @@
+component,points,loop12_direction,reason,production_scoring_changed
+eps_fcf_opm_conversion,24,keep_high,R2 Loop 12 requires OP/EPS/FCF conversion; AI exposure is not enough.,false
+customer_contract_shipment_visibility,22,detail_required,"Customer name, order size, delivery schedule, design win, and shipment visibility define Stage 2 quality.",false
+bottleneck_process_technology_adoption,16,sector_specific,"HBM test, glass substrate, 2nm, AI server substrate, MLCC, ADAS, and advanced packaging need adoption proof.",false
+early_price_path_validation,12,required_backfill,"Stage 2 이후 MFE, relative strength, and event return decide whether market validation or 4B overheating is occurring.",false
+mass_production_yield_customer_diversification,8,green_gate,"Mass production, yield, repeat order, and customer diversification prevent technology-only Green.",false
+ip_labor_security_disclosure_redteam,10,raised_for_loop12,"IP leakage, labor disruption, production delay, and missing order detail can break a semiconductor rerating.",false
+valuation_room_4b_runway,8,cool_crowded_keywords,AI/HBM/glass/NPU keyword crowding reduces runway when price runs ahead of revisions.,false
