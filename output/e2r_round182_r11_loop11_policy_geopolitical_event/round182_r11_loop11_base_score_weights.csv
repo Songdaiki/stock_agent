@@ -1,0 +1,8 @@
+component,points,loop11_direction,reason,production_scoring_changed
+contract_budget_order_exploration_visibility,26,raise_actual_money_or_result,"R11 events only graduate when contracts, budgets, government orders, commercial exploration results, or institutional rules are verified.",false
+eps_fcf_revenue_guidance_conversion,18,raise_company_conversion,"Stage 3 needs company revenue, OP/EPS, FCF, or guidance conversion rather than news flow.",false
+price_path_event_detection,14,separate_event_rally_from_green,Event stocks can move 20~30% quickly; the scorer must capture price reaction without calling it Stage 3.,false
+recurrence_durability,12,raise_repeatability,"Repeated procurement, commercial production, long-term contract, or durable institutional revenue is required before Green.",false
+redteam_disclosure_confidence,14,hard_redteam_gate,"Drill-bit failure, policy reversal, political shock, energy import shock, and low disclosure confidence can block unsafe Green.",false
+policy_directionality,8,split_winners_and_losers,The same policy can help one basket and hurt another; directionality must be explicit.,false
+valuation_room_4b_runway,8,cool_price_only_event,"Price-only event rallies, short-selling squeezes, and policy-theme baskets often become 4B before Green.",false
