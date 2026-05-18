@@ -1,0 +1,91 @@
+# Round-190 R6 Loop-12 Price Validation Plan
+
+R6 Loop 12 must backfill ROE, capital ratio, credit cost, actual return execution, digital-finance revenue model, privacy/security/policy gates, and price-path fields together.
+
+## Required Fields
+
+- `ticker`
+- `company_name`
+- `canonical_archetype`
+- `case_type`
+- `stage1_date`
+- `stage2_date`
+- `stage3_date`
+- `stage4b_date`
+- `stage4c_date`
+- `stage1_trigger`
+- `stage2_trigger`
+- `stage3_trigger`
+- `stage4b_trigger`
+- `stage4c_trigger`
+- `price_at_stage1`
+- `price_at_stage2`
+- `price_at_stage3`
+- `price_at_stage4b`
+- `price_at_stage4c`
+- `return_1d_after_event`
+- `return_5d_after_event`
+- `return_20d_after_stage2`
+- `return_60d_after_stage2`
+- `return_120d_after_stage2`
+- `return_252d_after_stage2`
+- `mfe_20d_after_stage2`
+- `mae_20d_after_stage2`
+- `mfe_60d_after_stage2`
+- `mae_60d_after_stage2`
+- `mfe_120d_after_stage2`
+- `mae_120d_after_stage2`
+- `mfe_252d_after_stage2`
+- `mae_252d_after_stage2`
+- `relative_strength_vs_kospi`
+- `relative_strength_vs_financial_basket`
+- `relative_strength_vs_bank_basket`
+- `relative_strength_vs_insurance_basket`
+- `relative_strength_vs_fintech_basket`
+- `roe`
+- `roe_change_yoy`
+- `net_profit`
+- `net_profit_growth_yoy`
+- `cet1_ratio`
+- `k_ics_ratio`
+- `csm`
+- `credit_cost`
+- `pf_exposure`
+- `reserve_build`
+- `dividend_per_share`
+- `dividend_payout_ratio`
+- `buyback_amount`
+- `cancelled_share_amount`
+- `total_shareholder_return_ratio`
+- `eps_accretion_from_buyback`
+- `pbr_at_stage2`
+- `pbr_at_stage3`
+- `pbr_at_stage4b`
+- `pbr_band_percentile`
+- `nav_discount`
+- `major_equity_stake_value`
+- `digital_asset_stake_value`
+- `equity_method_income`
+- `stablecoin_regulatory_status`
+- `stablecoin_issuance_volume`
+- `reserve_income`
+- `take_rate`
+- `merchant_count`
+- `user_count`
+- `transaction_volume`
+- `privacy_fine_flag`
+- `biometric_data_risk_flag`
+- `exchange_security_incident_flag`
+- `regulatory_approval_pending`
+- `tax_policy_shock_flag`
+- `disclosure_confidence`
+- `valuation_at_stage3`
+- `valuation_at_stage4b`
+
+## Backfill Priorities
+
+- `samsung_life_insurance_nav_valueup_stage23_case`: NAV discount, K-ICS, CSM, ROE, return execution, PBR band, 60D/120D MFE.
+- `meritz_financial_shareholder_return_stage23_case`: buyback cancellation, dividend, ROE, capital ratio, credit cost, price path.
+- `hana_financial_dunamu_equity_option_stage2_case`: stake value, equity-method income, regulation, exchange security, volume/fee durability.
+- `krw_stablecoin_policy_theme_4b_watch_case`: issuance, reserve income, take-rate, regulatory status, price-only rally diagnostics.
+- `kakaopay_privacy_regulatory_4c_watch_case`: fine, consent resolution, trust metrics, regulator status, price path.

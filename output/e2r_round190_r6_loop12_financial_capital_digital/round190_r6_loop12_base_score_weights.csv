@@ -1,0 +1,8 @@
+component,points,loop12_direction,reason,production_scoring_changed
+roe_eps_fcf_durability,22,keep_high,"R6 Loop 12 requires durable ROE, profit, EPS, or FCF, not low-PBR or fintech keywords alone.",false
+capital_return_execution,18,raised_for_loop12,"Actual buyback cancellation, dividend expansion, or recurring total-shareholder-return policy is execution evidence.",false
+capital_ratio_credit_cost_stability,16,hard_quality_gate,"CET1, K-ICS, CSM, PF exposure, reserve build, and credit cost separate value-up from capital pressure.",false
+digital_finance_revenue_model_visibility,16,raised_for_loop12,"Dunamu stake, stablecoin, FacePay, or credit-data optionality needs equity-method income, issuance, take-rate, or recurring data revenue.",false
+early_price_validation,10,required_backfill,Stage 2 이후 60D/120D MFE and relative strength validate whether capital return or digital-finance evidence is being confirmed.,false
+security_privacy_policy_redteam,12,hard_review,"Exchange security, privacy consent, biometric data, tax reversal, and regulatory uncertainty can block Green.",false
+valuation_4b_room,6,cool_crowded_financial_rallies,"Value-up, Dunamu, stablecoin, and buyback narratives need 4B cooling when price outruns ROE/EPS and execution.",false
