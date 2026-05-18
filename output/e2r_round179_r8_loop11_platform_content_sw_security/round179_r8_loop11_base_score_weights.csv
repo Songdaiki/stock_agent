@@ -1,0 +1,8 @@
+component,points,loop11_direction,reason,production_scoring_changed
+arr_bookings_ad_ip_cloud_revenue,24,raise_actual_revenue,"AI, game IP, webtoon, or K-pop names matter only when ARR, bookings, ad/IP revenue, cloud revenue, or live-service revenue appears.",false
+recurrence_retention_workflow_lockin,18,raise_repeatability,"ERP renewal, SaaS churn, live-service bookings, fan platform ARPU, and paid content retention separate Stage 2 from Stage 3.",false
+opm_fcf_gross_margin_conversion,14,margin_bodyweight,"AI and content revenue must convert to OPM, FCF, or gross-margin durability.",false
+ai_cloud_platform_ip_bottleneck,12,bounded_narrative_credit,"AI/cloud/platform/IP bottleneck gets credit, but not enough to create Green alone.",false
+early_price_path_validation,10,loop11_axis,"Stage 2 이후 60D MFE helps identify early Stage 3, while Stage 2 이후 120D MFE helps 4B cooling.",false
+operational_trust_security_legal_governance,14,hard_redteam_gate,"Privacy, security, founder legal risk, governance, release delay, lawsuit, and guidance misses can cap or break the thesis.",false
+valuation_room_4b_runway,8,cool_headline_rerating,"AI SW, game IP, webtoon, K-pop, and platform narratives often reprice before repeat revenue confirms.",false
