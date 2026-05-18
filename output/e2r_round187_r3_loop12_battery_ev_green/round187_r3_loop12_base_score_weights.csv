@@ -1,0 +1,8 @@
+component,points,loop12_direction,reason,production_scoring_changed
+eps_fcf_opm_conversion,24,keep_high,"R3 Loop 12 requires OP/EPS/FCF conversion, not EV/ESS/hydrogen/solar/wind keywords.",false
+contract_customer_utilization_visibility,22,detail_required,"Customer, amount, period, GWh/MW/tonnage, production timing, and utilization drive Stage 2 quality.",false
+capa_redeployment_line_conversion,12,stage2_not_green,"EV-to-ESS conversion, solar localization, fuel-cell mass production, and wind delivery need utilization proof.",false
+policy_subsidy_quality,10,raised_for_loop12,"IRA AMPC, UFLPA, hydrogen subsidy, and wind permitting can create or break reported profit quality.",false
+early_price_path_validation,10,required_backfill,"Stage 2 이후 MFE, cancellation MAE, event return, and relative strength separate validation from overheating.",false
+safety_regulatory_quality_disclosure,12,hard_review,"Battery fire, quality failure, customs detention, supplier disclosure, and missing detail can block Green.",false
+valuation_room_4b_runway,10,cool_crowded_names,Battery/ESS/hydrogen/solar/wind narratives often need 4B cooling when price outruns ex-subsidy earnings.,false
