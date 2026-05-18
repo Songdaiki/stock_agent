@@ -1,0 +1,95 @@
+# Round-189 R5 Loop-12 Price Validation Plan
+
+R5 Loop 12 must backfill overseas channel, localization, sell-through, reorder, inventory/receivables, tariff, JV regulation, convenience cost, and price-path fields together.
+
+## Required Fields
+
+- `ticker`
+- `company_name`
+- `canonical_archetype`
+- `case_type`
+- `stage1_date`
+- `stage2_date`
+- `stage3_date`
+- `stage4b_date`
+- `stage4c_date`
+- `stage1_trigger`
+- `stage2_trigger`
+- `stage3_trigger`
+- `stage4b_trigger`
+- `stage4c_trigger`
+- `price_at_stage1`
+- `price_at_stage2`
+- `price_at_stage3`
+- `price_at_stage4b`
+- `price_at_stage4c`
+- `return_1d_after_event`
+- `return_5d_after_event`
+- `return_20d_after_stage2`
+- `return_60d_after_stage2`
+- `return_120d_after_stage2`
+- `return_252d_after_stage2`
+- `mfe_20d_after_stage2`
+- `mae_20d_after_stage2`
+- `mfe_60d_after_stage2`
+- `mae_60d_after_stage2`
+- `mfe_120d_after_stage2`
+- `mae_120d_after_stage2`
+- `mfe_252d_after_stage2`
+- `mae_252d_after_stage2`
+- `relative_strength_vs_kospi`
+- `relative_strength_vs_kosdaq`
+- `relative_strength_vs_consumer_basket`
+- `relative_strength_vs_kfood_basket`
+- `relative_strength_vs_kbeauty_basket`
+- `relative_strength_vs_retail_basket`
+- `export_growth_yoy`
+- `us_sales_growth_yoy`
+- `japan_sales_growth_yoy`
+- `europe_sales_growth_yoy`
+- `china_sales_growth_yoy`
+- `channel_added`
+- `channel_type`
+- `offline_sell_through_signal`
+- `reorder_signal`
+- `mainstream_shelf_signal`
+- `amazon_tiktok_signal`
+- `ulta_sephora_costco_target_signal`
+- `local_production_flag`
+- `plant_utilization`
+- `capex_amount`
+- `capex_payback_signal`
+- `jv_or_platform_event`
+- `gmv_growth`
+- `take_rate`
+- `data_regulation_flag`
+- `sssg`
+- `pb_mix`
+- `franchisee_margin_signal`
+- `wage_rent_electricity_cost_signal`
+- `op_revision_before_stage3`
+- `op_revision_after_stage3`
+- `eps_revision_before_stage3`
+- `eps_revision_after_stage3`
+- `gross_margin`
+- `opm`
+- `fcf_signal`
+- `inventory_days`
+- `inventory_days_change`
+- `receivables_days`
+- `receivables_days_change`
+- `discount_rate_signal`
+- `tariff_exposure`
+- `single_sku_dependency`
+- `regional_risk_flag`
+- `disclosure_confidence`
+- `valuation_at_stage3`
+- `valuation_at_stage4b`
+
+## Backfill Priorities
+
+- `cj_cheiljedang_kfood_localization_stage23_case`: overseas sales, plant utilization, ASP, OPM, FCF, 60D/120D MFE.
+- `orion_global_staple_brand_second_wave_case`: regional sales, regional OPM, input cost, FX/geopolitics, price path.
+- `emart_shinsegae_alibaba_jv_stage2_case`: event return, GMV, take-rate, data restriction, platform cost, FCF.
+- `kbeauty_brand_second_wave_stage23_case`: offline sell-through, reorder, inventory, receivables, OPM, tariff exposure.
+- `convenience_store_pb_sssg_stage23_case`: SSSG, PB mix, franchisee margin, wage/rent/electricity cost, OPM, FCF.

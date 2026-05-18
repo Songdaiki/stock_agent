@@ -1,0 +1,8 @@
+component,points,loop12_direction,reason,production_scoring_changed
+eps_fcf_opm_conversion,24,keep_high,"R5 Loop 12 requires OP/EPS/FCF conversion, not K-food, K-beauty, JV, or convenience-store keywords.",false
+overseas_channel_localization_platform_visibility,20,raised_for_loop12,"Overseas sales, local plants, JV, offline entry, mainstream shelf, PB, and SSSG are Stage 2 visibility evidence.",false
+sellthrough_reorder_recurring_consumption,18,raised_for_loop12,"K-food and K-beauty need sell-through, reorder, and recurring consumption before Stage 3 conviction.",false
+inventory_receivables_margin_quality,12,hard_quality_gate,"Inventory days, receivables days, gross margin, ASP, OPM, and FCF separate real demand from channel stuffing.",false
+early_price_validation,10,required_backfill,"Stage 2 이후 60D/120D MFE, event return, and relative strength validate whether the market is confirming the evidence.",false
+tariff_regulation_capex_disclosure_redteam,10,hard_review,"Tariff, KFTC data restrictions, CAPEX/utilization drag, cost/logistics, and disclosure gaps can block Green.",false
+valuation_4b_room,6,cool_crowded_consumer_rallies,"K-food, K-beauty, JV, and convenience narratives need 4B cooling when price outruns earnings evidence.",false
