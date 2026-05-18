@@ -1,0 +1,8 @@
+component,points,loop11_direction,reason
+eps_fcf_opm_conversion,24,keep_high,"Stage 3 requires OP/EPS/FCF and margin conversion, not order headlines."
+contract_backlog_customer_visibility,20,detail_required,"Contract amount, customer, period, backlog quality, and delivery schedule define Stage 2."
+bottleneck_pricing_power,18,keep_high,"Transformer lead time, CAPA shortage, shipyard slots, defense production scale, and ASP/margin matter."
+early_price_path_validation,12,new_loop11_axis,The score must catch early 60D/120D price validation before the candidate becomes crowded.
+capital_discipline_dilution,8,hard_review,"Capex, dilution, IPO premium, and acquisition funding can cool a good backlog story."
+disclosure_confidence_redteam,8,hard_review,"LOI/MOU, legal injunction, sanctions, missing detail, or OpenDART list-only evidence caps Stage 3."
+valuation_room_4b_runway,10,raise_4b_focus,Good structures with large 120D/252D MFE become 4B-watch rather than fresh Green.
