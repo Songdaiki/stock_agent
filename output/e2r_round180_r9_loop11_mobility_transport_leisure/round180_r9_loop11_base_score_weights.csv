@@ -1,0 +1,8 @@
+component,points,loop11_direction,reason,production_scoring_changed
+eps_fcf_opm_conversion,22,raise_margin_bodyweight,"R9 demand recovery matters only when it converts into OPM, FCF, or OP/EPS revisions.",false
+contract_volume_operating_visibility,18,raise_operating_visibility,"Sales targets, US localization, logistics contracts, parcel volume, casino drop, duty-free sales, freight, and visitor data are Stage 2 evidence.",false
+unit_fleet_economics,18,raise_unit_economics,"Utilization, cost per mile, parcel unit price, casino hold rate, RevPAR, repair cost, and residual value separate Stage 2 from Stage 3.",false
+safety_regulation_labor_quality_risk,14,hard_redteam_gate,"Safety accidents, inspections, recalls, warranty costs, labor regulation, tariff pressure, and price wars can cap or break R9 candidates.",false
+early_price_path_validation,10,loop11_axis,"Stage 2 이후 60D MFE helps early Stage 3, while Stage 2 이후 120D MFE helps 4B cooling.",false
+recurrence_demand_durability,10,raise_repeatability,"Repeat logistics contracts, repeat visitors, recurring demand, and durable hybrid mix are required before Green.",false
+valuation_room_4b_runway,8,cool_theme_rerating,"Tourism, freight, hybrid, and logistics headlines often reprice before unit economics confirm.",false
