@@ -1,0 +1,8 @@
+component,points,loop11_direction,reason
+eps_fcf_opm_conversion,23,keep_high,"Stage 3 needs OP/EPS/FCF and margin conversion, not K-food or K-beauty keywords."
+export_channel_visibility,21,raise_channel_detail,"US/Japan/Europe sales, Amazon/TikTok/Ulta/Sephora/Costco/Target, offline entry, ASP, and mainstream shelf drive Stage 2."
+sell_through_reorder_repeat_consumption,18,raise_for_loop11,"Shipment and listing are capped until sell-through, reorder, and repeat consumption are visible."
+inventory_receivables_margin_quality,12,hard_quality_gate,"Inventory days, receivables days, gross margin, OPM, and discount rate decide whether growth is real."
+early_price_path_validation,10,loop11_axis,60D/120D price path separates early Stage 3 catch from late 4B chasing.
+safety_tariff_disclosure_confidence,8,redteam_review,"Tariff, China exposure, recalls, product safety, and disclosure gaps cap Stage 3."
+valuation_room_4b_runway,8,cool_brand_rallies,"IPO doubles, viral brand rerating, and K-beauty/K-food crowding reduce runway quickly."

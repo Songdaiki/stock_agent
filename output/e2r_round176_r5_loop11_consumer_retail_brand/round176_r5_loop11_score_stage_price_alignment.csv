@@ -1,0 +1,11 @@
+case_id,detected_stage,price_path_status,verdict,normalization_adjustment
+silicon2_kbeauty_distribution_stage3_candidate,Stage 2/3 candidate,K-beauty import/e-commerce evidence strong; KRX and working capital path need backfill,portfolio_distribution_not_brand_keyword,"credit portfolio distribution and US channel; cap before sell-through, inventory, receivables, OPM, FCF"
+dalba_global_ipo_4b_watch_case,Stage 2 + 4B-watch,Post-listing price more than doubled before sell-through proof,ipo_double_requires_4b_watch,credit US channel talks; apply IPO valuation and single-brand risk
+cj_oliveyoung_platform_holdco_cap_case,Stage 2 option,Strong private platform but CJ cash-flow/NAV link needs proof,holdco_link_cap,credit platform; cap before IPO/cash realization or consolidated OP/FCF link
+nongshim_global_staple_stage2_case,Stage 2/3 candidate,Global staple evidence strong; OP/EPS and KRX path need backfill,staple_export_candidate,credit overseas mix and mainstream shelf; cap before OP/EPS and inventory proof
+kbeauty_oem_odm_supplychain_stage3_candidate,Stage 2/3 candidate,OEM/ODM can catch multi-brand repeat demand before single brands,repeat_order_supplychain_candidate,credit customer diversification; cap before receivables and OPM proof
+drg_kbeauty_mna_stage2_reference_case,Stage 2 reference,"Private M&A validates strategic value, not direct listed-company Green",reference_not_direct_green,support sector evidence only; require listed revenue/OPM link
+amorepacific_china_exposure_4c_case,4C-watch,China demand weakness and earnings miss override K-beauty narrative,china_exposure_4c_alignment,apply China premium exposure and earnings miss gate
+kbeauty_tariff_import_margin_review_case,RedTeam overlay,US import growth positive but tariff can pressure margin and reorder,tariff_margin_gate,require margin buffer and price pass-through
+fnf_license_brand_china_mna_watch_case,Watch/Red,License brand saturation and TaylorMade M&A governance risk cap rerating,license_brand_governance_risk,"require sell-through, inventory, and M&A discipline"
+channel_stuffing_inventory_overlay_case,hard gate,Shipment growth can hide sell-through weakness,sell_through_inventory_gate,"require inventory days, receivables days, reorder, and margin quality"
