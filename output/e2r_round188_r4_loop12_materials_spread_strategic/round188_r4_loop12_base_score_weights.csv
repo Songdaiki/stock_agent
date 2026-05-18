@@ -1,0 +1,8 @@
+component,points,loop12_direction,reason,production_scoring_changed
+eps_fcf_opm_conversion,22,keep_high,"R4 Loop 12 requires OP/EPS/FCF conversion, not refining, petrochemical, tariff, or raw-material keywords.",false
+spread_product_margin_durability,18,separate_cycle_from_structural,"Refining margin, petrochemical spread, rubber spread, and ex-inventory OP must become durable FCF.",false
+restructuring_supply_cut_visibility,18,raised_for_loop12,"Plant shutdown, capacity cut, merger, government support, asset sale, and debt reduction can make spread recovery more durable.",false
+early_price_path_validation,10,required_backfill,"Stage 2 이후 MFE, event return, OP beat reaction, and relative strength separate validation from headline rallies.",false
+cycle_commodity_risk,12,hard_cycle_cap,"China oversupply, Middle East disruption reversal, oil/naphtha cycle, and inventory effects cap structural interpretation.",false
+operational_tariff_disclosure_redteam,12,hard_review,"Factory fire, production halt, anti-dumping tariff, undisclosed restructuring detail, and disclosure gaps can block Green.",false
+valuation_room_4b_runway,8,cool_crowded_spread_rallies,"Refining, petrochemical restructuring, tariff, and commodity narratives need 4B cooling when price outruns OP/FCF.",false
