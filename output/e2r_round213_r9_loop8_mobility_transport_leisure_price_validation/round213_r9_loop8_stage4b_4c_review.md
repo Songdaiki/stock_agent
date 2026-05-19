@@ -1,0 +1,35 @@
+# Round 213 R9 4B/4C Review
+
+## 4B Watch Triggers
+
+- hybrid_valueup_fast_rerating
+- sdv_ai_mobility_before_software_revenue
+- airline_merger_completion_price_spike
+- red_sea_freight_rate_spike
+- china_visa_free_tourism_basket_spike
+- tourism_redirect_event_before_sales
+
+## Hard 4C Gates
+
+- fatal_safety_accident
+- operational_trust_break
+- margin_guidance_cut_with_structural_cause
+- tariff_shock_not_offset_by_localization
+- fuel_cost_spike_not_passed_through
+- freight_rate_collapse
+- container_overcapacity
+- integration_failure
+- regulatory_block
+- tourist_spend_failure
+- casino_utilization_collapse
+- debt_or_capex_burden
+
+## Case Notes
+
+- r9_loop8_hyundai_hybrid_valueup_tariff_watch: tariff_margin_target_cut, q2_2025_tariff_cost_828bn_krw, localization_capex_watch, stage3_price_unavailable
+- r9_loop8_kia_sdv_delay_capex_watch: sdv_launch_delay_one_year, investment_plan_increase_30pct, ev_target_cut_20pct, stage2_event_mae_minus_5_5pct
+- r9_loop8_korean_air_asiana_integration: integration_synergy_unverified, boeing_order_capex_watch, fuel_cost_watch, debt_capex_burden
+- r9_loop8_jeju_air_fatal_crash_hard_4c: fatal_safety_accident_179_deaths, operational_trust_break, emergency_safety_inspection, record_low_price
+- r9_loop8_hmm_red_sea_freight_cycle: freight_rate_spike_only, cycle_normalization, container_overcapacity_watch, hmm_stock_ohlc_unavailable
+- r9_loop8_hotel_shilla_paradise_china_visa_event: tourist_arrival_policy_only, tourist_spend_unverified, casino_drop_hold_unverified, flight_capacity_already_105pct_pre_covid
+- r9_loop8_lotte_tour_china_japan_redirect: tourist_redirect_event_only, casino_utilization_unverified, political_instability_watch, refinancing_or_license_risk_watch

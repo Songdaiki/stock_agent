@@ -1,0 +1,16 @@
+field,required_for_round213_price_validation
+price_data_source,true
+full_ohlc_available,true
+reported_price_anchor,true
+reported_return_anchor,true
+stage2_price,true
+stage3_price,true
+stage4b_price,true
+stage4c_price,true
+mfe_1d,true
+mae_1d,true
+relative_underperformance_pp,true
+freight_or_tourism_metric,true
+capacity_or_transaction_value,true
+safety_or_margin_event,true
+price_validation_status,true

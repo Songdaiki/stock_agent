@@ -1,0 +1,24 @@
+axis,points,direction,reason
+hybrid_mix,5,raise,완성차는 EV 테마보다 hybrid mix와 마진 방어가 중요하다.
+fcf_after_capex,5,raise,R9 Green은 capex 이후 FCF가 남는지 확인해야 한다.
+shareholder_return_execution,5,raise,자사주·배당 실행은 완성차 rerating의 핵심 증거다.
+operating_margin_durability,5,raise,관세·연료·운임 stress 이후에도 마진이 유지돼야 한다.
+localization_tariff_hedge,4,raise,현지 생산은 관세 충격을 줄이는 Stage 2~3 증거가 될 수 있다.
+unit_economics,5,raise,렌터카·항공·관광은 이용률보다 unit economics가 먼저다.
+load_factor_with_yield,4,raise,항공은 탑승률과 yield가 같이 좋아야 한다.
+integration_synergy_realized,4,raise,항공 통합은 완료보다 시너지 실현이 중요하다.
+freight_contract_mix,4,raise,해운은 spot 운임보다 contract mix와 FCF가 중요하다.
+tourist_spend_conversion,5,raise,관광은 입국자 수보다 소비 전환이 핵심이다.
+casino_drop_and_hold,5,raise,카지노는 관광객보다 drop/hold와 OPM을 확인해야 한다.
+safety_record_and_operational_trust,5,raise,항공과 모빌리티는 안전 신뢰가 Green의 전제다.
+travel_reopening_only,-5,lower,여행 재개만으로는 Stage 3-Green을 만들 수 없다.
+freight_rate_spike_only,-5,lower,운임 spike는 cycle일 수 있으므로 Green을 제한한다.
+robotaxi_or_sdv_story_only,-5,lower,SDV/로보택시 스토리는 유료 SW 매출 전까지 제한한다.
+tourist_arrival_policy_only,-5,lower,무비자 정책과 입국자 수만으로는 관광주 Green 금지다.
+merger_completion_without_synergy,-4,lower,합병 완료만 있고 시너지·FCF가 없으면 Stage 2다.
+ev_or_ai_mobility_theme_only,-4,lower,EV/AI mobility 테마만으로는 이익 체급 변화가 아니다.
+capex_heavy_localization_without_margin,-4,lower,현지화 capex가 마진을 방어하지 못하면 제한한다.
+safety_failure,-5,lower,fatal safety accident는 hard 4C다.
+tariff_margin_cut,-5,lower,관세가 구조적으로 마진 목표를 깎으면 4C-watch다.
+utilization_weak,-5,lower,관광·카지노·항공은 utilization이 약하면 Green 금지다.
+cycle_normalization,-5,lower,해운과 관광 cycle 정상화는 Stage 4C risk다.
