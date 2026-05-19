@@ -1,0 +1,336 @@
+{
+  "case_ids": [
+    "r13_loop8_sk_hynix_hbm_stage3_4b",
+    "r13_loop8_hyundai_rotem_k2_delivery_aligned",
+    "r13_loop8_hanwha_aero_dilution_4b_not_4c",
+    "r13_loop8_kogas_resource_price_only",
+    "r13_loop8_lges_lnf_contract_quality_4c",
+    "r13_loop8_jeju_air_operational_trust_hard_4c",
+    "r13_loop8_stablecoin_theme_price_only",
+    "r13_loop8_korea_zinc_strategic_governance_watch"
+  ],
+  "green_forbidden_patterns": [
+    "policy_news_only",
+    "resource_estimate_without_commerciality",
+    "stablecoin_policy_theme_only",
+    "ai_capex_or_partnership_without_revenue",
+    "contract_headline_without_calloff",
+    "mou_or_preliminary_deal",
+    "governance_premium_only",
+    "dilution_without_clear_fcf",
+    "high_score_without_price_validation",
+    "price_rally_before_evidence"
+  ],
+  "green_required_fields": [
+    "company_level_evidence_confirmed",
+    "revenue_eps_fcf_path_confirmed",
+    "price_path_after_evidence_confirmed",
+    "meaningful_stage3_mfe_confirmed",
+    "mae_not_excessive",
+    "not_saturated_4b",
+    "no_hard_redteam",
+    "contract_operational_governance_trust_passed"
+  ],
+  "hard_4c_gates": [
+    "contract_cancellation",
+    "contract_value_collapse",
+    "fatal_safety_accident",
+    "operational_trust_break",
+    "major_governance_legal_break",
+    "privacy_or_security_trust_break",
+    "pf_workout_or_credit_break",
+    "regulatory_reversal",
+    "commercialization_failure",
+    "financing_failure"
+  ],
+  "large_sector": "CROSS_ARCHETYPE_REDTEAM_PRICE_VALIDATION",
+  "score_adjustments": [
+    {
+      "axis": "price_path_alignment",
+      "direction": "raise",
+      "points": "5",
+      "reason": "Stage 3 이후 가격경로가 증거와 맞으면 보상한다."
+    },
+    {
+      "axis": "stage3_to_large_mfe_confirmation",
+      "direction": "raise",
+      "points": "5",
+      "reason": "대형 MFE가 확인된 Stage 3 성공 사례를 보상한다."
+    },
+    {
+      "axis": "order_to_revenue_conversion",
+      "direction": "raise",
+      "points": "5",
+      "reason": "수주 headline보다 납품·매출·OP revision 전환을 우선한다."
+    },
+    {
+      "axis": "eps_fcf_revision",
+      "direction": "raise",
+      "points": "5",
+      "reason": "OP/EPS/FCF revision이 Stage 3의 몸통이다."
+    },
+    {
+      "axis": "actual_contract",
+      "direction": "raise",
+      "points": "5",
+      "reason": "실제 계약과 납품 경로가 있으면 visibility가 올라간다."
+    },
+    {
+      "axis": "customer_visibility",
+      "direction": "raise",
+      "points": "4",
+      "reason": "고객과 공급 visibility가 가격경로와 맞을 때 보상한다."
+    },
+    {
+      "axis": "operational_trust",
+      "direction": "raise",
+      "points": "5",
+      "reason": "운영 신뢰는 Green의 필수 통과 gate다."
+    },
+    {
+      "axis": "hard_4c_early_warning",
+      "direction": "raise",
+      "points": "5",
+      "reason": "계약취소·안전사고·신뢰 훼손은 hard 4C로 조기 감지한다."
+    },
+    {
+      "axis": "contract_quality",
+      "direction": "raise",
+      "points": "5",
+      "reason": "계약금액 headline보다 call-off, take-or-pay, margin, FCF를 확인한다."
+    },
+    {
+      "axis": "policy_news_only",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "정책 뉴스만으로 Green을 만들지 않는다."
+    },
+    {
+      "axis": "resource_estimate_without_commerciality",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "자원 추정은 상업성 전까지 event premium이다."
+    },
+    {
+      "axis": "stablecoin_policy_theme_only",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "스테이블코인 정책 기대는 실제 수익모델 전까지 감점한다."
+    },
+    {
+      "axis": "ai_capex_or_partnership_without_revenue",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "AI 투자·협업은 매출과 마진 전까지 Stage 2 watch다."
+    },
+    {
+      "axis": "contract_headline_without_calloff",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "call-off 없는 계약 headline은 Green 충분조건이 아니다."
+    },
+    {
+      "axis": "mou_or_preliminary_deal",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "MOU·예비계약은 실제 계약 전 Green 금지다."
+    },
+    {
+      "axis": "governance_premium_only",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "지배구조 이벤트 프리미엄만으로 구조적 rerating을 주지 않는다."
+    },
+    {
+      "axis": "dilution_without_clear_fcf",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "FCF 설명 없는 증자·희석은 4B/RedTeam 감점이다."
+    },
+    {
+      "axis": "high_score_without_price_validation",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "높은 shadow score도 가격경로 검증 전에는 보류한다."
+    }
+  ],
+  "shadow_weights": [
+    {
+      "4b_watch_sensitivity": "+4",
+      "actual_contract": "+4",
+      "archetype": "STRUCTURAL_SUCCESS_ALIGNED",
+      "contract_quality": "+3",
+      "eps_fcf_revision": "+5",
+      "event_penalty": "0",
+      "governance_redteam": "0",
+      "hard_4c_sensitivity": "+2",
+      "notes": "SK Hynix and Hyundai Rotem show Stage 3 can create large MFE when evidence converts to earnings/revenue.",
+      "operational_trust": "+3",
+      "order_to_revenue": "+5",
+      "price_path_alignment": "+5",
+      "stage3_mfe_confirmation": "+5"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "actual_contract": "+4",
+      "archetype": "STRUCTURAL_SUCCESS_BUT_4B_WATCH",
+      "contract_quality": "+3",
+      "eps_fcf_revision": "+4",
+      "event_penalty": "-1",
+      "governance_redteam": "+2",
+      "hard_4c_sensitivity": "+3",
+      "notes": "SK Hynix after market-cap milestone becomes 4B-watch/elevated, not a fresh Green.",
+      "operational_trust": "+3",
+      "order_to_revenue": "+4",
+      "price_path_alignment": "+5",
+      "stage3_mfe_confirmation": "+5"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "actual_contract": "+2",
+      "archetype": "CAPITAL_ALLOCATION_DILUTION_OVERLAY",
+      "contract_quality": "+2",
+      "eps_fcf_revision": "+2",
+      "event_penalty": "-2",
+      "governance_redteam": "+5",
+      "hard_4c_sensitivity": "+3",
+      "notes": "Hanwha Aero capital raise after a large rally is 4B-watch, not automatic hard 4C.",
+      "operational_trust": "+2",
+      "order_to_revenue": "+2",
+      "price_path_alignment": "+2",
+      "stage3_mfe_confirmation": "+3"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "actual_contract": "0",
+      "archetype": "PRICE_ONLY_RALLY",
+      "contract_quality": "0",
+      "eps_fcf_revision": "0",
+      "event_penalty": "-5",
+      "governance_redteam": "+1",
+      "hard_4c_sensitivity": "+3",
+      "notes": "Korea Gas and stablecoin basket show price moved before revenue evidence.",
+      "operational_trust": "+1",
+      "order_to_revenue": "0",
+      "price_path_alignment": "0",
+      "stage3_mfe_confirmation": "0"
+    },
+    {
+      "4b_watch_sensitivity": "+3",
+      "actual_contract": "+5",
+      "archetype": "CONTRACT_QUALITY_BREAK",
+      "contract_quality": "+5",
+      "eps_fcf_revision": "0",
+      "event_penalty": "0",
+      "governance_redteam": "+1",
+      "hard_4c_sensitivity": "+5",
+      "notes": "LGES and L&F show cancellation/value collapse hard 4C.",
+      "operational_trust": "+2",
+      "order_to_revenue": "0",
+      "price_path_alignment": "0",
+      "stage3_mfe_confirmation": "0"
+    },
+    {
+      "4b_watch_sensitivity": "+3",
+      "actual_contract": "0",
+      "archetype": "OPERATIONAL_TRUST_BREAK",
+      "contract_quality": "+1",
+      "eps_fcf_revision": "0",
+      "event_penalty": "0",
+      "governance_redteam": "+2",
+      "hard_4c_sensitivity": "+5",
+      "notes": "Jeju Air fatal crash is hard operational trust 4C.",
+      "operational_trust": "+5",
+      "order_to_revenue": "0",
+      "price_path_alignment": "0",
+      "stage3_mfe_confirmation": "0"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "actual_contract": "0",
+      "archetype": "KRW_STABLECOIN_POLICY_THEME",
+      "contract_quality": "0",
+      "eps_fcf_revision": "0",
+      "event_penalty": "-5",
+      "governance_redteam": "+3",
+      "hard_4c_sensitivity": "+4",
+      "notes": "Stablecoin policy rally is not Green until regulated revenue is visible.",
+      "operational_trust": "+2",
+      "order_to_revenue": "0",
+      "price_path_alignment": "0",
+      "stage3_mfe_confirmation": "0"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "actual_contract": "+3",
+      "archetype": "STRATEGIC_MATERIALS_WITH_GOVERNANCE_OVERLAY",
+      "contract_quality": "+3",
+      "eps_fcf_revision": "+3",
+      "event_penalty": "-3",
+      "governance_redteam": "+5",
+      "hard_4c_sensitivity": "+4",
+      "notes": "Korea Zinc strategic project is Stage 2 but governance/dilution blocks Stage 3.",
+      "operational_trust": "+2",
+      "order_to_revenue": "+2",
+      "price_path_alignment": "+2",
+      "stage3_mfe_confirmation": "+2"
+    }
+  ],
+  "source_round": "docs/round/round_217.md",
+  "stage4b_watch_triggers": [
+    "stage3_return_2x_to_5x_or_more",
+    "market_cap_milestone_headline",
+    "large_capital_raise_cb_or_share_issue",
+    "event_day_20_to_30pct_rally",
+    "policy_mou_resource_or_stablecoin_theme_rally",
+    "good_news_price_response_fade",
+    "valuation_ahead_of_evidence"
+  ],
+  "summary": {
+    "aligned_success_count": 3,
+    "candidate_generation_input": false,
+    "case_candidate_count": 8,
+    "event_premium_count": 1,
+    "full_ohlc_complete": false,
+    "hard_4c_case_count": 2,
+    "large_sector": "CROSS_ARCHETYPE_REDTEAM_PRICE_VALIDATION",
+    "overheat_count": 1,
+    "price_moved_without_evidence_count": 2,
+    "price_validation_completed": "partial_with_reported_price_anchors",
+    "production_scoring_changed": false,
+    "shadow_weight_only": true,
+    "shadow_weight_row_count": 8,
+    "source_round": "docs/round/round_217.md",
+    "stage3_case_count": 2,
+    "stage4b_watch_or_elevated_count": 6,
+    "structural_success_count": 2,
+    "target_archetype_count": 17,
+    "watch_count": 1
+  },
+  "target_aliases": {
+    "CONTRACT_QUALITY_BREAK": "CONTRACT_QUALITY_BREAK",
+    "CROWDED_RERATING_4B_WATCH": "CROWDED_RERATING_4B_WATCH",
+    "EVENT_PREMIUM": "EVENT_PREMIUM",
+    "EVIDENCE_GOOD_BUT_PRICE_FAILED": "EVIDENCE_GOOD_BUT_PRICE_FAILED",
+    "FALSE_POSITIVE_SCORE": "FALSE_POSITIVE_SCORE",
+    "GOVERNANCE_DILUTION_EVENT": "GOVERNANCE_DILUTION_EVENT",
+    "KRW_STABLECOIN_POLICY_THEME": "KRW_STABLECOIN_POLICY_THEME",
+    "LEGAL_REGULATORY_REDTEAM": "LEGAL_REGULATORY_REDTEAM",
+    "MARKET_STRUCTURE_WATCH": "MARKET_STRUCTURE_WATCH",
+    "OPERATIONAL_TRUST_BREAK": "OPERATIONAL_TRUST_BREAK",
+    "ORDER_TO_REVENUE_CONVERSION": "ORDER_TO_REVENUE_CONVERSION",
+    "PRICE_ONLY_RALLY": "PRICE_ONLY_RALLY",
+    "STRATEGIC_MATERIALS_WITH_GOVERNANCE_OVERLAY": "STRATEGIC_MATERIALS_WITH_GOVERNANCE_OVERLAY",
+    "STRUCTURAL_SUCCESS_ALIGNED": "STRUCTURAL_SUCCESS_ALIGNED",
+    "STRUCTURAL_SUCCESS_BUT_4B_WATCH": "STRUCTURAL_SUCCESS_BUT_4B_WATCH",
+    "THESIS_BREAK_4C": "THESIS_BREAK_4C",
+    "UNKNOWN_INSUFFICIENT_EVIDENCE": "UNKNOWN_INSUFFICIENT_EVIDENCE"
+  },
+  "what_not_to_change": [
+    "do_not_apply_to_production_scoring_yet",
+    "do_not_use_round217_cases_as_candidate_generation_input",
+    "do_not_lower_stage3_green_thresholds",
+    "do_not_treat_price_only_event_policy_resource_stablecoin_or_contract_headline_as_green",
+    "do_not_invent_full_ohlc_or_stage_prices_when_only_reported_anchors_exist"
+  ]
+}
