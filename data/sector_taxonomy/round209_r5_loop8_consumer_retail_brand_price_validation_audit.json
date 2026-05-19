@@ -1,0 +1,88 @@
+{
+  "green_forbidden_patterns": [
+    "viral_product_only",
+    "brand_heat_only",
+    "retail_talks_without_sell_through",
+    "ipo_first_month_rally",
+    "influencer_endorsement_only",
+    "mna_optionality_without_eps",
+    "private_affiliate_value_only",
+    "china_decline_without_offset"
+  ],
+  "green_required_fields": [
+    "repeat_purchase_evidence",
+    "overseas_sales_mix_growth",
+    "channel_sell_through_confirmed",
+    "asp_or_product_mix_improvement",
+    "opm_improvement",
+    "inventory_and_receivables_stable",
+    "tariff_recall_regulation_passed",
+    "price_path_after_evidence"
+  ],
+  "hard_4c_gates": [
+    "food_safety_recall",
+    "regulatory_ban",
+    "channel_stuffing",
+    "inventory_build",
+    "receivables_spike",
+    "single_product_fad_collapse",
+    "us_tariff_margin_squeeze",
+    "retail_channel_sellthrough_failure",
+    "china_sales_collapse_not_offset_by_us_or_europe",
+    "mna_event_failure_or_impairment",
+    "brand_acquisition_impairment"
+  ],
+  "large_sector": "CONSUMER_RETAIL_BRAND",
+  "source_round": "docs/round/round_209.md",
+  "stage4b_watch_triggers": [
+    "stage3_after_2x_to_4x_price_run",
+    "ipo_first_month_double",
+    "single_sku_or_single_device_dependence",
+    "macro_kfood_kbeauty_reports_without_company_sellthrough",
+    "us_retail_channel_expectation_before_sellthrough",
+    "overseas_sales_good_but_opm_decelerating"
+  ],
+  "summary": {
+    "candidate_generation_input": false,
+    "case_candidate_count": 7,
+    "event_premium_count": 1,
+    "failed_rerating_count": 1,
+    "full_ohlc_complete": false,
+    "hard_4c_case_count": 0,
+    "large_sector": "CONSUMER_RETAIL_BRAND",
+    "overheat_count": 1,
+    "price_validation_completed": "partial_with_reported_price_anchors",
+    "production_scoring_changed": false,
+    "shadow_weight_only": true,
+    "source_round": "docs/round/round_209.md",
+    "stage3_case_count": 2,
+    "stage4b_watch_count": 5,
+    "structural_success_count": 2,
+    "success_candidate_count": 2,
+    "target_archetype_count": 16
+  },
+  "target_aliases": {
+    "APPAREL_FAST_FASHION_BRAND_OEM": "APPAREL_FAST_FASHION_BRAND_OEM",
+    "BEAUTY_DEVICE_EXPORT": "BEAUTY_DEVICE_EXPORT",
+    "BEAUTY_FAST_PRODUCT_CYCLE_RISK": "BEAUTY_FAST_PRODUCT_CYCLE_RISK",
+    "CHANNEL_STUFFING_INVENTORY_OVERLAY": "CHANNEL_STUFFING_INVENTORY_OVERLAY",
+    "CHINA_CONSUMER_EXPOSURE_4C": "CHINA_CONSUMER_EXPOSURE_4C",
+    "EVENT_PREMIUM_GOVERNANCE_OVERLAY": "EVENT_PREMIUM_GOVERNANCE_OVERLAY",
+    "EXPORT_RECURRING_CONSUMER": "EXPORT_RECURRING_CONSUMER",
+    "FOOD_SAFETY_RECALL_OVERLAY": "FOOD_SAFETY_RECALL_OVERLAY",
+    "K_BEAUTY_BRAND_US_CHANNEL": "K_BEAUTY_BRAND_US_CHANNEL",
+    "K_BEAUTY_EXPORT_DISTRIBUTION": "K_BEAUTY_EXPORT_DISTRIBUTION",
+    "K_BEAUTY_OEM_ODM_SUPPLYCHAIN_KOREA": "K_BEAUTY_OEM_ODM_SUPPLYCHAIN_KOREA",
+    "K_BEAUTY_RETAIL_PLATFORM": "K_BEAUTY_RETAIL_PLATFORM",
+    "K_FOOD_GLOBAL_STAPLE_BRAND": "K_FOOD_GLOBAL_STAPLE_BRAND",
+    "K_FOOD_SINGLE_SKU_RISK": "K_FOOD_SINGLE_SKU_RISK",
+    "PRICE_ONLY_RALLY": "PRICE_ONLY_RALLY",
+    "TARIFF_IMPORT_MARGIN_OVERLAY": "TARIFF_IMPORT_MARGIN_OVERLAY"
+  },
+  "what_not_to_change": [
+    "do_not_use_round209_cases_as_candidate_generation_input",
+    "do_not_apply_shadow_weights_to_production_scoring_yet",
+    "do_not_treat_viral_ipo_retail_talks_influencer_or_mna_optionality_as_green",
+    "do_not_invent_ohlc_or_stage_dates"
+  ]
+}

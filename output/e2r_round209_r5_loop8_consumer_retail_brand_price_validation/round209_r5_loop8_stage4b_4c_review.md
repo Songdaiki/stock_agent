@@ -1,0 +1,34 @@
+# Round 209 R5 4B/4C Review
+
+## 4B Watch Triggers
+
+- stage3_after_2x_to_4x_price_run
+- ipo_first_month_double
+- single_sku_or_single_device_dependence
+- macro_kfood_kbeauty_reports_without_company_sellthrough
+- us_retail_channel_expectation_before_sellthrough
+- overseas_sales_good_but_opm_decelerating
+
+## Hard 4C Gates
+
+- food_safety_recall
+- regulatory_ban
+- channel_stuffing
+- inventory_build
+- receivables_spike
+- single_product_fad_collapse
+- us_tariff_margin_squeeze
+- retail_channel_sellthrough_failure
+- china_sales_collapse_not_offset_by_us_or_europe
+- mna_event_failure_or_impairment
+- brand_acquisition_impairment
+
+## Case Notes
+
+- r5_loop8_samyang_buldak_export_aligned: single_sku_dependence, viral_product_normalization_risk, recall_regulation_watch, full_ohlc_unavailable
+- r5_loop8_nongshim_shin_global_staple: opm_eps_revision_unverified, channel_sellthrough_unverified, china_or_cost_pressure_watch
+- r5_loop8_apr_medicube_device_4b: fourfold_rally_since_january, valuation_crowding, tariff_margin_squeeze_watch, competition_and_device_cycle_fade
+- r5_loop8_dalba_global_ipo_overheat: retail_talks_without_sellthrough, ipo_first_month_rally, brand_heat_only, sellthrough_unverified
+- r5_loop8_cosmax_kolmar_odm_leverage: company_specific_order_visibility_unverified, inventory_receivables_quality_unverified, tariff_pass_through_watch
+- r5_loop8_amorepacific_transition_watch: china_exports_decline, cosrx_plateau, competition_and_low_cost_substitutes, company_level_opm_recovery_unverified
+- r5_loop8_fnf_taylormade_event: mna_optionality_without_eps, legal_dispute, brand_acquisition_impairment_risk, core_apparel_business_evidence_missing

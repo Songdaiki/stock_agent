@@ -1,0 +1,15 @@
+field,required_for_round209_price_validation
+price_data_source,true
+full_ohlc_available,true
+reported_price_anchor,true
+reported_return_anchor,true
+stage2_price,true
+stage3_price,true
+stage4b_price,true
+peak_price,true
+mfe_1d,true
+target_upside_pct,true
+reported_mfe_since_debut_pct,true
+market_cap_mfe_july_to_oct_pct,true
+implied_target_growth_pct,true
+price_validation_status,true
