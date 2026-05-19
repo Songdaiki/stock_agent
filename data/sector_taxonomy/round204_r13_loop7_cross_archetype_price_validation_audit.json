@@ -1,0 +1,246 @@
+{
+  "case_ids": [
+    "r13_sk_hynix_hbm_4b_benchmark",
+    "r13_hanwha_aerospace_defense_mfe_4b",
+    "r13_kogas_resource_price_only",
+    "r13_samsung_sds_kkr_ai_cb_event",
+    "r13_jeju_air_fatal_crash_hard_4c",
+    "r13_lges_contract_cancellation_4c",
+    "r13_lnf_tesla_contract_value_collapse",
+    "r13_hanwha_aerospace_capital_raise_4b_not_4c"
+  ],
+  "green_forbidden_patterns": [
+    "policy_news_only",
+    "resource_estimate_without_commerciality",
+    "ai_capex_or_partnership_without_revenue",
+    "contract_headline_without_calloff",
+    "media_or_event_price_rally",
+    "high_score_without_price_validation",
+    "past_winner_similarity",
+    "price_rally_before_evidence",
+    "saturated_4b",
+    "hard_redteam"
+  ],
+  "green_required_fields": [
+    "cross_evidence_confirmed",
+    "eps_fcf_durability_confirmed",
+    "structural_visibility_confirmed",
+    "price_path_alignment_confirmed",
+    "not_price_only_rally",
+    "no_hard_redteam",
+    "not_saturated_4b",
+    "revenue_or_eps_conversion_confirmed"
+  ],
+  "hard_4c_gates": [
+    "fatal_safety_accident",
+    "consumer_trust_break",
+    "regulatory_safety_probe",
+    "operational_system_review",
+    "contract_cancellation",
+    "contract_value_collapse",
+    "customer_strategy_pullback",
+    "ev_demand_slowdown",
+    "gwh_calloff_failure",
+    "accounting_or_disclosure_trust_break",
+    "legal_regulatory_break",
+    "commercialization_failure",
+    "cashflow_or_leverage_breakdown"
+  ],
+  "large_sector": "CROSS_ARCHETYPE_OVERLAY",
+  "score_adjustments": [
+    {
+      "axis": "price_path_alignment",
+      "direction": "raise",
+      "points": "5",
+      "reason": "Stage 3 이후 실제 대형 MFE가 확인된 케이스를 보상한다."
+    },
+    {
+      "axis": "stage3_to_large_mfe_confirmation",
+      "direction": "raise",
+      "points": "5",
+      "reason": "SK하이닉스와 한화에어로스페이스처럼 Stage 3 이후 큰 가격경로가 확인되어야 한다."
+    },
+    {
+      "axis": "cross_evidence",
+      "direction": "raise",
+      "points": "4",
+      "reason": "섹터별 증거가 가격경로와 RedTeam을 함께 통과해야 한다."
+    },
+    {
+      "axis": "eps_fcf_durability",
+      "direction": "raise",
+      "points": "4",
+      "reason": "대형 rerating은 EPS/FCF 지속성이 확인되어야 한다."
+    },
+    {
+      "axis": "contract_quality",
+      "direction": "raise",
+      "points": "5",
+      "reason": "계약 cancellation과 value collapse를 피하려면 계약 질을 강하게 봐야 한다."
+    },
+    {
+      "axis": "capacity_bottleneck",
+      "direction": "raise",
+      "points": "4",
+      "reason": "HBM/방산 같은 성공 케이스는 병목과 visibility가 같이 있었다."
+    },
+    {
+      "axis": "customer_visibility",
+      "direction": "raise",
+      "points": "4",
+      "reason": "고객 수요와 납품/공급 visibility가 Stage 3 이후 MFE를 설명한다."
+    },
+    {
+      "axis": "operational_trust",
+      "direction": "raise",
+      "points": "5",
+      "reason": "제주항공 같은 operational trust break는 hard 4C 기준점이다."
+    },
+    {
+      "axis": "hard_4c_early_warning",
+      "direction": "raise",
+      "points": "5",
+      "reason": "계약취소·안전사고·공시신뢰 훼손은 빠르게 hard 4C로 잡아야 한다."
+    },
+    {
+      "axis": "policy_news_only",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "정책 뉴스만으로 Stage 3-Green을 만들지 않는다."
+    },
+    {
+      "axis": "resource_estimate_without_commerciality",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "자원 추정은 상업성 확인 전까지 price-only event다."
+    },
+    {
+      "axis": "ai_capex_or_partnership_without_revenue",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "AI 투자·파트너십은 매출과 마진 전까지 Stage 2 watch다."
+    },
+    {
+      "axis": "contract_headline_without_calloff",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "계약 headline은 call-off/GWh/margin 전까지 Green 충분조건이 아니다."
+    },
+    {
+      "axis": "media_or_event_price_rally",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "언론/이벤트 급등은 evidence-before-price가 아니면 4B-watch 우선이다."
+    },
+    {
+      "axis": "high_score_without_price_validation",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "높은 점수도 가격경로·4B·4C 검증을 통과해야 한다."
+    },
+    {
+      "axis": "past_winner_similarity",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "과거 성공 종목과 닮았다는 이유만으로 Green을 만들지 않는다."
+    }
+  ],
+  "source_round": "docs/round/round_204.md",
+  "stage4b_statuses": [
+    "none",
+    "watch",
+    "elevated",
+    "graduated"
+  ],
+  "summary": {
+    "candidate_generation_input": false,
+    "case_candidate_count": 8,
+    "event_premium_count": 1,
+    "full_ohlc_complete": false,
+    "hard_4c_case_count": 3,
+    "price_validation_completed": "partial_with_reported_price_anchors",
+    "price_validation_field_count": 27,
+    "production_scoring_changed": false,
+    "reported_price_anchor_count": 8,
+    "required_target_count": 16,
+    "score_adjustment_count": 16,
+    "shadow_weight_only": true,
+    "stage3_case_count": 0,
+    "stage4b_watch_or_elevated_count": 5,
+    "structural_success_count": 2
+  },
+  "target_aliases": [
+    {
+      "canonical_archetype": "STRUCTURAL_SUCCESS_ALIGNED",
+      "round204_label": "STRUCTURAL_SUCCESS_ALIGNED"
+    },
+    {
+      "canonical_archetype": "STRUCTURAL_SUCCESS_BUT_4B_WATCH",
+      "round204_label": "STRUCTURAL_SUCCESS_BUT_4B_WATCH"
+    },
+    {
+      "canonical_archetype": "SECTOR_SUCCESS_BUT_4B_WATCH",
+      "round204_label": "SECTOR_SUCCESS_BUT_4B_WATCH"
+    },
+    {
+      "canonical_archetype": "CROWDED_RERATING_4B_WATCH",
+      "round204_label": "CROWDED_RERATING_4B_WATCH"
+    },
+    {
+      "canonical_archetype": "PRICE_ONLY_RALLY",
+      "round204_label": "PRICE_ONLY_RALLY"
+    },
+    {
+      "canonical_archetype": "EVENT_PREMIUM",
+      "round204_label": "EVENT_PREMIUM"
+    },
+    {
+      "canonical_archetype": "FALSE_POSITIVE_SCORE",
+      "round204_label": "FALSE_POSITIVE_SCORE"
+    },
+    {
+      "canonical_archetype": "EVIDENCE_GOOD_BUT_PRICE_FAILED",
+      "round204_label": "EVIDENCE_GOOD_BUT_PRICE_FAILED"
+    },
+    {
+      "canonical_archetype": "THESIS_BREAK_4C",
+      "round204_label": "THESIS_BREAK_4C"
+    },
+    {
+      "canonical_archetype": "OPERATIONAL_TRUST_BREAK",
+      "round204_label": "OPERATIONAL_TRUST_BREAK"
+    },
+    {
+      "canonical_archetype": "LEGAL_REGULATORY_REDTEAM",
+      "round204_label": "LEGAL_REGULATORY_REDTEAM"
+    },
+    {
+      "canonical_archetype": "LEVERAGE_FCF_BREAKDOWN",
+      "round204_label": "LEVERAGE_FCF_BREAKDOWN"
+    },
+    {
+      "canonical_archetype": "COMMERCIALIZATION_FAILURE",
+      "round204_label": "COMMERCIALIZATION_FAILURE"
+    },
+    {
+      "canonical_archetype": "DISCLOSURE_CONFIDENCE_CAP",
+      "round204_label": "DISCLOSURE_CONFIDENCE_CAP"
+    },
+    {
+      "canonical_archetype": "CIRCULAR_AI_FINANCING_WATCH",
+      "round204_label": "CIRCULAR_AI_FINANCING_WATCH"
+    },
+    {
+      "canonical_archetype": "UNKNOWN_INSUFFICIENT_EVIDENCE",
+      "round204_label": "UNKNOWN_INSUFFICIENT_EVIDENCE"
+    }
+  ],
+  "what_not_to_change": [
+    "do_not_apply_to_production_scoring_yet",
+    "do_not_use_round204_cases_as_candidate_generation_input",
+    "do_not_lower_stage3_green_thresholds",
+    "do_not_treat_price_only_event_policy_ai_or_contract_headline_as_green_evidence",
+    "do_not_invent_full_ohlc_or_stage_prices_when_only_reported_anchors_exist",
+    "keep_full_ohlc_complete_false_until_official_backfill_is_done"
+  ]
+}
