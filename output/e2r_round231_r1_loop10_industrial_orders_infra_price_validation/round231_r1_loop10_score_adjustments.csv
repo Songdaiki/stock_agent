@@ -1,0 +1,18 @@
+axis,points,direction,reason
+confirmed_contract_amount,5,raise,계약금액은 Stage 2 이상의 기본 증거다.
+order_to_revenue_conversion,5,raise,수주가 납품·매출로 내려와야 Stage 3 후보가 된다.
+delivery_schedule,4,raise,납기와 인도 일정은 visibility를 높인다.
+backlog_margin_visibility,5,raise,수주잔고가 마진·현금흐름으로 이어져야 한다.
+customer_quality,4,raise,정부·유틸리티·국영 에너지 고객은 계약 신뢰도를 높인다.
+capacity_bottleneck,4,raise,변압기 리드타임·CAPA 부족은 구조적 visibility를 보강한다.
+us_grid_exposure,4,raise,AI 데이터센터·전력망 노출은 R1 전력기기 후보의 별도 축이다.
+price_path_alignment,5,raise,증거 이후 가격경로가 따라오는지 확인해야 한다.
+contract_headline_without_margin,-5,lower,수주 headline만으로 Stage 3-Green을 주지 않는다.
+policy_or_mou_without_order,-5,lower,정책·MOU·합병 이벤트는 funded order 전 Green 금지다.
+record_high_on_policy_event,-4,lower,정책 이벤트 record high는 4B-watch다.
+unconfirmed_us_shipbuilding_policy_premium,-4,lower,미국 조선정책 프리미엄은 수주와 마진 전 event premium이다.
+geopolitical_sanction_unpriced,-4,lower,제재 리스크를 무시한 Green을 막는다.
+equipment_cycle_without_margin,-3,lower,장비 사이클은 마진 확인 전 Yellow/Stage 2에 둔다.
+epc_backlog_without_cashflow,-4,lower,EPC는 현금회수와 working capital 확인 전 Green 금지다.
+dilution_after_rerating,-5,lower,리레이팅 후 증자·CB는 4B/capital-allocation watch다.
+local_production_margin_unclear,-3,lower,현지생산·기술이전은 마진 희석을 확인해야 한다.

@@ -1,0 +1,266 @@
+{
+  "deep_sub_archetypes": [
+    {
+      "category": "power equipment / transformer",
+      "primary_archetype": "GRID_POWER_EQUIPMENT_AI_DATACENTER",
+      "terms": "LS Electric|U.S. transformer shortage|AI data center|525kV EHV transformer|delivery 2027-2029"
+    },
+    {
+      "category": "defense order to revenue",
+      "primary_archetype": "DEFENSE_GOVERNMENT_BACKLOG",
+      "terms": "Hyundai Rotem|K2 Poland|delivery|revenue|OP revision"
+    },
+    {
+      "category": "missile defense export",
+      "primary_archetype": "DEFENSE_INTERCEPTOR_COMBAT_VALIDATION",
+      "terms": "LIG Nex1|Cheongung-II|M-SAM|Iraq|Saudi|crowding watch"
+    },
+    {
+      "category": "defense localization dilution",
+      "primary_archetype": "DEFENSE_LOCAL_PRODUCTION_PLATFORM",
+      "terms": "Hanwha Aerospace|Poland missile JV|K239 Chunmoo|technology transfer|dilution"
+    },
+    {
+      "category": "overseas EPC backlog",
+      "primary_archetype": "OVERSEAS_EPC_CONTRACT_BACKLOG",
+      "terms": "Samsung E&A|GS E&C|Fadhili|EPC margin|cash collection"
+    },
+    {
+      "category": "Saudi gas infra",
+      "primary_archetype": "OVERSEAS_EPC_CONTRACT_BACKLOG_KOREA",
+      "terms": "Hyundai E&C|Jafurah|gas network|pipeline|sovereign EPC"
+    },
+    {
+      "category": "shipbuilding policy/MASGA",
+      "primary_archetype": "SHIPBUILDING_US_POLICY_MASGA",
+      "terms": "HD Hyundai Heavy|HD Hyundai Mipo|MASGA|merger|funded order required"
+    },
+    {
+      "category": "geopolitical shipbuilding sanction",
+      "primary_archetype": "GEOPOLITICAL_SHIPBUILDING_SANCTION",
+      "terms": "Hanwha Ocean|China sanctions|U.S.-linked subsidiaries|4C-watch"
+    }
+  ],
+  "green_forbidden_patterns": [
+    "contract_headline_only",
+    "policy_or_mou_without_funded_order",
+    "record_high_policy_event",
+    "unknown_margin",
+    "epc_cash_collection_unknown",
+    "local_production_economics_unknown",
+    "geopolitical_sanction_unpriced",
+    "dilution_after_rerating_ignored"
+  ],
+  "green_required_fields": [
+    "confirmed_contract_amount",
+    "contract_duration_or_delivery_schedule",
+    "actual_delivery_or_revenue_recognition",
+    "opm_eps_or_fcf_revision",
+    "backlog_quality",
+    "cashflow_or_working_capital_passed",
+    "geopolitical_financing_dilution_risk_passed",
+    "price_path_after_evidence"
+  ],
+  "hard_4c_gates": [
+    "contract_cancellation",
+    "final_contract_failure",
+    "epc_cost_overrun",
+    "margin_collapse",
+    "working_capital_deterioration",
+    "customer_payment_delay",
+    "geopolitical_sanction_causing_revenue_disruption",
+    "us_china_policy_reversal",
+    "local_production_failure",
+    "equipment_order_cycle_peak_out",
+    "dilution_without_fcf_conversion"
+  ],
+  "large_sector": "INDUSTRIAL_ORDERS_INFRA",
+  "shadow_weights": [
+    {
+      "4b_watch_sensitivity": "+4",
+      "archetype": "GRID_POWER_EQUIPMENT_AI_DATACENTER",
+      "backlog_margin": "+5",
+      "capacity_bottleneck": "+5",
+      "contract_amount": "+4",
+      "customer_quality": "+4",
+      "delivery_schedule": "+4",
+      "dilution_redteam": "+1",
+      "event_penalty": "-2",
+      "geopolitical_redteam": "+1",
+      "hard_4c_sensitivity": "+3",
+      "notes": "LS Electric has strong U.S. grid evidence, but margin/FCF and price path are required.",
+      "order_to_revenue": "+4",
+      "price_path_alignment": "+3",
+      "us_grid_exposure": "+5"
+    },
+    {
+      "4b_watch_sensitivity": "+4",
+      "archetype": "DEFENSE_GOVERNMENT_BACKLOG",
+      "backlog_margin": "+5",
+      "capacity_bottleneck": "+0",
+      "contract_amount": "+5",
+      "customer_quality": "+5",
+      "delivery_schedule": "+5",
+      "dilution_redteam": "+1",
+      "event_penalty": "-1",
+      "geopolitical_redteam": "+2",
+      "hard_4c_sensitivity": "+3",
+      "notes": "Hyundai Rotem shows delivery, revenue, and OP revision can support Stage 3.",
+      "order_to_revenue": "+5",
+      "price_path_alignment": "+5",
+      "us_grid_exposure": "+0"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "archetype": "DEFENSE_INTERCEPTOR_COMBAT_VALIDATION",
+      "backlog_margin": "+5",
+      "capacity_bottleneck": "+0",
+      "contract_amount": "+5",
+      "customer_quality": "+5",
+      "delivery_schedule": "+4",
+      "dilution_redteam": "+1",
+      "event_penalty": "-2",
+      "geopolitical_redteam": "+2",
+      "hard_4c_sensitivity": "+3",
+      "notes": "LIG Nex1 export platform needs 4B-watch after a large 1H rally.",
+      "order_to_revenue": "+4",
+      "price_path_alignment": "+3",
+      "us_grid_exposure": "+0"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "archetype": "DEFENSE_LOCAL_PRODUCTION_PLATFORM",
+      "backlog_margin": "+5",
+      "capacity_bottleneck": "+0",
+      "contract_amount": "+4",
+      "customer_quality": "+5",
+      "delivery_schedule": "+5",
+      "dilution_redteam": "+5",
+      "event_penalty": "-3",
+      "geopolitical_redteam": "+2",
+      "hard_4c_sensitivity": "+4",
+      "notes": "Localization/JV is Stage 2; dilution after rerating is 4B-watch.",
+      "order_to_revenue": "+4",
+      "price_path_alignment": "+3",
+      "us_grid_exposure": "+0"
+    },
+    {
+      "4b_watch_sensitivity": "+4",
+      "archetype": "OVERSEAS_EPC_CONTRACT_BACKLOG",
+      "backlog_margin": "+5",
+      "capacity_bottleneck": "+0",
+      "contract_amount": "+5",
+      "customer_quality": "+5",
+      "delivery_schedule": "+4",
+      "dilution_redteam": "+2",
+      "event_penalty": "-3",
+      "geopolitical_redteam": "+2",
+      "hard_4c_sensitivity": "+4",
+      "notes": "Fadhili EPC is Stage 2; margin and cash collection are required.",
+      "order_to_revenue": "+4",
+      "price_path_alignment": "+4",
+      "us_grid_exposure": "+0"
+    },
+    {
+      "4b_watch_sensitivity": "+3",
+      "archetype": "OVERSEAS_EPC_CONTRACT_BACKLOG_KOREA",
+      "backlog_margin": "+5",
+      "capacity_bottleneck": "+0",
+      "contract_amount": "+5",
+      "customer_quality": "+5",
+      "delivery_schedule": "+4",
+      "dilution_redteam": "+1",
+      "event_penalty": "-3",
+      "geopolitical_redteam": "+2",
+      "hard_4c_sensitivity": "+4",
+      "notes": "Jafurah gas infra is Stage 2 until margin and cash recovery confirm.",
+      "order_to_revenue": "+4",
+      "price_path_alignment": "+2",
+      "us_grid_exposure": "+0"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "archetype": "SHIPBUILDING_US_POLICY_MASGA",
+      "backlog_margin": "+5",
+      "capacity_bottleneck": "+2",
+      "contract_amount": "+4",
+      "customer_quality": "+4",
+      "delivery_schedule": "+4",
+      "dilution_redteam": "+1",
+      "event_penalty": "-5",
+      "geopolitical_redteam": "+3",
+      "hard_4c_sensitivity": "+4",
+      "notes": "MASGA/merger record highs are Stage 2 plus 4B-watch until funded orders confirm.",
+      "order_to_revenue": "+3",
+      "price_path_alignment": "+3",
+      "us_grid_exposure": "+0"
+    },
+    {
+      "4b_watch_sensitivity": "+3",
+      "archetype": "GEOPOLITICAL_SHIPBUILDING_SANCTION",
+      "backlog_margin": "+0",
+      "capacity_bottleneck": "+0",
+      "contract_amount": "+0",
+      "customer_quality": "+0",
+      "delivery_schedule": "+0",
+      "dilution_redteam": "+1",
+      "event_penalty": "+0",
+      "geopolitical_redteam": "+5",
+      "hard_4c_sensitivity": "+5",
+      "notes": "China sanctions are 4C-watch; hard 4C requires actual revenue or contract disruption.",
+      "order_to_revenue": "+0",
+      "price_path_alignment": "+2",
+      "us_grid_exposure": "+0"
+    }
+  ],
+  "source_round": "docs/round/round_231.md",
+  "stage4b_watch_triggers": [
+    "policy_merger_mou_record_high",
+    "preferred_bidder_or_export_headline_after_40_to_70pct_rally",
+    "large_order_announcement_day_surge",
+    "power_equipment_theme_multiple_before_company_margin",
+    "large_equity_cb_or_capex_after_rerating",
+    "good_news_with_weak_or_negative_price_response"
+  ],
+  "summary": {
+    "candidate_generation_input": false,
+    "case_candidate_count": 8,
+    "deep_sub_archetype_count": 8,
+    "event_premium_count": 2,
+    "full_ohlc_complete": false,
+    "hard_4c_case_count": 0,
+    "large_sector": "INDUSTRIAL_ORDERS_INFRA",
+    "price_failed_count": 2,
+    "price_validation_completed": "partial_with_reported_price_anchors",
+    "production_scoring_changed": false,
+    "shadow_weight_only": true,
+    "shadow_weight_row_count": 8,
+    "source_round": "docs/round/round_231.md",
+    "stage3_case_count": 1,
+    "stage4b_watch_count": 7,
+    "structural_success_count": 1,
+    "success_candidate_count": 6,
+    "target_archetype_count": 12,
+    "thesis_break_watch_count": 1
+  },
+  "target_aliases": {
+    "CAPITAL_ALLOCATION_DILUTION_OVERLAY": "CAPITAL_ALLOCATION_DILUTION_OVERLAY",
+    "CONTRACT_HEADLINE_NOT_STAGE3": "CONTRACT_HEADLINE_NOT_STAGE3",
+    "DEFENSE_EXPORT_ORDER_TO_REVENUE": "DEFENSE_GOVERNMENT_BACKLOG",
+    "DEFENSE_LOCAL_PRODUCTION_JV": "DEFENSE_LOCAL_PRODUCTION_PLATFORM",
+    "GEOPOLITICAL_SHIPBUILDING_SANCTION": "GEOPOLITICAL_SHIPBUILDING_SANCTION",
+    "GRID_POWER_EQUIPMENT_AI_DATACENTER": "GRID_POWER_EQUIPMENT_AI_DATACENTER",
+    "MISSILE_DEFENSE_EXPORT_PLATFORM": "DEFENSE_INTERCEPTOR_COMBAT_VALIDATION",
+    "OVERSEAS_EPC_CONTRACT_BACKLOG": "OVERSEAS_EPC_CONTRACT_BACKLOG",
+    "PRICE_ONLY_RALLY": "PRICE_ONLY_RALLY",
+    "SAUDI_GAS_INFRA_BACKLOG": "OVERSEAS_EPC_CONTRACT_BACKLOG_KOREA",
+    "SHIPBUILDING_US_POLICY_MASGA": "SHIPBUILDING_US_POLICY_MASGA",
+    "TRANSFORMER_CAPACITY_BOTTLENECK": "TRANSFORMER_CAPACITY_BOTTLENECK"
+  },
+  "what_not_to_change": [
+    "do_not_use_round231_cases_as_candidate_generation_input",
+    "do_not_apply_shadow_weights_to_production_scoring_yet",
+    "do_not_treat_contract_policy_mou_record_high_or_epc_headline_as_green",
+    "do_not_invent_ohlc_or_stage_dates"
+  ]
+}
