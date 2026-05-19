@@ -1,0 +1,23 @@
+axis,points,direction,reason
+recurring_revenue,5,raise,렌탈·구독·반복구매는 R12에서 가장 중요한 구조 증거다.
+churn_stability,5,raise,반복매출도 churn이 올라가면 구조성이 약해진다.
+ARPU_or_repeat_purchase,4,raise,가격전가 또는 반복구매가 확인되어야 한다.
+cash_conversion,5,raise,매출이 현금흐름으로 전환되어야 Stage 3 검토가 가능하다.
+unit_economics,5,raise,스마트팜·교육·외식은 unit economics 확인이 핵심이다.
+commercial_installation,4,raise,스마트팜 기술은 상업 설치와 유지보수 매출 전까지 Stage 1이다.
+service_contract_visibility,4,raise,서비스 계약과 유지보수 가시성은 반복매출 품질을 높인다.
+dealer_sell_through,4,raise,농기계 export narrative는 딜러 판매와 재고가 확인되어야 한다.
+inventory_quality,4,raise,재고·매출채권 안정은 R12 Green 가드레일이다.
+regulatory_pass,4,raise,규제소비재·교육·식품은 규제 통과 여부가 중요하다.
+pricing_power_after_input_cost,4,raise,원가 상승 이후 가격전가가 확인되어야 한다.
+defensive_theme_only,-5,lower,방어주라는 말만으로는 Green이 아니다.
+education_policy_only,-5,lower,의대정원 같은 정책은 수강생·ARPU·OPM 전까지 event premium이다.
+agri_cycle_only,-4,lower,농기계 export cycle은 재고와 financing이 빠지면 제한한다.
+smart_farm_policy_only,-5,lower,스마트팜 정책/논문은 매출·마진 전까지 Green 금지다.
+disease_event_only,-5,lower,질병 이벤트는 수입제한 완화 시 fade될 수 있다.
+celebrity_food_event_only,-5,lower,바이럴 외식 이벤트는 매출 증거 전까지 price_moved_without_evidence다.
+import_ban_event_only,-4,lower,수입금지 뉴스만으로 poultry basket을 구조로 보지 않는다.
+unconfirmed_export_theme,-3,lower,수출 테마는 sell-through와 마진 전까지 제한한다.
+dealer_inventory_unknown,-4,lower,농기계 딜러 재고 미확인은 4C-watch 입력이다.
+subsidy_dependent_unit_economics,-4,lower,보조금 의존 unit economics는 Green을 막는다.
+regulated_product_without_growth,-3,lower,규제소비재도 성장·환원·FCF 없이는 제한한다.

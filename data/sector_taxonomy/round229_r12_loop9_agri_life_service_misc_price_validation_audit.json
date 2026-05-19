@@ -1,0 +1,254 @@
+{
+  "deep_sub_archetypes": [
+    {
+      "category": "생활 렌탈",
+      "primary_archetype": "HOME_LIVING_APPLIANCE_RENTAL",
+      "terms": "Coway|water purifier|air purifier|bidet|mattress rental|Malaysia account growth|churn|ARPU|service network"
+    },
+    {
+      "category": "규제소비재",
+      "primary_archetype": "CONSUMER_REGULATED_PRODUCT",
+      "terms": "KT&G|tobacco|HNB|ginseng|regulated cashflow|dividend|buyback|volume decline|tax regulation"
+    },
+    {
+      "category": "농기계",
+      "primary_archetype": "AGRI_MACHINERY_EXPORT_CYCLE_KOREA",
+      "terms": "Daedong|KIOTI|TYM|North America tractor channel|dealer sell-through|farmer financing|inventory|autonomous tractor"
+    },
+    {
+      "category": "교육",
+      "primary_archetype": "EDUCATION_POLICY_EVENT",
+      "terms": "MegaStudy Education|medical school quota|repeat course|ARPU|OPM|birth-rate demand risk"
+    },
+    {
+      "category": "교육 디지털 규제",
+      "primary_archetype": "EDTECH_AI_DISRUPTION_KOREA",
+      "terms": "classroom phone ban|digital device regulation|edtech friction|AI education disruption|student device exception"
+    },
+    {
+      "category": "축산·질병",
+      "primary_archetype": "LIVESTOCK_DISEASE_PRICE_REGULATORY",
+      "terms": "Harim|Maniker|poultry basket|Brazil bird flu|import restriction|restriction easing|feed cost"
+    },
+    {
+      "category": "생활서비스·외식",
+      "primary_archetype": "FOOD_SERVICE_EVENT_PREMIUM",
+      "terms": "Kyochon F&B|Cherrybro|Neuromeka|Jensen Huang chicken event|celebrity food event|traffic|same-store sales"
+    },
+    {
+      "category": "스마트팜",
+      "primary_archetype": "SMART_FARM_AGRI_TECH",
+      "terms": "Green Plus|Woomdungi Farm|greenhouse automation|UAV yield estimation|government subsidy|unit economics|maintenance revenue"
+    }
+  ],
+  "green_forbidden_patterns": [
+    "defensive_theme_only",
+    "education_policy_only",
+    "medical_quota_policy_only",
+    "agri_export_theme_only",
+    "smart_farm_policy_only",
+    "smart_farm_technology_paper_only",
+    "disease_event_only",
+    "import_ban_event_only",
+    "celebrity_food_event_only",
+    "regulated_cashflow_without_growth",
+    "dealer_inventory_unknown"
+  ],
+  "green_required_fields": [
+    "recurring_revenue_or_repeat_purchase_confirmed",
+    "churn_or_retention_stable",
+    "arpu_or_pricing_power_confirmed",
+    "unit_economics_confirmed",
+    "cash_conversion_visible",
+    "inventory_or_receivables_stable",
+    "regulatory_risk_passed",
+    "subsidy_dependency_low",
+    "price_path_after_evidence"
+  ],
+  "hard_4c_gates": [
+    "recall_or_product_safety_issue",
+    "churn_spike",
+    "arpu_decline",
+    "dealer_inventory_build",
+    "farmer_financing_stress",
+    "education_policy_reversal",
+    "private_education_regulation",
+    "birth_rate_demand_collapse",
+    "import_ban_reversal",
+    "disease_event_cleared",
+    "celebrity_event_fade",
+    "subsidy_withdrawal",
+    "unit_economics_failure",
+    "cash_conversion_deterioration"
+  ],
+  "large_sector": "EDUCATION_LIFE_AGRI_MISC",
+  "raw_large_sector_label": "AGRI_LIFE_SERVICE_MISC",
+  "shadow_weights": [
+    {
+      "4b_watch_sensitivity": "+3",
+      "archetype": "HOME_LIVING_APPLIANCE_RENTAL",
+      "arpu_or_repeat_purchase": "+4",
+      "cash_conversion": "+5",
+      "churn_stability": "+5",
+      "event_penalty": "-1",
+      "hard_4c_sensitivity": "+4",
+      "inventory_quality": "+4",
+      "notes": "Coway recurring rental can be Stage 3 candidate but needs accounts/churn/FCF/OHLC.",
+      "recurring_revenue": "+5",
+      "regulatory_pass": "+3",
+      "unit_economics": "+5"
+    },
+    {
+      "4b_watch_sensitivity": "+3",
+      "archetype": "CONSUMER_REGULATED_PRODUCT",
+      "arpu_or_repeat_purchase": "+3",
+      "cash_conversion": "+5",
+      "churn_stability": "+2",
+      "event_penalty": "-2",
+      "hard_4c_sensitivity": "+4",
+      "inventory_quality": "+3",
+      "notes": "KT&G regulated cashflow is candidate but growth/shareholder return/regulatory risk must be verified.",
+      "recurring_revenue": "+4",
+      "regulatory_pass": "+5",
+      "unit_economics": "+4"
+    },
+    {
+      "4b_watch_sensitivity": "+4",
+      "archetype": "AGRI_MACHINERY_EXPORT_CYCLE_KOREA",
+      "arpu_or_repeat_purchase": "+1",
+      "cash_conversion": "+4",
+      "churn_stability": "+0",
+      "event_penalty": "-3",
+      "hard_4c_sensitivity": "+4",
+      "inventory_quality": "+5",
+      "notes": "Daedong/TYM export story needs dealer sell-through, inventory and financing.",
+      "recurring_revenue": "+2",
+      "regulatory_pass": "+2",
+      "unit_economics": "+5"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "archetype": "EDUCATION_POLICY_EVENT",
+      "arpu_or_repeat_purchase": "+5",
+      "cash_conversion": "+5",
+      "churn_stability": "+2",
+      "event_penalty": "-5",
+      "hard_4c_sensitivity": "+4",
+      "inventory_quality": "+1",
+      "notes": "Medical quota policy is event unless repeat course, ARPU, and OPM confirm.",
+      "recurring_revenue": "+3",
+      "regulatory_pass": "+4",
+      "unit_economics": "+4"
+    },
+    {
+      "4b_watch_sensitivity": "+4",
+      "archetype": "EDTECH_AI_DISRUPTION_KOREA",
+      "arpu_or_repeat_purchase": "+3",
+      "cash_conversion": "+4",
+      "churn_stability": "+2",
+      "event_penalty": "-4",
+      "hard_4c_sensitivity": "+4",
+      "inventory_quality": "+1",
+      "notes": "Phone ban creates policy friction for edtech; company revenue impact required.",
+      "recurring_revenue": "+2",
+      "regulatory_pass": "+5",
+      "unit_economics": "+4"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "archetype": "LIVESTOCK_DISEASE_PRICE_REGULATORY",
+      "arpu_or_repeat_purchase": "+2",
+      "cash_conversion": "+3",
+      "churn_stability": "+0",
+      "event_penalty": "-5",
+      "hard_4c_sensitivity": "+5",
+      "inventory_quality": "+5",
+      "notes": "Bird flu import restriction is one-off; easing or free-status recognition is event fade.",
+      "recurring_revenue": "+1",
+      "regulatory_pass": "+4",
+      "unit_economics": "+3"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "archetype": "FOOD_SERVICE_EVENT_PREMIUM",
+      "arpu_or_repeat_purchase": "+3",
+      "cash_conversion": "+4",
+      "churn_stability": "+0",
+      "event_penalty": "-5",
+      "hard_4c_sensitivity": "+3",
+      "inventory_quality": "+3",
+      "notes": "Celebrity chicken event is price_moved_without_evidence until traffic/margin confirm.",
+      "recurring_revenue": "+2",
+      "regulatory_pass": "+2",
+      "unit_economics": "+4"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "archetype": "SMART_FARM_AGRI_TECH",
+      "arpu_or_repeat_purchase": "+1",
+      "cash_conversion": "+5",
+      "churn_stability": "+0",
+      "event_penalty": "-5",
+      "hard_4c_sensitivity": "+5",
+      "inventory_quality": "+3",
+      "notes": "Smart farm tech needs commercial installation, service revenue and subsidy-independent unit economics.",
+      "recurring_revenue": "+2",
+      "regulatory_pass": "+4",
+      "unit_economics": "+5"
+    }
+  ],
+  "source_round": "docs/round/round_229.md",
+  "stage4b_watch_triggers": [
+    "education_or_smart_farm_policy_rally_before_revenue",
+    "bird_flu_import_ban_poultry_basket_rally",
+    "celebrity_food_event_plus_20_to_30pct_without_sales",
+    "defensive_dividend_frame_multiple_expansion_before_growth",
+    "rental_multiple_expands_before_account_arpu_fcf",
+    "medical_quota_policy_rally_before_student_conversion"
+  ],
+  "summary": {
+    "candidate_generation_input": false,
+    "case_candidate_count": 8,
+    "deep_sub_archetype_count": 8,
+    "event_premium_count": 3,
+    "failed_rerating_count": 1,
+    "full_ohlc_complete": false,
+    "hard_4c_case_count": 0,
+    "large_sector": "EDUCATION_LIFE_AGRI_MISC",
+    "overheat_count": 1,
+    "price_moved_without_evidence_count": 1,
+    "price_validation_completed": "partial_with_reported_price_anchors",
+    "production_scoring_changed": false,
+    "r12_default_stage3_bias": "conservative_except_recurring_service",
+    "raw_large_sector_label": "AGRI_LIFE_SERVICE_MISC",
+    "shadow_weight_only": true,
+    "shadow_weight_row_count": 8,
+    "source_round": "docs/round/round_229.md",
+    "stage3_case_count": 0,
+    "stage4b_watch_count": 8,
+    "success_candidate_count": 3,
+    "target_archetype_count": 14
+  },
+  "target_aliases": {
+    "AGRI_MACHINERY_EXPORT_CYCLE": "AGRI_MACHINERY_EXPORT_CYCLE_KOREA",
+    "AGRI_MACHINERY_SOFTWARE_LOCKIN": "AGRI_MACHINERY_SOFTWARE_LOCKIN",
+    "CLASSROOM_DEVICE_REGULATION": "EDTECH_AI_DISRUPTION_KOREA",
+    "CONSUMER_REGULATED_CASHFLOW": "CONSUMER_REGULATED_PRODUCT",
+    "EDTECH_AI_DISRUPTION": "EDTECH_AI_DISRUPTION",
+    "EDUCATION_POLICY_EVENT": "EDUCATION_POLICY_EVENT",
+    "EVENT_PREMIUM": "EVENT_PREMIUM",
+    "FOOD_SERVICE_EVENT_PREMIUM": "FOOD_SERVICE_EVENT_PREMIUM",
+    "HOME_CHILD_EDUCATION": "HOME_CHILD_EDUCATION",
+    "HOME_LIVING_APPLIANCE_RENTAL": "HOME_LIVING_APPLIANCE_RENTAL",
+    "LIVESTOCK_DISEASE_PRICE_REGULATORY": "LIVESTOCK_DISEASE_PRICE_REGULATORY",
+    "PRICE_ONLY_RALLY": "PRICE_ONLY_RALLY",
+    "SMART_FARM_AGRI_TECH": "SMART_FARM_AGRI_TECH",
+    "VERTICAL_FARMING_UNIT_ECONOMICS": "VERTICAL_FARMING_UNIT_ECONOMICS"
+  },
+  "what_not_to_change": [
+    "do_not_use_round229_cases_as_candidate_generation_input",
+    "do_not_apply_shadow_weights_to_production_scoring_yet",
+    "do_not_treat_education_policy_disease_event_smart_farm_theme_or_celebrity_food_event_as_green",
+    "do_not_invent_ohlc_or_stage_dates"
+  ]
+}
