@@ -1,0 +1,17 @@
+field,required_for_round212_price_validation
+price_data_source,true
+full_ohlc_available,true
+reported_price_anchor,true
+reported_return_anchor,true
+stage2_price,true
+stage3_price,true
+stage4b_price,true
+stage4c_price,true
+mfe_1d,true
+mae_1d,true
+relative_outperformance_pp,true
+ipo_price,true
+debut_price,true
+transaction_value,true
+arr_or_revenue_proxy,true
+price_validation_status,true

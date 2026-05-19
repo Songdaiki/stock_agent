@@ -1,0 +1,92 @@
+{
+  "green_forbidden_patterns": [
+    "ai_partnership_headline_only",
+    "ai_infra_capital_plan_only",
+    "mau_without_arpu",
+    "ipo_debut_premium_only",
+    "mna_without_integration",
+    "game_launch_first_week_only",
+    "single_ip_dependence",
+    "founder_legal_risk",
+    "security_or_privacy_incident",
+    "price_moved_before_monetization"
+  ],
+  "green_required_fields": [
+    "recurring_revenue_or_bookings",
+    "arr_proxy_or_paid_usage",
+    "arpu_or_take_rate_conversion",
+    "opm_or_gross_margin_improvement",
+    "fcf_conversion",
+    "customer_retention_or_churn_stability",
+    "ip_monetization_beyond_single_launch",
+    "ai_feature_converts_to_paid_revenue_or_cost_saving",
+    "privacy_security_governance_risk_passed",
+    "price_path_after_evidence"
+  ],
+  "hard_4c_gates": [
+    "privacy_breach",
+    "security_outage",
+    "founder_or_major_shareholder_legal_break",
+    "regulatory_sanction",
+    "ai_product_monetization_failure",
+    "arr_churn_spike",
+    "paid_user_decline",
+    "game_launch_failure",
+    "ip_litigation",
+    "mna_integration_failure",
+    "single_ip_collapse",
+    "advertising_or_commerce_take_rate_damage",
+    "fcf_deterioration_from_ai_capex"
+  ],
+  "large_sector": "PLATFORM_CONTENT_SW_SECURITY",
+  "source_round": "docs/round/round_212.md",
+  "stage4b_watch_triggers": [
+    "ai_partnership_announcement_spike",
+    "ai_infra_kkr_mna_expectation_twenty_pct_spike",
+    "ipo_debut_premium_before_profit",
+    "webtoon_ip_valuation_before_paid_monetization",
+    "game_launch_sales_before_retention",
+    "kpop_comeback_expectation_over_governance_risk",
+    "good_news_but_price_reaction_fades"
+  ],
+  "summary": {
+    "candidate_generation_input": false,
+    "case_candidate_count": 7,
+    "event_premium_count": 1,
+    "failed_rerating_count": 2,
+    "full_ohlc_complete": false,
+    "hard_4c_case_count": 0,
+    "large_sector": "PLATFORM_CONTENT_SW_SECURITY",
+    "overheat_count": 1,
+    "price_validation_completed": "partial_with_reported_price_anchors",
+    "production_scoring_changed": false,
+    "shadow_weight_only": true,
+    "source_round": "docs/round/round_212.md",
+    "stage3_case_count": 0,
+    "stage4b_watch_count": 7,
+    "success_candidate_count": 3,
+    "target_archetype_count": 14
+  },
+  "target_aliases": {
+    "AI_CLOUD_CAPITAL_ALLOCATION": "AI_CLOUD_CAPITAL_ALLOCATION",
+    "AI_SOFTWARE_APPLICATION": "AI_SOFTWARE_APPLICATION",
+    "B2B_SAAS_ERP_WORKFLOW": "B2B_SAAS_ERP_WORKFLOW",
+    "CLOUD_AI_SOFTWARE_INFRA": "CLOUD_AI_SOFTWARE_INFRA",
+    "EVENT_PREMIUM": "EVENT_PREMIUM",
+    "GAME_CONTENT_IP_REPEAT_MONETIZATION": "GAME_CONTENT_IP_REPEAT_MONETIZATION",
+    "KPOP_PLATFORM_CONTENT_IP": "KPOP_PLATFORM_CONTENT_IP",
+    "PLATFORM_GOVERNANCE_LEGAL_RISK": "PLATFORM_GOVERNANCE_LEGAL_RISK",
+    "PLATFORM_SOFTWARE_INTERNET": "PLATFORM_SOFTWARE_INTERNET",
+    "PRICE_ONLY_RALLY": "PRICE_ONLY_RALLY",
+    "PRIVATE_EQUITY_SOFTWARE_RERATING": "PRIVATE_EQUITY_SOFTWARE_RERATING",
+    "SECURITY_OPERATIONAL_TRUST_OVERLAY": "SECURITY_OPERATIONAL_TRUST_OVERLAY",
+    "SINGLE_IP_RELEASE_EVENT_PREMIUM": "SINGLE_IP_RELEASE_EVENT_PREMIUM",
+    "WEBTOON_PLATFORM_IP_MONETIZATION": "WEBTOON_PLATFORM_IP_MONETIZATION"
+  },
+  "what_not_to_change": [
+    "do_not_use_round212_cases_as_candidate_generation_input",
+    "do_not_apply_shadow_weights_to_production_scoring_yet",
+    "do_not_treat_ai_partnership_ipo_mna_first_week_sales_or_mau_as_green",
+    "do_not_invent_ohlc_or_stage_dates"
+  ]
+}

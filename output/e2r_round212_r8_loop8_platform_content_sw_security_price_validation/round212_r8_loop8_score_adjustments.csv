@@ -1,0 +1,21 @@
+axis,points,direction,reason
+recurring_revenue,5,raise,R8 Green은 반복매출이나 bookings가 확인될 때 가능하다.
+arr_proxy,5,raise,ARR proxy는 SaaS/클라우드의 체급 변화를 보는 핵심 축이다.
+paid_usage_conversion,5,raise,MAU보다 paid usage와 ARPU 전환이 중요하다.
+bookings_repeatability,4,raise,게임·콘텐츠는 첫 주 판매보다 반복 bookings가 중요하다.
+enterprise_contract_quality,4,raise,기업 AI/클라우드는 계약 품질과 고객 lock-in이 필요하다.
+opm_improvement,5,raise,AI·클라우드 매출이 실제 OPM 개선으로 이어져야 한다.
+fcf_conversion,5,raise,투자와 매출이 FCF로 전환되는지 확인해야 한다.
+customer_retention_or_churn,4,raise,SaaS와 플랫폼은 churn 안정이 Stage 3 visibility다.
+ip_monetization_beyond_launch,4,raise,신작·웹툰·K-pop은 반복 IP 수익화가 필요하다.
+operational_trust,5,raise,"플랫폼과 보안은 개인정보, 장애, 거버넌스 신뢰가 먼저다."
+ai_feature_only,-5,lower,AI 기능만 있고 유료 매출이나 비용절감이 없으면 제한한다.
+partnership_headline_only,-5,lower,제휴 헤드라인만으로는 Stage 3-Green을 만들 수 없다.
+mau_without_arpu,-4,lower,MAU만 있고 ARPU/paid usage가 없으면 제한한다.
+ipo_debut_premium,-4,lower,IPO 프리미엄은 수익성 확인 전 event premium이다.
+mna_without_integration,-4,lower,M&A는 integration과 시너지 확인 전 Stage 2다.
+ai_capex_without_revenue,-5,lower,AI capex가 매출·마진 없이 먼저 커지면 4B-watch다.
+game_launch_first_week_only,-4,lower,첫 주 판매만 있고 retention/bookings가 없으면 Green 금지다.
+single_ip_dependence,-4,lower,단일 IP 의존은 반복 monetization 전까지 risk cap이다.
+founder_legal_risk,-5,lower,창업자·대주주 legal risk는 콘텐츠/IP 매력을 먼저 차단한다.
+privacy_security_trust_break,-5,lower,개인정보·보안 신뢰 훼손은 플랫폼 hard gate다.

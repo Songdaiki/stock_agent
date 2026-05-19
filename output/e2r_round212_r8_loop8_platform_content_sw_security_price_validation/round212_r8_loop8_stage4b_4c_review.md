@@ -1,0 +1,37 @@
+# Round 212 R8 4B/4C Review
+
+## 4B Watch Triggers
+
+- ai_partnership_announcement_spike
+- ai_infra_kkr_mna_expectation_twenty_pct_spike
+- ipo_debut_premium_before_profit
+- webtoon_ip_valuation_before_paid_monetization
+- game_launch_sales_before_retention
+- kpop_comeback_expectation_over_governance_risk
+- good_news_but_price_reaction_fades
+
+## Hard 4C Gates
+
+- privacy_breach
+- security_outage
+- founder_or_major_shareholder_legal_break
+- regulatory_sanction
+- ai_product_monetization_failure
+- arr_churn_spike
+- paid_user_decline
+- game_launch_failure
+- ip_litigation
+- mna_integration_failure
+- single_ip_collapse
+- advertising_or_commerce_take_rate_damage
+- fcf_deterioration_from_ai_capex
+
+## Case Notes
+
+- r8_loop8_douzone_bizon_eqt_saas: transaction_event_not_recurring_revenue_proof, arr_proxy_unverified, churn_unverified, regulatory_approval_required
+- r8_loop8_samsung_sds_kkr_ai_event: ai_capex_without_revenue, cb_dilution_watch, mna_execution_unverified, stablecoin_regulatory_risk
+- r8_loop8_lg_cns_ai_cloud_ipo_failed_price: ipo_debut_price_failed, recurring_cloud_revenue_unverified, customer_retention_unverified, fcf_unverified
+- r8_loop8_naver_webtoon_ip_platform: mau_without_arpu, webtoon_net_loss, holdco_discount, paid_content_growth_unverified
+- r8_loop8_kakao_openai_ai_partnership: partnership_headline_only, price_moved_before_monetization, paid_usage_unverified, governance_overhang_watch
+- r8_loop8_krafton_inzoi_adk_ip: game_launch_first_week_only, retention_unverified, single_ip_dependence, mna_integration_unverified
+- r8_loop8_hybe_legal_governance_watch: founder_legal_risk, governance_legal_overhang, artist_concentration_watch, hard_4c_not_confirmed
