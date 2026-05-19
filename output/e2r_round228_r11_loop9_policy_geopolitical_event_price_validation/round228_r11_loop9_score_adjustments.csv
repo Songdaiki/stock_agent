@@ -1,0 +1,18 @@
+axis,points,direction,reason
+actual_contract_or_budget,5,raise,R11은 정책이 실제 계약·예산으로 승격될 때만 강하게 본다.
+funded_policy,5,raise,지원책은 재원과 집행 경로가 있어야 Stage 2 이상으로 간다.
+policy_to_company_revenue_bridge,5,raise,정책이 회사 매출·마진·EPS/FCF로 내려오는 연결고리가 필요하다.
+shareholder_rights_reform,4,raise,상법·자사주 소각은 market-structure Stage 2 토양이다.
+treasury_share_cancellation_rule,4,raise,자사주 소각 의무는 value-up 실행 가능성을 높인다.
+long_term_offtake,5,raise,장기 offtake는 단순 정책 뉴스보다 강한 Stage 2 증거다.
+project_fid_or_financing,4,raise,FID와 financing이 없으면 자원·에너지 이벤트는 Green이 아니다.
+macro_relief_with_margin_recovery,4,raise,관세 relief는 회사 마진 회복으로 확인되어야 한다.
+policy_news_only,-5,lower,정책 뉴스만으로는 Stage 3-Green 금지다.
+resource_estimate_without_drilling,-5,lower,시추 전 자원 추정은 event premium이다.
+tax_policy_surprise,-5,lower,세제 surprise는 value-up confidence를 훼손할 수 있다.
+capex_for_tariff_without_funding,-5,lower,관세 hedge CAPEX도 funding과 ROI가 없으면 4C-watch다.
+macro_fx_outflow_risk,-4,lower,대규모 해외투자 pledge는 환율·자금유출 리스크를 만든다.
+stimulus_without_revenue_conversion,-4,lower,소비쿠폰은 매출·마진 전환 전까지 event premium이다.
+support_package_without_order,-4,lower,지원 package만 있고 주문·마진이 없으면 Green이 아니다.
+energy_security_headline_only,-4,lower,에너지 안보 headline은 offtake/FID/마진 전까지 제한한다.
+price_rally_before_commerciality,-5,lower,상업성 전 급등은 4B-watch다.

@@ -1,0 +1,9 @@
+category,primary_archetype,terms
+거버넌스 / 밸류업,VALUE_UP_SHAREHOLDER_RETURN,Commercial Act amendment|fiduciary duty to all shareholders|treasury share cancellation|Korea discount|company-level payout execution
+세제 / 시장충격,TAX_POLICY_MARKET_SHOCK_OVERLAY,capital gains tax threshold|transaction tax|policy confidence break|market-level 4C-watch
+관세 / 무역협상 / FX,INDUSTRIAL_POLICY_TARIFF_EVENT,25% tariff threat|15% tariff deal|$350B U.S. investment pledge|FX outflow|margin recovery
+정책 유도 CAPEX,STEEL_TARIFF_EVENT_KOREA,Hyundai Steel U.S. plant|tariff hedge|funding uncertainty|CAPEX without ROI
+반도체 정책지원,MEMORY_SUPERCYCLE_AI_CAPEX,33T won chip support|financial assistance|Samsung Electronics|SK Hynix|orders and margin required
+재정·소비 부양,EVENT_PREMIUM,supplementary budget|consumer vouchers|same-store sales|margin conversion
+에너지 안보 / 장기 offtake,ENERGY_SECURITY_POLICY_EVENT,POSCO International Alaska LNG|20-year offtake|FID|pipeline steel|cashflow economics
+자원 발견 이벤트,DOMESTIC_RESOURCE_DISCOVERY_EVENT,East Sea oil and gas|Korea Gas|drilling success rate|commerciality unknown|price moved before evidence

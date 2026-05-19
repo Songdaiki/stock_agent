@@ -1,0 +1,247 @@
+{
+  "deep_sub_archetypes": [
+    {
+      "category": "거버넌스 / 밸류업",
+      "primary_archetype": "VALUE_UP_SHAREHOLDER_RETURN",
+      "terms": "Commercial Act amendment|fiduciary duty to all shareholders|treasury share cancellation|Korea discount|company-level payout execution"
+    },
+    {
+      "category": "세제 / 시장충격",
+      "primary_archetype": "TAX_POLICY_MARKET_SHOCK_OVERLAY",
+      "terms": "capital gains tax threshold|transaction tax|policy confidence break|market-level 4C-watch"
+    },
+    {
+      "category": "관세 / 무역협상 / FX",
+      "primary_archetype": "INDUSTRIAL_POLICY_TARIFF_EVENT",
+      "terms": "25% tariff threat|15% tariff deal|$350B U.S. investment pledge|FX outflow|margin recovery"
+    },
+    {
+      "category": "정책 유도 CAPEX",
+      "primary_archetype": "STEEL_TARIFF_EVENT_KOREA",
+      "terms": "Hyundai Steel U.S. plant|tariff hedge|funding uncertainty|CAPEX without ROI"
+    },
+    {
+      "category": "반도체 정책지원",
+      "primary_archetype": "MEMORY_SUPERCYCLE_AI_CAPEX",
+      "terms": "33T won chip support|financial assistance|Samsung Electronics|SK Hynix|orders and margin required"
+    },
+    {
+      "category": "재정·소비 부양",
+      "primary_archetype": "EVENT_PREMIUM",
+      "terms": "supplementary budget|consumer vouchers|same-store sales|margin conversion"
+    },
+    {
+      "category": "에너지 안보 / 장기 offtake",
+      "primary_archetype": "ENERGY_SECURITY_POLICY_EVENT",
+      "terms": "POSCO International Alaska LNG|20-year offtake|FID|pipeline steel|cashflow economics"
+    },
+    {
+      "category": "자원 발견 이벤트",
+      "primary_archetype": "DOMESTIC_RESOURCE_DISCOVERY_EVENT",
+      "terms": "East Sea oil and gas|Korea Gas|drilling success rate|commerciality unknown|price moved before evidence"
+    }
+  ],
+  "green_forbidden_patterns": [
+    "policy_news_only",
+    "mou_only",
+    "geopolitical_headline_only",
+    "resource_estimate_without_drilling",
+    "fiscal_stimulus_without_revenue_conversion",
+    "support_package_without_order",
+    "energy_security_headline_only",
+    "capex_for_tariff_without_funding",
+    "tax_policy_surprise",
+    "macro_fx_outflow_risk",
+    "price_rally_before_commerciality"
+  ],
+  "green_required_fields": [
+    "policy_or_event_escalated_to_company_contract",
+    "contract_amount_or_funded_budget_confirmed",
+    "financing_or_fid_confirmed",
+    "actual_order_or_procurement_award",
+    "revenue_recognition_path_visible",
+    "margin_or_eps_fcf_revision_visible",
+    "repeat_demand_not_event_fade",
+    "policy_reversal_and_macro_fx_risk_passed",
+    "price_path_after_evidence"
+  ],
+  "hard_4c_gates": [
+    "policy_reversal",
+    "tax_policy_confidence_break",
+    "drilling_failure",
+    "commerciality_absent",
+    "mou_failure",
+    "budget_not_funded",
+    "tariff_reescalation",
+    "fx_outflow_shock",
+    "funding_failure",
+    "fid_delay",
+    "project_cancellation",
+    "policy_induced_capex_loss"
+  ],
+  "large_sector": "POLICY_GEOPOLITICAL_EVENT",
+  "shadow_weights": [
+    {
+      "4b_watch_sensitivity": "+4",
+      "actual_contract_or_budget": "+3",
+      "archetype": "VALUE_UP_SHAREHOLDER_RETURN",
+      "event_penalty": "-2",
+      "financing_or_fid": "+0",
+      "funded_policy": "+4",
+      "hard_4c_sensitivity": "+3",
+      "long_term_offtake": "+0",
+      "macro_fx_risk": "+1",
+      "notes": "Commercial Act reform is market-structure Stage 2, not company Green.",
+      "policy_to_revenue_bridge": "+3",
+      "shareholder_rights_reform": "+5"
+    },
+    {
+      "4b_watch_sensitivity": "+3",
+      "actual_contract_or_budget": "+0",
+      "archetype": "TAX_POLICY_MARKET_SHOCK_OVERLAY",
+      "event_penalty": "-5",
+      "financing_or_fid": "+0",
+      "funded_policy": "+0",
+      "hard_4c_sensitivity": "+5",
+      "long_term_offtake": "+0",
+      "macro_fx_risk": "+3",
+      "notes": "Tax-policy surprise can break value-up confidence.",
+      "policy_to_revenue_bridge": "+0",
+      "shareholder_rights_reform": "+0"
+    },
+    {
+      "4b_watch_sensitivity": "+4",
+      "actual_contract_or_budget": "+4",
+      "archetype": "INDUSTRIAL_POLICY_TARIFF_EVENT",
+      "event_penalty": "-3",
+      "financing_or_fid": "+3",
+      "funded_policy": "+4",
+      "hard_4c_sensitivity": "+4",
+      "long_term_offtake": "+0",
+      "macro_fx_risk": "+5",
+      "notes": "Tariff relief is Stage 2 but FX outflow and growth shock remain.",
+      "policy_to_revenue_bridge": "+4",
+      "shareholder_rights_reform": "+0"
+    },
+    {
+      "4b_watch_sensitivity": "+4",
+      "actual_contract_or_budget": "+2",
+      "archetype": "STEEL_TARIFF_EVENT_KOREA",
+      "event_penalty": "-5",
+      "financing_or_fid": "+5",
+      "funded_policy": "+2",
+      "hard_4c_sensitivity": "+4",
+      "long_term_offtake": "+0",
+      "macro_fx_risk": "+3",
+      "notes": "Hyundai Steel shows CAPEX without funding/margin clarity can fail.",
+      "policy_to_revenue_bridge": "+3",
+      "shareholder_rights_reform": "+0"
+    },
+    {
+      "4b_watch_sensitivity": "+4",
+      "actual_contract_or_budget": "+3",
+      "archetype": "MEMORY_SUPERCYCLE_AI_CAPEX",
+      "event_penalty": "-3",
+      "financing_or_fid": "+3",
+      "funded_policy": "+5",
+      "hard_4c_sensitivity": "+3",
+      "long_term_offtake": "+0",
+      "macro_fx_risk": "+1",
+      "notes": "Chip support is Stage 2; company orders, margins, and EPS are required.",
+      "policy_to_revenue_bridge": "+4",
+      "shareholder_rights_reform": "+0"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "actual_contract_or_budget": "+2",
+      "archetype": "EVENT_PREMIUM",
+      "event_penalty": "-4",
+      "financing_or_fid": "+0",
+      "funded_policy": "+5",
+      "hard_4c_sensitivity": "+3",
+      "long_term_offtake": "+0",
+      "macro_fx_risk": "+2",
+      "notes": "Fiscal stimulus and vouchers are Stage 1/2 until retail sales and margins convert.",
+      "policy_to_revenue_bridge": "+3",
+      "shareholder_rights_reform": "+0"
+    },
+    {
+      "4b_watch_sensitivity": "+3",
+      "actual_contract_or_budget": "+5",
+      "archetype": "ENERGY_SECURITY_POLICY_EVENT",
+      "event_penalty": "-2",
+      "financing_or_fid": "+5",
+      "funded_policy": "+3",
+      "hard_4c_sensitivity": "+4",
+      "long_term_offtake": "+5",
+      "macro_fx_risk": "+2",
+      "notes": "POSCO Alaska LNG offtake is Stage 2; FID, margin, and cashflow are required.",
+      "policy_to_revenue_bridge": "+5",
+      "shareholder_rights_reform": "+0"
+    },
+    {
+      "4b_watch_sensitivity": "+5",
+      "actual_contract_or_budget": "+0",
+      "archetype": "DOMESTIC_RESOURCE_DISCOVERY_EVENT",
+      "event_penalty": "-5",
+      "financing_or_fid": "+0",
+      "funded_policy": "+0",
+      "hard_4c_sensitivity": "+5",
+      "long_term_offtake": "+0",
+      "macro_fx_risk": "+2",
+      "notes": "Korea Gas +30% before drilling/commerciality is price_moved_without_evidence.",
+      "policy_to_revenue_bridge": "+0",
+      "shareholder_rights_reform": "+0"
+    }
+  ],
+  "source_round": "docs/round/round_228.md",
+  "stage4b_watch_triggers": [
+    "same_day_policy_or_resource_spike",
+    "policy_mou_resource_theme_basket_rally",
+    "support_package_rally_before_order",
+    "consumer_voucher_local_consumption_basket_rally",
+    "resource_discovery_plus_20_to_30pct_before_commerciality",
+    "trade_deal_or_valueup_basket_overheat"
+  ],
+  "summary": {
+    "candidate_generation_input": false,
+    "case_candidate_count": 8,
+    "deep_sub_archetype_count": 8,
+    "event_premium_count": 2,
+    "failed_rerating_count": 2,
+    "full_ohlc_complete": false,
+    "hard_4c_case_count": 0,
+    "large_sector": "POLICY_GEOPOLITICAL_EVENT",
+    "price_moved_without_evidence_count": 2,
+    "price_validation_completed": "partial_with_reported_price_anchors",
+    "production_scoring_changed": false,
+    "r11_default_stage3_bias": "very_conservative",
+    "shadow_weight_only": true,
+    "shadow_weight_row_count": 8,
+    "source_round": "docs/round/round_228.md",
+    "stage3_case_count": 0,
+    "stage4b_watch_count": 6,
+    "success_candidate_count": 4,
+    "target_archetype_count": 12
+  },
+  "target_aliases": {
+    "DOMESTIC_RESOURCE_DISCOVERY_EVENT": "DOMESTIC_RESOURCE_DISCOVERY_EVENT",
+    "ENERGY_SECURITY_LONG_TERM_OFFTAKE": "ENERGY_SECURITY_POLICY_EVENT",
+    "EVENT_PREMIUM": "EVENT_PREMIUM",
+    "FISCAL_STIMULUS_CONSUMPTION_EVENT": "EVENT_PREMIUM",
+    "GOVERNANCE_REFORM_VALUEUP_POLICY": "VALUE_UP_SHAREHOLDER_RETURN",
+    "MACRO_FX_OUTFLOW_OVERLAY": "POLICY_MARKET_SHOCK_OVERLAY",
+    "MARKET_STRUCTURE_REFORM": "MARKET_STRUCTURE_WATCH",
+    "POLICY_INDUCED_CAPEX_TARIFF_HEDGE": "STEEL_TARIFF_EVENT_KOREA",
+    "PRICE_ONLY_RALLY": "PRICE_ONLY_RALLY",
+    "SEMICONDUCTOR_POLICY_SUPPORT": "MEMORY_SUPERCYCLE_AI_CAPEX",
+    "TAX_POLICY_MARKET_SHOCK": "TAX_POLICY_MARKET_SHOCK_OVERLAY",
+    "US_KOREA_TARIFF_TRADE_DEAL": "INDUSTRIAL_POLICY_TARIFF_EVENT"
+  },
+  "what_not_to_change": [
+    "do_not_use_round228_cases_as_candidate_generation_input",
+    "do_not_apply_shadow_weights_to_production_scoring_yet",
+    "do_not_treat_policy_geopolitical_resource_stimulus_or_trade_deal_event_as_green",
+    "do_not_invent_ohlc_or_stage_dates"
+  ]
+}
