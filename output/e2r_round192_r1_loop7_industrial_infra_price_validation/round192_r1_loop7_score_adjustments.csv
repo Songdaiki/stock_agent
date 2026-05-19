@@ -1,0 +1,14 @@
+axis,points,direction,reason
+contract_quality,2,raise,계약 headline보다 계약 질을 더 본다.
+delivery_schedule,2,raise,방산/조선은 납품 일정이 매출 인식의 핵심이다.
+order_to_revenue_conversion,2,raise,수주가 매출과 이익으로 넘어가는지를 확인한다.
+op_eps_revision,3,raise,Stage 3는 OP/EPS 체급 변화가 보여야 한다.
+margin_visibility,3,raise,저마진 수주는 Stage 3-Green을 막아야 한다.
+government_financing_or_budget,2,raise,정부 예산/금융 조건이 계약 지속성을 좌우한다.
+price_path_alignment,2,raise,증거 뒤에 가격경로가 따라오는지 검증한다.
+order_headline,-3,lower,수주 뉴스만으로 Green을 주지 않는다.
+theme_keyword,-3,lower,테마 키워드는 Stage 1 라우팅까지만 제한한다.
+broker_target_only,-2,lower,목표가 상향만으로 구조적 evidence를 만들지 않는다.
+ipo_first_day_price_move,-4,lower,상장 첫날 급등은 event premium/수급성으로 본다.
+contract_amount_without_margin,-2,lower,계약금액만 있고 마진이 없으면 Stage 2에 머문다.
+policy_or_mou_without_budget,-3,lower,정책/MOU는 예산과 계약 없이는 Green 근거가 아니다.

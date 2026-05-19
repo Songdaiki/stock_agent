@@ -1,0 +1,186 @@
+{
+  "case_ids": [
+    "hyundai_rotem_k2_export_price_path",
+    "lig_nex1_msami_iraq_combat_validation",
+    "hanwha_aerospace_poland_chunmoo_4b_timing",
+    "samsung_heavy_shipbuilding_contract_stage2_not_green",
+    "hd_hyundai_marine_solution_ipo_price_only_rally",
+    "kai_fa50_philippines_stage2_watch",
+    "hanwha_ocean_sanction_watch_not_hard_4c"
+  ],
+  "green_forbidden_patterns": [
+    "order_headline_only",
+    "margin_unknown",
+    "delivery_schedule_unknown",
+    "financing_condition_unknown",
+    "ipo_or_supply_demand_price_spike",
+    "price_moves_before_evidence"
+  ],
+  "green_required_fields": [
+    "contract_amount_to_prior_sales",
+    "contract_duration_months",
+    "delivery_schedule",
+    "customer_or_government_budget_financing",
+    "backlog_growth",
+    "opm_or_eps_revision",
+    "price_path_after_evidence"
+  ],
+  "large_sector": "INDUSTRIAL_ORDERS_INFRA",
+  "score_adjustments": [
+    {
+      "axis": "contract_quality",
+      "direction": "raise",
+      "points": "2",
+      "reason": "계약 headline보다 계약 질을 더 본다."
+    },
+    {
+      "axis": "delivery_schedule",
+      "direction": "raise",
+      "points": "2",
+      "reason": "방산/조선은 납품 일정이 매출 인식의 핵심이다."
+    },
+    {
+      "axis": "order_to_revenue_conversion",
+      "direction": "raise",
+      "points": "2",
+      "reason": "수주가 매출과 이익으로 넘어가는지를 확인한다."
+    },
+    {
+      "axis": "op_eps_revision",
+      "direction": "raise",
+      "points": "3",
+      "reason": "Stage 3는 OP/EPS 체급 변화가 보여야 한다."
+    },
+    {
+      "axis": "margin_visibility",
+      "direction": "raise",
+      "points": "3",
+      "reason": "저마진 수주는 Stage 3-Green을 막아야 한다."
+    },
+    {
+      "axis": "government_financing_or_budget",
+      "direction": "raise",
+      "points": "2",
+      "reason": "정부 예산/금융 조건이 계약 지속성을 좌우한다."
+    },
+    {
+      "axis": "price_path_alignment",
+      "direction": "raise",
+      "points": "2",
+      "reason": "증거 뒤에 가격경로가 따라오는지 검증한다."
+    },
+    {
+      "axis": "order_headline",
+      "direction": "lower",
+      "points": "-3",
+      "reason": "수주 뉴스만으로 Green을 주지 않는다."
+    },
+    {
+      "axis": "theme_keyword",
+      "direction": "lower",
+      "points": "-3",
+      "reason": "테마 키워드는 Stage 1 라우팅까지만 제한한다."
+    },
+    {
+      "axis": "broker_target_only",
+      "direction": "lower",
+      "points": "-2",
+      "reason": "목표가 상향만으로 구조적 evidence를 만들지 않는다."
+    },
+    {
+      "axis": "ipo_first_day_price_move",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "상장 첫날 급등은 event premium/수급성으로 본다."
+    },
+    {
+      "axis": "contract_amount_without_margin",
+      "direction": "lower",
+      "points": "-2",
+      "reason": "계약금액만 있고 마진이 없으면 Stage 2에 머문다."
+    },
+    {
+      "axis": "policy_or_mou_without_budget",
+      "direction": "lower",
+      "points": "-3",
+      "reason": "정책/MOU는 예산과 계약 없이는 Green 근거가 아니다."
+    }
+  ],
+  "source_round": "docs/round/round_192.md",
+  "stage4b_statuses": [
+    "none",
+    "watch",
+    "elevated",
+    "graduated",
+    "sanction_watch"
+  ],
+  "summary": {
+    "candidate_generation_input": false,
+    "case_candidate_count": 7,
+    "event_premium_count": 1,
+    "hard_4c_confirmed_count": 0,
+    "needs_ohlc_backfill": true,
+    "needs_ohlc_backfill_count": 7,
+    "price_backfill_field_count": 46,
+    "production_scoring_changed": false,
+    "required_target_count": 11,
+    "score_adjustment_count": 13,
+    "shadow_weight_only": true,
+    "stage4b_watch_or_elevated_count": 4,
+    "structural_success_count": 2,
+    "success_candidate_count": 4
+  },
+  "target_aliases": [
+    {
+      "canonical_archetype": "DEFENSE_GOVERNMENT_BACKLOG",
+      "round192_label": "DEFENSE_GOVERNMENT_BACKLOG"
+    },
+    {
+      "canonical_archetype": "DEFENSE_LOCAL_PRODUCTION_PLATFORM",
+      "round192_label": "DEFENSE_LOCAL_PRODUCTION_PLATFORM"
+    },
+    {
+      "canonical_archetype": "DEFENSE_INTERCEPTOR_COMBAT_VALIDATION",
+      "round192_label": "DEFENSE_INTERCEPTOR_COMBAT_VALIDATION"
+    },
+    {
+      "canonical_archetype": "CONTRACT_BACKLOG_INDUSTRIAL",
+      "round192_label": "CONTRACT_BACKLOG_INDUSTRIAL"
+    },
+    {
+      "canonical_archetype": "SHIPBUILDING_OFFSHORE_BACKLOG",
+      "round192_label": "SHIPBUILDING_OFFSHORE_BACKLOG"
+    },
+    {
+      "canonical_archetype": "SHIP_MRO_RECURRING_PLATFORM",
+      "round192_label": "SHIP_MRO_RECURRING_PLATFORM"
+    },
+    {
+      "canonical_archetype": "AI_DATA_CENTER_POWER_EQUIPMENT",
+      "round192_label": "AI_DATA_CENTER_POWER_EQUIPMENT"
+    },
+    {
+      "canonical_archetype": "POWER_EQUIPMENT_BACKLOG_TO_FCF",
+      "round192_label": "POWER_EQUIPMENT_BACKLOG_TO_FCF"
+    },
+    {
+      "canonical_archetype": "PRICE_ONLY_RALLY",
+      "round192_label": "PRICE_ONLY_RALLY"
+    },
+    {
+      "canonical_archetype": "CROWDED_RERATING_4B_WATCH",
+      "round192_label": "CROWDING_4B_WATCH"
+    },
+    {
+      "canonical_archetype": "THESIS_BREAK_4C",
+      "round192_label": "THESIS_BREAK_4C"
+    }
+  ],
+  "what_not_to_change": [
+    "do_not_apply_to_production_scoring_yet",
+    "do_not_use_round192_cases_as_candidate_generation_input",
+    "do_not_lower_stage3_green_thresholds",
+    "do_not_treat_4b_watch_as_hard_4c",
+    "do_not_invent_prices_stage_dates_or_margins"
+  ]
+}
