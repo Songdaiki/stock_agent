@@ -1,0 +1,312 @@
+{
+  "case_ids": [
+    "hyundai_motor_hybrid_valueup_tariff_4c_watch",
+    "kia_hybrid_valueup_sdv_delay_capex_watch",
+    "korean_air_asiana_integration_scale_stage2_watch",
+    "jeju_air_fatal_crash_operational_trust_4c_break",
+    "hmm_red_sea_freight_cycle_stage2_4b_watch",
+    "hotel_shilla_china_visa_tourism_event_stage2_watch",
+    "lotte_tour_dream_tower_casino_utilization_gap_watch"
+  ],
+  "green_forbidden_patterns": [
+    "travel_reopening_only",
+    "freight_rate_spike_only",
+    "robotaxi_or_sdv_story_only",
+    "tourist_arrival_policy_only",
+    "merger_completion_without_synergy",
+    "ev_or_ai_mobility_theme_only",
+    "capex_heavy_localization_without_margin",
+    "safety_failure",
+    "tariff_margin_cut",
+    "utilization_weak",
+    "cycle_normalization"
+  ],
+  "green_required_fields": [
+    "unit_economics_confirmed",
+    "fcf_after_capex_confirmed",
+    "margin_durability_confirmed",
+    "hybrid_mix_load_factor_freight_contract_or_tourist_spend_confirmed",
+    "shareholder_return_or_deleveraging_confirmed",
+    "safety_and_operational_trust_passed",
+    "tariff_fuel_fx_freight_normalization_stress_passed",
+    "price_path_after_unit_economics"
+  ],
+  "hard_4c_gates": [
+    "fatal_safety_accident",
+    "operational_trust_break",
+    "margin_guidance_cut_with_structural_cause",
+    "tariff_shock_not_offset_by_localization",
+    "fuel_cost_spike_not_passed_through",
+    "freight_rate_collapse",
+    "container_overcapacity",
+    "integration_failure",
+    "regulatory_block",
+    "tourist_spend_failure",
+    "casino_utilization_collapse",
+    "debt_or_capex_burden"
+  ],
+  "large_sector": "MOBILITY_TRANSPORT_LEISURE",
+  "score_adjustments": [
+    {
+      "axis": "hybrid_mix",
+      "direction": "raise",
+      "points": "5",
+      "reason": "완성차 Green은 hybrid mix가 실제 margin과 FCF로 내려올 때 강하다."
+    },
+    {
+      "axis": "fcf_after_capex",
+      "direction": "raise",
+      "points": "5",
+      "reason": "R9는 투자 이후 남는 FCF가 핵심이다."
+    },
+    {
+      "axis": "shareholder_return_execution",
+      "direction": "raise",
+      "points": "4",
+      "reason": "자사주/배당 실행은 value-up의 실제 증거다."
+    },
+    {
+      "axis": "operating_margin_durability",
+      "direction": "raise",
+      "points": "4",
+      "reason": "OPM 목표가 유지되어야 체급 변화가 지속된다."
+    },
+    {
+      "axis": "localization_tariff_hedge",
+      "direction": "raise",
+      "points": "3",
+      "reason": "현지화는 tariff 충격을 흡수할 때만 점수를 준다."
+    },
+    {
+      "axis": "unit_economics",
+      "direction": "raise",
+      "points": "5",
+      "reason": "운송/레저는 단위경제성이 Stage 3의 중심이다."
+    },
+    {
+      "axis": "load_factor_with_yield",
+      "direction": "raise",
+      "points": "4",
+      "reason": "항공은 탑승률과 yield가 같이 좋아야 한다."
+    },
+    {
+      "axis": "integration_synergy_realized",
+      "direction": "raise",
+      "points": "4",
+      "reason": "합병 완료보다 실제 통합 시너지와 비용절감이 중요하다."
+    },
+    {
+      "axis": "fleet_utilization",
+      "direction": "raise",
+      "points": "4",
+      "reason": "차량/항공/카지노/리조트는 가동률이 숫자로 보여야 한다."
+    },
+    {
+      "axis": "tourist_spend_conversion",
+      "direction": "raise",
+      "points": "4",
+      "reason": "관광객 수보다 실제 객단가와 구매전환이 중요하다."
+    },
+    {
+      "axis": "casino_drop_and_hold",
+      "direction": "raise",
+      "points": "4",
+      "reason": "카지노는 drop과 hold rate가 확인되어야 한다."
+    },
+    {
+      "axis": "safety_record_and_operational_trust",
+      "direction": "raise",
+      "points": "5",
+      "reason": "운송 섹터 Green은 안전과 운영신뢰를 통과해야 한다."
+    },
+    {
+      "axis": "travel_reopening_only",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "여행수요 회복만으로 Stage 3-Green을 만들지 않는다."
+    },
+    {
+      "axis": "freight_rate_spike_only",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "운임 spike는 구조적 E2R보다 사이클로 분리한다."
+    },
+    {
+      "axis": "robotaxi_or_sdv_story_only",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "SDV/로보택시 narrative는 유료 SW 매출과 안전 전까지 Stage 1~2다."
+    },
+    {
+      "axis": "tourist_arrival_policy_only",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "무비자/입국자 증가는 spend와 OPM 전까지 정책 이벤트다."
+    },
+    {
+      "axis": "merger_completion_without_synergy",
+      "direction": "lower",
+      "points": "-3",
+      "reason": "합병 완료만으로 통합 시너지를 발명하지 않는다."
+    },
+    {
+      "axis": "ev_or_ai_mobility_theme_only",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "EV/AI mobility 테마는 FCF와 unit economics 전까지 제한한다."
+    },
+    {
+      "axis": "capex_heavy_localization_without_margin",
+      "direction": "lower",
+      "points": "-3",
+      "reason": "현지화 CAPEX가 margin을 훼손하면 Green을 낮춘다."
+    },
+    {
+      "axis": "safety_failure",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "fatal safety accident는 hard RedTeam이다."
+    },
+    {
+      "axis": "tariff_margin_cut",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "관세로 margin guidance가 하향되면 4C-watch다."
+    },
+    {
+      "axis": "utilization_weak",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "가동률/객단가/drop 부진은 여행·카지노 Green을 막는다."
+    },
+    {
+      "axis": "cycle_normalization",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "운임/여행/수요 정상화는 4B/4C watch다."
+    }
+  ],
+  "source_round": "docs/round/round_200.md",
+  "stage4b_statuses": [
+    "none",
+    "watch",
+    "elevated",
+    "graduated"
+  ],
+  "summary": {
+    "candidate_generation_input": false,
+    "case_candidate_count": 7,
+    "cyclical_success_count": 1,
+    "failed_rerating_count": 1,
+    "hard_4c_case_count": 1,
+    "needs_ohlc_backfill": true,
+    "needs_ohlc_backfill_count": 7,
+    "price_backfill_field_count": 52,
+    "production_scoring_changed": false,
+    "required_target_count": 22,
+    "score_adjustment_count": 23,
+    "shadow_weight_only": true,
+    "stage3_case_count": 0,
+    "stage4b_watch_or_elevated_count": 6,
+    "structural_success_count": 1,
+    "success_candidate_count": 3
+  },
+  "target_aliases": [
+    {
+      "canonical_archetype": "AUTO_MOBILITY_COMPLETED_VEHICLE",
+      "round200_label": "AUTO_MOBILITY_COMPLETED_VEHICLE"
+    },
+    {
+      "canonical_archetype": "AUTO_HYBRID_VALUEUP",
+      "round200_label": "AUTO_HYBRID_VALUEUP"
+    },
+    {
+      "canonical_archetype": "AUTO_TARIFF_LOCALIZATION",
+      "round200_label": "AUTO_TARIFF_LOCALIZATION"
+    },
+    {
+      "canonical_archetype": "AUTO_SDV_DELAY_CAPEX_OVERLAY",
+      "round200_label": "AUTO_SDV_DELAY_CAPEX_OVERLAY"
+    },
+    {
+      "canonical_archetype": "AUTO_MOBILITY_COMPONENTS",
+      "round200_label": "AUTO_MOBILITY_COMPONENTS"
+    },
+    {
+      "canonical_archetype": "AUTO_COMPONENT_QUALITY_RECALL_OVERLAY",
+      "round200_label": "AUTO_COMPONENT_QUALITY_RECALL_OVERLAY"
+    },
+    {
+      "canonical_archetype": "HYBRID_COMPONENT_BOTTLENECK",
+      "round200_label": "HYBRID_COMPONENT_BOTTLENECK"
+    },
+    {
+      "canonical_archetype": "AIRLINE_INTEGRATION_SCALE",
+      "round200_label": "AIRLINE_INTEGRATION_SCALE"
+    },
+    {
+      "canonical_archetype": "AIRLINE_TRAVEL_CYCLE",
+      "round200_label": "AIRLINE_TRAVEL_CYCLE"
+    },
+    {
+      "canonical_archetype": "AIRLINE_SAFETY_REGULATORY_OVERLAY",
+      "round200_label": "AIRLINE_SAFETY_REGULATORY_OVERLAY"
+    },
+    {
+      "canonical_archetype": "TRANSPORT_SAFETY_REGULATORY_OVERLAY",
+      "round200_label": "TRANSPORT_SAFETY_REGULATORY_OVERLAY"
+    },
+    {
+      "canonical_archetype": "CASINO_DUTYFREE_TOURISM",
+      "round200_label": "CASINO_DUTYFREE_TOURISM"
+    },
+    {
+      "canonical_archetype": "CASINO_DUTYFREE_TOURISM_POLICY_KOREA",
+      "round200_label": "CASINO_DUTYFREE_TOURISM_POLICY_KOREA"
+    },
+    {
+      "canonical_archetype": "CASINO_RETURN_VISITOR_UNIT_ECONOMICS",
+      "round200_label": "CASINO_RETURN_VISITOR_UNIT_ECONOMICS"
+    },
+    {
+      "canonical_archetype": "TRAVEL_LEISURE_REOPENING",
+      "round200_label": "TRAVEL_LEISURE_REOPENING"
+    },
+    {
+      "canonical_archetype": "TOURISM_POLICY_EVENT",
+      "round200_label": "TOURISM_POLICY_EVENT"
+    },
+    {
+      "canonical_archetype": "SHIPPING_FREIGHT_CYCLE",
+      "round200_label": "SHIPPING_FREIGHT_CYCLE"
+    },
+    {
+      "canonical_archetype": "SHIPPING_FREIGHT_CYCLE_KOREA",
+      "round200_label": "SHIPPING_FREIGHT_CYCLE_KOREA"
+    },
+    {
+      "canonical_archetype": "LOGISTICS_PARCEL_FREIGHT",
+      "round200_label": "LOGISTICS_PARCEL_FREIGHT"
+    },
+    {
+      "canonical_archetype": "RENTAL_USED_CAR_MOBILITY",
+      "round200_label": "RENTAL_USED_CAR_MOBILITY"
+    },
+    {
+      "canonical_archetype": "AUTONOMOUS_ROBOTAXI_DEPLOYMENT",
+      "round200_label": "AUTONOMOUS_ROBOTAXI_DEPLOYMENT"
+    },
+    {
+      "canonical_archetype": "FLEET_UNIT_ECONOMICS_OVERLAY",
+      "round200_label": "FLEET_UNIT_ECONOMICS_OVERLAY"
+    }
+  ],
+  "what_not_to_change": [
+    "do_not_apply_to_production_scoring_yet",
+    "do_not_use_round200_cases_as_candidate_generation_input",
+    "do_not_lower_stage3_green_thresholds",
+    "do_not_treat_travel_reopening_freight_spike_sdv_policy_merger_or_tourism_headline_as_green_evidence",
+    "do_not_invent_unit_economics_fcf_margin_load_factor_yield_tourist_spend_drop_hold_or_stage_prices",
+    "do_not_confirm_hard_4c_without_reliable_primary_or_major_source"
+  ]
+}
