@@ -1,0 +1,11 @@
+archetype,unit_economics,fcf_after_capex,hybrid_mix,shareholder_return,margin_durability,localization_hedge,logistics_margin,safety_trust,event_penalty,cycle_normalization_redteam,4b_watch_sensitivity,hard_4c_sensitivity,notes
+AUTO_HYBRID_VALUEUP,+5,+5,+5,+5,+5,+4,+0,+3,-1,+2,+4,+4,Hyundai supports Stage 3 candidate but tariff margin shock requires 4C-watch.
+AUTO_TARIFF_LOCALIZATION,+3,+5,+3,+2,+5,+5,+0,+2,-2,+5,+3,+5,Tariff cost can override hybrid/value-up if margin durability fails.
+AUTO_SDV_DELAY_CAPEX_OVERLAY,+2,+3,+2,+1,+3,+2,+0,+3,-5,+4,+5,+4,Kia SDV delay and capex hike block Green despite hybrid plan.
+ECOMMERCE_LOGISTICS_REPEAT_CONTRACT,+4,+5,+0,+1,+5,+0,+5,+2,-3,+3,+3,+3,"CJ Logistics contract needs margin, volume and FCF; price failed on event."
+AIRLINE_INTEGRATION_SCALE,+4,+5,+0,+2,+4,+0,+0,+5,-3,+3,+4,+4,Korean Air merger is Stage 2 until synergy/load factor/yield/FCF confirm.
+AIRLINE_TRAVEL_CYCLE,+2,+5,+0,+1,+3,+0,+0,+4,-4,+4,+4,+4,Large aircraft order is growth plus capex/debt watch.
+AIRLINE_SAFETY_REGULATORY_OVERLAY,+0,+0,+0,+0,+0,+0,+0,+5,+0,+5,+5,+5,Jeju Air fatal crash is hard 4C.
+SHIPPING_FREIGHT_CYCLE,+4,+5,+0,+2,+3,+0,+0,+2,-5,+5,+5,+4,"HMM/Red Sea freight is cyclical success, not structural Green."
+CASINO_DUTYFREE_TOURISM_POLICY_KOREA,+5,+5,+0,+1,+4,+0,+0,+3,-5,+4,+5,+4,Visa-free tourism event needs spend/drop/hold/OPM before Green.
+TOURISM_POLICY_EVENT,+4,+4,+0,+1,+3,+0,+0,+3,-5,+4,+5,+4,Lotte Tour redirect rally is event premium until utilization and cashflow confirm.

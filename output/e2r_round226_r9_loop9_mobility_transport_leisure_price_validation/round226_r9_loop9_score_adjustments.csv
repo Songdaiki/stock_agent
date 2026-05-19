@@ -1,0 +1,27 @@
+axis,points,direction,reason
+hybrid_mix,5,raise,완성차는 EV 테마보다 hybrid mix가 실제 OPM/FCF로 이어지는지가 중요하다.
+fcf_after_capex,5,raise,자동차·항공·물류는 capex 이후 FCF가 보여야 Stage 3 후보가 된다.
+shareholder_return_execution,5,raise,value-up은 발표보다 buyback/dividend 실행이 핵심이다.
+operating_margin_durability,5,raise,수요 회복보다 마진 지속성이 이익 체급 변화를 만든다.
+localization_tariff_hedge,4,raise,관세 환경에서는 현지화가 마진 방어 evidence가 될 수 있다.
+unit_economics,5,raise,모빌리티·여행·물류는 volume보다 단위 경제성이 우선이다.
+logistics_contract_margin,4,raise,물류 계약은 매출 증가보다 margin과 automation efficiency를 본다.
+load_factor_with_yield,4,raise,항공은 탑승률만이 아니라 yield와 같이 봐야 한다.
+integration_synergy_realized,4,raise,항공 합병은 완료보다 실제 시너지와 비용 통제가 필요하다.
+freight_contract_mix,4,raise,해운은 spot 급등보다 contract mix와 rate floor가 중요하다.
+tourist_spend_conversion,5,raise,관광은 입국자 수보다 객단가와 소비 전환이 Stage 3 evidence다.
+casino_drop_and_hold,5,raise,"카지노/면세는 drop, hold, OPM으로 정책 이벤트를 검증해야 한다."
+safety_record_and_operational_trust,5,raise,안전·운영 신뢰는 항공/여행 Green의 선결 조건이다.
+travel_reopening_only,-5,lower,여행 수요 회복만으로는 spend와 OPM을 알 수 없다.
+freight_rate_spike_only,-5,lower,운임 급등만으로는 구조적 E2R이 아니라 cycle일 수 있다.
+robotaxi_or_sdv_story_only,-5,lower,SDV/로보택시 스토리는 software revenue 전까지 watch다.
+tourist_arrival_policy_only,-5,lower,무비자 정책만으로는 면세/카지노 현금흐름을 알 수 없다.
+tourism_redirect_event_only,-5,lower,관광 redirect 기대 급등은 event premium이다.
+merger_completion_without_synergy,-4,lower,합병 완료만 있고 load factor/yield/FCF가 없으면 제한한다.
+ev_or_ai_mobility_theme_only,-4,lower,EV/AI mobility 테마만으로 Green을 만들 수 없다.
+capex_heavy_localization_without_margin,-4,lower,현지화 capex가 마진 방어로 확인되지 않으면 부담이다.
+safety_failure,-5,lower,fatal safety accident는 hard 4C gate다.
+tariff_margin_cut,-5,lower,관세 비용이 손익을 때리면 hybrid/value-up 논리를 제한한다.
+utilization_weak,-5,lower,항공/관광/물류는 낮은 utilization이 FCF를 훼손한다.
+cycle_normalization,-5,lower,운임·관광·항공 사이클 정상화는 4B/4C 감시 신호다.
+logistics_contract_without_margin,-3,lower,물류 계약만 있고 margin이 없으면 Stage 2 watch다.

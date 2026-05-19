@@ -1,0 +1,37 @@
+# Round 226 R9 4B/4C Review
+
+## 4B Watch Triggers
+
+- hybrid_valueup_fast_rerating
+- sdv_ai_mobility_before_software_revenue
+- airline_merger_completion_price_spike
+- aircraft_order_growth_ignores_capex_debt
+- red_sea_freight_rate_spike
+- tourism_policy_day_basket_rally
+- china_japan_redirect_before_actual_spend
+
+## Hard 4C Gates
+
+- fatal_safety_accident
+- operational_trust_break
+- margin_guidance_cut_with_structural_cause
+- tariff_shock_not_offset_by_localization
+- fuel_cost_spike_not_passed_through
+- freight_rate_collapse
+- container_overcapacity
+- integration_failure
+- regulatory_block
+- tourist_spend_failure
+- casino_utilization_collapse
+- debt_or_capex_burden
+
+## Case Notes
+
+- r9_loop9_hyundai_hybrid_valueup_tariff_watch: tariff_event_hyundai_minus_4_5pct, tariff_event_kia_minus_6_6pct, tariff_cost_2025_4_1tn_krw, q4_2025_net_profit_minus_52pct, q4_2025_op_minus_40pct
+- r9_loop9_kia_sdv_delay_capex_watch: sdv_launch_delay_2027_to_2028, ev_target_cut_20pct, capex_burden, software_revenue_unverified, fcf_after_capex_unverified
+- r9_loop9_cj_logistics_shinsegae_contract_price_failed: stage2_event_mae_minus_0_2pct, target_cut_minus_17pct, domestic_growth_slowdown, overseas_recovery_delay, margin_unverified
+- r9_loop9_korean_air_asiana_integration_capex_watch: capex_debt_burden, integration_synergy_unverified, load_factor_yield_unverified, fcf_unverified, fuel_cost_watch
+- r9_loop9_jeju_air_fatal_crash_hard_4c: fatal_safety_accident, operational_trust_break, consumer_trust_break, booking_cancellations, hard_4c
+- r9_loop9_hmm_red_sea_shipping_cycle: freight_rate_spike_only, route_normalization_watch, overcapacity_watch, contract_mix_unverified, hmm_stock_ohlc_unavailable
+- r9_loop9_tourism_visa_free_retail_casino_event: tourist_arrival_policy_only, tourist_spend_unverified, duty_free_sales_unverified, casino_drop_hold_unverified, opm_unverified
+- r9_loop9_lotte_tour_china_japan_redirect_event: tourism_redirect_event_only, actual_arrivals_unverified, tourist_spend_unverified, occupancy_adr_unverified, debt_refinancing_watch
