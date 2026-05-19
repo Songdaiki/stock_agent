@@ -1,0 +1,50 @@
+# Round-193 R2 Loop-7 Green Gate Review
+
+## Green Required Evidence
+
+- `company_level_customer_evidence`
+- `order_contract_shipment_or_design_win_quality`
+- `revenue_recognition_path`
+- `gross_margin_or_opm_improvement`
+- `eps_fcf_revision`
+- `customer_diversification_or_long_term_demand`
+- `price_path_after_evidence`
+
+## Green Forbidden Patterns
+
+- `ai_name_only`
+- `hbm_keyword_only`
+- `server_theme_only`
+- `broker_target_only`
+- `unconfirmed_media_report`
+- `policy_beneficiary_only`
+- `stock_price_moves_before_evidence`
+- `margin_unknown`
+
+## Shadow Score Adjustments
+
+| axis | direction | points | reason |
+| --- | --- | ---: | --- |
+| `customer_visibility` | raise | 3 | R2 Green은 회사 단위 고객 증거가 있어야 한다. |
+| `order_to_revenue_conversion` | raise | 3 | 수주/설계가 매출 인식으로 내려오는지를 본다. |
+| `hbm_capacity_bottleneck` | raise | 3 | HBM 병목은 실제 CAPA/장비/고객 연결 때만 강하다. |
+| `gross_margin_visibility` | raise | 3 | AI 수혜가 마진으로 연결되는지 확인한다. |
+| `eps_revision` | raise | 3 | Stage 3는 EPS/FCF 체급 변화가 보여야 한다. |
+| `customer_diversification_confirmed` | raise | 2 | 미확인 루머가 아니라 고객 다변화가 확인되어야 한다. |
+| `advanced_packaging_direct_link` | raise | 2 | HBM/AI 패키징 직접 연결은 R2 핵심 증거다. |
+| `price_path_alignment` | raise | 2 | 증거 뒤에 가격경로가 따라오는지 검증한다. |
+| `ai_keyword` | lower | -4 | AI 이름만으로 Stage 3 근거를 만들지 않는다. |
+| `server_theme` | lower | -3 | 서버 테마는 Stage 1 라우팅까지만 제한한다. |
+| `design_win_without_revenue` | lower | -3 | design win은 Stage 2일 수 있으나 매출 전 Green은 금지한다. |
+| `policy_foundry_without_order` | lower | -3 | 정책 파운드리는 회사 주문/매출 전 event premium이다. |
+| `media_report_without_company_confirmation` | lower | -3 | 미확인 고객 보도는 4B/가격선행 감시로 둔다. |
+| `stock_price_rally_before_evidence` | lower | -4 | 가격이 증거보다 먼저 가면 price-only 위험이다. |
+| `customer_name_unknown` | lower | -2 | 고객명 없는 AI 공급망 서사는 confidence를 낮춘다. |
+| `margin_unknown` | lower | -2 | 마진이 없으면 수주가 EPS/FCF로 바뀌었는지 모른다. |
+
+## What Not To Change
+
+- Do not apply these weights to production scoring yet.
+- Do not use Round193 cases as candidate-generation input.
+- Do not lower Stage 3-Green thresholds to force promotion.
+- Do not invent customer names, orders, shipments, margins, stage prices, or MFE/MAE.

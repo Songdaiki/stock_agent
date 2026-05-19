@@ -1,0 +1,239 @@
+{
+  "case_ids": [
+    "hanmi_semiconductor_tsv_tc_bonder_4b_watch",
+    "gaonchips_pfn_samsung_2nm_design_win_stage2",
+    "samsung_electronics_hbm_catchup_failed_2025_watch",
+    "db_hitek_policy_foundry_event_premium",
+    "isu_petasis_ai_server_pcb_insufficient_evidence",
+    "sk_hynix_hbm_2026_4b_benchmark"
+  ],
+  "green_forbidden_patterns": [
+    "ai_name_only",
+    "hbm_keyword_only",
+    "server_theme_only",
+    "broker_target_only",
+    "unconfirmed_media_report",
+    "policy_beneficiary_only",
+    "stock_price_moves_before_evidence",
+    "margin_unknown"
+  ],
+  "green_required_fields": [
+    "company_level_customer_evidence",
+    "order_contract_shipment_or_design_win_quality",
+    "revenue_recognition_path",
+    "gross_margin_or_opm_improvement",
+    "eps_fcf_revision",
+    "customer_diversification_or_long_term_demand",
+    "price_path_after_evidence"
+  ],
+  "large_sector": "AI_SEMICONDUCTOR_ELECTRONICS",
+  "score_adjustments": [
+    {
+      "axis": "customer_visibility",
+      "direction": "raise",
+      "points": "3",
+      "reason": "R2 Green은 회사 단위 고객 증거가 있어야 한다."
+    },
+    {
+      "axis": "order_to_revenue_conversion",
+      "direction": "raise",
+      "points": "3",
+      "reason": "수주/설계가 매출 인식으로 내려오는지를 본다."
+    },
+    {
+      "axis": "hbm_capacity_bottleneck",
+      "direction": "raise",
+      "points": "3",
+      "reason": "HBM 병목은 실제 CAPA/장비/고객 연결 때만 강하다."
+    },
+    {
+      "axis": "gross_margin_visibility",
+      "direction": "raise",
+      "points": "3",
+      "reason": "AI 수혜가 마진으로 연결되는지 확인한다."
+    },
+    {
+      "axis": "eps_revision",
+      "direction": "raise",
+      "points": "3",
+      "reason": "Stage 3는 EPS/FCF 체급 변화가 보여야 한다."
+    },
+    {
+      "axis": "customer_diversification_confirmed",
+      "direction": "raise",
+      "points": "2",
+      "reason": "미확인 루머가 아니라 고객 다변화가 확인되어야 한다."
+    },
+    {
+      "axis": "advanced_packaging_direct_link",
+      "direction": "raise",
+      "points": "2",
+      "reason": "HBM/AI 패키징 직접 연결은 R2 핵심 증거다."
+    },
+    {
+      "axis": "price_path_alignment",
+      "direction": "raise",
+      "points": "2",
+      "reason": "증거 뒤에 가격경로가 따라오는지 검증한다."
+    },
+    {
+      "axis": "ai_keyword",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "AI 이름만으로 Stage 3 근거를 만들지 않는다."
+    },
+    {
+      "axis": "server_theme",
+      "direction": "lower",
+      "points": "-3",
+      "reason": "서버 테마는 Stage 1 라우팅까지만 제한한다."
+    },
+    {
+      "axis": "design_win_without_revenue",
+      "direction": "lower",
+      "points": "-3",
+      "reason": "design win은 Stage 2일 수 있으나 매출 전 Green은 금지한다."
+    },
+    {
+      "axis": "policy_foundry_without_order",
+      "direction": "lower",
+      "points": "-3",
+      "reason": "정책 파운드리는 회사 주문/매출 전 event premium이다."
+    },
+    {
+      "axis": "media_report_without_company_confirmation",
+      "direction": "lower",
+      "points": "-3",
+      "reason": "미확인 고객 보도는 4B/가격선행 감시로 둔다."
+    },
+    {
+      "axis": "stock_price_rally_before_evidence",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "가격이 증거보다 먼저 가면 price-only 위험이다."
+    },
+    {
+      "axis": "customer_name_unknown",
+      "direction": "lower",
+      "points": "-2",
+      "reason": "고객명 없는 AI 공급망 서사는 confidence를 낮춘다."
+    },
+    {
+      "axis": "margin_unknown",
+      "direction": "lower",
+      "points": "-2",
+      "reason": "마진이 없으면 수주가 EPS/FCF로 바뀌었는지 모른다."
+    }
+  ],
+  "source_round": "docs/round/round_193.md",
+  "stage4b_statuses": [
+    "none",
+    "watch",
+    "elevated",
+    "graduated",
+    "benchmark"
+  ],
+  "summary": {
+    "candidate_generation_input": false,
+    "case_candidate_count": 6,
+    "event_premium_count": 1,
+    "failed_rerating_count": 1,
+    "hard_4c_confirmed_count": 0,
+    "needs_ohlc_backfill": true,
+    "needs_ohlc_backfill_count": 6,
+    "overheat_count": 1,
+    "price_backfill_field_count": 59,
+    "production_scoring_changed": false,
+    "required_target_count": 19,
+    "score_adjustment_count": 16,
+    "shadow_weight_only": true,
+    "stage4b_case_count": 4,
+    "structural_success_count": 1,
+    "success_candidate_count": 1
+  },
+  "target_aliases": [
+    {
+      "canonical_archetype": "MEMORY_HBM_CAPACITY",
+      "round193_label": "MEMORY_HBM_CAPACITY"
+    },
+    {
+      "canonical_archetype": "MEMORY_HBM_LTA_PREPAYMENT",
+      "round193_label": "MEMORY_HBM_LTA_PREPAYMENT"
+    },
+    {
+      "canonical_archetype": "HBM_CATCHUP_EXECUTION",
+      "round193_label": "HBM_CATCHUP_EXECUTION"
+    },
+    {
+      "canonical_archetype": "SEMI_EQUIPMENT_AI_CAPEX",
+      "round193_label": "SEMI_EQUIPMENT_AI_CAPEX"
+    },
+    {
+      "canonical_archetype": "HBM_BONDER_EQUIPMENT_KOREA",
+      "round193_label": "HBM_BONDER_EQUIPMENT_KOREA"
+    },
+    {
+      "canonical_archetype": "ADVANCED_PACKAGING_EQUIPMENT_KOREA",
+      "round193_label": "ADVANCED_PACKAGING_EQUIPMENT_KOREA"
+    },
+    {
+      "canonical_archetype": "ADVANCED_PACKAGING_PCB",
+      "round193_label": "ADVANCED_PACKAGING_PCB"
+    },
+    {
+      "canonical_archetype": "AI_CHIP_FABRIC_INFRA",
+      "round193_label": "AI_CHIP_FABRIC_INFRA"
+    },
+    {
+      "canonical_archetype": "SYSTEM_SEMI_DESIGN_HOUSE_AI_ORDER",
+      "round193_label": "SYSTEM_SEMI_DESIGN_HOUSE_AI_ORDER"
+    },
+    {
+      "canonical_archetype": "AI_ACCELERATOR_CHIP_PUREPLAY",
+      "round193_label": "AI_ACCELERATOR_CHIP_PUREPLAY"
+    },
+    {
+      "canonical_archetype": "COMMODITY_MEMORY_GENERAL_SEMI",
+      "round193_label": "COMMODITY_MEMORY_GENERAL_SEMI"
+    },
+    {
+      "canonical_archetype": "AI_DATA_CENTER_INFRASTRUCTURE",
+      "round193_label": "AI_DATA_CENTER_INFRASTRUCTURE"
+    },
+    {
+      "canonical_archetype": "REDTEAM_ACCOUNTING_TRUST_OVERLAY",
+      "round193_label": "REDTEAM_ACCOUNTING_TRUST_OVERLAY"
+    },
+    {
+      "canonical_archetype": "HBM_CATCHUP_EXECUTION_RISK",
+      "round193_label": "REDTEAM_OPERATIONAL_TRUST"
+    },
+    {
+      "canonical_archetype": "AI_CAPEX_CROWDING_OVERLAY",
+      "round193_label": "AI_CAPEX_CROWDING_OVERLAY"
+    },
+    {
+      "canonical_archetype": "CIRCULAR_AI_FINANCING_OVERLAY",
+      "round193_label": "CIRCULAR_AI_FINANCING_OVERLAY"
+    },
+    {
+      "canonical_archetype": "DISCLOSURE_CONFIDENCE_CAP",
+      "round193_label": "DISCLOSURE_CONFIDENCE_CAP"
+    },
+    {
+      "canonical_archetype": "AI_CHIP_FABRIC_INFRA",
+      "round193_label": "POLICY_FOUNDRY_EVENT"
+    },
+    {
+      "canonical_archetype": "AI_SERVER_PCB_SUBSTRATE_SECOND_WAVE",
+      "round193_label": "AI_SERVER_PCB_SUBSTRATE_SECOND_WAVE"
+    }
+  ],
+  "what_not_to_change": [
+    "do_not_apply_to_production_scoring_yet",
+    "do_not_use_round193_cases_as_candidate_generation_input",
+    "do_not_lower_stage3_green_thresholds",
+    "do_not_treat_ai_name_or_hbm_keyword_as_green_evidence",
+    "do_not_invent_prices_stage_dates_customers_or_margins"
+  ]
+}
