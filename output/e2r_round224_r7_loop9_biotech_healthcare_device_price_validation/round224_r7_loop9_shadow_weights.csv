@@ -1,0 +1,9 @@
+archetype,commercial_revenue,royalty_recognition,prescription_volume,reimbursement,capacity_utilization,gross_margin,cash_runway,event_penalty,manufacturing_ip_redteam,4b_watch_sensitivity,hard_4c_sensitivity,notes
+SC_FORMULATION_ROYALTY_PLATFORM,+5,+5,+3,+3,+0,+4,+3,-2,+4,+5,+4,Alteogen needs royalty recognition/cash receipt after Qlex commercial sales.
+KOREA_ONCOLOGY_DRUG_COMMERCIALIZATION,+5,+5,+5,+5,+0,+4,+4,-3,+4,+4,+5,"Yuhan approval is Stage 2; prescription, J&J sales, and Yuhan royalty are required."
+CDMO_HEALTHCARE_CONTRACT,+4,+0,+0,+0,+5,+5,+4,-5,+3,+4,+4,SK Bioscience M&A is Stage 2 until utilization/backlog/margin/FCF confirm.
+BIOSIMILAR_TARIFF_HEDGE_MANUFACTURING,+4,+0,+0,+1,+5,+5,+4,-2,+3,+3,+4,"Celltrion U.S. facility is tariff hedge Stage 2, not Green before transfer/utilization/FCF."
+CDMO_US_TARIFF_HEDGE_CAPACITY,+4,+0,+0,+0,+5,+5,+4,-3,+3,+4,+4,Samsung Biologics U.S. facility had weak price reaction; watch valuation saturation.
+BOTULINUM_US_MARKET_ENTRY,+5,+0,+3,+3,+0,+5,+4,-3,+3,+4,+4,"Hugel U.S. launch requires channel sales, ASP, and OPM before Green."
+MEDICAL_AI_EXTERNAL_VALIDATION,+2,+0,+0,+5,+0,+3,+5,-4,+3,+5,+5,Lunit external validation is not Green without reimbursement/adoption/revenue.
+EVENT_PREMIUM,+0,+0,+0,+0,+5,+4,+4,-5,+2,+5,+4,M&A announcements should not become Green until utilization and cashflow confirm.

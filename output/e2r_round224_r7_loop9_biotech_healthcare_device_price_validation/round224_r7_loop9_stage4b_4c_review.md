@@ -1,0 +1,36 @@
+# Round 224 R7 4B/4C Review
+
+## 4B Watch Triggers
+
+- fda_approval_price_spike_before_sales
+- partner_peak_sales_repeated_without_royalty
+- cdmo_capacity_premium_before_utilization
+- mna_announcement_day_spike
+- medical_ai_validation_price_spike_before_reimbursement
+- valuation_moves_before_commercial_revenue
+
+## Hard 4C Gates
+
+- fda_crl_or_approval_rejection
+- efficacy_or_safety_trial_failure
+- commercialization_failure
+- prescription_volume_underperformance
+- reimbursement_failure
+- royalty_non_recognition
+- large_dilution
+- cash_runway_break
+- manufacturing_inspection_failure
+- product_safety_issue
+- subgroup_clinical_performance_failure
+- partner_launch_failure
+- patent_ip_legal_loss
+
+## Case Notes
+
+- r7_loop9_alteogen_keytruda_qlex_commercialization: royalty_recognition_unverified, cash_receipt_unverified, halozyme_patent_dispute_watch, korea_stock_ohlc_unavailable
+- r7_loop9_yuhan_lazcluze_approval_royalty_watch: prescription_volume_unverified, partner_sales_unverified, yuhan_royalty_unverified, manufacturing_inspection_watch_not_hard_4c, approval_only_not_green
+- r7_loop9_sk_bioscience_idt_cmo_mna: mna_without_utilization, integration_cost_unverified, new_order_failure_risk, cash_burn_watch
+- r7_loop9_celltrion_us_factory_tariff_hedge: product_transfer_unverified, utilization_unverified, capex_burden_watch, biosimilar_pricing_pressure
+- r7_loop9_samsung_biologics_gsk_facility_price_failed: weak_price_reaction, valuation_saturation_watch, contract_transfer_unverified, utilization_unverified, capex_overrun_watch
+- r7_loop9_hugel_letybo_us_launch: us_sales_unverified, channel_penetration_unverified, pricing_war_watch, safety_or_regulatory_watch
+- r7_loop9_lunit_medical_ai_external_validation: reimbursement_unverified, hospital_adoption_unverified, subgroup_performance_risk, cash_runway_unverified

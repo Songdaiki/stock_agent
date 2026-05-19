@@ -1,0 +1,17 @@
+field,required_for_round224_price_validation
+price_data_source,true
+full_ohlc_available,true
+reported_price_anchor,true
+reported_return_anchor,true
+stage2_price,true
+stage3_price,true
+stage4b_price,true
+stage4c_price,true
+mfe_1d,true
+mae_1d,true
+relative_underperformance_pp,true
+commercial_sales_anchor,true
+trial_size_or_exam_count,true
+approval_or_launch_date,true
+capacity_or_transaction_value,true
+price_validation_status,true

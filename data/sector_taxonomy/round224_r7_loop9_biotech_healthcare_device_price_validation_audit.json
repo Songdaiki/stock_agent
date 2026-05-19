@@ -1,0 +1,93 @@
+{
+  "green_forbidden_patterns": [
+    "approval_news_only",
+    "clinical_headline_only",
+    "paper_validation_without_revenue",
+    "mna_without_utilization",
+    "fda_approval_without_commercial_sales",
+    "partner_peak_sales_without_royalty_visibility",
+    "pre_revenue_biotech_story",
+    "cash_burn_or_dilution_risk",
+    "manufacturing_inspection_issue",
+    "subgroup_performance_risk",
+    "patent_ip_risk_without_resolution"
+  ],
+  "green_required_fields": [
+    "approval_or_regulatory_clearance",
+    "commercial_launch",
+    "prescription_volume_or_hospital_adoption",
+    "reimbursement_or_insurance_or_payer_access",
+    "revenue_recognition",
+    "royalty_or_gross_margin_confirmation",
+    "capacity_utilization_or_channel_penetration",
+    "cash_runway_and_dilution_risk_passed",
+    "partner_execution_risk_passed",
+    "price_path_after_evidence"
+  ],
+  "hard_4c_gates": [
+    "fda_crl_or_approval_rejection",
+    "efficacy_or_safety_trial_failure",
+    "commercialization_failure",
+    "prescription_volume_underperformance",
+    "reimbursement_failure",
+    "royalty_non_recognition",
+    "large_dilution",
+    "cash_runway_break",
+    "manufacturing_inspection_failure",
+    "product_safety_issue",
+    "subgroup_clinical_performance_failure",
+    "partner_launch_failure",
+    "patent_ip_legal_loss"
+  ],
+  "large_sector": "BIOTECH_HEALTHCARE_DEVICE",
+  "source_round": "docs/round/round_224.md",
+  "stage4b_watch_triggers": [
+    "fda_approval_price_spike_before_sales",
+    "partner_peak_sales_repeated_without_royalty",
+    "cdmo_capacity_premium_before_utilization",
+    "mna_announcement_day_spike",
+    "medical_ai_validation_price_spike_before_reimbursement",
+    "valuation_moves_before_commercial_revenue"
+  ],
+  "summary": {
+    "candidate_generation_input": false,
+    "case_candidate_count": 7,
+    "event_premium_count": 1,
+    "failed_rerating_count": 1,
+    "full_ohlc_complete": false,
+    "hard_4c_case_count": 0,
+    "hard_4c_confirmed": false,
+    "large_sector": "BIOTECH_HEALTHCARE_DEVICE",
+    "price_validation_completed": "partial_with_reported_price_anchors",
+    "production_scoring_changed": false,
+    "shadow_weight_only": true,
+    "source_round": "docs/round/round_224.md",
+    "stage3_case_count": 0,
+    "stage4b_watch_count": 7,
+    "success_candidate_count": 5,
+    "target_archetype_count": 15
+  },
+  "target_aliases": {
+    "APPROVAL_ONLY_NOT_COMMERCIALIZATION": "APPROVAL_ONLY_NOT_COMMERCIALIZATION",
+    "BIOSIMILAR_TARIFF_HEDGE_MANUFACTURING": "BIOSIMILAR_TARIFF_HEDGE_MANUFACTURING",
+    "BIOTECH_ROYALTY_COMMERCIALIZATION": "BIOTECH_ROYALTY_COMMERCIALIZATION",
+    "BOTULINUM_US_MARKET_ENTRY": "BOTULINUM_US_MARKET_ENTRY",
+    "CDMO_HEALTHCARE_CONTRACT": "CDMO_HEALTHCARE_CONTRACT",
+    "CDMO_US_TARIFF_HEDGE_CAPACITY": "CDMO_US_TARIFF_HEDGE_CAPACITY",
+    "EVENT_PREMIUM": "EVENT_PREMIUM",
+    "KOREA_ONCOLOGY_DRUG_COMMERCIALIZATION": "KOREA_ONCOLOGY_DRUG_COMMERCIALIZATION",
+    "MANUFACTURING_INSPECTION_CRL_OVERLAY": "MANUFACTURING_INSPECTION_CRL_OVERLAY",
+    "MEDICAL_AI_COMMERCIALIZATION_GATE": "DIGITAL_HEALTHCARE_AI",
+    "MEDICAL_AI_EXTERNAL_VALIDATION": "MEDICAL_AI_EXTERNAL_VALIDATION",
+    "MEDICAL_AI_SUBGROUP_GENERALIZATION_RISK": "MEDICAL_AI_SUBGROUP_GENERALIZATION_RISK",
+    "MNA_WITHOUT_UTILIZATION": "EVENT_PREMIUM",
+    "SC_FORMULATION_ROYALTY_PLATFORM": "SC_FORMULATION_ROYALTY_PLATFORM",
+    "VACCINE_CMO_RESTRUCTURING": "VACCINE_CMO_RESTRUCTURING"
+  },
+  "what_not_to_change": [
+    "do_not_use_round224_cases_as_candidate_generation_input",
+    "do_not_apply_shadow_weights_to_production_scoring_yet",
+    "do_not_treat_approval_clinical_paper_mna_or_partner_peak_sales_as_green",
+    "do_not_invent_ohlc_or_stage_dates"
+  ]
+}
