@@ -1,0 +1,38 @@
+# Round 214 R10 4B/4C Review
+
+## 4B Watch Triggers
+
+- large_epc_award_event_rally
+- pf_support_policy_sector_rally
+- data_center_theme_basket_rally
+- reit_rate_cut_only_rally
+- reconstruction_disaster_recovery_theme
+
+## Hard 4C Gates
+
+- pf_workout_debt_reschedule
+- pf_delinquency_spike
+- unsold_apartment_failure
+- construction_cost_overrun
+- working_capital_deterioration
+- contract_cancellation
+- owner_payment_delay
+- low_margin_epc_loss
+- apartment_collapse_quality_failure
+- repeated_workplace_fatality
+- worksite_shutdown
+- license_cancellation_risk
+- tenant_absence
+- power_water_permitting_failure
+- affo_integrity_break
+- capex_dilution
+
+## Case Notes
+
+- r10_loop8_samsung_ea_fadhili_epc: epc_margin_unverified, progress_revenue_unverified, cash_collection_unverified, low_margin_order_risk_watch
+- r10_loop8_hyundai_ec_jafurah_gas_infra: stock_price_anchor_unavailable, epc_margin_unverified, working_capital_burden_watch, owner_payment_delay_watch
+- r10_loop8_daewoo_ec_grand_faw_handover: profit_recognition_unverified, cash_collection_unverified, iraq_political_risk_watch, payment_delay_watch
+- r10_loop8_taeyoung_pf_hard_4c: pf_workout_debt_reschedule, pf_delinquency_spike, liquidity_support_dependency, sector_contagion_risk
+- r10_loop8_hdc_hyundai_development_quality_safety_4c: apartment_collapse_quality_failure, fatalities_2022_collapse_6, prior_related_gwangju_fatalities_9, operational_trust_break
+- r10_loop8_posco_ec_dl_construction_safety_watch: repeated_workplace_fatality, worksite_shutdown, license_cancellation_risk, operating_profit_fine_risk
+- r10_loop8_ai_data_center_real_asset_watch: data_center_theme_without_tenant, tenant_absent, noi_affo_unverified, power_water_permitting_watch, capex_per_share_dilution_watch

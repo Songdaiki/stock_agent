@@ -1,0 +1,90 @@
+{
+  "green_forbidden_patterns": [
+    "contract_headline_only",
+    "pf_relief_policy_only",
+    "real_estate_rebound_theme_only",
+    "data_center_theme_without_tenant",
+    "asset_headline_without_noi_affo",
+    "reit_dividend_headline_only",
+    "safety_incident",
+    "working_capital_deterioration",
+    "low_margin_epc_order",
+    "tenant_absent",
+    "power_water_permitting_failure"
+  ],
+  "green_required_fields": [
+    "company_level_contract_or_tenant",
+    "margin_or_noi_affo_visibility",
+    "cash_flow_after_working_capital",
+    "pf_funding_cost_passed",
+    "project_progress_or_cost_control",
+    "tenant_occupancy_utilization_confirmed",
+    "capex_per_share_or_dilution_passed",
+    "safety_quality_trust_passed",
+    "price_path_after_evidence"
+  ],
+  "hard_4c_gates": [
+    "pf_workout_debt_reschedule",
+    "pf_delinquency_spike",
+    "unsold_apartment_failure",
+    "construction_cost_overrun",
+    "working_capital_deterioration",
+    "contract_cancellation",
+    "owner_payment_delay",
+    "low_margin_epc_loss",
+    "apartment_collapse_quality_failure",
+    "repeated_workplace_fatality",
+    "worksite_shutdown",
+    "license_cancellation_risk",
+    "tenant_absence",
+    "power_water_permitting_failure",
+    "affo_integrity_break",
+    "capex_dilution"
+  ],
+  "large_sector": "CONSTRUCTION_REAL_ESTATE_MATERIALS",
+  "source_round": "docs/round/round_214.md",
+  "stage4b_watch_triggers": [
+    "large_epc_award_event_rally",
+    "pf_support_policy_sector_rally",
+    "data_center_theme_basket_rally",
+    "reit_rate_cut_only_rally",
+    "reconstruction_disaster_recovery_theme"
+  ],
+  "summary": {
+    "candidate_generation_input": false,
+    "case_candidate_count": 7,
+    "failed_rerating_count": 1,
+    "full_ohlc_complete": false,
+    "hard_4c_case_count": 2,
+    "large_sector": "CONSTRUCTION_REAL_ESTATE_MATERIALS",
+    "price_moved_without_evidence_count": 1,
+    "price_validation_completed": "partial_with_reported_price_anchors",
+    "production_scoring_changed": false,
+    "shadow_weight_only": true,
+    "source_round": "docs/round/round_214.md",
+    "stage3_case_count": 0,
+    "stage4b_watch_count": 7,
+    "success_candidate_count": 4,
+    "target_archetype_count": 11,
+    "thesis_break_count": 2
+  },
+  "target_aliases": {
+    "AI_DATA_CENTER_NO_REVENUE_NO_TENANT": "AI_DATA_CENTER_NO_REVENUE_NO_TENANT",
+    "AI_DATA_CENTER_REAL_ASSET_DEVELOPMENT": "AI_DATA_CENTER_REAL_ASSET_DEVELOPMENT",
+    "APARTMENT_QUALITY_SAFETY_OVERLAY": "APARTMENT_QUALITY_SAFETY_OVERLAY",
+    "DATA_CENTER_POWER_WATER_PERMITTING": "DATA_CENTER_POWER_WATER_PERMITTING",
+    "EPC_LOW_MARGIN_ORDER_OVERLAY": "EPC_LOW_MARGIN_ORDER_OVERLAY",
+    "OPERATIONAL_TRUST_HARD_4C": "OPERATIONAL_TRUST_HARD_4C",
+    "OVERSEAS_EPC_CONTRACT_BACKLOG_KOREA": "OVERSEAS_EPC_CONTRACT_BACKLOG_KOREA",
+    "PF_CREDIT_REDTEAM_OVERLAY": "PF_CREDIT_REDTEAM_OVERLAY",
+    "PF_RESTRUCTURING_RELIEF": "PF_RESTRUCTURING_RELIEF",
+    "PRICE_ONLY_RALLY": "PRICE_ONLY_RALLY",
+    "THESIS_BREAK_4C": "THESIS_BREAK_4C"
+  },
+  "what_not_to_change": [
+    "do_not_use_round214_cases_as_candidate_generation_input",
+    "do_not_apply_shadow_weights_to_production_scoring_yet",
+    "do_not_treat_epc_pf_relief_data_center_theme_or_real_estate_rebound_as_green",
+    "do_not_invent_ohlc_or_stage_dates"
+  ]
+}
