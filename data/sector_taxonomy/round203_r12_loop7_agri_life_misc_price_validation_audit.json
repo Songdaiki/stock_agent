@@ -1,0 +1,277 @@
+{
+  "case_ids": [
+    "coway_rental_recurring_service_candidate",
+    "daedong_tym_agri_machinery_export_watch",
+    "megastudy_medical_quota_policy_event_watch",
+    "education_edtech_phone_ban_policy_watch",
+    "poultry_basket_brazil_bird_flu_import_ban_event_fade_r12",
+    "ktng_regulated_consumer_cashflow_watch",
+    "smart_farm_basket_unit_economics_insufficient"
+  ],
+  "green_forbidden_patterns": [
+    "defensive_theme_only",
+    "education_policy_only",
+    "agri_cycle_only",
+    "smart_farm_policy_only",
+    "disease_event_only",
+    "import_ban_event_only",
+    "unconfirmed_export_theme",
+    "dealer_inventory_unknown",
+    "subsidy_dependent_unit_economics",
+    "regulated_product_without_growth",
+    "policy_news_only",
+    "price_rally_before_company_evidence"
+  ],
+  "green_required_fields": [
+    "recurring_revenue_confirmed",
+    "repeat_purchase_or_repeat_course_confirmed",
+    "churn_or_retention_stable",
+    "arpu_or_price_pass_through_confirmed",
+    "unit_economics_positive",
+    "cash_conversion_confirmed",
+    "inventory_and_receivables_stable",
+    "regulatory_risk_passed",
+    "subsidy_dependency_low",
+    "price_path_after_evidence"
+  ],
+  "hard_4c_gates": [
+    "recall_or_product_safety_issue",
+    "churn_spike",
+    "arpu_decline",
+    "dealer_inventory_build",
+    "farmer_financing_stress",
+    "education_policy_reversal",
+    "private_education_regulation",
+    "birth_rate_demand_collapse",
+    "import_ban_reversal",
+    "disease_event_cleared",
+    "regulatory_ban_or_youth_safety_restriction",
+    "subsidy_withdrawal",
+    "unit_economics_failure",
+    "cash_conversion_deterioration"
+  ],
+  "large_sector": "EDUCATION_LIFE_AGRI_MISC",
+  "score_adjustments": [
+    {
+      "axis": "recurring_revenue",
+      "direction": "raise",
+      "points": "5",
+      "reason": "R12에서 가장 강한 증거는 반복 결제 구조다."
+    },
+    {
+      "axis": "churn_stability",
+      "direction": "raise",
+      "points": "5",
+      "reason": "렌탈·교육·서비스는 churn 안정성이 visibility를 만든다."
+    },
+    {
+      "axis": "arpu_or_repeat_course",
+      "direction": "raise",
+      "points": "4",
+      "reason": "ARPU나 반복 수강 매출이 있어야 정책 이벤트를 숫자로 연결한다."
+    },
+    {
+      "axis": "cash_conversion",
+      "direction": "raise",
+      "points": "5",
+      "reason": "반복매출도 현금전환이 확인되어야 Stage 3 후보가 된다."
+    },
+    {
+      "axis": "unit_economics",
+      "direction": "raise",
+      "points": "5",
+      "reason": "스마트팜·키오스크·렌탈은 unit economics가 핵심 splitter다."
+    },
+    {
+      "axis": "commercial_installation",
+      "direction": "raise",
+      "points": "4",
+      "reason": "스마트팜은 정책보다 상업 설치와 운영계약을 우선한다."
+    },
+    {
+      "axis": "service_contract_visibility",
+      "direction": "raise",
+      "points": "4",
+      "reason": "유지보수·서비스 계약은 일회성 하드웨어 매출보다 강하다."
+    },
+    {
+      "axis": "dealer_sell_through",
+      "direction": "raise",
+      "points": "4",
+      "reason": "농기계는 딜러 재고가 아니라 실제 sell-through가 중요하다."
+    },
+    {
+      "axis": "inventory_quality",
+      "direction": "raise",
+      "points": "4",
+      "reason": "재고와 매출채권 안정은 R12 false positive를 줄인다."
+    },
+    {
+      "axis": "regulatory_pass",
+      "direction": "raise",
+      "points": "4",
+      "reason": "규제 소비재는 규제 통과와 허용 범위 확인이 필요하다."
+    },
+    {
+      "axis": "pricing_power_after_input_cost",
+      "direction": "raise",
+      "points": "3",
+      "reason": "사료비·원가 상승 후 가격전가가 확인되어야 한다."
+    },
+    {
+      "axis": "defensive_theme_only",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "방어주라는 이유만으로 Stage 3를 만들지 않는다."
+    },
+    {
+      "axis": "education_policy_only",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "교육정책은 routing 증거이며 수강생·ARPU 전 Green이 아니다."
+    },
+    {
+      "axis": "agri_cycle_only",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "농기계·농산물 사이클만으로 구조적 visibility를 주지 않는다."
+    },
+    {
+      "axis": "smart_farm_policy_only",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "스마트팜 정책/AI농업 narrative는 설치·수주 전 Stage 1이다."
+    },
+    {
+      "axis": "disease_event_only",
+      "direction": "lower",
+      "points": "-5",
+      "reason": "질병 이벤트는 단기 MFE용이며 반복수요가 아니다."
+    },
+    {
+      "axis": "import_ban_event_only",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "수입금지 뉴스는 완화되면 event fade가 될 수 있다."
+    },
+    {
+      "axis": "unconfirmed_export_theme",
+      "direction": "lower",
+      "points": "-3",
+      "reason": "수출 기대는 sell-through와 OPM 전까지 제한한다."
+    },
+    {
+      "axis": "dealer_inventory_unknown",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "농기계 딜러 재고가 확인되지 않으면 visibility를 낮춘다."
+    },
+    {
+      "axis": "subsidy_dependent_unit_economics",
+      "direction": "lower",
+      "points": "-4",
+      "reason": "보조금 의존 unit economics는 Green blocker다."
+    },
+    {
+      "axis": "regulated_product_without_growth",
+      "direction": "lower",
+      "points": "-3",
+      "reason": "규제소비재 현금흐름은 성장·환원 없이 re-rating이 제한된다."
+    }
+  ],
+  "source_round": "docs/round/round_203.md",
+  "stage4b_statuses": [
+    "none",
+    "watch",
+    "elevated",
+    "graduated"
+  ],
+  "summary": {
+    "candidate_generation_input": false,
+    "case_candidate_count": 7,
+    "event_premium_count": 3,
+    "hard_4c_case_count": 0,
+    "needs_ohlc_backfill": true,
+    "needs_ohlc_backfill_count": 7,
+    "price_backfill_field_count": 54,
+    "production_scoring_changed": false,
+    "r12_default_stage3_bias": "conservative_except_recurring_service",
+    "required_target_count": 15,
+    "score_adjustment_count": 21,
+    "shadow_weight_only": true,
+    "stage3_case_count": 0,
+    "stage4b_watch_or_elevated_count": 7,
+    "success_candidate_count": 3,
+    "watch_case_count": 1
+  },
+  "target_aliases": [
+    {
+      "canonical_archetype": "SMART_FARM_AGRI_TECH",
+      "round203_label": "SMART_FARM_AGRI_TECH"
+    },
+    {
+      "canonical_archetype": "AGRI_MACHINERY_DEMAND_CYCLE",
+      "round203_label": "AGRI_MACHINERY_DEMAND_CYCLE"
+    },
+    {
+      "canonical_archetype": "AGRI_MACHINERY_SOFTWARE_LOCKIN",
+      "round203_label": "AGRI_MACHINERY_SOFTWARE_LOCKIN"
+    },
+    {
+      "canonical_archetype": "AGRI_LIVESTOCK_FOOD_COMMODITY",
+      "round203_label": "AGRI_LIVESTOCK_FOOD_COMMODITY"
+    },
+    {
+      "canonical_archetype": "LIVESTOCK_DISEASE_PRICE_REGULATORY",
+      "round203_label": "LIVESTOCK_DISEASE_PRICE_REGULATORY"
+    },
+    {
+      "canonical_archetype": "AGRI_DISEASE_EVENT_OVERLAY",
+      "round203_label": "AGRI_DISEASE_EVENT_OVERLAY"
+    },
+    {
+      "canonical_archetype": "ANIMAL_HEALTH_BIOSECURITY",
+      "round203_label": "ANIMAL_HEALTH_BIOSECURITY"
+    },
+    {
+      "canonical_archetype": "EDUCATION_SPECIALTY_SERVICES",
+      "round203_label": "EDUCATION_SPECIALTY_SERVICES"
+    },
+    {
+      "canonical_archetype": "HOME_CHILD_EDUCATION",
+      "round203_label": "HOME_CHILD_EDUCATION"
+    },
+    {
+      "canonical_archetype": "EDTECH_AI_DISRUPTION",
+      "round203_label": "EDTECH_AI_DISRUPTION"
+    },
+    {
+      "canonical_archetype": "HOME_LIVING_APPLIANCE_RENTAL",
+      "round203_label": "HOME_LIVING_APPLIANCE_RENTAL"
+    },
+    {
+      "canonical_archetype": "SERVICE_KIOSK_SELF_CHECKOUT",
+      "round203_label": "SERVICE_KIOSK_SELF_CHECKOUT"
+    },
+    {
+      "canonical_archetype": "CONSUMER_REGULATED_PRODUCT",
+      "round203_label": "CONSUMER_REGULATED_PRODUCT"
+    },
+    {
+      "canonical_archetype": "NICOTINE_ALTERNATIVE_REGULATED",
+      "round203_label": "NICOTINE_ALTERNATIVE_REGULATED"
+    },
+    {
+      "canonical_archetype": "REGULATED_CONSUMER_APPROVAL_OVERLAY",
+      "round203_label": "REGULATED_CONSUMER_APPROVAL_OVERLAY"
+    }
+  ],
+  "what_not_to_change": [
+    "do_not_apply_to_production_scoring_yet",
+    "do_not_use_round203_cases_as_candidate_generation_input",
+    "do_not_lower_stage3_green_thresholds",
+    "do_not_treat_defensive_policy_disease_smart_farm_agri_export_or_regulated_cashflow_theme_as_green_evidence",
+    "do_not_invent_accounts_churn_arpu_installations_unit_economics_cash_conversion_stage_prices_or_mfe_mae",
+    "keep_r12_default_stage3_bias_conservative_except_recurring_service"
+  ]
+}
